@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" title="Informe de Ingresos"
+		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="bootstrap.controls.*">
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	<s:Form width="100%">
+		<controls:FormItem label="Fecha:">
+			<mx:DateField id="fechaInput" formatString="DD/MM/YYYY" width="50%"/>
+		</controls:FormItem>
+	</s:Form>
+	<s:DataGrid id="clientes" width="100%" height="100%">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn headerText="Nombres" dataField="nombres"/>
+				<s:GridColumn headerText="Grupo" dataField="grupo"/>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	<s:controlBarContent>
+		<s:Spacer width="100%"/>
+		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
+	</s:controlBarContent>
+</s:Panel>

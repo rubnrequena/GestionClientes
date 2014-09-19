@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="bootstrap.controls.*">
+	<s:layout>
+		<s:VerticalLayout />
+	</s:layout>
+	<s:Form width="100%">
+		<controls:FormItem label="Factura:">
+			<s:Label id="facturaInput" width="50%" styleName="text-size-lg text-align-right"/>
+		</controls:FormItem>
+		<controls:FormItem label="Cliente:">
+			<s:Label id="clienteInput" width="50%" styleName="text-size-md text-align-right"/>
+		</controls:FormItem>
+		<controls:FormItem label="Fecha:">
+			<s:Label id="fechaInput" width="50%" styleName="text-size-md text-align-right"/>
+		</controls:FormItem>
+		<controls:FormItem label="Total:" styleName="well-info">
+			<s:Label id="totalInput" width="50%" styleName="text-align-right text-size-lg"/>
+		</controls:FormItem>
+		<controls:FormItem childHeight="130">
+			<s:DataGrid width="50%" id="grid" selectionMode="none">
+				<s:columns>
+					<s:ArrayList>
+						<s:GridColumn headerText="Descripción" dataField="descripcion"/>
+						<s:GridColumn headerText="Monto" width="80" dataField="monto"/>
+						<s:GridColumn headerText="Cantidad" width="80" dataField="cantidad"/>
+						<s:GridColumn headerText="Total" width="80" dataField="total"/>
+					</s:ArrayList>
+				</s:columns>
+			</s:DataGrid>
+		</controls:FormItem>
+		<controls:FormItem label="Responsable:" styleName="well-warning">
+			<s:Label id="usuarioInput" width="50%" styleName="text-align-right text-size-lg"/>
+		</controls:FormItem>
+	</s:Form>
+	<s:controlBarContent>
+		<s:Button label="Devolución" height="30" styleName="btn-warning" id="btnDevolucion"/>
+		<s:Button label="Imprimir" height="30" styleName="btn-warning icon-imprimir-sm" id="btnImprimir"/>
+		<s:Spacer width="100%"/>
+		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnAtras"/>
+	</s:controlBarContent>
+</s:Panel>

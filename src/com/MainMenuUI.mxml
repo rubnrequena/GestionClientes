@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<controls:TopMenu xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				  xmlns:s="library://ns.adobe.com/flex/spark"
+				  xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="80" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
+	<fx:Script>
+		<![CDATA[
+			import views.clientes.BuscarCliente;
+			import views.clientes.Morosos;
+			import views.finanzas.Facturas;
+			import views.finanzas.Productos;
+			import views.finanzas.Tareas;
+			import views.organizacion.Clases;
+			import views.organizacion.Instructores;
+			import views.organizacion.NuevoGrupo;
+			import views.organizacion.Salones;
+		]]>
+	</fx:Script>
+	<controls:views>
+		<s:SkinnableContainer id="clientes" name="Clientes" styleName="navChildren">
+			<s:layout><s:HorizontalLayout paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" verticalAlign="contentJustify" /></s:layout>
+			<s:Button name="cliente_nuevo" label="Nuevo" height="50" styleName="btn-menu icon-white" icon="assets/add_user-32.png"/>
+			<com:MButton view="{BuscarCliente}" name="cliente_buscar" label="Buscar" height="50" styleName="btn-menu icon-buscar-cliente-med"/>
+			<s:Button name="cliente_ingresos" label="Ingresos" height="50" styleName="btn-menu" icon="assets/statistics-32.png"/>
+			<com:MButton view="{Morosos}" name="cliente_morosos" label="Morosos" height="50" styleName="btn-menu" icon="assets/statistics-32.png"/>
+			<s:Button name="clientes_cumple" label="Cumpleaños" height="50" styleName="btn-menu" icon="assets/birthday-32.png"/>
+		</s:SkinnableContainer>
+		<s:SkinnableContainer name="Organización" styleName="navChildren">
+			<s:layout><s:HorizontalLayout paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" verticalAlign="contentJustify" /></s:layout>
+			<com:MButton view="{NuevoGrupo}" name="grupos" label="Grupos" height="50" styleName="btn-menu icon-grupos-med"/>
+			<com:MButton view="{Salones}" styleName="btn-menu icon-salon-med" height="50" name="salones" label="Salones"/>
+			<com:MButton view="{Clases}" styleName="btn-menu icon-clase-med" height="50" name="clases" label="Clases"/>
+			<com:MButton view="{Instructores}" styleName="btn-menu icon-entrenador-med" height="50" name="entrenadores" label="Entrenadores"/>
+		</s:SkinnableContainer>
+		<s:SkinnableContainer name="Asistencia" styleName="navChildren">
+			<s:layout><s:HorizontalLayout paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" verticalAlign="contentJustify" /></s:layout>
+			<s:Button name="asistencia_registrar" label="Registrar" height="50" styleName="btn-menu icon-white" icon="assets/add_user-32.png"/>
+			<s:Button name="asistencias" label="Asistencias" height="50" styleName="btn-menu" icon="assets/checked_user-32-white.png"/>
+		</s:SkinnableContainer>
+		<s:SkinnableContainer name="Horarios" styleName="navChildren">
+			<s:layout><s:HorizontalLayout paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" verticalAlign="contentJustify" /></s:layout>
+			<s:Button name="horario_nuevo" label="Nuevo Horario" height="50" styleName="btn-menu icon-white" icon="assets/add_user-32.png"/>
+			<s:Button name="horarios" label="Horarios" height="50" styleName="btn-menu" icon="assets/sandglass-32-white.png"/>
+		</s:SkinnableContainer>
+		<s:SkinnableContainer name="Finanzas" styleName="navChildren">
+			<s:layout><s:HorizontalLayout paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" verticalAlign="contentJustify" /></s:layout>
+			<s:Button name="pago_nuevo" label="Nuevo Pago" height="50" styleName="btn-menu icon-white" icon="assets/checkout-32.png"/>
+			<com:MButton view="{Facturas}" styleName="btn-menu" height="50" name="entrenadores" label="Facturas" icon="assets/add_user-32.png"/>
+			<com:MButton styleName="btn-menu icon-reporte-md" name="reporte" label="Reporte"/>
+			<s:Spacer width="100%"/>
+			<com:MButton view="{Tareas}" name="tareas" label="Tareas" styleName="btn-menu icon-tareas-md"/>
+			<com:MButton view="{Productos}" name="productos" label="Productos" height="50" styleName="btn-menu" icon="assets/product-32-white.png"/>
+		</s:SkinnableContainer>
+	</controls:views>
+</controls:TopMenu>

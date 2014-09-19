@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					   xmlns:s="library://ns.adobe.com/flex/spark" width="800" height="650" showStatusBar="false"
+					   xmlns:mx="library://ns.adobe.com/flex/mx" creationComplete="onComplete(event)" xmlns:controls="bootstrap.controls.*" xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:local="*" xmlns:com="com.*">
+	<fx:Style source="bootstrap/bootstrap.css"/>
+	<fx:Script>
+		<![CDATA[
+			import clases.Clases;
+			import clases.Clientes;
+			import clases.Config;
+			import clases.Facturas;
+			import clases.Grupos;
+			import clases.Horarios;
+			import clases.Instructores;
+			import clases.Pagos;
+			import clases.Productos;
+			import clases.Salones;
+			
+			import com.ModalAlert;
+			
+			import flash.net.dns.AAAARecord;
+			
+			import mx.events.FlexEvent;
+			
+			import org.osflash.signals.natives.NativeSignal;
+			
+			import spark.components.Alert;
+			import spark.events.IndexChangeEvent;
+			
+			import sr.modulo.Modulo;
+			
+			import views.clientes.Cliente;
+			public static var sql:Modulo;
+			public static var menuSignal:NativeSignal;
+			public static var nav:ViewNavigator;
+			
+			public static var grupos:Grupos;
+			public static var clientes:Clientes;
+			public static var horarios:Horarios;
+			public static var productos:Productos;
+			public static var pagos:Pagos;
+			public static var facturas:Facturas;
+			public static var salones:Salones;
+			public static var instructores:Instructores;
+			public static var clasess:Clases;
+			public static var config:Config;
+			
+			protected function onComplete(event:FlexEvent):void {
+				sql = new Modulo;
+				var bdfile:File = File.applicationStorageDirectory.resolvePath("gestion.db");
+				sql.iniciar(bdfile);
+				
+				config = new Config;
+				grupos = new Grupos;
+				clientes = new Clientes;
+				horarios = new Horarios;
+				productos = new Productos;
+				pagos = new Pagos;
+				facturas = new Facturas;
+				salones = new Salones;
+				instructores = new Instructores;
+				clasess = new Clases;
+			}
+			
+			override protected function createChildren():void {
+				super.createChildren();
+				
+				nav = new ViewNavigator;
+				nav.percentWidth = nav.percentHeight = 100;
+				nav.y = 110;
+				addElement(nav);
+				
+				menuSignal = new NativeSignal(mainMenu,MouseEvent.CLICK,MouseEvent);
+				menuSignal.add(menu_click);
+			}
+			
+			private function menu_click(e:MouseEvent):void {
+				switch(e.target.name) {
+					case "cliente_nuevo" : {
+						nav.addView("cliente_nuevo",Cliente);
+					}
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	<s:layout>
+		<s:VerticalLayout gap="-1"/>
+	</s:layout>
+	<com:MainMenu id="mainMenu" width="100%" height="110">
+		
+	</com:MainMenu>
+</s:WindowedApplication>

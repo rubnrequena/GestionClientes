@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx" title="Facturas" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
+	<s:layout>
+		<s:VerticalLayout />
+	</s:layout>
+	<s:Form width="100%">
+		<controls:FormItem label="Cliente" id="formCliente">
+			<com:ListPickerButton label="Seleccionar cliente" id="clienteInput" labelField="nombres" title="Clientes" width="50%"/>
+		</controls:FormItem>
+		<controls:FormItem label="Fecha" id="formFechas">
+			<s:HGroup verticalAlign="contentJustify" width="50%">
+				<mx:DateField width="50%" selectedDate="{new Date}" id="inicioInput" formatString="DD/MM/YYYY"/>
+				<mx:DateField width="50%" selectedDate="{new Date}" id="finInput" formatString="DD/MM/YYYY"/>
+			</s:HGroup>
+			<s:Button label="Buscar" styleName="btn-primary" id="buscarFecha"/>
+		</controls:FormItem>
+	</s:Form>
+	<s:DataGrid width="100%" height="100%" id="facturasGrid">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn headerText="Factura" dataField="correlativo"/>
+				<s:GridColumn headerText="Fecha" dataField="fechaLocal"/>
+				<s:GridColumn headerText="Cliente" dataField="cliente"/>
+				<s:GridColumn headerText="Monto" dataField="monto"/>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	<s:controlBarContent>
+		<s:Button label="Ver Factura" height="30" styleName="btn-primary" id="btnVer"/>
+		<s:Spacer width="100%"/>
+		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnAtras"/>
+	</s:controlBarContent>
+</s:Panel>

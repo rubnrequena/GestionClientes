@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="bootstrap.controls.*" xmlns:ns="http://flex.apache.org/experimental/ns">
+	<s:HGroup width="100%" height="100%">
+		<s:Form width="100%">
+			<controls:FormInput label="Nombres:" >
+				<s:TextInput id="nombreInput"/>
+			</controls:FormInput>
+			<controls:FormInput label="Cédula:" >
+				<s:TextInput id="cedulaInput"/>
+			</controls:FormInput>
+			<controls:FormInput label="Fecha Nac.:" >
+				<ns:MaskedTextInput id="fechaInput" maskText="##/##/####"/>
+			</controls:FormInput>
+			<controls:FormInput label="Télefonos:" childHeight="35" >
+				<s:TextArea id="tlfInput" height="100"/>
+			</controls:FormInput>
+			<controls:FormInput label="Dirección:" childHeight="50" >
+				<s:TextArea id="dirInput" height="100"/>
+			</controls:FormInput>
+			<controls:FormItem label="Grupo:">
+				<s:Button label="Seleccionar Grupo..." height="30" width="50%" id="grupoInput" styleName="btn-silent"/>
+			</controls:FormItem>
+			<s:Button label="Actualizar Datos" width="100%" styleName="btn-success" height="30" id="btnActualizar"/>
+			<controls:FormItem label="Asistencias en el des de">
+				<s:Button id="mesInput" width="25%"/>
+				<s:Label id="asistenciasMes" width="25%" styleName="text-align-center"/>
+			</controls:FormItem>
+		</s:Form>
+		<s:VGroup width="100%" height="100%">
+			<s:Panel title="Ultimas Asistencias" width="100%" height="100%">
+				<s:DataGrid width="100%" height="100%" id="clienteAsistencias">
+					<s:columns>
+						<s:ArrayList>
+							<s:GridColumn headerText="Fecha Ingreso" dataField="fechaIngreso"/>
+							<s:GridColumn headerText="Hora Ingreso" dataField="horaIngreso"/>
+							<s:GridColumn headerText="Usuario" dataField="usuario"/>
+						</s:ArrayList>
+					</s:columns>
+				</s:DataGrid>
+			</s:Panel>
+			<s:Panel title="Ultimos Pagos" width="100%" height="100%">
+				<s:DataGrid width="100%" height="100%" id="clientePagos">
+					<s:columns>
+						<s:ArrayList>
+							<s:GridColumn headerText="Fecha" dataField="fechaLocal"/>
+							<s:GridColumn headerText="Factura" dataField="correlativo"/>
+							<s:GridColumn headerText="Monto" dataField="monto"/>
+							<s:GridColumn headerText="Usuario" dataField="usuarioID"/>
+						</s:ArrayList>
+					</s:columns>
+				</s:DataGrid>
+			</s:Panel>
+		</s:VGroup>
+	</s:HGroup>
+	<s:controlBarContent>
+		<s:Button label="Eliminar" height="30" styleName="btn-danger icon-remover-sm" id="btnEliminar"/>
+		<s:Spacer width="100%"/>
+		<s:Button label="Nuevo Pago" height="30" styleName="btn-waring" id="btnNuevoPago"/>
+		<s:Button label="Pagos" height="30" styleName="btn-warning" id="btnPagos"/>
+		<s:Button label="Asistencias" height="30" styleName="btn-warning" id="btnAsistencias"/>
+		<s:Spacer width="100%"/>
+		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
+	</s:controlBarContent>
+</s:Panel>

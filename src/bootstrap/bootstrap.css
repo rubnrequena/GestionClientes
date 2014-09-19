@@ -1,0 +1,216 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace controls "bootstrap.controls.*";
+@namespace skins "bootstrap.skins.*";
+@namespace com "com.*";
+@namespace local "*";
+@namespace ns "http://flex.apache.org/experimental/ns";
+
+@font-face 
+{
+	src: url("bootstrap/fonts/corner-reg.ttf");
+	fontFamily: "CornerNoCFF";
+	embedAsCFF: false;
+	advancedAntiAliasing: true;
+}
+@font-face 
+{
+	src: url("bootstrap/fonts/corner-bold.ttf");
+	fontFamily: "CornerNoCFF";
+	embedAsCFF: false;
+	fontWeight:bold;
+	advancedAntiAliasing: true;
+}
+@font-face 
+{
+	src: url("bootstrap/fonts/corner-reg.ttf");
+	fontFamily: "Corner";
+	embedAsCFF: true;
+	advancedAntiAliasing: true;
+	
+}
+@font-face 
+{
+	src: url("bootstrap/fonts/corner-bold.ttf");
+	fontFamily: "Corner";
+	fontWeight: bold;
+	embedAsCFF: true;
+	advancedAntiAliasing: true;
+	
+}
+@font-face 
+{
+	src: url("bootstrap/fonts/corner-italic.ttf");
+	fontFamily: "Corner";
+	fontWeight: normal;
+	fontStyle:italic;
+	embedAsCFF: true;
+	advancedAntiAliasing: true;
+}
+global {
+	fontFamily:"Corner";	
+}
+mx|ToolTip, mx|DateField {
+	fontFamily:"CornerNoCFF";	
+}
+mx|DateField {
+	fontSize:16;
+}
+ns|MaskedTextInput {
+	fontFamily:"Corner";	
+}
+.input-masked {
+	fontFamily:"Corner";	
+}
+s|TextInput {
+	skinClass:ClassReference("bootstrap.skins.BInput");
+}
+s|Button {
+	skinClass:ClassReference("bootstrap.skins.BButton");
+}
+s|ToggleButton {
+	skinClass:ClassReference("bootstrap.skins.BToggleButton");	
+}
+s|Button, s|TextArea, s|TextInput {
+	fontSize:14;	
+}
+s|TextArea {
+	skinClass:ClassReference("bootstrap.skins.BTextArea");	
+}
+s|Panel {
+	skinClass:ClassReference("bootstrap.skins.BPanel");	
+}
+.topMenuBar {
+	skinClass:ClassReference("bootstrap.skins.BButtonBarSkin")	
+}
+.formItem {
+	skinClass:ClassReference("bootstrap.skins.FormItemSkin");
+	backgroundColor:#f1f1f1;
+}
+.formItem-label {
+	textAlign:right;
+	fontWeight:bold;
+	fontSize:14;
+}
+.btn-silent {
+	skinClass:ClassReference("bootstrap.skins.SilentButton")	
+}
+.btn-primary {
+	chromeColor:#428bca;	
+}
+.btn-warning {
+	chromeColor:#f0ad4e;
+}
+.btn-success {
+	chromeColor:#1caf9a;	
+}
+.btn-danger {
+	chromeColor:#d9534f;	
+}
+.btn-disable {
+	alpha:.5;
+	cornerRadius:0;
+}
+.well-info {
+	backgroundColor:#d9edf7;
+}
+.well-success {
+	backgroundColor:#dff0d8;
+}
+.well-danger {
+	backgroundColor:#f2dede;
+}
+.well-warning {
+	backgroundColor:#fcf8e3;
+}
+.well-default {
+	backgroundColor:#f1f1f1;	
+}
+.defaultItem {
+	fontSize:14;
+	verticalAlign:middle;
+}
+.text-color-white {
+	color:#FFFFFF;
+}
+.text-size-lg {
+	fontSize:20;
+}
+.text-size-md {
+	fontSize:14;	
+}
+.text-size-sm {
+	fontSize:10;
+}
+.text-align-right {
+	textAlign:right;	
+}
+.text-align-center {
+	textAlign:center;	
+}
+/* GESTION */
+controls|TopMenu {
+	backgroundColor:#43a898;
+}
+local|ViewNavigator s|Panel {
+	controlBarColor:#43a898;
+}
+.topNavigator {
+	backgroundColor:#42545e;	
+}
+.navChildren {
+	backgroundColor:#42545e;	
+}
+skins|BToggleButtonBarSkin {
+	backgroundColor:#42545e;
+	color:#f7f7f7;
+}
+.btn-menu {
+	chromeColor:#42545e;
+	color:#ffffff;
+	iconTint:#f7f7f7;
+	iconPlacement:top;
+}
+.icon-atras-sm {
+	icon:"assets/previous-24.png";
+}
+.icon-remover-sm {
+	icon:"assets/delete-24.png";
+}
+.icon-insertar-sm {
+	icon:"assets/plus2_math-26.png";	
+}
+.icon-facturar-sm {
+	icon:"assets/cash_receiving-26.png";	
+}
+.icon-grupos-med {
+	icon:"assets/group-32.png";
+}
+.icon-salon-med {
+	icon:"assets/room-32.png";
+}
+.icon-clase-med {
+	icon:"assets/groups-32.png";
+}
+.icon-entrenador-med {
+	icon:"assets/collaborator-32.png";
+}
+.icon-buscar-cliente-med {
+	icon:"assets/find_user-32.png";	
+}
+.icon-buscar-sm {
+	icon:"assets/search-26.png";	
+}
+.icon-imprimir-sm {
+	icon:"assets/print-26.png";
+}
+.icon-tareas-md {
+	icon:"assets/overtime-32.png";	
+}
+.icon-reporte-md {
+	icon:"assets/coins-32.png";	
+}
+controls|FormItem s|Label {
+	verticalAlign:middle;
+}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					  xmlns:s="library://ns.adobe.com/flex/spark" title="Nuevo Cliente"
+					  xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="bootstrap.controls.*" xmlns:ns="http://flex.apache.org/experimental/ns">
+	<s:Form width="100%">
+		<controls:FormInput label="Nombres:" >
+			<s:TextInput id="nombreInput"/>
+		</controls:FormInput>
+		<controls:FormInput label="Cédula:" >
+			<s:TextInput id="cedulaInput"/>
+		</controls:FormInput>
+		<controls:FormInput label="Fecha Nac.:" >
+			<ns:MaskedTextInput id="fechaInput" maskText="##/##/####"/>
+		</controls:FormInput>
+		<controls:FormInput label="Télefonos:" childHeight="35" >
+			<s:TextArea id="tlfInput" height="100"/>
+		</controls:FormInput>
+		<controls:FormInput label="Dirección:" childHeight="50" >
+			<s:TextArea id="dirInput" height="100"/>
+		</controls:FormInput>
+		<controls:FormItem label="Grupo:">
+			<s:Button label="Seleccionar Grupo..." height="30" id="grupoInput" styleName="btn-silent"/>
+		</controls:FormItem>
+	</s:Form>
+	<s:controlBarContent>
+		<s:Button label="Guardar" height="30" styleName="btn-primary" id="btnGuardar"/>
+		<s:Button label="Limpiar" height="30" styleName="btn-warning" id="btnReset"/>
+		<s:Spacer width="100%"/>
+		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
+	</s:controlBarContent>
+</s:Panel>

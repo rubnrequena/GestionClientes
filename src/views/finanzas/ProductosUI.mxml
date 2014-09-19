@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" title="Productos" xmlns:controls="bootstrap.controls.*">
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="center" />
+	</s:layout>
+	<s:Form width="100%">
+		<controls:FormInput label="Producto:">
+			<s:TextInput id="descInput"/>
+		</controls:FormInput>
+		<controls:FormInput label="Monto:">
+			<s:TextInput id="montoInput" restrict="0-9." text="0"/>
+		</controls:FormInput>
+		<controls:FormInput label="Cantidad:">
+			<s:TextInput id="cantInput" restrict="0-9." text="0"/>
+		</controls:FormInput>
+		<controls:FormItem>
+			<s:Button label="Insertar" styleName="btn-success icon-insertar-sm" width="25%" id="btnInsertar"/>
+			<s:Button label="Remover" styleName="btn-danger icon-remover-sm" width="25%" id="btnRemover"/>
+		</controls:FormItem>
+	</s:Form>
+	<s:DataGrid id="grid" width="80%" height="100%">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn headerText="Descripción" dataField="descripcion"/>
+				<s:GridColumn headerText="Cantidad" dataField="cantidad" width="100"/>
+				<s:GridColumn headerText="Monto" dataField="monto" width="100"/>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	<s:controlBarContent>
+		<s:Spacer width="100%"/>
+		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
+	</s:controlBarContent>
+</s:Panel>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" title="Horarios"
+		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
+	<s:layout>
+		<s:VerticalLayout />
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import mx.utils.ObjectProxy;
+			
+			import org.apache.flex.collections.VectorList;
+		]]>
+	</fx:Script>
+	<s:Form width="100%">
+		<controls:FormItem label="Grupo:">
+			<com:ListPickerButton label="Seleccionar grupo" id="grupoInput" width="50%" title="Grupos" labelField="nombre"/>
+		</controls:FormItem>
+	</s:Form>
+	<s:DataGrid width="100%" height="100%" id="horarios" variableRowHeight="true">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn headerText="Tipo" dataField="tipoString"/>
+				<s:GridColumn headerText="Entrada" dataField="entradaString"/>
+				<s:GridColumn headerText="Salida" dataField="salidaString"/>
+				<s:GridColumn headerText="Dias" dataField="diasString"/>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	<s:controlBarContent>
+		<s:Button label="Remover" height="30" styleName="btn-danger icon-remover-sm" id="btnRemover"/>
+		<s:Spacer width="100%"/>
+		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
+	</s:controlBarContent>
+</s:Panel>

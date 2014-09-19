@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" title="Nuevo Grupo" xmlns:controls="bootstrap.controls.*">
+	<s:Form width="100%">
+		<controls:FormInput label="Nombre del Grupo:" >
+			<s:TextInput id="nombreInput"/>
+		</controls:FormInput>
+		<controls:FormInput label="Descripción:" childHeight="50" >
+			<s:TextArea id="descInput" height="100"/>
+		</controls:FormInput>
+		<controls:FormInput label="Renta:" >
+			<s:TextInput id="rentaInput" height="100" restrict="0-9."/>
+		</controls:FormInput>
+	</s:Form>
+	<s:controlBarContent>
+		<s:Button label="Guardar" height="30" styleName="btn-primary" id="btnGuardar"/>
+		<s:Button label="Limpiar" height="30" styleName="btn-warning" id="btnReset"/>
+		<s:Spacer width="100%"/>
+		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
+	</s:controlBarContent>
+</s:Panel>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" title="Clases" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
+	<s:layout>
+		<s:VerticalLayout />
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import flash.sampler.NewObjectSample;
+		]]>
+	</fx:Script>
+	<s:Form width="100%" id="addform">
+		<controls:FormItem label="Instructor">
+			<com:ListPickerButton styleName="btn-silent" label="Seleccione Instructor..." title="Instructores" labelField="nombres" id="instructorInput" width="50%"/>
+		</controls:FormItem>
+		<controls:FormItem label="Grupo">
+			<com:ListPickerButton styleName="btn-silent" label="Seleccione Grupo..." title="Grupos" labelField="nombre" id="grupoInput" width="50%"/>
+		</controls:FormItem>
+		<controls:FormItem label="Salón">
+			<com:ListPickerButton styleName="btn-silent" label="Seleccione Salón..." title="Salones" labelField="nombre" id="salonInput" width="50%"/>
+		</controls:FormItem>
+		<controls:FormItem label="Fecha">
+			<mx:DateField selectedDate="{new Date}" id="dateInput" width="50%" formatString="DD/MM/YYYY"/>
+		</controls:FormItem>
+		<controls:FormItem label="Entrada">
+			<s:HGroup width="50%" height="30" verticalAlign="contentJustify">
+				<s:TextInput width="50" id="entradaHoraInput" maxChars="2" restrict="0-9"/>
+				<s:Label text=":"/>
+				<s:TextInput width="50" id="entradaMinInput" maxChars="2" restrict="0-9"/>
+				<s:Label text="Salida" styleName="formItem-label text-align-right" width="100%"/>
+				<s:TextInput width="50" id="salidaHoraInput" maxChars="2" restrict="0-9"/>
+				<s:Label text=":"/>
+				<s:TextInput width="50" id="salidaMinInput" maxChars="2" restrict="0-9"/>
+			</s:HGroup>
+		</controls:FormItem>		
+		<controls:FormItem>
+			<s:Button label="Insertar" styleName="btn-success icon-insertar-sm" width="25%" id="btnInsertar"/>
+			<s:Button label="Remover" styleName="btn-danger icon-remover-sm" width="25%" id="btnRemover"/>
+		</controls:FormItem>
+	</s:Form>
+	<controls:FormItem>
+		<s:Button label="Ocultar formulario" id="btnView" width="50%" styleName="btn-warning"/>
+	</controls:FormItem>
+	<s:Form id="busqForm" width="100%" visible="false" includeInLayout="false">
+		<controls:FormItem label="Fecha">
+			<mx:DateField width="50%" id="dateInput2" selectedDate="{new Date}" formatString="DD/MM/YYYY"/>
+		</controls:FormItem>	
+		<controls:FormItem>
+			<s:Button label="Insertar" styleName="btn-primary icon-buscar-sm" width="50%" id="btnBuscar"/>
+		</controls:FormItem>
+	</s:Form>
+	<s:DataGrid width="100%" height="100%" id="clasesGrid">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn headerText="Salon" dataField="salon"/>
+				<s:GridColumn headerText="Grupo" dataField="grupo"/>
+				<s:GridColumn headerText="Instructor" dataField="instructor"/>
+				<s:GridColumn headerText="Fecha" dataField="fechaLocal"/>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	<s:controlBarContent>
+		<s:Spacer width="100%"/>
+		<s:Button label="Atras" styleName="btn-danger icon-atras-sm" id="btnAtras"/>
+	</s:controlBarContent>
+</s:Panel>
