@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" title="Nuevo Pago" xmlns:controls="bootstrap.controls.*">
+		 xmlns:mx="library://ns.adobe.com/flex/mx" title="Nuevo Pago" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
 	<s:layout>
 		<s:VerticalLayout horizontalAlign="center"/>
 	</s:layout>
@@ -14,13 +14,14 @@
 		</controls:FormItem>
 		<controls:FormItem label="Descripción:" childHeight="32">
 			<s:TextInput id="descInput" width="50%" />
-			<s:Button icon="assets/add_list-26.png" styleName="btn-primary btn-silent" id="btnProductos"/> 
+			<s:Button icon="assets/add_list-26.png" styleName="btn-primary btn-silent" id="btnProductos"/>
+			<s:Button styleName="icon-pagos_pendientes_vacia-sm btn-silent" id="btnPendientes" enabled="false"/>
 		</controls:FormItem>
 		<controls:FormItem label="Monto:" childHeight="30">
 			<s:HGroup width="50%" verticalAlign="contentJustify">
 				<s:TextInput restrict="0-9." id="montoInput" width="100%" text="0"/>
 				<s:Label text="Cantidad:" styleName="formItem-label"/>
-				<s:TextInput restrict="0-9." id="cantInput" width="100%" text="0"/>
+				<s:TextInput restrict="0-9." id="cantInput" width="100%" text="1"/>
 			</s:HGroup>
 		</controls:FormItem>
 		<controls:FormItem>
@@ -30,8 +31,11 @@
 		<controls:FormItem label="Total:" styleName="well-info">
 			<s:Label id="totalInput" width="50%" styleName="text-align-right text-size-lg" text="0.00"/>
 		</controls:FormItem>
-		<controls:FormItem childHeight="130">
-			<s:DataGrid width="50%" id="grid">
+		<s:SkinnableContainer styleName="well-default" width="100%" height="100%">
+			<s:layout>
+				<s:VerticalLayout paddingTop="15" paddingBottom="15" horizontalAlign="center"/>
+			</s:layout>
+			<s:DataGrid width="80%" id="grid">
 				<s:columns>
 					<s:ArrayList>
 						<s:GridColumn headerText="Descripción" dataField="descripcion"/>
@@ -41,7 +45,7 @@
 					</s:ArrayList>
 				</s:columns>
 			</s:DataGrid>
-		</controls:FormItem>
+		</s:SkinnableContainer>
 	</s:Form>
 	<s:controlBarContent>
 		<s:Button label="Facturar" height="30" styleName="btn-primary icon-facturar-sm" id="btnFacturar"/>

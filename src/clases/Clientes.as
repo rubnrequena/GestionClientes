@@ -31,7 +31,7 @@ package clases
 		}
 		public function byGroup (grupoID:int):Vector.<VOCliente> {
 			if (updateFlag) update();
-			var r:Vector.<VOCliente> = new Vector.<VOCliente>(_numClientes); var i:int;
+			var r:Vector.<VOCliente> = new Vector.<VOCliente>; var i:int;
 			for (i = 0; i < _numClientes; i++) {
 				if (_clientes[i].grupoID==grupoID) r.push(_clientes[i]);
 			}

@@ -15,17 +15,11 @@
 			import clases.Pagos;
 			import clases.Productos;
 			import clases.Salones;
-			
-			import com.ModalAlert;
-			
-			import flash.net.dns.AAAARecord;
+			import clases.Tareas;
 			
 			import mx.events.FlexEvent;
 			
 			import org.osflash.signals.natives.NativeSignal;
-			
-			import spark.components.Alert;
-			import spark.events.IndexChangeEvent;
 			
 			import sr.modulo.Modulo;
 			
@@ -44,6 +38,7 @@
 			public static var instructores:Instructores;
 			public static var clasess:Clases;
 			public static var config:Config;
+			public static var tareas:Tareas;
 			
 			protected function onComplete(event:FlexEvent):void {
 				sql = new Modulo;
@@ -60,6 +55,7 @@
 				salones = new Salones;
 				instructores = new Instructores;
 				clasess = new Clases;
+				tareas = new Tareas;
 			}
 			
 			override protected function createChildren():void {

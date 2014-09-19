@@ -25,6 +25,13 @@ package vo
 		public function get fechaLocal():String {
 			return DateUtil.toggleDate(fecha);
 		}
+		public function asignarFactura (factura:int):void {
+			GestionClientes.config.init();
+			Config.sql_set.push(Value.fromPool("facturaID",factura));
+			Config.sql_where.push(Value.fromPool("pagoID",pagoID));
+			GestionClientes.sql.actualizar("pagos",Config.sql_set,Config.sql_where);
+			facturaID=factura;
+		}
 		override public function get toObject():Object {
 			var o:Object = super.toObject;
 			delete o.pagoID;

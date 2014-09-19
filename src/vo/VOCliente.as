@@ -55,6 +55,9 @@ package vo
 			],VOPago,"*",'ORDER BY fecha DESC',num.toString()).data;
 			return VectorUtil.toVector(a,Vector.<VOPago>);
 		}
+		public function pagosPendientes():Vector.<VOPago> {
+			return GestionClientes.pagos.pagosPendientes(clienteID);
+		}
 		public function facturas (num:int=-1):Vector.<VOFactura> {
 			var a:Array = GestionClientes.sql.seleccionar("facturas",new <Value>[
 				Value.fromPool("clienteID",clienteID)

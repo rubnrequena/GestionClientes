@@ -5,9 +5,48 @@
 	<s:layout>
 		<s:VerticalLayout />
 	</s:layout>
-	<s:Form width="100%">
+	<fx:Script>
+		<![CDATA[
+			import com.ListPickerSearch;
+		]]>
+	</fx:Script>
+	<s:Form width="100%" id="form">
+		<controls:FormInput label="Tarea">
+			<s:TextInput id="descTareaInput"/>
+		</controls:FormInput>
 		<controls:FormItem label="Tarea">
-			<com:ListPickerButton label="Seleccione tarea" title="Tareas" width="50%"/>
+			<com:ListPickerButton label="Seleccione tarea" title="Tareas" width="50%" labelField="label" id="tareaInput">
+				<com:dataProvider>
+					<s:ArrayList>
+						<fx:Object label="Pagos" type="clases.tareas::TPago"/>
+					</s:ArrayList>
+				</com:dataProvider>
+			</com:ListPickerButton>
+		</controls:FormItem>
+		<controls:FormItem label="Grupo">
+			<com:ListPickerButton label="Seleccione grupo" width="50%" title="Grupos" labelField="nombre" pickerClass="{new ClassFactory(ListPickerSearch)}" id="grupoInput"/>
+		</controls:FormItem>
+		<controls:FormInput label="Descripcion">
+			<s:TextInput id="descInput"/>
+		</controls:FormInput>
+		<controls:FormItem label="Tipo">
+			<com:ListPickerButton label="..." id="tipoInput" width="50%" selectedIndex="0">
+				<com:dataProvider>
+					<s:ArrayList>
+						<fx:Object label="Semanal"/>
+						<fx:Object label="Mensual"/>
+					</s:ArrayList>
+				</com:dataProvider>
+			</com:ListPickerButton>
+		</controls:FormItem>
+		<controls:FormItem label="Día">
+			<com:ListPickerButton id="diasInput" label="..." width="50%" />
+		</controls:FormItem>
+		<controls:FormItem >
+			<s:HGroup verticalAlign="contentJustify" width="50%">
+				<s:Button id="insertarTarea" label="Insertar" styleName="btn-success icon-insertar-sm" width="50%"/>
+				<s:Button id="removerTarea" label="Remover" styleName="btn-danger icon-remover-sm" width="50%"/>
+			</s:HGroup>
 		</controls:FormItem>
 	</s:Form>
 </s:Panel>

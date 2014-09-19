@@ -44,6 +44,13 @@ package clases
 				Value.fromPool("facturaID",facturaID)
 			],VOPago).data,Vector.<VOPago>);
 		}
+		public function pagosPendientes (clienteID:int):Vector.<VOPago> {
+			GestionClientes.config.init();
+			Config.sql_where.push(Value.fromPool("clienteID",clienteID));
+			Config.sql_where.push(Value.fromPool("pendiente",true));
+			return VectorUtil.toVector(GestionClientes.sql.seleccionar("pagos",Config.sql_where,VOPago).data,Vector.<VOPago>);
+			Config.resetPool();
+		}
 		public function dispose():void {
 			_data = null;
 			_numPagos=0;

@@ -211,6 +211,30 @@ skins|BToggleButtonBarSkin {
 .icon-reporte-md {
 	icon:"assets/coins-32.png";	
 }
+.icon-productos-md {
+	icon:"assets/product-32.png";	
+}
+.icon-pagos_pendientes-sm {
+	icon:"assets/filled_box-26.png";	
+}
+.icon-pagos_pendientes_vacia-sm {
+	icon:"assets/empty_box-26.png";	
+}
+.icon-asistencias-md {
+	icon:"assets/checked_user-32.png";	
+}
+.icon-nuevo_usuario-md {
+	icon:"assets/add_user-32.png";
+}
+.icon-horarios-md {
+	icon:"assets/sandglass-32.png";	
+}
+.icon-pago_nuevo-md {
+	icon:"assets/checkout-32.png";
+}
+.icon-factura-md {
+	icon:"assets/bill-32.png";
+}
 controls|FormItem s|Label {
 	verticalAlign:middle;
 }

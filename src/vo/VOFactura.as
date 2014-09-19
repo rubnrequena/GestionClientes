@@ -39,7 +39,6 @@ package vo
 			Config.sql_set.push(Value.fromPool("pendiente",false));
 			Config.sql_where.push(Value.fromPool("facturaID",facturaID));
 			GestionClientes.sql.actualizar("pagos",Config.sql_set,Config.sql_where);
-			Config.resetPool();
 		}
 		override public function get toObject():Object {
 			var o:Object = super.toObject;

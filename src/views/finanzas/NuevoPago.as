@@ -15,8 +15,6 @@ package views.finanzas
 	import org.apache.flex.collections.VectorCollection;
 	import org.apache.flex.collections.VectorList;
 	
-	import spark.components.Alert;
-	
 	import utils.DateUtil;
 	
 	import vo.VOCliente;
@@ -33,6 +31,7 @@ package views.finanzas
 		
 		private var clienteIndice:int;
 		public var cliente:VOCliente;
+		private var pagosPicker:ListPickerSearch = new ListPickerSearch;
 		
 		
 		public function NuevoPago() {
@@ -73,10 +72,24 @@ package views.finanzas
 			btnInsertar.addEventListener(MouseEvent.CLICK,btnInsertar_click);
 			btnRemover.addEventListener(MouseEvent.CLICK,removerClick);
 			btnFacturar.addEventListener(MouseEvent.CLICK,facturarClick);
-			
+			btnPendientes.addEventListener(MouseEvent.CLICK,pagosPendientes_click);
 			addEventListener(KeyboardEvent.KEY_DOWN,onKeyDown);
 			
+			pagosPicker.labelField = "descripcion";
+			pagosPicker.title = "Pagos";
+			pagosPicker.onClose = pagosPendiente_selected;
 			updatePagos();
+		}
+		
+		private function pagosPendiente_selected(index:int,pago:VOPago):void {
+			_pagos.push(pago);
+			updatePagos();
+			limpiarCampos();
+			descInput.setFocus();
+		}
+		
+		protected function pagosPendientes_click(event:MouseEvent):void {
+			pagosPicker.popUp();
 		}
 		
 		protected function removerClick(event:MouseEvent):void {
@@ -101,10 +114,14 @@ package views.finanzas
 				
 				GestionClientes.facturas.instertar(factura);
 				for each (var pago:VOPago in _pagos) {
-					pago.facturaID = factura.facturaID;
-					pago.clienteID = cliente.clienteID;
-					pago.fecha = now;
-					GestionClientes.pagos.insertar(pago);
+					if (pago.pagoID>0) {
+						pago.asignarFactura(factura.facturaID);
+					} else {
+						pago.facturaID = factura.facturaID;
+						pago.clienteID = cliente.clienteID;
+						pago.fecha = now;
+						GestionClientes.pagos.insertar(pago);
+					}
 				}
 				factura.cancelarPagos();
 				
@@ -164,7 +181,9 @@ package views.finanzas
 		}
 		
 		private function limpiarCampos():void {
-			descInput.text = montoInput.text = cantInput.text = "";
+			descInput.text = "";
+			montoInput.text = "0"; 
+			cantInput.text = "1"; 
 		}
 		
 		protected function cancelarClick(event:MouseEvent=null):void {
@@ -178,6 +197,15 @@ package views.finanzas
 				cliente = data;
 				clienteIndice = indice;
 				clienteInput.label = data.nombres;
+				
+				pagosPicker.dataProvider = new VectorCollection(cliente.pagosPendientes());
+				if (pagosPicker.dataProvider.length>0) {
+					btnPendientes.enabled = true;
+					btnPendientes.styleName = "icon-pagos_pendientes-sm btn-silent"					
+				} else {
+					btnPendientes.enabled = false;
+					btnPendientes.styleName = "icon-pagos_pendientes_vacia-sm btn-silent"
+				}
 			};
 			clientePicker.dataProvider = new VectorList(GestionClientes.clientes.clientes);
 			clientePicker.selectedIndex = clienteIndice;

@@ -28,6 +28,8 @@ package clases
 				sql_where = new Vector.<Value>;
 				change = new Signal;
 				initialized=true;
+			} else {
+				resetPool();
 			}
 		}
 		public function reload():void {
