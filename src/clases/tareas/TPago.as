@@ -1,5 +1,7 @@
 package clases.tareas
 {
+	import com.adobe.crypto.MD5;
+	
 	import vo.VOCliente;
 	import vo.VOGrupo;
 	import vo.VOHorario;
@@ -24,30 +26,38 @@ package clases.tareas
 						
 			d = new Date;
 			
-			grupo = GestionClientes.grupos.byID(grupoID);
 			clientes = GestionClientes.clientes.byGroup(grupoID);
-			var pagos:Array = []; var pago:Object = {};
-			var i:int;
-			for (i = 0; i < clientes.length; i++) {
-				pago = {};
-				pago.clienteID = clientes[i].clienteID;
-				pago.descripcion = replaceTags(descripcion);
-				pago.monto = grupo.renta;
-				pago.cantidad = 1;
-				pago.usuarioID = usuarioID;
-				pago.fecha = fecha;
-				pago.pendiente = true;
-				pagos.push(pago);
+			if (clientes.length>0) {
+				grupo = GestionClientes.grupos.byID(grupoID);
+				var pagos:Array = []; var pago:Object = {};
+				var i:int; var hash:String; var descNoTags:String;
+				for (i = 0; i < clientes.length; i++) {
+					descNoTags = replaceTags(descripcion); 
+					hash = MD5.hash(descNoTags+clientes[i].clienteID);
+					if (!GestionClientes.pagos.hasHash(hash)) {
+						pago = {};
+						pago.clienteID = clientes[i].clienteID;
+						pago.descripcion = descNoTags;
+						pago.monto = grupo.renta;
+						pago.cantidad = 1;
+						pago.usuarioID = usuarioID;
+						pago.fecha = fecha;
+						pago.pendiente = true;
+						pago.hash = hash;
+						pagos.push(pago);
+					}
+				}
 			}
-			GestionClientes.sql.insertarUnion("pagos",pagos);
+			if (pagos.length>0)
+				GestionClientes.sql.insertarUnion("pagos",pagos);
 			grupo=null;	clientes=null; pagos=null; pago=null;
 		}
 		
 		private function replaceTags(descripcion:String):String {
-			descripcion = descripcion.split("{MES}").join(VOHorario.MESES[d.month]);
+			descripcion = descripcion.split("{MES}").join(VOHorario.MESES[d.month].label);
 			descripcion = descripcion.split("{AÑO}").join(d.fullYear);
 			descripcion = descripcion.split("{GRUPO}").join(grupo.nombre);
-			return descripcion;
+			return descripcion.toUpperCase();
 		}
 	}
 }

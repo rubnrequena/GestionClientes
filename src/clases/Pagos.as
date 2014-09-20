@@ -1,9 +1,12 @@
 package clases
 {
+	import com.adobe.crypto.MD5;
+	
 	import sr.helpers.Value;
 	
 	import utils.VectorUtil;
 	
+	import vo.VOMoroso;
 	import vo.VOPago;
 
 	public class Pagos
@@ -26,6 +29,7 @@ package clases
 		}		
 		public function insertar (pago:VOPago):VOPago {
 			loadIfNeeded();
+			pago.hash = MD5.hash(pago.descripcion+pago.clienteID);
 			pago.pagoID = GestionClientes.sql.insertar("pagos",pago.toObject).lastInsertRowID;
 			_data.push(pago);
 			_numPagos++;
@@ -39,6 +43,13 @@ package clases
 			}
 			return r;
 		}
+		public function hasHash (hash:String):Boolean {
+			loadIfNeeded();
+			for (var i:int = 0; i < _numPagos; i++) {
+				if (_data[i].hash==hash) return true;	
+			}
+			return false;
+		}
 		public function byFactura (facturaID:int):Vector.<VOPago> {
 			return VectorUtil.toVector(GestionClientes.sql.seleccionar("pagos",new <Value>[
 				Value.fromPool("facturaID",facturaID)
@@ -50,6 +61,12 @@ package clases
 			Config.sql_where.push(Value.fromPool("pendiente",true));
 			return VectorUtil.toVector(GestionClientes.sql.seleccionar("pagos",Config.sql_where,VOPago).data,Vector.<VOPago>);
 			Config.resetPool();
+		}
+		public function get morosos():Vector.<VOMoroso> {
+			var data:Array = GestionClientes.sql.sql('SELECT clientes.clienteID, clientes.nombres, pagos.fecha, SUM(pagos.monto) monto ' +
+				'FROM pagos JOIN clientes ON clientes.clienteID = pagos.clienteID WHERE pendiente = true ' +
+				'GROUP BY clientes.clienteID ORDER BY monto DESC, fecha ASC',VOMoroso).data;
+			return VectorUtil.toVector(data,Vector.<VOMoroso>);
 		}
 		public function dispose():void {
 			_data = null;

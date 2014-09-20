@@ -29,6 +29,11 @@ package views.finanzas
 			
 			buscarFecha.addEventListener(MouseEvent.CLICK,buscarFecha_click);
 			btnVer.addEventListener(MouseEvent.CLICK,btnVer_click);
+			btnAtras.addEventListener(MouseEvent.CLICK,atras_click);
+		}
+		
+		protected function atras_click(event:MouseEvent):void {
+			(owner as ViewNavigator).popBack();
 		}
 		
 		protected function btnVer_click(event:MouseEvent):void {

@@ -1,20 +1,23 @@
 package views.clientes
 {
 	import com.ListPicker;
+	import com.adobe.crypto.MD5;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import mx.collections.ArrayCollection;
 	import mx.collections.ArrayList;
+	
+	import org.apache.flex.collections.VectorCollection;
+	
+	import vo.VOHorario;
 
 	public class Cumpleanos extends CumpleanosUI
 	{
-		private var meses:Array = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
-		protected var mesPicker:ListPicker;
 		protected var now:Date = new Date;
 
-		protected var _clientes:ArrayCollection;
+		protected var _clientes:VectorCollection;
 		
 		public function Cumpleanos() {
 			super();
@@ -23,19 +26,19 @@ package views.clientes
 		}
 		
 		protected function onRemoved(event:Event):void {
-			btnMes.addEventListener(MouseEvent.CLICK,mesChange);
 			btnCancelar.addEventListener(MouseEvent.CLICK,cancelarClick);
 		}
-		
 		protected function onAdded(event:Event):void {
 			if (initialized) childrenCreated();
 		}
 		override protected function createChildren():void {
 			super.createChildren();
-			mesPicker_close(now.month);
+			mesPicker_close(now.month,null);
 		}
 		override protected function childrenCreated():void {
-			btnMes.addEventListener(MouseEvent.CLICK,mesChange);
+			btnMes.dataProvider = new ArrayList(VOHorario.MESES);
+			btnMes.onClose = mesPicker_close;
+			btnMes.selectedIndex = now.month;
 			btnCancelar.addEventListener(MouseEvent.CLICK,cancelarClick);
 			btnMes.setFocus();
 		}
@@ -44,21 +47,10 @@ package views.clientes
 			(owner as ViewNavigator).popBack();
 		}
 		
-		protected function mesChange(event:MouseEvent):void {
-			mesPicker = new ListPicker();
-			mesPicker.title = "Seleccione mes";
-			mesPicker.onClose = mesPicker_close;
-			mesPicker.dataProvider = new ArrayList(meses);
-			mesPicker.selectedIndex = now.month;
-			mesPicker.popUp();
-		}
-		
-		private function mesPicker_close(mes:int):void {
-			mesPicker=null;
+		private function mesPicker_close(mes:int,item:Object):void {
 			now.month = mes;
-			btnMes.setFocus();
-			btnMes.label = meses[mes];
-			_clientes = new ArrayCollection(GestionClientes.clientes.cumpleaneros(mes+1));
+			btnMes.label = VOHorario.MESES[mes].label;
+			_clientes = new VectorCollection(GestionClientes.clientes.cumpleaneros(mes+1));
 			clientes.dataProvider = _clientes;
 		}
 	}

@@ -42,11 +42,11 @@ package clases
 			for (i = 0; i < _data.length; i++) {
 				if (_data[i].tipo==0) {
 					if (_data[i].dia==d.day) {
-						runTask(_data[i],ds);	
+						runTask(_data[i],ds);
 					}
 				} else {
 					if (_data[i].dia==d.date) {
-						runTask(_data[i],ds);	
+						runTask(_data[i],ds);
 					}
 				}
 			}			
@@ -55,7 +55,6 @@ package clases
 		public function runTask(tarea:VOTarea,date:String):void {
 			var type:Class = getDefinitionByName(tarea.type) as Class;
 			var t:Object = new type(tarea.metaData.concat(date,1));
-			
 		}
 	}
 }

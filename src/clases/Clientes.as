@@ -43,12 +43,12 @@ package clases
 			updateFlag=false;
 		}
 		
-		public function cumpleaneros (mes:int):Array {
+		public function cumpleaneros (mes:int):Vector.<VOCliente> {
 			var m:String = mes<10?"0"+mes:mes.toString();
 			var clientes:Array = GestionClientes.sql.seleccionar("clientes",new <Value>[
 				Value.fromPool("fechaNacimiento",'%-'+m+'-%',"AND","LIKE")
 			],VOCliente).data; 
-			return clientes;
+			return VectorUtil.toVector(clientes,Vector.<VOCliente>);
 		}
 	}
 }

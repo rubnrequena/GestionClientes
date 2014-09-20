@@ -13,13 +13,26 @@ package vo
 		public var salonID:int;
 		
 		public static const TIPO:Array = ["Semanal","Mensual"];
-		public static const MESES:Array = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Ocubre","Noviembre","Diciembre"];
+		public static const MESES:Array = [
+			{label:"Enero"},
+			{label:"Febrero"},
+			{label:"Marzo"},
+			{label:"Abril"},
+			{label:"Mayo"},
+			{label:"Junio"},
+			{label:"Julio"},
+			{label:"Agosto"},
+			{label:"Septiembre"},
+			{label:"Octubre"},
+			{label:"Noviembre"},
+			{label:"Diciembre"},
+		];
 		public static const DIAS_SEMANA:Array = ["Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"];
 		public static const DIAS_MES:Array = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
 		
-		public function VOHorario() {
-			
+		public function VOHorario() {			
 		}
+		
 		override public function get toObject():Object {
 			var o:Object = super.toObject;
 			delete o.horarioID;

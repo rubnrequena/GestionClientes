@@ -170,7 +170,7 @@ package views.finanzas
 		
 		protected function btnInsertar_click(event:MouseEvent):void {
 			var p:VOPago = new VOPago;
-			p.descripcion = descInput.text;
+			p.descripcion = descInput.text.toUpperCase();
 			p.monto = Number(montoInput.text);
 			p.cantidad = Number(cantInput.text);
 			

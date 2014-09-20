@@ -18,6 +18,7 @@ package vo
 		public var cantidad:Number=0;
 		public var usuarioID:int;
 		public var pendiente:Boolean;
+		public var hash:String;
 		
 		public function get total():Number {
 			return cantidad*monto;

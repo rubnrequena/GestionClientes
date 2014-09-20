@@ -59,7 +59,7 @@ package views.clientes
 			clientePagos.dataProvider = new VectorList(cliente.facturas(20));
 			
 			var hoy:Date = new Date;
-			mesInput.label = VOHorario.MESES[hoy.month];
+			mesInput.label = VOHorario.MESES[hoy.month].label;
 			asistenciasMes.text = cliente.asistenciasDelMes(hoy.month,hoy.fullYear).length.toString();			
 			
 			grupoInput.addEventListener(MouseEvent.CLICK,btnGrupo_click);

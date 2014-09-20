@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" title="Cumpleaños" xmlns:controls="bootstrap.controls.*">
+		 xmlns:mx="library://ns.adobe.com/flex/mx" title="Cumpleaños" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
 	<s:layout>
 		<s:VerticalLayout />
 	</s:layout>
 	<controls:FormInput label="Mes:">
-		<s:Button id="btnMes" height="30" styleName="btn-warning"/>
+		<com:ListPickerButton id="btnMes" height="30" styleName="btn-warning" labelField="label" title="Meses"/>
 	</controls:FormInput>
 	<s:DataGrid width="100%" height="100%" id="clientes">
 		<s:columns>
