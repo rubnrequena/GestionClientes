@@ -1,6 +1,5 @@
 package views.finanzas
 {
-	import com.ListPicker;
 	import com.ListPickerSearch;
 	import com.ModalAlert;
 	
@@ -13,7 +12,6 @@ package views.finanzas
 	import mx.events.FlexEvent;
 	
 	import org.apache.flex.collections.VectorCollection;
-	import org.apache.flex.collections.VectorList;
 	
 	import utils.DateUtil;
 	
@@ -25,14 +23,19 @@ package views.finanzas
 	public class NuevoPago extends NuevoPagoUI
 	{
 		protected var _pagos:Vector.<VOPago>;
+		protected var _pagosPendientes:VectorCollection;
 		protected var _totalPagos:Number;
 
 		public var factura:VOFactura;
 		
-		private var clienteIndice:int;
-		public var cliente:VOCliente;
-		private var pagosPicker:ListPickerSearch = new ListPickerSearch;
-		
+		private var _cliente:VOCliente;
+		public function get cliente():VOCliente { return _cliente; }
+		public function set cliente(value:VOCliente):void {
+			_cliente = value;
+			_pagosPendientes = new VectorCollection(_cliente.pagosPendientes());
+		}
+
+		private var pagosPicker:ListPickerSearch = new ListPickerSearch;		
 		
 		public function NuevoPago() {
 			super();
@@ -64,9 +67,9 @@ package views.finanzas
 				clienteInput.label = cliente.nombres;
 				clienteInput.enabled=false;
 			}
+			clienteInput.dataProvider = new VectorCollection(GestionClientes.clientes.clientes);
 		}
 		override protected function childrenCreated():void {
-			clienteInput.addEventListener(MouseEvent.CLICK,seleccionarCliente);
 			btnCancelar.addEventListener(MouseEvent.CLICK,cancelarClick);
 			btnProductos.addEventListener(MouseEvent.CLICK,btnProductos_click);
 			btnInsertar.addEventListener(MouseEvent.CLICK,btnInsertar_click);
@@ -75,10 +78,13 @@ package views.finanzas
 			btnPendientes.addEventListener(MouseEvent.CLICK,pagosPendientes_click);
 			addEventListener(KeyboardEvent.KEY_DOWN,onKeyDown);
 			
+			clienteInput.onClose = seleccionarCliente_close;
+			
 			pagosPicker.labelField = "descripcion";
 			pagosPicker.title = "Pagos";
 			pagosPicker.onClose = pagosPendiente_selected;
 			updatePagos();
+			checkPagosPendientes();
 		}
 		
 		private function pagosPendiente_selected(index:int,pago:VOPago):void {
@@ -190,26 +196,21 @@ package views.finanzas
 			(owner as ViewNavigator).popBack();
 		}
 		
-		protected function seleccionarCliente(event:MouseEvent):void {
-			var clientePicker:ListPicker = new ListPicker();
-			clientePicker.title = "Seleccionar cliente";
-			clientePicker.onClose = function (indice:int,data:VOCliente):void {
-				cliente = data;
-				clienteIndice = indice;
-				clienteInput.label = data.nombres;
-				
-				pagosPicker.dataProvider = new VectorCollection(cliente.pagosPendientes());
-				if (pagosPicker.dataProvider.length>0) {
-					btnPendientes.enabled = true;
-					btnPendientes.styleName = "icon-pagos_pendientes-sm btn-silent"					
-				} else {
-					btnPendientes.enabled = false;
-					btnPendientes.styleName = "icon-pagos_pendientes_vacia-sm btn-silent"
-				}
-			};
-			clientePicker.dataProvider = new VectorList(GestionClientes.clientes.clientes);
-			clientePicker.selectedIndex = clienteIndice;
-			clientePicker.popUp();
+		
+		protected function seleccionarCliente_close (indice:int,data:VOCliente):void {
+			cliente = data;
+			checkPagosPendientes();
+		}
+		
+		private function checkPagosPendientes():void {
+			pagosPicker.dataProvider = _pagosPendientes;
+			if (_pagosPendientes && _pagosPendientes.length>0) {
+				btnPendientes.enabled = true;
+				btnPendientes.styleName = "icon-pagos_pendientes-sm btn-silent"					
+			} else {
+				btnPendientes.enabled = false;
+				btnPendientes.styleName = "icon-pagos_pendientes_vacia-sm btn-silent"
+			}
 		}
 	}
 }

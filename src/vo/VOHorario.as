@@ -5,7 +5,7 @@ package vo
 	public class VOHorario extends MapObject
 	{
 		public var horarioID:int;
-		public var grupo:int;
+		public var grupoID:int;
 		public var tipo:int;
 		public var entrada:int;
 		public var salida:int;

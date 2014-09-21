@@ -12,7 +12,7 @@
 		<controls:FormInput label="Fecha Nac.:" >
 			<ns:MaskedTextInput id="fechaInput" maskText="##/##/####"/>
 		</controls:FormInput>
-		<controls:FormInput label="Télefonos:" childHeight="35" >
+		<controls:FormInput label="Télefonos:" childHeight="40" >
 			<s:TextArea id="tlfInput" height="100"/>
 		</controls:FormInput>
 		<controls:FormInput label="Dirección:" childHeight="50" >

@@ -1,16 +1,13 @@
 package clases
 {
-	import sr.helpers.Value;
-	
 	import utils.VectorUtil;
 	
 	import vo.VOCliente;
-	import vo.VOGrupo;
 
 	public class Clientes
 	{
 		protected var updateFlag:Boolean=true;
-		protected var _clientes:Vector.<VOCliente>;
+		protected var _data:Vector.<VOCliente>;
 		protected var _numClientes:uint;
 
 		public function Clientes() {
@@ -19,13 +16,13 @@ package clases
 		
 		public function get clientes():Vector.<VOCliente> {
 			if (updateFlag) update();
-			return _clientes;
+			return _data;
 		}
 		public function byID (clienteID:int):VOCliente {
 			if (updateFlag) update();
 			var i:int;
 			for (i = 0; i < _numClientes; i++) {
-				if (_clientes[i].clienteID==clienteID) return _clientes[i];
+				if (_data[i].clienteID==clienteID) return _data[i];
 			}
 			return null;
 		}
@@ -33,22 +30,26 @@ package clases
 			if (updateFlag) update();
 			var r:Vector.<VOCliente> = new Vector.<VOCliente>; var i:int;
 			for (i = 0; i < _numClientes; i++) {
-				if (_clientes[i].grupoID==grupoID) r.push(_clientes[i]);
+				if (_data[i].grupoID==grupoID) r.push(_data[i]);
 			}
 			return r;
 		}
 		public function update():void {
-			_clientes = VectorUtil.toVector(GestionClientes.sql.seleccionar("clientes",null,VOCliente).data,Vector.<VOCliente>);
-			_numClientes = _clientes.length;
+			_data = VectorUtil.toVector(GestionClientes.sql.seleccionar("clientes",null,VOCliente).data,Vector.<VOCliente>);
+			_numClientes = _data.length;
 			updateFlag=false;
 		}
 		
 		public function cumpleaneros (mes:int):Vector.<VOCliente> {
+			if (updateFlag) update();
 			var m:String = mes<10?"0"+mes:mes.toString();
-			var clientes:Array = GestionClientes.sql.seleccionar("clientes",new <Value>[
-				Value.fromPool("fechaNacimiento",'%-'+m+'-%',"AND","LIKE")
-			],VOCliente).data; 
-			return VectorUtil.toVector(clientes,Vector.<VOCliente>);
+			
+			var clientes:Vector.<VOCliente> = new Vector.<VOCliente>; 
+			var i:int;
+			for (i = 0; i < _numClientes; i++) {
+				if (_data[i].fechaNacimiento.substr(5,2)==m) clientes.push(_data[i]);
+			}
+			return clientes;
 		}
 	}
 }

@@ -7,14 +7,14 @@
 	</s:layout>
 	<s:Form width="100%">
 		<controls:FormItem label="Cliente:">
-			<s:Button label="Cliente" id="clienteInput" width="50%"/>
+			<com:ListPickerButton label="Cliente" id="clienteInput" width="50%" title="Clientes" pickerClass="{new ClassFactory(ListPickerSearch)}" labelField="nombres"/> 
 		</controls:FormItem>
 		<controls:FormItem label="Fecha:">
 			<mx:DateField width="50%" selectedDate="{new Date}" formatString="DD/MM/YYYY" id="fechaInput"/>
 		</controls:FormItem>
 		<controls:FormItem label="Descripción:" childHeight="32">
 			<s:TextInput id="descInput" width="50%" />
-			<s:Button icon="assets/add_list-26.png" styleName="btn-primary btn-silent" id="btnProductos"/>
+			<s:Button styleName="icon-lista-sm btn-silent" id="btnProductos"/>
 			<s:Button styleName="icon-pagos_pendientes_vacia-sm btn-silent" id="btnPendientes" enabled="false"/>
 		</controls:FormItem>
 		<controls:FormItem label="Monto:" childHeight="30">
@@ -52,4 +52,9 @@
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
 	</s:controlBarContent>
+	<fx:Script>
+		<![CDATA[
+			import com.ListPickerSearch;
+		]]>
+	</fx:Script>
 </s:Panel>

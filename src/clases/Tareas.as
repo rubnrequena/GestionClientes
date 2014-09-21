@@ -41,11 +41,11 @@ package clases
 			if (updateFlag) update(); 
 			for (i = 0; i < _data.length; i++) {
 				if (_data[i].tipo==0) {
-					if (_data[i].dia==d.day) {
+					if (d.day==_data[i].dia) {
 						runTask(_data[i],ds);
 					}
 				} else {
-					if (_data[i].dia==d.date) {
+					if (d.date>_data[i].dia) {
 						runTask(_data[i],ds);
 					}
 				}

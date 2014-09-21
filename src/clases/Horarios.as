@@ -43,7 +43,7 @@ package clases
 			var now:int = (fecha.hours*100)+fecha.minutes;
 			var i:int; var x:int;
 			for (i = 0; i < numHorarios; i++) {
-				if (horarios[i].grupo==cliente.grupoID) {
+				if (horarios[i].grupoID==cliente.grupoID) {
 					x = horarios[i].enRango(now);
 					if (x==0) {
 						var s:String = horarios[i].tipo==0?fecha.day.toString():fecha.date.toString();

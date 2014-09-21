@@ -1,5 +1,6 @@
 package views.horarios
 {
+	import com.DayPicker;
 	import com.ListPicker;
 	import com.ModalAlert;
 	
@@ -50,11 +51,7 @@ package views.horarios
 			tipoInput.selectedIndex=-1;
 			salonInput.selectedIndex=-1;
 			
-			var i:int;
-			for (i = 0; i < diasMeses.numElements; i++)
-				(diasMeses.getElementAt(i) as CheckBox).selected = false;
-			for (i = 0; i < diasSemanas.numElements; i++)
-				(diasSemanas.getElementAt(i) as CheckBox).selected = false;
+			diaInput.tipo = -1;
 			
 			grupoInput.setFocus();
 		}
@@ -64,8 +61,8 @@ package views.horarios
 				var h:VOHorario = new VOHorario;
 				h.entrada = int(entradaInput.fullText.split(":").join(""));
 				h.salida = int(salidaInput.fullText.split(":").join(""));
-				h.dias = tipoInput.selectedIndex==0?diasSemana:diasMes;
-				h.grupo = (grupoInput.selectedItem as VOGrupo).grupoID;
+				h.dias = diaInput.dias;
+				h.grupoID = (grupoInput.selectedItem as VOGrupo).grupoID;
 				h.tipo = tipoInput.selectedIndex;
 				h.salonID = (salonInput.selectedItem as VOSalon).salonID;
 				
@@ -78,7 +75,7 @@ package views.horarios
 		
 		private function get validarCampos():Boolean {
 			var s:Array = [];
-			if (!grupoInput.selectedIndex>0)
+			if (!grupoInput.selectedIndex>-1)
 				s.push("- Seleccione grupo");
 			if (!validarHora(entradaInput.fullText))
 				s.push("- Campo de entrada inválida");
@@ -95,26 +92,7 @@ package views.horarios
 				return false;
 		}		
 		private function tipoInput_change(tipo:int):void {
-			currentState = tipo==0?"semanal":"mensual";
-		}
-		
-		private function get diasSemana():String {
-			var d:Array = []; var l:int = diasSemanas.numElements;
-			var c:CheckBox;
-			for (var i:int = 0; i < l; i++) {
-				c = diasSemanas.getElementAt(i) as CheckBox;
-				if (c.selected) d.push(i);
-			}
-			return d.join(",");
-		}
-		private function get diasMes():String {
-			var d:Array = []; var l:int = diasMeses.numElements;
-			var c:CheckBox; var i:int;
-			for (i = 0; i < l; i++) {
-				c = diasMeses.getElementAt(i) as CheckBox;
-				if (c.selected) d.push(i+1);
-			}
-			return d.join(",");
+			diaInput.tipo = tipo;
 		}
 	}
 }

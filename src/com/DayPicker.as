@@ -32,11 +32,18 @@ package com
 			if (_tipo!=value) {
 				_tipo=value;
 				_groupDays.removeAllElements();
-				if (value)
+				if (value==1)
 					buildMes();
-				else
+				else if (value==0)
 					buildSemana();
+				else
+					reset();
 			}
+		}
+		
+		private function reset():void {
+			_groupDays.removeAllElements();
+			height = 30;
 		}
 		public function get dias():String {
 			var c:CheckBox; var i:int; var d:Array = [];

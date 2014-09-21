@@ -235,6 +235,9 @@ skins|BToggleButtonBarSkin {
 .icon-factura-md {
 	icon:"assets/bill-32.png";
 }
+.icon-lista-sm {
+	icon:"assets/add_list-26.png";	
+}
 controls|FormItem s|Label {
 	verticalAlign:middle;
 }
