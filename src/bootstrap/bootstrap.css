@@ -238,6 +238,12 @@ skins|BToggleButtonBarSkin {
 .icon-lista-sm {
 	icon:"assets/add_list-26.png";	
 }
+.icon-guardar-sm {
+	icon:"assets/save-26.png";
+}
+.icon-limpiar-sm {
+	icon:"assets/erase-26.png";	
+}
 controls|FormItem s|Label {
 	verticalAlign:middle;
 }
