@@ -1,5 +1,7 @@
 package clases
 {
+	import sr.helpers.Value;
+	
 	import utils.VectorUtil;
 	
 	import vo.VOGrupo;
@@ -18,7 +20,7 @@ package clases
 		}
 		public function insertar (grupo:VOGrupo):VOGrupo {
 			grupo.grupoID = GestionClientes.sql.insertar("grupos",grupo.toObject).lastInsertRowID;
-			updateFlag=true;
+			_data.push(grupo);
 			return grupo;
 		}
 		protected function commitData():void {
@@ -32,6 +34,12 @@ package clases
 				if (grupoID==_data[i].grupoID) return _data[i];	
 			}
 			return null;
+		}
+		public function remover (grupoID:int):void {
+			GestionClientes.sql.remover("grupos",new <Value>[
+				Value.fromPool("grupoID",grupoID)
+			]);
+			updateFlag=true;
 		}
 		public function grupoIndex (grupoID:int):int {
 			var i:int;

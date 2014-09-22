@@ -9,7 +9,7 @@ package com
 	import views.clientes.BuscarCliente;
 	import views.clientes.Cumpleanos;
 	import views.clientes.Ingresos;
-	import views.organizacion.NuevoGrupo;
+	import views.organizacion.Grupos;
 	import views.horarios.HorarioNuevo;
 	import views.horarios.Horarios;
 	import views.finanzas.NuevoPago;
@@ -30,7 +30,7 @@ package com
 			} else {
 				switch(e.target.name) {
 					case "grupos_nuevo" : {
-						GestionClientes.nav.addView("nuevo_grupo",NuevoGrupo); break;
+						GestionClientes.nav.addView("nuevo_grupo",Grupos); break;
 					}
 					case "cliente_buscar": {
 						GestionClientes.nav.addView("buscar_clientes",BuscarCliente); break;

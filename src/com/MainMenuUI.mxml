@@ -19,7 +19,7 @@
 			import views.horarios.Horarios;
 			import views.organizacion.Clases;
 			import views.organizacion.Instructores;
-			import views.organizacion.NuevoGrupo;
+			import views.organizacion.Grupos;
 			import views.organizacion.Salones;
 		]]>
 	</fx:Script>
@@ -34,7 +34,7 @@
 		</s:SkinnableContainer>
 		<s:SkinnableContainer name="Organización" styleName="navChildren">
 			<s:layout><s:HorizontalLayout paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" verticalAlign="contentJustify" /></s:layout>
-			<com:MButton view="{NuevoGrupo}" name="grupos" label="Grupos" styleName="btn-menu icon-grupos-med"/>
+			<com:MButton view="{Grupos}" name="grupos" label="Grupos" styleName="btn-menu icon-grupos-med"/>
 			<com:MButton view="{Salones}" styleName="btn-menu icon-salon-med" name="salones" label="Salones"/>
 			<com:MButton view="{Clases}" styleName="btn-menu icon-clase-med" name="clases" label="Clases"/>
 			<com:MButton view="{Instructores}" styleName="btn-menu icon-entrenador-med" name="entrenadores" label="Entrenadores"/>
