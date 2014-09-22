@@ -10,6 +10,7 @@ package views.organizacion
 	import spark.components.Alert;
 	
 	import vo.VOGrupo;
+	import vo.VOInstructor;
 
 	public class Grupos extends GruposUI
 	{		
@@ -25,6 +26,8 @@ package views.organizacion
 			btnReset.addEventListener(MouseEvent.CLICK,resetClick);
 			btnRemover.addEventListener(MouseEvent.CLICK,removerClick);
 			
+			instructorInput.dataProvider = new VectorCollection(GestionClientes.instructores.data);
+			
 			updateData();
 		}
 		
@@ -38,8 +41,12 @@ package views.organizacion
 		}
 		
 		private function removerGrupo():void {
-			GestionClientes.grupos.remover(gruposGrid.selectedItem.grupoID);
-			updateData();
+			ModalAlert.show("¿Seguro desea remover grupo?","Remover Grupo",null,[ModalAlert.YES,ModalAlert.NO],function (detalle:int):void {
+				if (detalle==0) {
+					GestionClientes.grupos.remover(gruposGrid.selectedItem.grupoID);
+					updateData();
+				}
+			});
 		}
 		protected function onAdded(event:Event):void {
 			if (initialized)
@@ -61,6 +68,7 @@ package views.organizacion
 			grupo.nombre = nombreInput.text;
 			grupo.descripcion = descInput.text;
 			grupo.renta = Number(rentaInput.text);
+			grupo.instructorID = (instructorInput.selectedItem as VOInstructor).instructorID;
 			
 			GestionClientes.grupos.insertar(grupo);
 			ModalAlert.show("Grupo guardado exitosamente","Gestion Clientes",null,[ModalAlert.OK],function ():void {

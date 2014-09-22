@@ -17,7 +17,6 @@ package vo
 		public function toString():String {
 			return nombre;
 		}
-		
 		public function get instructor():VOInstructor {
 			return GestionClientes.instructores.byID(instructorID);
 		}
