@@ -27,7 +27,7 @@
   <flashCatalyst validateFlashCatalystCompatibility="false"/>
   <buildTargets>
     <buildTarget buildTargetName="default">
-      <airSettings airCertificatePath="" airTimestamp="true" anePathSet="true" version="1">
+      <airSettings airCertificatePath="D:/Work/FB Workspace/SistemasRequena.p12" airTimestamp="false" anePathSet="true" version="1">
         <airExcludes/>
         <anePaths/>
       </airSettings>
@@ -35,4 +35,3 @@
     </buildTarget>
   </buildTargets>
 </actionScriptProperties>
-
