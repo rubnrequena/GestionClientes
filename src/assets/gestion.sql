@@ -1,0 +1,15 @@
+CREATE TABLE "asistencias" (asistenciaID INTEGER PRIMARY KEY AUTOINCREMENT,   clienteID INTEGER,   fechaIngreso TEXT,   horaIngreso TEXT,  usuario INTEGER, grupoID INTEGER);
+CREATE TABLE "clases" (claseID INTEGER PRIMARY KEY AUTOINCREMENT,  usuarioID INTEGER,  instructorID INTEGER,  fecha TEXT,  entrada INTEGER,  salida INTEGER,  grupoID INTEGER,  salonID INTEGER);
+CREATE TABLE "clientes" (clienteID INTEGER PRIMARY KEY AUTOINCREMENT,    nombres TEXT,    cedula TEXT,    telefonos TEXT,    direccion TEXT,    fechaNacimiento TEXT,   fechaRegistro TEXT,   grupoID INTEGER,   meta TEXT);
+CREATE TABLE "config" (key TEXT PRIMARY KEY, value TEXT);
+INSERT INTO config (key,value) VALUES ('correlativo','13');
+CREATE TABLE "facturas" (facturaID INTEGER PRIMARY KEY AUTOINCREMENT,   clienteID INTEGER,   fecha TEXT,   usuarioID INTEGER, correlativo INTEGER, monto REAL);
+CREATE TABLE "grupos" (grupoID INTEGER PRIMARY KEY AUTOINCREMENT, descripcion TEXT, nombre TEXT, renta REAL, instructorID INTEGER);
+CREATE TABLE "horarios" (horarioID INTEGER PRIMARY KEY AUTOINCREMENT,  grupoID INTEGER,  tipo INTEGER,  entrada INTEGER,  salida INTEGER,  dias TEXT,  salonID INTEGER);
+CREATE TABLE "instructores" (instructorID INTEGER PRIMARY KEY AUTOINCREMENT,   nombres TEXT,   cedula TEXT,   telefonos TEXT);
+CREATE TABLE "pagos" (pagoID INTEGER PRIMARY KEY AUTOINCREMENT, facturaID INTEGER, clienteID INTEGER, descripcion TEXT, monto REAL, fecha TEXT, cantidad REAL, usuarioID INTEGER, pendiente BOOLEAN, hash TEXT);
+CREATE TABLE "productos" (productoID INTEGER PRIMARY KEY AUTOINCREMENT, descripcion TEXT, cantidad INTEGER, monto REAL);
+CREATE TABLE salones (salonID INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT);
+CREATE TABLE "tareas" (tareaID INTEGER PRIMARY KEY AUTOINCREMENT,   type TEXT,   tipo INTEGER,   dia INTEGER,   meta TEXT,   tarea TEXT);
+CREATE TABLE usuarios (usuarioID INTEGER PRIMARY KEY AUTOINCREMENT, usuario TEXT, pass TEXT, acceso INTEGER, nombre TEXT);
+INSERT INTO usuarios (usuarioID,usuario,pass,acceso,nombre) VALUES (1,'admin','admin',0,null);
