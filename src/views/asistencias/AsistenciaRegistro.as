@@ -61,7 +61,7 @@ package views.asistencias
 				currentState="resultado";
 				var ahora:Date = new Date;
 				clienteCard.cliente = cliente;
-				clienteAsistencias.dataProvider = new VectorList(cliente.asistencias(10));
+				clienteAsistencias.dataProvider = new VectorList(cliente.asistencias());
 				clienteHorarios.dataProvider = new VectorCollection(cliente.horarios);
 				if (horarios.entradaPermitida(ahora,cliente)) {
 					resultGroup.styleName = "well-success text-size-lg";

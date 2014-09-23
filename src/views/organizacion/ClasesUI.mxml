@@ -7,12 +7,12 @@
 	</s:layout>
 	<fx:Script>
 		<![CDATA[
-			import flash.sampler.NewObjectSample;
+			import com.ListPickerSearch;
 		]]>
 	</fx:Script>
 	<s:Form width="100%" id="addform">
 		<controls:FormItem label="Instructor">
-			<com:ListPickerButton styleName="btn-silent" label="Seleccione Instructor..." title="Instructores" labelField="nombres" id="instructorInput" width="50%"/>
+			<com:ListPickerButton styleName="btn-silent" label="Seleccione Instructor..." title="Instructores" labelField="nombres" id="instructorInput" width="50%" />
 		</controls:FormItem>
 		<controls:FormItem label="Grupo">
 			<com:ListPickerButton styleName="btn-silent" label="Seleccione Grupo..." title="Grupos" labelField="nombre" id="grupoInput" width="50%"/>

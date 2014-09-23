@@ -23,7 +23,7 @@ package clases
 		}
 		public function insertar (instructor:VOInstructor):VOInstructor {
 			instructor.instructorID = GestionClientes.sql.insertar("instructores",instructor.toObject).lastInsertRowID;
-			updateFlag=true;
+			_data.push(instructor);
 			return instructor;
 		}
 		public function byID (instructorID:int):VOInstructor {

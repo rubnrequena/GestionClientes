@@ -28,6 +28,7 @@
 		</s:columns>
 	</s:DataGrid>
 	<s:controlBarContent>
+		<s:Button label="Imprimir" height="30" styleName="icon-imprimir-sm" id="btnImprimir"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
 	</s:controlBarContent>
