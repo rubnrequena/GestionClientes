@@ -24,7 +24,6 @@ package views
 			numInstructores.text = GestionClientes.instructores.data.length.toString();
 			numSalones.text = GestionClientes.salones.data.length.toString();
 			numClases.text = GestionClientes.clasess.data.length.toString();
-			
 		}
 	}
 }

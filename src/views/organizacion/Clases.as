@@ -67,8 +67,8 @@ package views.organizacion
 		}		
 		protected function insertar_click(event:MouseEvent):void {
 			var clase:VOClase = new VOClase;
-			clase.entrada = int(entradaHoraInput.text+entradaMinInput.text);
-			clase.salida = int(salidaHoraInput.text+salidaMinInput.text);
+			clase.entrada = entradaInput.time;
+			clase.salida = salidaInput.time;
 			clase.fecha = DateUtil.toggleDate(dateInput.text);
 			clase.grupoID = (grupoInput.selectedItem as VOGrupo).grupoID;
 			clase.salonID = (salonInput.selectedItem as VOSalon).salonID;

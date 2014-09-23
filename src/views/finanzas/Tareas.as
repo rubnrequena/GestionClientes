@@ -1,5 +1,7 @@
 package views.finanzas
 {
+	import com.ListPicker;
+	
 	import flash.events.MouseEvent;
 	
 	import mx.collections.ArrayList;
@@ -13,6 +15,16 @@ package views.finanzas
 
 	public class Tareas extends TareasUI
 	{	
+		
+		private const tags:ArrayList = new ArrayList([
+			{label:"DIA",data:"{DIA}"},
+			{label:"SEMANA",data:"{SEMANA}"},
+			{label:"MES",data:"{MES}"},
+			{label:"AÑO",data:"{AÑO}"},
+			{label:"CLIENTE",data:"{CLIENTE}"},
+			{label:"INSTRUCTOR",data:"{INSTRUCTOR}"},
+			{label:"GRUPO",data:"{GRUPO}"}
+		]);
 		public function Tareas() {
 			super();
 		}
@@ -26,6 +38,21 @@ package views.finanzas
 			tipoInput.onClose = tipoClose;
 			
 			grupoInput.dataProvider = new VectorCollection(GestionClientes.grupos.data);
+			btnEtiquetas.addEventListener(MouseEvent.CLICK,etiquetas_click);
+		}
+		
+		protected function etiquetas_click(event:MouseEvent):void {
+			var picker:ListPicker = new ListPicker;
+			picker.dataProvider = tags;
+			picker.onClose = function (i:int,item:Object):void {
+				var pos:int = descInput.selectionActivePosition;
+				if (pos != -1) {
+					descInput.text = descInput.text.substr(0, pos) + item.data + descInput.text.substr(pos, descInput.text.length - pos);
+				} else {
+					descInput.appendText(item.data);
+				}
+			};
+			picker.popUp();
 		}
 		
 		private function tipoClose(tipo:int):void {

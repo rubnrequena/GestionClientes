@@ -45,7 +45,7 @@ package clases
 						runTask(_data[i],ds);
 					}
 				} else {
-					if (d.date>_data[i].dia) {
+					if (d.date>=_data[i].dia) {
 						runTask(_data[i],ds);
 					}
 				}

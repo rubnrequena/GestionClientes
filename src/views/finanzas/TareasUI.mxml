@@ -26,9 +26,10 @@
 		<controls:FormItem label="Grupo">
 			<com:ListPickerButton label="Seleccione grupo" width="50%" title="Grupos" labelField="nombre" pickerClass="{new ClassFactory(ListPickerSearch)}" id="grupoInput"/>
 		</controls:FormItem>
-		<controls:FormInput label="Descripcion">
-			<s:TextInput id="descInput"/>
-		</controls:FormInput>
+		<controls:FormItem label="Descripcion">
+			<s:TextInput id="descInput" width="50%"/>
+			<s:Button styleName="btn-silent icon-lista-sm" id="btnEtiquetas"/>
+		</controls:FormItem>
 		<controls:FormItem label="Tipo">
 			<com:ListPickerButton label="..." id="tipoInput" width="50%" selectedIndex="0">
 				<com:dataProvider>

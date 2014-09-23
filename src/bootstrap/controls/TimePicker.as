@@ -32,7 +32,9 @@ package bootstrap.controls
 			
 			now = new Date;			
 			hourInput = new DateStepper(DateStepper.HOUR);			
+			hourInput.percentWidth = 100;
 			minuteInput = new DateStepper(DateStepper.MINUTE);
+			minuteInput.percentWidth = 100;
 			apm = new Spinner;
 			dianocheInput = new TextInput;
 			
@@ -45,9 +47,9 @@ package bootstrap.controls
 			apm.minimum=0;
 			apm.height = 30;
 			
-			hourInput.value = now.hours>12?now.hours-12:now.hours;
+			dianoche_value = now.hours>12?1:0;
+			hourInput.value = now.hours-(dianoche_value*12);
 			minuteInput.value = now.minutes;
-			dianocheInput.text = now.hours>12?ampm[0]:ampm[1];
 			
 			addElement(hourInput);
 			addElement(minuteInput);

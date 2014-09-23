@@ -21,17 +21,13 @@
 			<com:ListPickerButton styleName="btn-silent" label="Seleccione Salón..." title="Salones" labelField="nombre" id="salonInput" width="50%"/>
 		</controls:FormItem>
 		<controls:FormItem label="Fecha">
-			<mx:DateField selectedDate="{new Date}" id="dateInput" width="50%" formatString="DD/MM/YYYY"/>
+			<mx:DateField selectedDate="{new Date}" id="dateInput" width="50%" formatString="DD/MM/YYYY" yearNavigationEnabled="true"/>
 		</controls:FormItem>
 		<controls:FormItem label="Entrada">
 			<s:HGroup width="50%" height="30" verticalAlign="contentJustify">
-				<s:TextInput width="50" id="entradaHoraInput" maxChars="2" restrict="0-9"/>
-				<s:Label text=":"/>
-				<s:TextInput width="50" id="entradaMinInput" maxChars="2" restrict="0-9"/>
+				<controls:TimePicker id="entradaInput" width="150"/>
 				<s:Label text="Salida" styleName="formItem-label text-align-right" width="100%"/>
-				<s:TextInput width="50" id="salidaHoraInput" maxChars="2" restrict="0-9"/>
-				<s:Label text=":"/>
-				<s:TextInput width="50" id="salidaMinInput" maxChars="2" restrict="0-9"/>
+				<controls:TimePicker id="salidaInput" width="150"/>
 			</s:HGroup>
 		</controls:FormItem>		
 		<controls:FormItem>
