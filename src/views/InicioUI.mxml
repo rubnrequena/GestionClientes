@@ -21,4 +21,39 @@
 			</s:FormItem>
 		</s:Form>
 	</s:SkinnableContainer>
+	<s:SkinnableContainer styleName="well-info" width="200" skinClass="skins.Well">
+		<s:Label text="Organización" styleName="text-size-lg"/>
+		<s:Line width="100%" height="0">
+			<s:stroke>
+				<s:SolidColorStroke color="#838383" weight="1"/>
+			</s:stroke>
+		</s:Line>
+		<s:Form width="100%" styleName="text-size-md">
+			<s:FormItem label="Grupos:" height="20">
+				<s:Label id="numGrupos" text="0"/>
+			</s:FormItem>
+			<s:FormItem label="Instructores:" height="20">
+				<s:Label id="numInstructores" text="0"/>
+			</s:FormItem>
+			<s:FormItem label="Salones:" height="20">
+				<s:Label id="numSalones" text="0"/>
+			</s:FormItem>
+			<s:FormItem label="Clases:" height="20">
+				<s:Label id="numClases" text="0"/>
+			</s:FormItem>
+		</s:Form>
+	</s:SkinnableContainer>
+	<s:SkinnableContainer styleName="well-info" width="200" skinClass="skins.Well">
+		<s:Label text="Asistencias" styleName="text-size-lg"/>
+		<s:Line width="100%" height="0">
+			<s:stroke>
+				<s:SolidColorStroke color="#838383" weight="1"/>
+			</s:stroke>
+		</s:Line>
+		<s:Form width="100%" styleName="text-size-md" id="asistencias">
+			<s:FormItem label="Total:" height="20">
+				<s:Label id="numAsistencias" text="0"/>
+			</s:FormItem>
+		</s:Form>
+	</s:SkinnableContainer>
 </s:SkinnableContainer>

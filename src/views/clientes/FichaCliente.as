@@ -8,6 +8,8 @@ package views.clientes
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
+	import mx.collections.ArrayList;
+	
 	import org.apache.flex.collections.VectorList;
 	
 	import sr.helpers.Value;
@@ -32,6 +34,8 @@ package views.clientes
 		}
 
 		protected var grupoIndex:int;
+
+		private var hoy:Date;
 		
 		public function FichaCliente() {
 			super();
@@ -58,11 +62,25 @@ package views.clientes
 			clienteAsistencias.dataProvider = new VectorList(cliente.asistencias(10));
 			clientePagos.dataProvider = new VectorList(cliente.facturas(20));
 			
-			var hoy:Date = new Date;
+			hoy = new Date;
 			mesInput.label = VOHorario.MESES[hoy.month].label;
+			mesInput.dataProvider = new ArrayList(VOHorario.MESES);
+			mesInput.selectedIndex = hoy.month;
+			mesInput.onClose = mesInput_close;
 			asistenciasMes.text = cliente.asistenciasDelMes(hoy.month,hoy.fullYear).length.toString();			
-			
+						
 			grupoInput.addEventListener(MouseEvent.CLICK,btnGrupo_click);
+		}
+		
+		private function mesInput_close(mes:int):void {
+			hoy.month = mes;
+			asistenciasMes.text = cliente.asistenciasDelMes(hoy.month,hoy.fullYear).length.toString();	
+		}
+		override protected function childrenCreated():void {
+			btnCancelar.addEventListener(MouseEvent.CLICK,cancelarClick);
+			btnActualizar.addEventListener(MouseEvent.CLICK,actualizarClick);
+			
+			btnNuevoPago.addEventListener(MouseEvent.CLICK,nuevoPago_click);
 		}
 		
 		protected function btnGrupo_click(event:MouseEvent):void {
@@ -76,12 +94,6 @@ package views.clientes
 			sg.dataProvider = new VectorList(GestionClientes.grupos.data);
 			sg.selectedIndex = grupoIndex;
 			sg.popUp();
-		}
-		override protected function childrenCreated():void {
-			btnCancelar.addEventListener(MouseEvent.CLICK,cancelarClick);
-			btnActualizar.addEventListener(MouseEvent.CLICK,actualizarClick);
-			
-			btnNuevoPago.addEventListener(MouseEvent.CLICK,nuevoPago_click);
 		}
 		
 		protected function nuevoPago_click(event:MouseEvent):void {

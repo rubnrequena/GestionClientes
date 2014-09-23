@@ -7,21 +7,12 @@ package bootstrap.controls
 		public function FormInput() {
 			super();
 		}
-		override protected function createChildren():void {
-			super.createChildren();
-			
-			var i:int; var l:int = _items?_items.length:0;
-			for (i = 0; i < l; i++) {
-				_items[i].percentWidth=50;
-				_items[i].height=childHeight;
-			}
-		}
 		
-		public function get input():SkinnableTextBase {
-			return _items[0] as SkinnableTextBase;
-		}
-		public function set restrict (value:String):void {
-			_items[0].restrict = value;
+		override public function set mxmlContent(value:Array):void {
+			super.mxmlContent = value;
+			var i:int; var l:int = value?value.length:0;
+			for (i = 1; i < l; i++)
+				value[i].percentWidth=50;
 		}
 	}
 }

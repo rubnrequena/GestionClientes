@@ -34,7 +34,7 @@ package clases
 			]);
 		}
 		public function byGrupo (grupoID:int):Vector.<VOHorario> {
-			var data:Array = GestionClientes.sql.sql('SELECT * FROM horarios WHERE grupo = '+grupoID,VOHorario).data;
+			var data:Array = GestionClientes.sql.sql('SELECT * FROM horarios WHERE grupoID = '+grupoID,VOHorario).data;
 			return VectorUtil.toVector(data,Vector.<VOHorario>);
 		}
 		public function entradaPermitida (fecha:Date,cliente:VOCliente):Boolean {

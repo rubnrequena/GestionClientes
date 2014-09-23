@@ -1,6 +1,8 @@
 package views.clientes
 {
 	import com.ListPicker;
+	import com.Modal;
+	import com.ModalAlert;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -86,7 +88,7 @@ package views.clientes
 			c.meta = "";
 			
 			GestionClientes.sql.insertar("clientes",c);
-			Alert.show("Cliente Guardado","Gestión Cliente",4,null,function ():void {
+			ModalAlert.show("Cliente Guardado","Cliente",null,[ModalAlert.OK],function ():void {
 				resetClick();
 			});
 		}

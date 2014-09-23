@@ -36,7 +36,7 @@ package views.horarios
 		
 		protected function removerClick(event:MouseEvent):void {
 			if (horarios.selectedIndex>-1) {
-				ModalAlert.show("¿Seguro desea remover horario?","Horarios",this,[{label:"Sí"},{label:"No"}],function (detalle:int):void {
+				ModalAlert.show("¿Seguro desea remover horario?","Horarios",this,[ModalAlert.YES,ModalAlert.NO],function (detalle:int):void {
 					if (detalle==0) {
 						GestionClientes.horarios.remover(horarios.selectedItem.horarioID);
 						horarios.dataProvider = new VectorList(GestionClientes.horarios.byGrupo((grupoInput.selectedItem as VOGrupo).grupoID));

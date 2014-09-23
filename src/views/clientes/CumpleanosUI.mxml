@@ -5,9 +5,9 @@
 	<s:layout>
 		<s:VerticalLayout />
 	</s:layout>
-	<controls:FormInput label="Mes:">
-		<com:ListPickerButton id="btnMes" height="30" styleName="btn-warning" labelField="label" title="Meses"/>
-	</controls:FormInput>
+	<controls:FormItem label="Mes:">
+		<com:ListPickerButton id="btnMes" height="30" styleName="btn-warning" labelField="label" title="Meses" width="50%"/>
+	</controls:FormItem>
 	<s:DataGrid width="100%" height="100%" id="clientes">
 		<s:columns>
 			<s:ArrayList>

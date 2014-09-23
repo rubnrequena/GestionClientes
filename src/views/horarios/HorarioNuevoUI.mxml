@@ -2,6 +2,7 @@
 <s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark"
 		 xmlns:mx="library://ns.adobe.com/flex/mx" title="Horario Nuevo" xmlns:controls="bootstrap.controls.*" xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:com="com.*">
+	
 	<s:Form width="100%">
 		<controls:FormItem label="Grupo:">
 			<com:ListPickerButton title="Seleccione grupo" label="Seleccione grupo" id="grupoInput" styleName="btn-silent" labelField="nombre" width="50%"/>
@@ -10,7 +11,7 @@
 			<com:ListPickerButton label="Seleccione salón" id="salonInput" styleName="btn-silent" labelField="nombre" title="Seleccione salón" width="50%"/>
 		</controls:FormItem>
 		<controls:FormItem label="Tipo:">
-			<com:ListPickerButton label="Semanal" id="tipoInput" styleName="btn-silent" title="Seleccione tipo" width="50%">
+			<com:ListPickerButton label="Seleccione tipo" id="tipoInput" styleName="btn-silent" title="Seleccione tipo" width="50%">
 				<com:dataProvider>
 					<s:ArrayList>
 						<fx:Object label="Semanal"/>
@@ -20,13 +21,13 @@
 			</com:ListPickerButton>
 		</controls:FormItem>
 		<controls:FormItem label="Hora Entrada:">
-			<ns:MaskedTextInput maskText="##:##" id="entradaInput" width="50%"/>
+			<controls:TimePicker id="entradaInput" width="50%"/>
 		</controls:FormItem>
 		<controls:FormItem label="Hora Sálida:">
-			<ns:MaskedTextInput maskText="##:##" id="salidaInput" width="50%"/>
+			<controls:TimePicker id="salidaInput" width="50%"/>
 		</controls:FormItem>
 		<controls:FormItem label="Dias Semana:" childHeight="30">
-			<com:DayPicker id="diaInput" width="50%"/>
+			<com:DayPicker id="diaInput" width="50%" tipo="0"/>
 		</controls:FormItem>
 	</s:Form>
 	<s:controlBarContent>

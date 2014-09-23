@@ -29,8 +29,8 @@
 		</s:columns>
 	</s:DataGrid>
 	<s:controlBarContent>
-		<s:Button label="Guardar" height="30" styleName="btn-primary" id="btnGuardar"/>
-		<s:Button label="Limpiar" height="30" styleName="btn-warning" id="btnReset"/>
+		<s:Button label="Guardar" height="30" styleName="btn-primary icon-guardar-sm" id="btnGuardar"/>
+		<s:Button label="Limpiar" height="30" styleName="btn-warning icon-limpiar-sm" id="btnReset"/>
 		<s:Button label="Remover" height="30" styleName="btn-danger icon-remover-sm" id="btnRemover"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
