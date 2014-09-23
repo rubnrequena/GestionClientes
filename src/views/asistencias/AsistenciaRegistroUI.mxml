@@ -19,16 +19,27 @@
 		<s:Label verticalCenter="0" horizontalCenter="0" id="resultLabel"/>
 	</s:SkinnableContainer>
 	<s:HGroup width="100%" includeIn="resultado">
-		<clientes:ClienteCard id="clienteCard" />
-		<s:DataGrid width="100%" height="100%" id="clienteAsistencias">
-			<s:columns>
-				<s:ArrayList>
-					<s:GridColumn headerText="Fecha Ingreso" dataField="fechaIngreso"/>
-					<s:GridColumn headerText="Hora Ingreso" dataField="horaIngreso"/>
-					<s:GridColumn headerText="Usuario" dataField="usuario"/>
-				</s:ArrayList>
-			</s:columns>
-		</s:DataGrid>
+		<clientes:ClienteCard id="clienteCard" width="50%" />
+		<s:VGroup width="50%" paddingRight="10">
+			<s:DataGrid width="100%" height="100%" id="clienteAsistencias">
+				<s:columns>
+					<s:ArrayList>
+						<s:GridColumn headerText="Fecha Ingreso" dataField="fechaIngreso"/>
+						<s:GridColumn headerText="Hora Ingreso" dataField="horaIngreso"/>
+						<s:GridColumn headerText="Usuario" dataField="usuario"/>
+					</s:ArrayList>
+				</s:columns>
+			</s:DataGrid>
+			<s:DataGrid width="100%" height="100%" id="clienteHorarios" variableRowHeight="true">
+				<s:columns>
+					<s:ArrayList>
+						<s:GridColumn headerText="Días" dataField="diasString"/>
+						<s:GridColumn headerText="Entrada" dataField="entradaString"/>
+						<s:GridColumn headerText="Salida" dataField="salidaString"/>
+					</s:ArrayList>
+				</s:columns>
+			</s:DataGrid>
+		</s:VGroup>
 	</s:HGroup>
 	<s:controlBarContent>
 		<s:Spacer width="100%"/>

@@ -4,7 +4,7 @@ package com
 	
 	import org.osflash.signals.natives.NativeSignal;
 	
-	import views.asistencias.Asistencia;
+	import views.asistencias.AsistenciaRegistro;
 	import views.asistencias.Asistencias;
 	import views.clientes.BuscarCliente;
 	import views.clientes.Cumpleanos;
@@ -36,7 +36,7 @@ package com
 						GestionClientes.nav.addView("buscar_clientes",BuscarCliente); break;
 					}
 					case "asistencia_registrar": {
-						GestionClientes.nav.addView("asistencia_registrar",Asistencia); break;
+						GestionClientes.nav.addView("asistencia_registrar",AsistenciaRegistro); break;
 					}
 					case "asistencias": {
 						GestionClientes.nav.addView(e.target.name,Asistencias); break;

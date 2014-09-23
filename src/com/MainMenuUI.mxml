@@ -4,7 +4,7 @@
 				  xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="80" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
 	<fx:Script>
 		<![CDATA[
-			import views.asistencias.Asistencia;
+			import views.asistencias.AsistenciaRegistro;
 			import views.asistencias.Asistencias;
 			import views.clientes.BuscarCliente;
 			import views.clientes.Cliente;
@@ -41,7 +41,7 @@
 		</s:SkinnableContainer>
 		<s:SkinnableContainer name="Asistencia" styleName="navChildren">
 			<s:layout><s:HorizontalLayout paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" verticalAlign="contentJustify" /></s:layout>
-			<com:MButton view="{Asistencia}" name="asistencia_registrar" label="Registrar" styleName="btn-menu icon-nuevo_usuario-md"/>
+			<com:MButton view="{AsistenciaRegistro}" name="asistencia_registrar" label="Registrar" styleName="btn-menu icon-nuevo_usuario-md"/>
 			<com:MButton view="{Asistencias}" name="asistencias" label="Asistencias" styleName="btn-menu icon-asistencias-md"/>
 		</s:SkinnableContainer>
 		<s:SkinnableContainer name="Horarios" styleName="navChildren">

@@ -26,6 +26,14 @@ package clases
 			}
 			return null;
 		}
+		public function byCedula (cedula:String):VOCliente {
+			if (updateFlag) update();
+			var i:int;
+			for (i = 0; i < _numClientes; i++) {
+				if (_data[i].cedula==cedula) return _data[i];
+			}
+			return null;
+		}
 		public function byGroup (grupoID:int):Vector.<VOCliente> {
 			if (updateFlag) update();
 			var r:Vector.<VOCliente> = new Vector.<VOCliente>; var i:int;

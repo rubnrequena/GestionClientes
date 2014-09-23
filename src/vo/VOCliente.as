@@ -49,6 +49,9 @@ package vo
 			],VOAsistencia,"*").data;
 			return VectorUtil.toVector(a,Vector.<VOAsistencia>);
 		}
+		public function get horarios():Vector.<VOHorario> {
+			return GestionClientes.horarios.byGrupo(grupoID);
+		}
 		public function pagos (num:int=-1):Vector.<VOPago> {
 			var a:Array = GestionClientes.sql.seleccionar("pagos",new <Value>[
 				Value.fromPool("clienteID",clienteID)
