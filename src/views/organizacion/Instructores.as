@@ -45,6 +45,12 @@ package views.organizacion
 			
 			GestionClientes.instructores.insertar(instructor);
 			updateData();
+			reset();
+		}
+		
+		private function reset():void {
+			nombresInput.text=cedulaInput.text=tlfInput.text="";
+			nombresInput.setFocus();
 		}
 		
 		private function updateData():void {

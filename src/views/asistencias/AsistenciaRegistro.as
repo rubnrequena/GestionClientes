@@ -1,5 +1,6 @@
 package views.asistencias
 {
+	import clases.Asistencias;
 	import clases.Horarios;
 	
 	import flash.events.Event;
@@ -61,8 +62,6 @@ package views.asistencias
 				currentState="resultado";
 				var ahora:Date = new Date;
 				clienteCard.cliente = cliente;
-				clienteAsistencias.dataProvider = new VectorList(cliente.asistencias());
-				clienteHorarios.dataProvider = new VectorCollection(cliente.horarios);
 				if (horarios.entradaPermitida(ahora,cliente)) {
 					resultGroup.styleName = "well-success text-size-lg";
 					resultLabel.text = "ASISTENCIA REGISTRADA";
@@ -76,7 +75,7 @@ package views.asistencias
 					a.clienteID = cliente.clienteID;
 					a.grupoID = cliente.grupoID;
 					a.fechaIngreso = DateField.dateToString(ahora,"YYYY-MM-DD");
-					a.horaIngreso = s.format(ahora);
+					a.horaIngreso = clases.Asistencias.format24(ahora);
 					a.usuario = 0;
 					
 					GestionClientes.sql.insertar("asistencias",a.toObject);					
@@ -84,6 +83,8 @@ package views.asistencias
 					resultLabel.text = "ASISTENCIA RECHAZADA: HORARIO NO PERMITIDO";
 					resultGroup.styleName = "well-danger text-size-lg";
 				}
+				clienteAsistencias.dataProvider = new VectorList(cliente.asistencias());
+				clienteHorarios.dataProvider = new VectorCollection(cliente.horarios);
 			} else {
 				resultLabel.text = "ASISTENCIA RECHAZADA: CLIENTE NO EXISTE";
 				resultGroup.styleName = "well-danger text-size-lg";

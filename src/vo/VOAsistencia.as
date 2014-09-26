@@ -11,7 +11,7 @@ package vo
 		public var clienteID:int;
 		public var grupoID:int;
 		public var fechaIngreso:String;
-		public var horaIngreso:String;
+		public var horaIngreso:int;
 		public var usuario:int;
 		
 		public function get cliente ():VOCliente {

@@ -5,6 +5,7 @@
 	<fx:Style source="bootstrap/bootstrap.css"/>
 	<fx:Script>
 		<![CDATA[
+			import clases.Asistencias;
 			import clases.Clases;
 			import clases.Clientes;
 			import clases.Config;
@@ -39,6 +40,7 @@
 			public static var clasess:Clases;
 			public static var config:Config;
 			public static var tareas:Tareas;
+			public static var asistencias:Asistencias;
 			
 			[Embed(source="assets/gestion.sql",mimeType="application/octet-stream")]
 			private var myFile:Class;
@@ -68,6 +70,7 @@
 				instructores = new Instructores;
 				clasess = new Clases;
 				tareas = new Tareas;
+				asistencias = new Asistencias;
 				
 				nav.addView("inicio_view",Inicio); 
 			}

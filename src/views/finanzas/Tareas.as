@@ -39,6 +39,11 @@ package views.finanzas
 			
 			grupoInput.dataProvider = new VectorCollection(GestionClientes.grupos.data);
 			btnEtiquetas.addEventListener(MouseEvent.CLICK,etiquetas_click);
+			btnAtras.addEventListener(MouseEvent.CLICK,atras_click);
+		}
+		
+		protected function atras_click(event:MouseEvent):void {
+			(owner as ViewNavigator).popBack();
 		}
 		
 		protected function etiquetas_click(event:MouseEvent):void {

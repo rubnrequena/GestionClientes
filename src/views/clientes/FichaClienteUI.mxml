@@ -58,7 +58,7 @@
 		<s:Button label="Eliminar" height="30" styleName="btn-danger icon-remover-sm" id="btnEliminar"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Nuevo Pago" height="30" styleName="btn-waring" id="btnNuevoPago"/>
-		<s:Button label="Pagos" height="30" styleName="btn-warning" id="btnPagos"/>
+		<s:Button label="Estado de Cuenta" height="30" styleName="btn-warning" id="btnEstadoCuenta"/>
 		<s:Button label="Asistencias" height="30" styleName="btn-warning" id="btnAsistencias"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>

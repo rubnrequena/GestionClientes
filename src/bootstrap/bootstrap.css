@@ -68,6 +68,7 @@ s|TextInput {
 }
 s|Button {
 	skinClass:ClassReference("bootstrap.skins.BButton");
+	cornerRadius:0;
 }
 s|ToggleButton {
 	skinClass:ClassReference("bootstrap.skins.BToggleButton");	

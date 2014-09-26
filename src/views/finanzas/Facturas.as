@@ -39,7 +39,7 @@ package views.finanzas
 		protected function btnVer_click(event:MouseEvent):void {
 			if (facturasGrid.selectedIndex>-1) {
 				var _factura:VOFactura = facturasGrid.selectedItem as VOFactura;
-				(owner as ViewNavigator).addView("ver_factura"+_factura.facturaID,VerFactura,{factura:_factura});
+				(owner as ViewNavigator).addView("ver_factura_"+_factura.facturaID,VerFactura,{factura:_factura});
 			}
 		}
 		

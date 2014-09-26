@@ -41,13 +41,15 @@ package vo
 			return VectorUtil.toVector(a,Vector.<VOAsistencia>);
 		}
 		public function asistenciasDelMes(mes:int,anio:int):Vector.<VOAsistencia> {
-			mes++;
+			/*mes++;
 			var m:String = mes<10?"0"+mes:mes.toString();
 			var a:Array = GestionClientes.sql.seleccionar("asistencias",new <Value>[
 				Value.fromPool("clienteID",clienteID),
 				Value.fromPool("fechaIngreso",'%'+anio+'-'+m+'%',"AND","LIKE")
 			],VOAsistencia,"*").data;
-			return VectorUtil.toVector(a,Vector.<VOAsistencia>);
+			return VectorUtil.toVector(a,Vector.<VOAsistencia>);*/
+			var m:String = mes<10?"0"+mes:mes.toString();
+			return GestionClientes.asistencias.asistenciasClienteMes(clienteID,[anio,m].join("-"));
 		}
 		public function get horarios():Vector.<VOHorario> {
 			return GestionClientes.horarios.byGrupo(grupoID);

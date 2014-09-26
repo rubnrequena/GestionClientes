@@ -50,7 +50,7 @@ package vo
 		public function get diasString ():String {
 			if (tipo==0) {
 				var adias:Array = listDias;
-				for (var i:int = 0; i < adias.length; i++) adias[i]=DIAS_SEMANA[i];
+				for (var i:int = 0; i < adias.length; i++) adias[i] = DIAS_SEMANA[adias[i]];
 				return adias.join(",");
 			} else {
 				return dias;

@@ -50,4 +50,8 @@
 			</s:HGroup>
 		</controls:FormItem>
 	</s:Form>
+	<s:controlBarContent>
+		<s:Spacer width="100%"/>
+		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnAtras"/>
+	</s:controlBarContent>
 </s:Panel>

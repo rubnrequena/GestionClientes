@@ -16,7 +16,7 @@
 			<s:Label id="fechaInput" width="50%" styleName="text-size-md text-align-right"/>
 		</controls:FormItem>
 		<controls:FormItem label="Total:" styleName="well-info">
-			<s:Label id="totalInput" width="50%" styleName="text-align-right text-size-lg"/>
+			<s:Label id="totalInput" width="50%" styleName="text-size-lg text-align-right"/>
 		</controls:FormItem>
 		<s:SkinnableContainer styleName="well-default" width="100%" height="100%">
 			<s:layout>
@@ -38,7 +38,7 @@
 		</controls:FormItem>
 	</s:Form>
 	<s:controlBarContent>
-		<s:Button label="Devolución" height="30" styleName="btn-warning" id="btnDevolucion"/>
+		<s:Button label="Devolución" height="30" styleName="btn-warning icon-facturar-sm" id="btnDevolucion"/>
 		<s:Button label="Imprimir" height="30" styleName="btn-warning icon-imprimir-sm" id="btnImprimir"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnAtras"/>

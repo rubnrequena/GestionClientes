@@ -14,10 +14,10 @@
 		</s:Line>
 		<s:Form width="100%" styleName="text-size-md">
 			<s:FormItem label="Registrados:" height="20">
-				<s:Label id="numClientes" text="0"/>
+				<s:Label id="numClientes" text="0" width="100%" styleName="text-align-right"/>
 			</s:FormItem>
 			<s:FormItem label="Cumpleaños:" height="20">
-				<s:Label id="numCumpleanos" text="0"/>
+				<s:Label id="numCumpleanos" text="0" width="100%" styleName="text-align-right"/>
 			</s:FormItem>
 		</s:Form>
 	</s:SkinnableContainer>
@@ -30,16 +30,16 @@
 		</s:Line>
 		<s:Form width="100%" styleName="text-size-md">
 			<s:FormItem label="Grupos:" height="20">
-				<s:Label id="numGrupos" text="0"/>
+				<s:Label id="numGrupos" text="0" width="100%" styleName="text-align-right"/>
 			</s:FormItem>
 			<s:FormItem label="Instructores:" height="20">
-				<s:Label id="numInstructores" text="0"/>
+				<s:Label id="numInstructores" text="0" width="100%" styleName="text-align-right"/>
 			</s:FormItem>
 			<s:FormItem label="Salones:" height="20">
-				<s:Label id="numSalones" text="0"/>
+				<s:Label id="numSalones" text="0" width="100%" styleName="text-align-right"/>
 			</s:FormItem>
 			<s:FormItem label="Clases:" height="20">
-				<s:Label id="numClases" text="0"/>
+				<s:Label id="numClases" text="0" width="100%" styleName="text-align-right"/>
 			</s:FormItem>
 		</s:Form>
 	</s:SkinnableContainer>
@@ -52,7 +52,7 @@
 		</s:Line>
 		<s:Form width="100%" styleName="text-size-md" id="asistencias">
 			<s:FormItem label="Total:" height="20">
-				<s:Label id="numAsistencias" text="0"/>
+				<s:Label id="numAsistencias" text="0" width="100%" styleName="text-align-right"/>
 			</s:FormItem>
 		</s:Form>
 	</s:SkinnableContainer>

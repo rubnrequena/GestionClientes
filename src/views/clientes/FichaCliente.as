@@ -1,6 +1,6 @@
 package views.clientes
 {
-	import clases.Horarios;
+	import clases.Asistencias;
 	
 	import com.ListPicker;
 	import com.ModalAlert;
@@ -10,6 +10,7 @@ package views.clientes
 	
 	import mx.collections.ArrayList;
 	
+	import org.apache.flex.collections.VectorCollection;
 	import org.apache.flex.collections.VectorList;
 	
 	import sr.helpers.Value;
@@ -59,28 +60,35 @@ package views.clientes
 			grupo = cliente.grupo;
 			grupoIndex = GestionClientes.grupos.grupoIndex(cliente.grupoID);
 			
-			clienteAsistencias.dataProvider = new VectorList(cliente.asistencias(10));
-			clientePagos.dataProvider = new VectorList(cliente.facturas(20));
-			
 			hoy = new Date;
+			clienteAsistencias.dataProvider = new VectorCollection(cliente.asistenciasDelMes(hoy.month+1,hoy.fullYear).sort(Asistencias.ordenarDESC).slice(0,9));
+			clientePagos.dataProvider = new VectorCollection(cliente.facturas(20));
+			
 			mesInput.label = VOHorario.MESES[hoy.month].label;
 			mesInput.dataProvider = new ArrayList(VOHorario.MESES);
 			mesInput.selectedIndex = hoy.month;
 			mesInput.onClose = mesInput_close;
-			asistenciasMes.text = cliente.asistenciasDelMes(hoy.month,hoy.fullYear).length.toString();			
+			asistenciasMes.text = cliente.asistenciasDelMes(hoy.month+1,hoy.fullYear).length.toString();			
 						
 			grupoInput.addEventListener(MouseEvent.CLICK,btnGrupo_click);
 		}
 		
 		private function mesInput_close(mes:int):void {
 			hoy.month = mes;
-			asistenciasMes.text = cliente.asistenciasDelMes(hoy.month,hoy.fullYear).length.toString();	
+			asistenciasMes.text = cliente.asistenciasDelMes(hoy.month+1,hoy.fullYear).length.toString();	
 		}
 		override protected function childrenCreated():void {
 			btnCancelar.addEventListener(MouseEvent.CLICK,cancelarClick);
 			btnActualizar.addEventListener(MouseEvent.CLICK,actualizarClick);
 			
 			btnNuevoPago.addEventListener(MouseEvent.CLICK,nuevoPago_click);
+			btnEstadoCuenta.addEventListener(MouseEvent.CLICK,estadoCuenta_click);
+		}
+		
+		protected function estadoCuenta_click(event:MouseEvent):void {
+			(owner as ViewNavigator).addView("estado_cliente",EstadoCuenta,{
+				cliente:this.cliente
+			});
 		}
 		
 		protected function btnGrupo_click(event:MouseEvent):void {

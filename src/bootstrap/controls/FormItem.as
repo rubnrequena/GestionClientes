@@ -35,6 +35,12 @@ package bootstrap.controls
 			percentWidth = 100;
 			styleName = "formItem "+styleName;
 		}
+		override public function set styleName(value:Object):void {
+			if (value is String)
+				super.styleName = "formItem "+value;
+			else
+				super.styleName = value;
+		}
 		override public function set mxmlContent(value:Array):void {			
 			_label = new Label;
 			_label.percentWidth = labelWidth;
