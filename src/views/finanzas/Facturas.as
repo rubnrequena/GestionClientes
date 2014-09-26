@@ -1,13 +1,13 @@
 package views.finanzas
 {
 	import com.ListPickerSearch;
+	import com.ModalAlert;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import mx.core.ClassFactory;
 	import mx.events.FlexEvent;
-	import mx.events.StateChangeEvent;
 	
 	import org.apache.flex.collections.VectorCollection;
 	
@@ -28,8 +28,23 @@ package views.finanzas
 			clienteInput.onClose = buscarCliente_click;
 			
 			buscarFecha.addEventListener(MouseEvent.CLICK,buscarFecha_click);
+			facturaInput.addEventListener(FlexEvent.ENTER,buscarFactura_handler);
+			btnBuscarFactura.addEventListener(MouseEvent.CLICK,buscarFactura_handler);
 			btnVer.addEventListener(MouseEvent.CLICK,btnVer_click);
 			btnAtras.addEventListener(MouseEvent.CLICK,atras_click);
+		}
+		
+		protected function buscarFactura_handler(event:Event):void {
+			var _factura:VOFactura = GestionClientes.facturas.byCorrelativo(int(facturaInput.text));
+			if (_factura) {
+				(owner as ViewNavigator).addView("ver_factura_"+_factura.facturaID,VerFactura,{
+					factura:_factura
+				});
+			} else {
+				ModalAlert.show("Factura no encontrada","Facturas",null,[ModalAlert.OK],function ():void {
+					facturaInput.setFocus();
+				});
+			}
 		}
 		
 		protected function atras_click(event:MouseEvent):void {

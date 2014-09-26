@@ -6,6 +6,10 @@
 		<s:VerticalLayout />
 	</s:layout>
 	<s:Form width="100%">
+		<controls:FormItem label="Factura" id="formFactura">
+			<s:TextInput width="50%" id="facturaInput" restrict="0-9" />
+			<s:Button label="Buscar" styleName="btn-primary icon-buscar-sm" id="btnBuscarFactura"/>
+		</controls:FormItem>
 		<controls:FormItem label="Cliente" id="formCliente">
 			<com:ListPickerButton label="Seleccionar cliente" id="clienteInput" labelField="nombres" title="Clientes" width="50%"/>
 		</controls:FormItem>
@@ -20,7 +24,7 @@
 	<s:DataGrid width="100%" height="100%" id="facturasGrid">
 		<s:columns>
 			<s:ArrayList>
-				<s:GridColumn headerText="Factura" dataField="correlativo"/>
+				<s:GridColumn headerText="Factura" dataField="correlativoString"/>
 				<s:GridColumn headerText="Fecha" dataField="fechaLocal"/>
 				<s:GridColumn headerText="Cliente" dataField="cliente"/>
 				<s:GridColumn headerText="Monto" dataField="monto"/>
