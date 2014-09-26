@@ -1,5 +1,7 @@
 package views.asistencias
 {
+	import com.ModalAlert;
+	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
@@ -121,7 +123,11 @@ package views.asistencias
 					Value.fromPool("fechaIngreso",DateUtil.toggleDate(finInput.text),"AND","<=")
 				],VOAsistencia).data;
 			}
-			gridAsistencias.dataProvider = new ArrayCollection(asist);
+			if (asist) {
+				gridAsistencias.dataProvider = new ArrayCollection(asist);
+			} else {
+				ModalAlert.show("No se encontraron asistencias registradas","Asistencias",null,[ModalAlert.OK]);
+			}
 		}
 	}
 }
