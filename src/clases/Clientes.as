@@ -14,7 +14,7 @@ package clases
 			
 		}
 		
-		public function get clientes():Vector.<VOCliente> {
+		public function get data():Vector.<VOCliente> {
 			if (updateFlag) update();
 			return _data;
 		}
