@@ -87,7 +87,7 @@ package views.asistencias
 		}
 			
 		protected function cancelar_click(event:MouseEvent):void {
-			(owner as ViewNavigator).popBack();
+			(owner as ViewNavigatorHistory).popBack();
 		}
 		
 		protected function fechaChange(event:CalendarLayoutChangeEvent):void {

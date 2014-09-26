@@ -39,7 +39,7 @@ package views.finanzas
 			if (_factura) {
 				(owner as ViewNavigator).addView("ver_factura_"+_factura.facturaID,VerFactura,{
 					factura:_factura
-				});
+				},true);
 			} else {
 				ModalAlert.show("Factura no encontrada","Facturas",null,[ModalAlert.OK],function ():void {
 					facturaInput.setFocus();
@@ -48,13 +48,13 @@ package views.finanzas
 		}
 		
 		protected function atras_click(event:MouseEvent):void {
-			(owner as ViewNavigator).popBack();
+			(owner as ViewNavigatorHistory).popBack();
 		}
 		
 		protected function btnVer_click(event:MouseEvent):void {
 			if (facturasGrid.selectedIndex>-1) {
 				var _factura:VOFactura = facturasGrid.selectedItem as VOFactura;
-				(owner as ViewNavigator).addView("ver_factura_"+_factura.facturaID,VerFactura,{factura:_factura});
+				(owner as ViewNavigator).addView("ver_factura_"+_factura.facturaID,VerFactura,{factura:_factura},true);
 			}
 		}
 		

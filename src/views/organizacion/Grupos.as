@@ -78,7 +78,7 @@ package views.organizacion
 		}
 		
 		protected function cancelarClick(event:MouseEvent):void {
-			(owner as ViewNavigator).popBack();
+			(owner as ViewNavigatorHistory).popBack();
 		}
 	}
 }

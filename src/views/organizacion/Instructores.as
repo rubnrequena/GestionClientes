@@ -27,7 +27,7 @@ package views.organizacion
 		}
 		
 		protected function atras_click(event:MouseEvent):void {
-			(owner as ViewNavigator).popBack();
+			(owner as ViewNavigatorHistory).popBack();
 		}
 		
 		protected function remover_click(event:MouseEvent):void {

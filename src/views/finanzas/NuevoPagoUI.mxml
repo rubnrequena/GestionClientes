@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" title="Nuevo Pago" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
-	<s:layout>
+<views:ViewPanel xmlns:views="views.*" 
+				 xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:mx="library://ns.adobe.com/flex/mx" title="Nuevo Pago" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
+	<views:layout>
 		<s:VerticalLayout horizontalAlign="center"/>
-	</s:layout>
+	</views:layout>
 	<s:Form width="100%">
 		<controls:FormItem label="Cliente:">
 			<com:ListPickerButton label="Cliente" id="clienteInput" width="50%" title="Clientes" pickerClass="{new ClassFactory(ListPickerSearch)}" labelField="nombres"/> 
@@ -47,14 +48,14 @@
 			</s:DataGrid>
 		</s:SkinnableContainer>
 	</s:Form>
-	<s:controlBarContent>
+	<views:controlBarContent>
 		<s:Button label="Facturar" height="30" styleName="btn-primary icon-facturar-sm" id="btnFacturar"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
-	</s:controlBarContent>
+	</views:controlBarContent>
 	<fx:Script>
 		<![CDATA[
 			import com.ListPickerSearch;
 		]]>
 	</fx:Script>
-</s:Panel>
+</views:ViewPanel>

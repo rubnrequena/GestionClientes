@@ -35,7 +35,7 @@ package views.organizacion
 		}
 		
 		protected function atrasClick(event:MouseEvent):void {
-			(owner as ViewNavigator).popBack();
+			(owner as ViewNavigatorHistory).popBack();
 		}
 		protected function removerClick(event:MouseEvent):void {
 			if (salonesGrid.selectedIndex>-1) {

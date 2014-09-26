@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" title="Clases" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
-	<s:layout>
+<views:ViewPanel xmlns:views="views.*" 
+				 xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:mx="library://ns.adobe.com/flex/mx" title="Clases" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
+	<views:layout>
 		<s:VerticalLayout />
-	</s:layout>
+	</views:layout>
 	<fx:Script>
 		<![CDATA[
 			import com.ListPickerSearch;
@@ -56,8 +57,8 @@
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
-	<s:controlBarContent>
+	<views:controlBarContent>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" styleName="btn-danger icon-atras-sm" id="btnAtras"/>
-	</s:controlBarContent>
-</s:Panel>
+	</views:controlBarContent>
+</views:ViewPanel>

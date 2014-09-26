@@ -46,7 +46,7 @@ package views.horarios
 		}
 		
 		protected function cancelarClick(event:MouseEvent):void {
-			(owner as ViewNavigator).popBack();
+			(owner as ViewNavigatorHistory).popBack();
 		}
 		
 		private function grupoInput_change(indice:int,grupo:VOGrupo):void {

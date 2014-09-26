@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		 xmlns:s="library://ns.adobe.com/flex/spark"
-		 xmlns:mx="library://ns.adobe.com/flex/mx" title="Horario Nuevo" xmlns:controls="bootstrap.controls.*" xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:com="com.*">
+<views:ViewPanel xmlns:views="views.*" 
+				 xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark"
+				 xmlns:mx="library://ns.adobe.com/flex/mx" title="Horario Nuevo" xmlns:controls="bootstrap.controls.*" xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:com="com.*">
 	
 	<s:Form width="100%">
 		<controls:FormItem label="Grupo:">
@@ -30,10 +31,10 @@
 			<com:DayPicker id="diaInput" width="50%" tipo="0"/>
 		</controls:FormItem>
 	</s:Form>
-	<s:controlBarContent>
+	<views:controlBarContent>
 		<s:Button label="Guardar" height="30" styleName="btn-primary btn-guardar" id="btnGuardar"/>
 		<s:Button label="Limpiar" height="30" styleName="btn-warning" id="btnReset"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
-	</s:controlBarContent>
-</s:Panel>
+	</views:controlBarContent>
+</views:ViewPanel>

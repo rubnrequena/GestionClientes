@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" title="Productos" xmlns:controls="bootstrap.controls.*">
-	<s:layout>
+<views:ViewPanel xmlns:views="views.*" 
+				 xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:mx="library://ns.adobe.com/flex/mx" title="Productos" xmlns:controls="bootstrap.controls.*">
+	<views:layout>
 		<s:VerticalLayout horizontalAlign="center" />
-	</s:layout>
+	</views:layout>
 	<s:Form width="100%">
 		<controls:FormInput label="Producto:">
 			<s:TextInput id="descInput"/>
@@ -29,8 +30,8 @@
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
-	<s:controlBarContent>
+	<views:controlBarContent>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
-	</s:controlBarContent>
-</s:Panel>
+	</views:controlBarContent>
+</views:ViewPanel>

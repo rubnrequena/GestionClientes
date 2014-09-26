@@ -41,7 +41,7 @@ package views.finanzas
 		}
 		
 		protected function btnAtras_click(event:MouseEvent):void {
-			(owner as ViewNavigator).popBack();
+			(owner as ViewNavigatorHistory).popBack();
 		}
 	}
 }

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" title="Cumpleaños" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
-	<s:layout>
+<views:ViewPanel xmlns:views="views.*" 
+				 xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:mx="library://ns.adobe.com/flex/mx" title="Cumpleaños" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
+	<views:layout>
 		<s:VerticalLayout />
-	</s:layout>
+	</views:layout>
 	<controls:FormItem label="Mes:">
 		<com:ListPickerButton id="btnMes" height="30" styleName="btn-warning" labelField="label" title="Meses" width="50%"/>
 	</controls:FormItem>
@@ -17,10 +18,10 @@
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
-	<s:controlBarContent>
+	<views:controlBarContent>
 		<s:Button label="Ver Cliente" height="30" styleName="btn-primary" id="btnVer"/>
 		<s:Button label="Imprimir" height="30" id="btnImprimir"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
-	</s:controlBarContent>
-</s:Panel>
+	</views:controlBarContent>
+</views:ViewPanel>

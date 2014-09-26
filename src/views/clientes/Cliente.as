@@ -102,7 +102,7 @@ package views.clientes
 			cliente=null;
 		}
 		protected function cancelClick(event:MouseEvent):void {
-			(owner as ViewNavigator).popBack();
+			(owner as ViewNavigatorHistory).popBack();
 		}
 	}
 }

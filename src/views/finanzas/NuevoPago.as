@@ -193,7 +193,7 @@ package views.finanzas
 		}
 		
 		protected function cancelarClick(event:MouseEvent=null):void {
-			(owner as ViewNavigator).popBack();
+			(owner as ViewNavigatorHistory).popBack();
 		}
 		
 		

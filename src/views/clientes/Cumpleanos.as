@@ -44,7 +44,7 @@ package views.clientes
 		}
 		
 		protected function cancelarClick(event:MouseEvent):void {
-			(owner as ViewNavigator).popBack();
+			(owner as ViewNavigatorHistory).popBack();
 		}
 		
 		private function mesPicker_close(mes:int,item:Object):void {

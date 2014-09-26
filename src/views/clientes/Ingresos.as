@@ -19,7 +19,7 @@ package views.clientes
 		}
 		
 		protected function cancelarClick(event:MouseEvent):void {
-			(owner as ViewNavigator).popBack();
+			(owner as ViewNavigatorHistory).popBack();
 		}
 	}
 }

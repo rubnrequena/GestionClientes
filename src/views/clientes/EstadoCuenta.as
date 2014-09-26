@@ -5,8 +5,6 @@ package views.clientes
 	
 	import org.apache.flex.collections.VectorCollection;
 	
-	import spark.events.GridSelectionEvent;
-	
 	import views.finanzas.VerFactura;
 	
 	import vo.VOCliente;
@@ -58,12 +56,12 @@ package views.clientes
 				var _factura:VOFactura = facturasGrid.selectedItem as VOFactura;
 				(owner as ViewNavigator).addView("ver_factura_"+_factura.facturaID,VerFactura,{
 					factura:_factura
-				});
+				},true);
 			}
 		}
 		
 		protected function cancelar_click(event:MouseEvent):void {
-			(owner as ViewNavigator).popBack();
+			(owner as ViewNavigatorHistory).popBack();
 		}
 	}
 }

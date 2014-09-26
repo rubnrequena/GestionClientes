@@ -90,13 +90,13 @@ package views.clientes
 		protected function asistencias_click(event:MouseEvent):void {
 			(owner as ViewNavigator).addView("buscar_asistencias",views.asistencias.Asistencias,{
 				busq_pre:cliente
-			});
+			},true);
 		}
 		
 		protected function estadoCuenta_click(event:MouseEvent):void {
 			(owner as ViewNavigator).addView("estado_cliente",EstadoCuenta,{
 				cliente:this.cliente
-			});
+			},true);
 		}
 		
 		protected function btnGrupo_click(event:MouseEvent):void {
@@ -115,7 +115,7 @@ package views.clientes
 		protected function nuevoPago_click(event:MouseEvent):void {
 			(owner as ViewNavigator).addView("nuevo_pago_"+cliente.clienteID,NuevoPago,{
 				cliente:this.cliente
-			});
+			},true);
 		}
 		
 		protected function actualizarClick(event:MouseEvent):void {
@@ -131,7 +131,7 @@ package views.clientes
 		}
 		
 		protected function cancelarClick(event:MouseEvent):void {
-			(owner as ViewNavigator).popBack();
+			(owner as ViewNavigatorHistory).popBack();
 		}
 	}
 }

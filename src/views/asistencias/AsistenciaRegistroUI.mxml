@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+<views:ViewPanel xmlns:fx="http://ns.adobe.com/mxml/2009" 
 					  xmlns:s="library://ns.adobe.com/flex/spark" 
-					  xmlns:mx="library://ns.adobe.com/flex/mx" title="Registrar Asistencia" xmlns:controls="bootstrap.controls.*" xmlns:clientes="views.clientes.*">
-	<s:states>
+					  xmlns:mx="library://ns.adobe.com/flex/mx" title="Registrar Asistencia" xmlns:controls="bootstrap.controls.*" xmlns:clientes="views.clientes.*" xmlns:views="views.*">
+	<views:states>
 		<s:State name="registrar"/>
 		<s:State name="resultado"/>
-	</s:states>
-	<s:layout>
+	</views:states>
+	<views:layout>
 		<s:VerticalLayout />
-	</s:layout>
+	</views:layout>
 	<s:Form width="100%">
 		<controls:FormItem label="Cedula del Cliente:" childHeight="40">
 			<s:TextInput id="cedulaInput" width="50%" restrict="0-9"/>
@@ -41,8 +41,8 @@
 			</s:DataGrid>
 		</s:VGroup>
 	</s:HGroup>
-	<s:controlBarContent>
+	<views:controlBarContent>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
-	</s:controlBarContent>
-</s:Panel>
+	</views:controlBarContent>
+</views:ViewPanel>

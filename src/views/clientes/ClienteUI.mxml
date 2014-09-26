@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+<views:ViewPanel xmlns:fx="http://ns.adobe.com/mxml/2009" 
 					  xmlns:s="library://ns.adobe.com/flex/spark" title="Nuevo Cliente"
-					  xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="bootstrap.controls.*" xmlns:ns="http://flex.apache.org/experimental/ns">
+					  xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="bootstrap.controls.*" xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:views="views.*">
 	<s:Form width="100%">
 		<controls:FormInput label="Nombres:" >
 			<s:TextInput id="nombreInput"/>
@@ -22,10 +22,10 @@
 			<s:Button label="Seleccionar Grupo..." id="grupoInput" styleName="btn-silent" width="50%"/>
 		</controls:FormItem>
 	</s:Form>
-	<s:controlBarContent>
+	<views:controlBarContent>
 		<s:Button label="Guardar" height="30" styleName="btn-primary" id="btnGuardar"/>
 		<s:Button label="Limpiar" height="30" styleName="btn-warning" id="btnReset"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
-	</s:controlBarContent>
-</s:Panel>
+	</views:controlBarContent>
+</views:ViewPanel>

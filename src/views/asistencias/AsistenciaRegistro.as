@@ -52,7 +52,7 @@ package views.asistencias
 		}
 		
 		protected function cancelarClick(event:MouseEvent):void {
-			(owner as ViewNavigator).popBack();
+			(owner as ViewNavigatorHistory).popBack();
 		}
 		protected function registrarClick(event:Event):void {
 			resultGroup.visible=true;

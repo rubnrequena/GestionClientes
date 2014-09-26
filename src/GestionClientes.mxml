@@ -27,7 +27,7 @@
 			import views.Inicio;
 			public static var sql:Modulo;
 			public static var menuSignal:NativeSignal;
-			public static var nav:ViewNavigator;
+			public static var nav:ViewNavigatorHistory;
 			
 			public static var grupos:Grupos;
 			public static var clientes:Clientes;
@@ -72,13 +72,13 @@
 				tareas = new Tareas;
 				asistencias = new Asistencias;
 				
-				nav.addView("inicio_view",Inicio); 
+				nav.addView("inicio_view",Inicio,null,true); 
 			}
 			
 			override protected function createChildren():void {
 				super.createChildren();
 				
-				nav = new ViewNavigator;
+				nav = new ViewNavigatorHistory;
 				nav.percentWidth = nav.percentHeight = 100;
 				addElement(nav);
 				

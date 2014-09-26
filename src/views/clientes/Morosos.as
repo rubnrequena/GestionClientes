@@ -30,12 +30,12 @@ package views.clientes
 		protected function ver_click(event:MouseEvent):void {
 			if (morosoGrid.selectedIndex>-1) {
 				var m:VOMoroso = morosoGrid.selectedItem as VOMoroso;
-				(owner as ViewNavigator).addView("cliente_"+m.clienteID,FichaCliente,{cliente:m.cliente});
+				(owner as ViewNavigator).addView("cliente_"+m.clienteID,FichaCliente,{cliente:m.cliente},true);
 			}
 		}
 		
 		protected function atras_click(event:MouseEvent):void {
-			(owner as ViewNavigator).popBack();
+			(owner as ViewNavigatorHistory).popBack();
 		}
 	}
 }

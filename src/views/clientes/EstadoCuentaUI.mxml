@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="bootstrap.controls.*">
-	<s:layout>
+<views:ViewPanel xmlns:views="views.*" 
+				 xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="bootstrap.controls.*">
+	<views:layout>
 		<s:HorizontalLayout />
-	</s:layout>
+	</views:layout>
 	<s:VGroup width="70%" height="100%">
 		<s:Panel title="Facturas" width="100%">
 			<s:layout>
@@ -48,8 +49,8 @@
 		</s:Form>
 	</s:Panel>
 	
-	<s:controlBarContent>
+	<views:controlBarContent>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
-	</s:controlBarContent>
-</s:Panel>
+	</views:controlBarContent>
+</views:ViewPanel>

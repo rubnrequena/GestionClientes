@@ -7,7 +7,6 @@ package views.clientes
 	import mx.collections.ArrayList;
 	import mx.controls.DateField;
 	
-	
 	import vo.VOCliente;
 
 	public class BuscarCliente extends BuscarClienteUI
@@ -31,7 +30,7 @@ package views.clientes
 		protected function abrirClick(event:MouseEvent):void {
 			if (grid.selectedIndex>-1) {
 				var c:VOCliente = grid.selectedItem as VOCliente;
-				GestionClientes.nav.addView("cliente_"+c.clienteID,FichaCliente,{cliente:c});
+				GestionClientes.nav.addView("cliente_"+c.clienteID,FichaCliente,{cliente:c},true);
 			}
 		}
 		override protected function createChildren():void {
@@ -66,7 +65,7 @@ package views.clientes
 			grid.dataProvider = _clientes;
 		}
 		private function cancelarClick(e:MouseEvent):void {
-			(owner as ViewNavigator).popBack();
+			(owner as ViewNavigatorHistory).popBack();
 		}
 	}
 }

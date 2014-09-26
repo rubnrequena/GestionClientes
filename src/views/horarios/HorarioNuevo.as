@@ -36,7 +36,7 @@ package views.horarios
 		}
 		
 		protected function cancelarClick(event:MouseEvent):void {
-			(owner as ViewNavigator).popBack();
+			(owner as ViewNavigatorHistory).popBack();
 		}
 		
 		protected function resetClick(event:MouseEvent=null):void {

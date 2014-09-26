@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="bootstrap.controls.*" xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:com="com.*">
+<views:ViewPanel xmlns:views="views.*" 
+				 xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="bootstrap.controls.*" xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:com="com.*">
 	<s:HGroup width="100%" height="100%">
 		<s:Form width="100%">
 			<controls:FormInput label="Nombres:" >
@@ -54,7 +55,7 @@
 			</s:Panel>
 		</s:VGroup>
 	</s:HGroup>
-	<s:controlBarContent>
+	<views:controlBarContent>
 		<s:Button label="Eliminar" height="30" styleName="btn-danger icon-remover-sm" id="btnEliminar"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Nuevo Pago" height="30" styleName="btn-waring" id="btnNuevoPago"/>
@@ -62,5 +63,5 @@
 		<s:Button label="Asistencias" height="30" styleName="btn-warning" id="btnAsistencias"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
-	</s:controlBarContent>
-</s:Panel>
+	</views:controlBarContent>
+</views:ViewPanel>

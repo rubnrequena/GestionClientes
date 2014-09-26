@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Panel xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="bootstrap.controls.*">
-	<s:layout>
+<views:ViewPanel xmlns:views="views.*" 
+				 xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="bootstrap.controls.*">
+	<views:layout>
 		<s:VerticalLayout />
-	</s:layout>
+	</views:layout>
 	<s:Form width="100%">
 		<controls:FormItem label="Factura:">
 			<s:Label id="facturaInput" width="50%" styleName="text-size-lg text-align-right"/>
@@ -37,10 +38,10 @@
 			<s:Label id="usuarioInput" width="50%" styleName="text-align-right text-size-lg"/>
 		</controls:FormItem>
 	</s:Form>
-	<s:controlBarContent>
+	<views:controlBarContent>
 		<s:Button label="Devolución" height="30" styleName="btn-warning icon-facturar-sm" id="btnDevolucion"/>
 		<s:Button label="Imprimir" height="30" styleName="btn-warning icon-imprimir-sm" id="btnImprimir"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnAtras"/>
-	</s:controlBarContent>
-</s:Panel>
+	</views:controlBarContent>
+</views:ViewPanel>
