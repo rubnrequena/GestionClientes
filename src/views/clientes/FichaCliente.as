@@ -17,6 +17,7 @@ package views.clientes
 	
 	import utils.DateUtil;
 	
+	import views.asistencias.Asistencias;
 	import views.finanzas.NuevoPago;
 	
 	import vo.VOCliente;
@@ -61,7 +62,7 @@ package views.clientes
 			grupoIndex = GestionClientes.grupos.grupoIndex(cliente.grupoID);
 			
 			hoy = new Date;
-			clienteAsistencias.dataProvider = new VectorCollection(cliente.asistenciasDelMes(hoy.month+1,hoy.fullYear).sort(Asistencias.ordenarDESC).slice(0,9));
+			clienteAsistencias.dataProvider = new VectorCollection(cliente.asistenciasDelMes(hoy.month+1,hoy.fullYear).sort(clases.Asistencias.ordenarDESC).slice(0,9));
 			clientePagos.dataProvider = new VectorCollection(cliente.facturas(20));
 			
 			mesInput.label = VOHorario.MESES[hoy.month].label;
@@ -83,6 +84,13 @@ package views.clientes
 			
 			btnNuevoPago.addEventListener(MouseEvent.CLICK,nuevoPago_click);
 			btnEstadoCuenta.addEventListener(MouseEvent.CLICK,estadoCuenta_click);
+			btnAsistencias.addEventListener(MouseEvent.CLICK,asistencias_click);
+		}
+		
+		protected function asistencias_click(event:MouseEvent):void {
+			(owner as ViewNavigator).addView("buscar_asistencias",views.asistencias.Asistencias,{
+				busq_pre:cliente
+			});
 		}
 		
 		protected function estadoCuenta_click(event:MouseEvent):void {

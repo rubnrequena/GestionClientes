@@ -1,7 +1,5 @@
 package views.asistencias
 {
-	import com.ListPicker;
-	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
@@ -9,7 +7,6 @@ package views.asistencias
 	import mx.events.CalendarLayoutChangeEvent;
 	
 	import org.apache.flex.collections.VectorCollection;
-	import org.apache.flex.collections.VectorList;
 	
 	import sr.helpers.Value;
 	
@@ -22,6 +19,9 @@ package views.asistencias
 	public class Asistencias extends AsistenciasUI
 	{		
 		private var busquedaActual:int=-1;
+		
+		public var busq_pre:*;
+		
 		public function Asistencias() {
 			super();
 			addEventListener(Event.ADDED_TO_STAGE,onAdded);
@@ -34,6 +34,26 @@ package views.asistencias
 			var d:Date = new Date;
 			inicioInput.selectedDate = d;
 			finInput.selectedDate = d;
+			
+			if (busq_pre) {
+				clienteInput.enabled=false;
+				grupoInput.enabled = false;
+				if (busq_pre is VOCliente) {
+					busquedaActual=0;
+					clienteInput.selectedItem = busq_pre;
+					clienteInput.label = (busq_pre as VOCliente).nombres;
+					clienteInput.styleName = "well-success";
+				} else if (busq_pre is VOGrupo) {
+					busquedaActual=1;
+					grupoInput.selectedItem = busq_pre;
+					grupoInput.label = (busq_pre as VOGrupo).nombre;
+				}
+				finInput.validateNow();
+				inicioInput.validateNow();
+				fechas.enabled=true;
+				
+				updateData();
+			}
 		}
 		
 		override protected function childrenCreated():void {

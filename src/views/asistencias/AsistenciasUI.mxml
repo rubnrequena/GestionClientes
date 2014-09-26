@@ -10,7 +10,7 @@
 			import com.ListPickerSearch;
 		]]>
 	</fx:Script>
-	<s:Form width="100%">
+	<s:Form width="100%" id="form">
 		<controls:FormItem label="Cliente" id="clienteItem">
 			<com:ListPickerButton pickerClass="{new ClassFactory(ListPickerSearch)}" labelField="nombres" title="Clientes" label="Seleccionar cliente" id="clienteInput" width="50%" styleName="btn-silent"/>
 		</controls:FormItem>
