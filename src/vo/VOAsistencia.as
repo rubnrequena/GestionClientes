@@ -26,7 +26,6 @@ package vo
 		public function get horaLocal():String {
 			var n:Array = String(horaIngreso).split("");
 			var m:String = n.splice(-2,2).join("");
-			trace("minutos",m,horaIngreso);
 			var h:int = int(n.join(""));
 			var a:String;
 			if (h>12) {
