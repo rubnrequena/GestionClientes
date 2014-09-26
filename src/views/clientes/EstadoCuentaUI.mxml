@@ -10,7 +10,7 @@
 			<s:layout>
 				<s:VerticalLayout gap="2" paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" />
 			</s:layout>
-			<s:DataGrid width="100%" height="100%" id="facturasGrid" >
+			<s:DataGrid width="100%" height="100%" id="facturasGrid" minHeight="150" >
 				<s:columns>
 					<s:ArrayList>
 						<s:GridColumn headerText="Fecha" dataField="fechaLocal"/>
@@ -25,10 +25,11 @@
 			<s:layout>
 				<s:VerticalLayout gap="2" paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3"/> 
 			</s:layout>
-			<s:DataGrid width="100%" height="100%" id="pendientesGrid" >
+			<s:DataGrid width="100%" height="100%" id="pendientesGrid" minHeight="150" >
 				<s:columns>
 					<s:ArrayList>
 						<s:GridColumn headerText="Descripción" dataField="descripcion"/>
+						<s:GridColumn headerText="Cantidad" width="80" dataField="cantidad"/>
 						<s:GridColumn headerText="Monto" width="80" dataField="monto"/>
 						<s:GridColumn headerText="Total" width="80" dataField="total"/>
 					</s:ArrayList>
