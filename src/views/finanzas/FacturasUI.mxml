@@ -8,7 +8,7 @@
 	<s:Form width="100%">
 		<controls:FormItem label="Factura" id="formFactura">
 			<s:TextInput width="50%" id="facturaInput" restrict="0-9" />
-			<s:Button label="Buscar" styleName="btn-primary icon-buscar-sm" id="btnBuscarFactura"/>
+			<s:Button label="Buscar" styleName="btn-primary" id="btnBuscarFactura"/>
 		</controls:FormItem>
 		<controls:FormItem label="Cliente" id="formCliente">
 			<com:ListPickerButton label="Seleccionar cliente" id="clienteInput" labelField="nombres" title="Clientes" width="50%"/>
