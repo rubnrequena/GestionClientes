@@ -8,6 +8,7 @@ package views.asistencias
 	import mx.collections.ArrayCollection;
 	import mx.events.CalendarLayoutChangeEvent;
 	
+	import org.apache.flex.collections.VectorCollection;
 	import org.apache.flex.collections.VectorList;
 	
 	import sr.helpers.Value;
@@ -15,15 +16,13 @@ package views.asistencias
 	import utils.DateUtil;
 	
 	import vo.VOAsistencia;
+	import vo.VOCliente;
 	import vo.VOGrupo;
 
 	public class Asistencias extends AsistenciasUI
-	{
-		private var grupo:VOGrupo;
-		private var grupoIndice:int;
-		
-		public function Asistencias()
-		{
+	{		
+		private var busquedaActual:int=-1;
+		public function Asistencias() {
 			super();
 			addEventListener(Event.ADDED_TO_STAGE,onAdded);
 		}
@@ -38,18 +37,34 @@ package views.asistencias
 		}
 		
 		override protected function childrenCreated():void {
-			grupoInput.addEventListener(MouseEvent.CLICK,seleccionarGrupo);
 			inicioInput.addEventListener(CalendarLayoutChangeEvent.CHANGE,fechaChange);
 			finInput.addEventListener(CalendarLayoutChangeEvent.CHANGE,fechaChange);
-			btnCancelar.addEventListener(MouseEvent.CLICK,cancelarClick);
-			btnBuscar.addEventListener(MouseEvent.CLICK,buscarClick);
+			btnCancelar.addEventListener(MouseEvent.CLICK,cancelar_click);
+			
+			grupoInput.dataProvider = new VectorCollection(GestionClientes.grupos.data);
+			grupoInput.onClose = grupoInput_close;
+			clienteInput.dataProvider = new VectorCollection(GestionClientes.clientes.data);
+			clienteInput.onClose = clienteInput_close;
 		}
 		
-		protected function buscarClick(event:MouseEvent):void {
+		private function clienteInput_close():void {
+			busquedaActual=0;
+			clienteItem.styleName = "well-success";
+			grupoItem.styleName = "well-default";
+			grupoInput.selectedIndex=-1;
 			updateData();
+			fechas.enabled=true;
+		}		
+		private function grupoInput_close(indice:int,grupo:VOGrupo):void {
+			busquedaActual=1;
+			grupoItem.styleName = "well-success";
+			clienteItem.styleName = "well-default";
+			clienteInput.selectedIndex=-1;
+			updateData();
+			fechas.enabled=true;
 		}
-		
-		protected function cancelarClick(event:MouseEvent):void {
+			
+		protected function cancelar_click(event:MouseEvent):void {
 			(owner as ViewNavigator).popBack();
 		}
 		
@@ -68,29 +83,24 @@ package views.asistencias
 				}
 			}
 			invalidateProperties();
+			updateData();
 		}
 		
-		protected function seleccionarGrupo(event:MouseEvent):void {
-			var sg:ListPicker = new ListPicker();
-			sg.title = "Seleccionar Grupo";
-			sg.onClose = function (indice:int,data:VOGrupo):void {
-				fechas.enabled=true;
-				grupo = data;
-				grupoInput.label = data.nombre;
-				grupoIndice = indice;				
-				updateData();
-			};
-			sg.labelField = "nombre";
-			sg.dataProvider = new VectorList(GestionClientes.grupos.data);
-			sg.selectedIndex = grupoIndice;
-			sg.popUp();
-		}
 		protected function updateData():void {
-			var asist:Array = GestionClientes.sql.seleccionar("asistencias",new <Value>[
-				Value.fromPool("grupoID",grupo.grupoID),
-				Value.fromPool("fechaIngreso",DateUtil.toggleDate(inicioInput.text),"AND",">="),
-				Value.fromPool("fechaIngreso",DateUtil.toggleDate(finInput.text),"AND","<=")
-			],VOAsistencia).data;
+			var asist:Array;
+			if (busquedaActual) {
+				asist = GestionClientes.sql.seleccionar("asistencias",new <Value>[
+					Value.fromPool("grupoID",(grupoInput.selectedItem as VOGrupo).grupoID),
+					Value.fromPool("fechaIngreso",DateUtil.toggleDate(inicioInput.text),"AND",">="),
+					Value.fromPool("fechaIngreso",DateUtil.toggleDate(finInput.text),"AND","<=")
+				],VOAsistencia).data;
+			} else {
+				asist = GestionClientes.sql.seleccionar("asistencias",new <Value>[
+					Value.fromPool("clienteID",(clienteInput.selectedItem as VOCliente).clienteID),
+					Value.fromPool("fechaIngreso",DateUtil.toggleDate(inicioInput.text),"AND",">="),
+					Value.fromPool("fechaIngreso",DateUtil.toggleDate(finInput.text),"AND","<=")
+				],VOAsistencia).data;
+			}
 			gridAsistencias.dataProvider = new ArrayCollection(asist);
 		}
 	}
