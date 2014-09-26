@@ -23,6 +23,20 @@ package vo
 		public function get fechaIngresoLocal():String {
 			return DateUtil.toggleDate(fechaIngreso);
 		}
+		public function get horaLocal():String {
+			var n:Array = String(horaIngreso).split("");
+			var m:String = n.splice(-2,2).join("");
+			trace("minutos",m,horaIngreso);
+			var h:int = int(n.join(""));
+			var a:String;
+			if (h>12) {
+				a = " pm";
+				h -=12;
+			} else {
+				a = " am";
+			}
+			return [h,m].join(":")+a;
+		}
 		override public function get toObject():Object {
 			var o:Object = super.toObject;
 			delete o.asistenciaID;
