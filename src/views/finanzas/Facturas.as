@@ -24,7 +24,7 @@ package views.finanzas
 		}
 		override protected function childrenCreated():void {
 			clienteInput.pickerClass = new ClassFactory(ListPickerSearch);
-			clienteInput.dataProvider = new VectorCollection(GestionClientes.clientes.clientes);
+			clienteInput.dataProvider = new VectorCollection(GestionClientes.clientes.data);
 			clienteInput.onClose = buscarCliente_click;
 			
 			buscarFecha.addEventListener(MouseEvent.CLICK,buscarFecha_click);

@@ -16,7 +16,7 @@ package views
 		}
 		override protected function childrenCreated():void {
 			var d:Date = new Date;
-			numClientes.text = GestionClientes.clientes.clientes.length.toString();
+			numClientes.text = GestionClientes.clientes.data.length.toString();
 			var i:int = GestionClientes.clientes.cumpleaneros(d.month+1).length;
 			numCumpleanos.text = i.toString();
 			

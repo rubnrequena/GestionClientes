@@ -67,7 +67,7 @@ package views.finanzas
 				clienteInput.label = cliente.nombres;
 				clienteInput.enabled=false;
 			}
-			clienteInput.dataProvider = new VectorCollection(GestionClientes.clientes.clientes);
+			clienteInput.dataProvider = new VectorCollection(GestionClientes.clientes.data);
 		}
 		override protected function childrenCreated():void {
 			btnCancelar.addEventListener(MouseEvent.CLICK,cancelarClick);
