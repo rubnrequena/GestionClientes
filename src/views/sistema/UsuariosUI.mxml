@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<views:ViewPanel xmlns:views="views.*" 
+				 xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:mx="library://ns.adobe.com/flex/mx" title="Usuarios" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
+	<views:layout>
+		<s:HorizontalLayout />
+	</views:layout>
+	<s:Form width="40%" backgroundColor="0xf9f9f9">
+		<controls:FormItem label="Usuario">
+			<s:TextInput width="50%" id="usuarioInput"/>
+		</controls:FormItem>
+		<controls:FormItem label="Nombre">
+			<s:TextInput width="50%" id="nombreInput"/>
+		</controls:FormItem>
+		<controls:FormItem label="Contraseña">
+			<s:TextInput width="50%" id="passInput" displayAsPassword="true"/>
+		</controls:FormItem>
+		<controls:FormItem label="Repetir Contraseña">
+			<s:TextInput width="50%" id="pass2Input"/>
+		</controls:FormItem>
+		<controls:FormItem label="Acceso">
+			<com:ListPickerButton width="50%" label="Seleccione acceso" title="Usuarios" >
+				<com:dataProvider>
+					<s:ArrayList>
+						<fx:Object label="Administrador"/>
+						<fx:Object label="Empleado"/>
+					</s:ArrayList>
+				</com:dataProvider>
+			</com:ListPickerButton>
+		</controls:FormItem>
+		<s:Group width="100%">
+			<s:Button label="Registrar" styleName="btn-primary" height="30" horizontalCenter="0" width="66%"/>
+		</s:Group>
+	</s:Form>
+	<s:DataGrid width="60%" height="100%">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn headerText="Usuario" dataField="usuario"/>
+				<s:GridColumn headerText="Nombre" dataField="nombre"/>
+				<s:GridColumn headerText="Acceso" dataField="accesoString"/>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	<views:controlBarContent>
+		<s:Spacer width="100%"/>
+		<s:Button label="Atras" styleName="btn-danger icon-atras-sm" id="btnAtras"/>
+	</views:controlBarContent>
+</views:ViewPanel>

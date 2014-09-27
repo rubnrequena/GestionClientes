@@ -18,15 +18,16 @@
 			import views.horarios.HorarioNuevo;
 			import views.horarios.Horarios;
 			import views.organizacion.Clases;
-			import views.organizacion.Instructores;
 			import views.organizacion.Grupos;
+			import views.organizacion.Instructores;
 			import views.organizacion.Salones;
+			import views.sistema.Usuarios;
 		]]>
 	</fx:Script>
 	<controls:views>
 		<s:SkinnableContainer id="clientes" name="Clientes" styleName="navChildren">
 			<s:layout><s:HorizontalLayout paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" verticalAlign="contentJustify" /></s:layout>
-			<com:MButton view="{Cliente}" name="cliente_nuevo" label="Nuevo" styleName="btn-menu icon-white" icon="assets/add_user-32.png"/>
+			<com:MButton view="{Cliente}" name="cliente_nuevo" label="Nuevo" styleName="btn-menu icon-usuario-md" />
 			<com:MButton view="{BuscarCliente}" name="cliente_buscar" label="Buscar" styleName="btn-menu icon-buscar-cliente-med"/>
 			<com:MButton view="{Ingresos}" name="cliente_ingresos" label="Ingresos" styleName="btn-menu" icon="assets/statistics-32.png"/>
 			<com:MButton view="{Morosos}" name="cliente_morosos" label="Morosos" styleName="btn-menu" icon="assets/statistics-32.png"/>
@@ -57,6 +58,10 @@
 			<s:Spacer width="100%"/>
 			<com:MButton view="{Tareas}" name="tareas" label="Tareas" styleName="btn-menu icon-tareas-md"/>
 			<com:MButton view="{Productos}" name="productos" label="Productos" styleName="btn-menu icon-productos-md"/>
+		</s:SkinnableContainer>
+		<s:SkinnableContainer name="Sistema" styleName="navChildren">
+			<s:layout><s:HorizontalLayout paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" verticalAlign="contentJustify" /></s:layout>
+			<com:MButton view="{Usuarios}" name="usuarios" label="Nuevo" styleName="btn-menu icon-usuario-md" />
 		</s:SkinnableContainer>
 	</controls:views>
 </controls:TopMenu>

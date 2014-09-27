@@ -72,7 +72,7 @@
 				tareas = new Tareas;
 				asistencias = new Asistencias;
 				
-				nav.addView("inicio_view",Inicio,null,true); 
+				nav.addView("inicio_view",Inicio,null,true);
 			}
 			
 			override protected function createChildren():void {

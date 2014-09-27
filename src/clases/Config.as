@@ -14,6 +14,9 @@ package clases
 			sql_set.length = sql_where.length = 0;
 		}
 		public var correlativo:int;
+		public var razon_social:String="SALSA CASINO";
+		public var rif:String="J-00000000-0";
+		public var anchoPapel:Number=300;
 
 		public var change:Signal = new Signal();
 		

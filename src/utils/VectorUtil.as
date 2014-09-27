@@ -10,5 +10,12 @@ package utils
 			}
 			return vector;
 		}
+		static public function toArray (data:*):Array {
+			var a:Array = new Array(data.length);
+			var i:int;
+			for (i = 0; i < a.length; i++)
+				a[i]=data[i]
+			return a;
+		}
 	}
 }
