@@ -1,5 +1,7 @@
 package views.finanzas
 {
+	import clases.Print;
+	
 	import com.ListPickerSearch;
 	import com.ModalAlert;
 	
@@ -142,6 +144,8 @@ package views.finanzas
 						styleName:"btn-danger icon-atras-sm"
 					}
 				],function (detalle:int):void {
+					if (detalle==0)
+						clases.Print.imprimirFactura(factura);
 					cancelarClick();
 				});
 			}
