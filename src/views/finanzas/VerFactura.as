@@ -1,6 +1,7 @@
 package views.finanzas
 {
 	import clases.Pagos;
+	import clases.Print;
 	
 	import com.ModalAlert;
 	
@@ -25,6 +26,7 @@ package views.finanzas
 		override protected function createChildren():void {
 			super.createChildren();
 			btnAtras.addEventListener(MouseEvent.CLICK,btnAtras_click);
+			btnImprimir.addEventListener(MouseEvent.CLICK,imprimir_click);
 			
 			if (_factura) {
 				title = "Factura #"+[_factura.correlativoString,_factura.cliente.nombres].join(" - ");
@@ -38,6 +40,10 @@ package views.finanzas
 			} else {
 				ModalAlert.show("Error al cargar factura","ERROR",null,[ModalAlert.OK]);
 			}
+		}
+		
+		protected function imprimir_click(event:MouseEvent):void {
+			clases.Print.imprimirFactura(_factura);
 		}
 		
 		protected function btnAtras_click(event:MouseEvent):void {
