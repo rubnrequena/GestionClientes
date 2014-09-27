@@ -35,7 +35,7 @@ package clases
 				print.defaultFormat = defaultFormat;
 				print.headerFormat = formatHeader;
 				
-				print.printableArea = new Rectangle(0,0,GestionClientes.config.anchoPapel,pj.printableArea.height);
+				print.printableArea = new Rectangle(0,0,GestionClientes.config.impresion_anchoPapel,pj.printableArea.height);
 				print.addLine(GestionClientes.config.razon_social,formatCenter);
 				print.addLine(GestionClientes.config.rif,formatCenter);
 				print.addLine(DateUtil.dateToString(now,"DD/MM/YYYY"),formatCenter);
@@ -51,9 +51,9 @@ package clases
 				print.addSpace(10);
 								
 				print.addDataGrid(factura.pagos,new <PrintColumn>[
-					new PrintColumn("descripcion",percentWidth(65,GestionClientes.config.anchoPapel),"Descripcion"),
-					new PrintColumn("cantidad",percentWidth(15,GestionClientes.config.anchoPapel),"Cant",formatRight),
-					new PrintColumn("total",percentWidth(20,GestionClientes.config.anchoPapel),"Total",formatRight)
+					new PrintColumn("descripcion",percentWidth(65,GestionClientes.config.impresion_anchoPapel),"Descripcion"),
+					new PrintColumn("cantidad",percentWidth(15,GestionClientes.config.impresion_anchoPapel),"Cant",formatRight),
+					new PrintColumn("total",percentWidth(20,GestionClientes.config.impresion_anchoPapel),"Total",formatRight)
 				]);
 				print.addSpace(5);
 				formatHeader.align = TextAlign.LEFT;
@@ -71,21 +71,32 @@ package clases
 		private static function initializeFormats():void {
 			formatRight = new TextFormat();
 			formatRight.align = TextAlign.RIGHT;
-			formatRight.font = "Verdana";
 			
-			defaultFormat = new TextFormat;
-			defaultFormat.font = "Verdana";			
+			defaultFormat = new TextFormat;		
 			
 			formatCenter = new TextFormat;
 			formatCenter.align = TextAlign.CENTER;
-			formatCenter.font = "Verdana";
 			
 			formatHeader = new TextFormat();
 			formatHeader.bold = true;
 			formatHeader.align = TextAlign.CENTER;
-			formatHeader.font = "Verdana";
 			
+			asignarFuente = Config.IMPRESION_FUENTES[GestionClientes.config.impresion_fuente].label;
+			
+			GestionClientes.config.change.add(fuenteChange);
 			formatsInitialized=true;
+		}
+		
+		private static function fuenteChange(campo:String,valor:*):void {
+			if (campo=="impresion_fuente")
+				asignarFuente = Config.IMPRESION_FUENTES[valor].label;
+		}
+		
+		private static function set asignarFuente(value:String):void {
+			formatRight.font = value;
+			defaultFormat.font = value;	
+			formatCenter.font = value;
+			formatHeader.font = value;
 		}
 	}
 }

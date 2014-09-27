@@ -7,7 +7,14 @@ package clases
 	import vo.VOConfig;
 
 	public class Config
-	{
+	{		
+		public static const IMPRESION_FUENTES:Array = [
+			{label:"Arial"},
+			{label:"Courier New"},
+			{label:"Times New Roman"},
+			{label:"Verdana"}
+		];
+		
 		public static var sql_set:Vector.<Value>;
 		public static var sql_where:Vector.<Value>;
 		public static function resetPool():void {
@@ -16,7 +23,8 @@ package clases
 		public var correlativo:int;
 		public var razon_social:String;
 		public var rif:String;
-		public var anchoPapel:Number;
+		public var impresion_anchoPapel:Number;
+		public var impresion_fuente:int;
 
 		public var change:Signal = new Signal();
 		
@@ -29,7 +37,6 @@ package clases
 			if (!initialized) {
 				sql_set = new Vector.<Value>;
 				sql_where = new Vector.<Value>;
-				change = new Signal;
 				initialized=true;
 			} else {
 				resetPool();

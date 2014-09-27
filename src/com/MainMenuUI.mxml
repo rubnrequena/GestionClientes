@@ -21,7 +21,7 @@
 			import views.organizacion.Grupos;
 			import views.organizacion.Instructores;
 			import views.organizacion.Salones;
-			import views.sistema.Impresion;
+			import views.sistema.Config;
 			import views.sistema.Usuarios;
 		]]>
 	</fx:Script>
@@ -55,7 +55,7 @@
 			<s:layout><s:HorizontalLayout paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" verticalAlign="contentJustify" /></s:layout>
 			<com:MButton view="{NuevoPago}" name="pago_nuevo" label="Nuevo Pago" styleName="btn-menu icon-pago_nuevo-md"/>
 			<com:MButton view="{Facturas}" styleName="btn-menu icon-factura-md" name="facturas" label="Facturas"/>
-			<com:MButton styleName="btn-menu icon-reporte-md" name="reporte" label="Reporte"/>
+			<!--<com:MButton styleName="btn-menu icon-reporte-md" name="reporte" label="Reporte"/>-->
 			<s:Spacer width="100%"/>
 			<com:MButton view="{Tareas}" name="tareas" label="Tareas" styleName="btn-menu icon-tareas-md"/>
 			<com:MButton view="{Productos}" name="productos" label="Productos" styleName="btn-menu icon-productos-md"/>
@@ -63,7 +63,7 @@
 		<s:SkinnableContainer name="Sistema" styleName="navChildren">
 			<s:layout><s:HorizontalLayout paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" verticalAlign="contentJustify" /></s:layout>
 			<com:MButton view="{Usuarios}" name="usuarios" label="Nuevo" styleName="btn-menu icon-usuario-md" />
-			<com:MButton view="{Impresion}" name="impresion" label="Impresión" styleName="btn-menu icon-imprimir-md"/>
+			<com:MButton view="{Config}" name="config" label="Configuración" styleName="btn-menu icon-config-md"/>
 		</s:SkinnableContainer>
 	</controls:views>
 </controls:TopMenu>

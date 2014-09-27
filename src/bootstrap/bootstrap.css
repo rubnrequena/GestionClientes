@@ -251,6 +251,9 @@ skins|BToggleButtonBarSkin {
 .icon-limpiar-sm {
 	icon:"assets/erase-26.png";	
 }
+.icon-config-md {
+	icon:"assets/settings-32.png";	
+}
 controls|FormItem s|Label {
 	verticalAlign:middle;
 }

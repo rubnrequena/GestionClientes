@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<views:ViewPanel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:views="views.*" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
+	<s:Form width="100%">
+		<controls:FormItem styleName="well-info">
+			<s:Label text="Configuración de Empresa"/>
+		</controls:FormItem>
+		<controls:FormItem label="Razón Social">
+			<s:TextInput id="razon_social" width="50%"/>
+		</controls:FormItem>
+		<controls:FormItem label="RIF">
+			<s:TextInput id="rif" width="50%"/>
+		</controls:FormItem>
+		<controls:FormItem styleName="well-info">
+			<s:Label text="Configuración de Facturación"/>
+		</controls:FormItem>
+		<controls:FormItem label="Correlativo actual">
+			<s:TextInput id="correlativo" width="50%"/>
+		</controls:FormItem>
+		<controls:FormItem styleName="well-info">
+			<s:Label text="Configuración de Impresora"/>
+		</controls:FormItem>
+		<controls:FormItem label="Ancho de papel">
+			<s:TextInput id="impresion_anchoPapel" width="50%"/>
+		</controls:FormItem>
+		<controls:FormItem label="Fuente">
+			<com:ListPickerButton id="impresion_fuente" labelField="label" width="50%"/>
+		</controls:FormItem>
+	</s:Form>
+	<views:controlBarContent>
+		<s:Button label="Guardar" styleName="btn-warning icon-guardar-sm" id="btnGuardar"/>
+		<s:Spacer width="100%"/>
+		<s:Button label="Atras" styleName="btn-danger icon-atras-sm" id="btnAtras"/>
+	</views:controlBarContent>
+</views:ViewPanel>
