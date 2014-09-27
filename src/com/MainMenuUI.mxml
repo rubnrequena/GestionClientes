@@ -21,6 +21,7 @@
 			import views.organizacion.Grupos;
 			import views.organizacion.Instructores;
 			import views.organizacion.Salones;
+			import views.sistema.Impresion;
 			import views.sistema.Usuarios;
 		]]>
 	</fx:Script>
@@ -62,6 +63,7 @@
 		<s:SkinnableContainer name="Sistema" styleName="navChildren">
 			<s:layout><s:HorizontalLayout paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" verticalAlign="contentJustify" /></s:layout>
 			<com:MButton view="{Usuarios}" name="usuarios" label="Nuevo" styleName="btn-menu icon-usuario-md" />
+			<com:MButton view="{Impresion}" name="impresion" label="Impresión" styleName="btn-menu icon-imprimir-md"/>
 		</s:SkinnableContainer>
 	</controls:views>
 </controls:TopMenu>

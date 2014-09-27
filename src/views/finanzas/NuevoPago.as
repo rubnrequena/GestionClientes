@@ -1,6 +1,6 @@
 package views.finanzas
 {
-	import clases.Print;
+	import clases.Imprimir;
 	
 	import com.ListPickerSearch;
 	import com.ModalAlert;
@@ -145,7 +145,7 @@ package views.finanzas
 					}
 				],function (detalle:int):void {
 					if (detalle==0)
-						clases.Print.imprimirFactura(factura);
+						clases.Imprimir.imprimirFactura(factura);
 					cancelarClick();
 				});
 			}

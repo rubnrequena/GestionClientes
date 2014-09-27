@@ -1,7 +1,7 @@
 package views.finanzas
 {
 	import clases.Pagos;
-	import clases.Print;
+	import clases.Imprimir;
 	
 	import com.ModalAlert;
 	
@@ -43,7 +43,7 @@ package views.finanzas
 		}
 		
 		protected function imprimir_click(event:MouseEvent):void {
-			clases.Print.imprimirFactura(_factura);
+			clases.Imprimir.imprimirFactura(_factura,true);
 		}
 		
 		protected function btnAtras_click(event:MouseEvent):void {

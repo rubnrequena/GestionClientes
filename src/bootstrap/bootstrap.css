@@ -209,6 +209,9 @@ skins|BToggleButtonBarSkin {
 .icon-imprimir-sm {
 	icon:"assets/print-26.png";
 }
+.icon-imprimir-md {
+	icon:"assets/print-32.png";	
+}
 .icon-tareas-md {
 	icon:"assets/overtime-32.png";	
 }
