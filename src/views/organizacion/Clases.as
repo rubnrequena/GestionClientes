@@ -59,9 +59,8 @@ package views.organizacion
 		protected function remover_click(event:MouseEvent):void {
 			if (clasesGrid.selectedIndex==-1) return;
 			ModalAlert.show("¿Seguro desea remover clase?","Remover clase",null,[ModalAlert.YES,ModalAlert.NO],function (detalle:int):void {
-				if (detalle==0) {
+				if (detalle==0)
 					GestionClientes.clasess.remover(clasesGrid.selectedItem.claseID);
-				}
 			},0,"well-danger");
 		}
 		
