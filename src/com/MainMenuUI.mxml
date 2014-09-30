@@ -32,7 +32,7 @@
 			<com:MButton view="{Morosos}" name="cliente_morosos" label="Morosos" styleName="btn-menu" icon="assets/statistics-32.png"/>
 			<com:MButton view="{Cumpleanos}" name="clientes_cumple" label="Cumpleaños" styleName="btn-menu" icon="assets/birthday-32.png"/>
 		</s:SkinnableContainer>
-		<s:SkinnableContainer name="Organización" styleName="navChildren">
+		<s:SkinnableContainer name="Organización" styleName="navChildren" id="organizacion">
 			<s:layout><s:HorizontalLayout paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" verticalAlign="contentJustify" /></s:layout>
 			<com:MButton view="{Grupos}" name="grupos" label="Grupos" styleName="btn-menu icon-grupos-med"/>
 			<com:MButton view="{Salones}" styleName="btn-menu icon-salon-med" name="salones" label="Salones"/>
@@ -53,7 +53,7 @@
 			<com:MButton view="{Tareas}" name="tareas" label="Tareas" styleName="btn-menu icon-tareas-md"/>
 			<com:MButton view="{Productos}" name="productos" label="Productos" styleName="btn-menu icon-productos-md"/>
 		</s:SkinnableContainer>
-		<s:SkinnableContainer name="Sistema" styleName="navChildren">
+		<s:SkinnableContainer name="Sistema" styleName="navChildren" id="sistema">
 			<s:layout><s:HorizontalLayout paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" verticalAlign="contentJustify" /></s:layout>
 			<com:MButton view="{Usuarios}" name="usuarios" label="Nuevo" styleName="btn-menu icon-usuario-md" />
 			<com:MButton view="{Config}" name="config" label="Configuración" styleName="btn-menu icon-config-md"/>

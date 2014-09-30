@@ -64,14 +64,14 @@ package bootstrap.controls
 		public function set views (value:Array):void {
 			_nav.mxmlContent = value;
 		}
-		public function addItem (item:IVisualElement):void {
-			_nav.addElement(item);
+		public function addItem (item:IVisualElement):IVisualElement {
+			return _nav.addElement(item);
 		}
-		public function addItemAt (item:IVisualElement,index:int):void {
-			_nav.addElementAt(item,index);
+		public function addItemAt (item:IVisualElement,index:int):IVisualElement {
+			return _nav.addElementAt(item,index);
 		}
-		public function removeItemAt (index:int):void {
-			_nav.removeElementAt(index);
+		public function removeItemAt (index:int):IVisualElement {
+			return _nav.removeElementAt(index);
 		}
 		public function removeAll ():void {
 			_nav.removeAll();
