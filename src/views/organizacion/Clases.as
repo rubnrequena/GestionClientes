@@ -65,7 +65,10 @@ package views.organizacion
 		}
 		
 		protected function clases_selectionChange(event:GridSelectionEvent):void {
-			horarioGrid.dataProvider = new VectorList((clasesGrid.selectedItem as VOClase).horarios);
+			if (clasesGrid.selectedIndex>-1)
+				horarioGrid.dataProvider = new VectorList((clasesGrid.selectedItem as VOClase).horarios);
+			else
+				horarioGrid.dataProvider = null;
 		}
 		override protected function createChildren():void {
 			super.createChildren();
