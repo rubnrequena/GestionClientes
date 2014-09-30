@@ -69,6 +69,7 @@ package bootstrap.controls
 			addEventListener(MouseEvent.MOUSE_WHEEL,onMouseWheel);
 		}
 		protected function onMouseWheel (event:MouseEvent):void {
+			event.stopImmediatePropagation();
 			_value += event.delta>0?1:-1;
 			invalidateProperties();
 		}

@@ -1,12 +1,12 @@
 package bootstrap.controls
 {
+	import interfaces.IListPicker;
+	
 	import mx.core.IVisualElement;
 	
 	import spark.components.Label;
 	import spark.components.SkinnableContainer;
-	import spark.components.TextInput;
 	import spark.components.supportClasses.SkinnableTextBase;
-	import spark.layouts.HorizontalLayout;
 	
 	public class FormItem extends SkinnableContainer
 	{
@@ -60,6 +60,13 @@ package bootstrap.controls
 		public function get input ():SkinnableTextBase {
 			for (var i:int = 1, item:SkinnableTextBase; i < _numElementos+1; i++)  {
 				item = getElementAt(i) as SkinnableTextBase;
+				if (item) return item;
+			}			
+			return null;
+		}
+		public function get picker():IListPicker {
+			for (var i:int = 1, item:IListPicker; i < _numElementos+1; i++)  {
+				item = getElementAt(i) as IListPicker;
 				if (item) return item;
 			}			
 			return null;

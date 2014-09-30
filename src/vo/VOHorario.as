@@ -5,12 +5,12 @@ package vo
 	public class VOHorario extends MapObject
 	{
 		public var horarioID:int;
+		public var claseID:int;
 		public var grupoID:int;
 		public var tipo:int;
 		public var entrada:int;
 		public var salida:int;
 		public var dias:String;
-		public var salonID:int;
 		
 		public static const TIPO:Array = ["Semanal","Mensual"];
 		public static const MESES:Array = [
@@ -30,7 +30,8 @@ package vo
 		public static const DIAS_SEMANA:Array = ["Domingo","Lunes","Martes","Miercoles","Jueves","Viernes","Sabado"];
 		public static const DIAS_MES:Array = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31];
 		
-		public function VOHorario() {			
+		public function VOHorario() {
+			
 		}
 		
 		override public function get toObject():Object {
@@ -38,13 +39,12 @@ package vo
 			delete o.horarioID;
 			return o;
 		}
-		public function enRango (hora:int):int {
-			if (hora<entrada)
-				return -1;
-			else if (hora>salida)
-				return 1;
+		private function enRango (hora:int):Boolean {
+			trace("rango",entrada,hora,salida);
+			if (hora>=entrada && hora<=salida )
+				return true
 			else
-				return 0;
+				return false;
 		}
 		public function get listDias():Array { return dias.split(","); }
 		public function get diasString ():String {
@@ -60,21 +60,32 @@ package vo
 			return TIPO[tipo];
 		}
 		public function get entradaString():String {
-			var h:int = entrada/100;
-			var m:int = entrada-(h*100);
-			var a:String = "am";
-			if (h>12) { h-=12; a="pm"; }
-			return zero(h)+":"+zero(m)+" "+a;
+			return timeString(entrada);
 		}
 		public function get salidaString():String {
-			var h:int = salida/100;
-			var m:int = salida-(h*100);
+			return timeString(salida);
+		}
+		private function timeString (time:int):String {
+			var h:int = time/100;
+			var m:int = time-(h*100);
 			var a:String = "am";
 			if (h>12) { h-=12; a="pm"; }
 			return zero(h)+":"+zero(m)+" "+a;
 		}
-		private function zero (n:int):String {
+				
+		private static function zero (n:int):String {
 			return n>9?n.toString():"0"+n;
+		}
+		
+		public static function asistir (now:Date,horarios:Vector.<VOHorario>):Boolean {
+			var time:int = int([now.hours,zero(now.minutes)].join(""));
+			var hoy:String;
+			for (var i:int = 0; i < horarios.length; i++) {
+				hoy = horarios[i].tipo?now.date.toString():now.day.toString();
+				if (horarios[i].listDias.indexOf(hoy)>-1 && horarios[i].enRango(time))
+					return true;
+			}
+			return false;
 		}
 	}
 }

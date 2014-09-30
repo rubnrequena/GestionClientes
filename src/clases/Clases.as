@@ -5,6 +5,7 @@ package clases
 	import utils.VectorUtil;
 	
 	import vo.VOClase;
+	import vo.VOCliente;
 
 	public class Clases
 	{
@@ -38,6 +39,23 @@ package clases
 		public function update():void {
 			_data = VectorUtil.toVector(GestionClientes.sql.seleccionar("clases",null,VOClase).data,Vector.<VOClase>);
 			updateFlag=false;
+		}
+		public function entradaPermitida (fecha:Date,cliente:VOCliente):Boolean {
+			/*if (updateFlag) update();
+			
+			var now:int = (fecha.hours*100)+fecha.minutes;
+			var i:int; var x:int;
+			for (i = 0; i < _data.length; i++) {
+				if (_data[i].grupoID==cliente.grupoID) {
+					x = _data[i].enRango(now);
+					if (x==0) {
+						var s:String = _data[i].tipo==0?fecha.day.toString():fecha.date.toString();
+						x = _data[i].listDias.indexOf(s);
+						if (x>-1) return true;
+					}
+				}
+			}*/
+			return false;
 		}
 	}
 }

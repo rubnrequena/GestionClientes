@@ -1,7 +1,7 @@
 package views.asistencias
 {
 	import clases.Asistencias;
-	import clases.Horarios;
+	import clases.Clases;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -18,13 +18,13 @@ package views.asistencias
 	
 	import vo.VOAsistencia;
 	import vo.VOCliente;
+	import vo.VOHorario;
+	import vo.VOUsuario;
 
 	public class AsistenciaRegistro extends AsistenciaRegistroUI
 	{
-		private var horarios:Horarios;
 		public function AsistenciaRegistro()
 		{
-			horarios = GestionClientes.horarios;
 			addEventListener(Event.ADDED_TO_STAGE,onAdded);
 			addEventListener(Event.REMOVED_FROM_STAGE,onRemoved);
 		}
@@ -62,23 +62,20 @@ package views.asistencias
 				currentState="resultado";
 				var ahora:Date = new Date;
 				clienteCard.cliente = cliente;
-				if (horarios.entradaPermitida(ahora,cliente)) {
+				
+				var horarios:Vector.<VOHorario> = cliente.horarios;
+				if (VOHorario.asistir(ahora,horarios)) {
 					resultGroup.styleName = "well-success text-size-lg";
 					resultLabel.text = "ASISTENCIA REGISTRADA";
-					
-					var s:DateTimeFormatter = new DateTimeFormatter;
-					s.setStyle("locale","es_VE");
-					s.dateStyle = DateTimeStyle.NONE;
-					s.timeStyle = DateTimeStyle.SHORT;
-					
+										
 					var a:VOAsistencia = new VOAsistencia;
 					a.clienteID = cliente.clienteID;
 					a.grupoID = cliente.grupoID;
 					a.fechaIngreso = DateField.dateToString(ahora,"YYYY-MM-DD");
 					a.horaIngreso = clases.Asistencias.format24(ahora);
-					a.usuario = 0;
+					a.usuario = VOUsuario.USUARIO_ACTIVO.usuarioID;
 					
-					GestionClientes.sql.insertar("asistencias",a.toObject);					
+					//GestionClientes.sql.insertar("asistencias",a.toObject);					
 				} else {
 					resultLabel.text = "ASISTENCIA RECHAZADA: HORARIO NO PERMITIDO";
 					resultGroup.styleName = "well-danger text-size-lg";

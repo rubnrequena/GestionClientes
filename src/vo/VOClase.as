@@ -7,13 +7,9 @@ package vo
 	public class VOClase extends MapObject
 	{
 		public var claseID:int;
-		public var usuarioID:int;
 		public var instructorID:int;
 		public var grupoID:int;
 		public var salonID:int;
-		public var fecha:String;
-		public var entrada:int;
-		public var salida:int;
 		
 		public function VOClase()
 		{
@@ -29,8 +25,8 @@ package vo
 		public function get grupo():VOGrupo {
 			return GestionClientes.grupos.byID(grupoID);
 		}
-		public function get fechaLocal():String {
-			return DateUtil.toggleDate(fecha);
+		public function get horarios():Vector.<VOHorario> {
+			return GestionClientes.horarios.byClase(claseID);
 		}
 		override public function get toObject():Object {
 			var o:Object = super.toObject;

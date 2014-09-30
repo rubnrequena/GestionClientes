@@ -1,7 +1,6 @@
 package views.clientes
 {
 	import bootstrap.controls.FormItem;
-	import bootstrap.controls.FormItem;
 	
 	import com.ListPicker;
 	import com.ListPickerSearch;
@@ -70,20 +69,20 @@ package views.clientes
 		
 		protected function guardar_click(event:MouseEvent):void {
 			if (validateCampos) {
-				var c:Object = {};
-				c.nombres = nombreInput.text;
-				c.cedula = cedulaInput.text;
-				c.telefonos = tlfInput.text;
-				c.direccion = dirInput.text;
-				c.fechaNacimiento = DateUtil.toggleDate(fechaInput.fullText);
-				c.fechaRegistro = DateField.dateToString(new Date,"YYYY-MM-DD");
-				c.grupoID = grupoInput.selectedItem.grupoID;
-				c.meta = "";
+				var cliente:VOCliente = new VOCliente;
+				cliente.nombres = nombreInput.text;
+				cliente.cedula = cedulaInput.text;
+				cliente.telefonos = tlfInput.text;
+				cliente.direccion = dirInput.text;
+				cliente.fechaNacimiento = DateUtil.toggleDate(fechaInput.fullText);
+				cliente.fechaRegistro = DateField.dateToString(new Date,"YYYY-MM-DD");
+				cliente.grupoID = grupoInput.selectedItem.grupoID;
+				cliente.meta = "";
 				
-				GestionClientes.sql.insertar("clientes",c);
-				ModalAlert.show("Cliente Guardado","Cliente",null,[ModalAlert.OK],function ():void {
+				GestionClientes.clientes.insertar(cliente);
+				ModalAlert.showDelay("Cliente Guardado","Cliente",null,2000,function ():void {
 					resetClick();
-				});
+				},"well-info");
 			}
 		}
 		

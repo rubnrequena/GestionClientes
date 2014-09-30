@@ -1,63 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <views:ViewPanel xmlns:views="views.*" 
 				 xmlns:fx="http://ns.adobe.com/mxml/2009" 
-				 xmlns:s="library://ns.adobe.com/flex/spark" 
+				 xmlns:s="library://ns.adobe.com/flex/spark"
 				 xmlns:mx="library://ns.adobe.com/flex/mx" title="Clases" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
 	<views:layout>
-		<s:VerticalLayout />
+		<s:VerticalLayout horizontalAlign="center" />
 	</views:layout>
 	<fx:Script>
 		<![CDATA[
 			import com.ListPickerSearch;
 		]]>
 	</fx:Script>
-	<s:Form width="100%" id="addform">
-		<controls:FormItem label="Instructor">
+	<controls:Form width="100%" id="formClase">
+		<controls:FormItem label="Instructor" name="instructor">
 			<com:ListPickerButton styleName="btn-silent" label="Seleccione Instructor..." title="Instructores" labelField="nombres" id="instructorInput" width="50%" />
 		</controls:FormItem>
-		<controls:FormItem label="Grupo">
+		<controls:FormItem label="Grupo" name="grupo">
 			<com:ListPickerButton styleName="btn-silent" label="Seleccione Grupo..." title="Grupos" labelField="nombre" id="grupoInput" width="50%"/>
 		</controls:FormItem>
-		<controls:FormItem label="Salón">
+		<controls:FormItem label="Salón" name="salon">
 			<com:ListPickerButton styleName="btn-silent" label="Seleccione Salón..." title="Salones" labelField="nombre" id="salonInput" width="50%"/>
 		</controls:FormItem>
-		<controls:FormItem label="Fecha">
-			<mx:DateField selectedDate="{new Date}" id="dateInput" width="50%" formatString="DD/MM/YYYY" yearNavigationEnabled="true"/>
-		</controls:FormItem>
-		<controls:FormItem label="Entrada">
-			<s:HGroup width="50%" height="30" verticalAlign="contentJustify">
-				<controls:TimePicker id="entradaInput" width="150"/>
-				<s:Label text="Salida" styleName="formItem-label text-align-right" width="100%"/>
-				<controls:TimePicker id="salidaInput" width="150"/>
-			</s:HGroup>
-		</controls:FormItem>		
-		<controls:FormItem>
-			<s:Button label="Insertar" styleName="btn-success icon-insertar-sm" width="25%" id="btnInsertar"/>
-			<s:Button label="Remover" styleName="btn-danger icon-remover-sm" width="25%" id="btnRemover"/>
-		</controls:FormItem>
-	</s:Form>
-	<controls:FormItem>
-		<s:Button label="Ocultar formulario" id="btnView" width="50%" styleName="btn-warning"/>
-	</controls:FormItem>
-	<s:Form id="busqForm" width="100%" visible="false" includeInLayout="false">
-		<controls:FormItem label="Fecha">
-			<mx:DateField width="50%" id="dateInput2" selectedDate="{new Date}" formatString="DD/MM/YYYY"/>
-		</controls:FormItem>	
-		<controls:FormItem>
-			<s:Button label="Insertar" styleName="btn-primary icon-buscar-sm" width="50%" id="btnBuscar"/>
-		</controls:FormItem>
-	</s:Form>
+	</controls:Form>
 	<s:DataGrid width="100%" height="100%" id="clasesGrid">
 		<s:columns>
 			<s:ArrayList>
 				<s:GridColumn headerText="Salon" dataField="salon"/>
 				<s:GridColumn headerText="Grupo" dataField="grupo"/>
 				<s:GridColumn headerText="Instructor" dataField="instructor"/>
-				<s:GridColumn headerText="Fecha" dataField="fechaLocal"/>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	<controls:FormItem styleName="well-info">
+		<s:Label text="Horarios"/>
+	</controls:FormItem>
+	<s:DataGrid width="66%" height="100%" maxHeight="110" id="horarioGrid">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn headerText="Dias" dataField="diasString"/>
+				<s:GridColumn headerText="Entrada" dataField="entradaString"/>
+				<s:GridColumn headerText="Salida" dataField="salidaString"/>
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
 	<views:controlBarContent>
+		<s:Button label="Nuevo" styleName="btn-primary icon-insertar-sm" id="btnNuevo"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" styleName="btn-danger icon-atras-sm" id="btnAtras"/>
 	</views:controlBarContent>

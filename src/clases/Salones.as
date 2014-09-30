@@ -20,7 +20,7 @@ package clases
 		
 		public function insertar (salon:VOSalon):VOSalon {
 			salon.salonID = GestionClientes.sql.insertar("salones",salon.toObject).lastInsertRowID;
-			updateFlag=true;
+			_data.push(salon);
 			return salon;
 		}
 		public function remover (salonID:int):void {

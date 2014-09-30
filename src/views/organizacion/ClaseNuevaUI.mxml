@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<views:ViewPanel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" title="Nueva Clase"
+				 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:views="views.*" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
+	<fx:Script>
+		<![CDATA[
+			protected function validarList (item:FormItem):Boolean {
+				return item.picker.selectedIndex>-1;
+			}
+			protected function validarDayPicker (item:FormItem):Boolean {
+				return (item.getElementAt(1) as DayPicker).dias==""?false:true;
+			}
+			protected function validarTimePicker (item:FormItem):Boolean {
+				var entrada:int = entradaInput.time;
+				var salida:int = salidaInput.time;
+				return entrada<salida?true:false;
+			}
+		]]>
+	</fx:Script>
+	<views:layout>
+		<s:VerticalLayout />
+	</views:layout>
+	<controls:Form width="100%" id="formClase">
+		<controls:FormItem label="Instructor" validateFunction="validarList">
+			<com:ListPickerButton styleName="btn-silent" label="Seleccione Instructor..." title="Instructores" labelField="nombres" id="instructorInput" width="50%" />
+		</controls:FormItem>
+		<controls:FormItem label="Grupo" validateFunction="validarList">
+			<com:ListPickerButton styleName="btn-silent" label="Seleccione Grupo..." title="Grupos" labelField="nombre" id="grupoInput" width="50%"/>
+		</controls:FormItem>
+		<controls:FormItem label="Salón" validateFunction="validarList">
+			<com:ListPickerButton styleName="btn-silent" label="Seleccione Salón..." title="Salones" labelField="nombre" id="salonInput" width="50%"/>
+		</controls:FormItem>
+	</controls:Form>
+	<controls:Form width="100%" id="formHorario">
+		<controls:FormItem styleName="well-info">
+			<s:Label text="Horarios"/>
+		</controls:FormItem>
+		<controls:FormItem label="Tipo" validateFunction="validarList">
+			<com:ListPickerButton id="tipoInput" label="Seleccionar tipo">
+				<com:dataProvider>
+					<s:ArrayList>
+						<fx:Object label="Semanal"/>
+						<fx:Object label="Mensual"/>
+					</s:ArrayList>
+				</com:dataProvider>
+			</com:ListPickerButton>
+		</controls:FormItem>
+		<controls:FormItem label="Dias" validateFunction="validarDayPicker">
+			<com:DayPicker id="diasInput" width="50%"/>
+		</controls:FormItem>
+		<controls:FormItem label="Entrada" validateFunction="validarTimePicker">
+			<s:HGroup width="50%" height="30" verticalAlign="contentJustify">
+				<controls:TimePicker id="entradaInput" width="150"/>
+				<s:Label text="Salida" styleName="formItem-label text-align-right" width="100%"/>
+				<controls:TimePicker id="salidaInput" width="150"/>
+			</s:HGroup>
+		</controls:FormItem>
+	</controls:Form>
+	<s:HGroup horizontalAlign="center" width="100%">
+		<s:Button label="Insertar" styleName="btn-success icon-insertar-sm" width="33%" id="btnInsertar"/>
+		<s:Button label="Remover" styleName="btn-danger icon-remover-sm" width="33%" id="btnRemover"/>
+	</s:HGroup>
+	<s:HGroup width="100%" horizontalAlign="center">
+		<s:DataGrid width="66%" id="diasGrid">
+			<s:columns>
+				<s:ArrayList>
+					<s:GridColumn headerText="Días" dataField="diasString"/>
+					<s:GridColumn headerText="Entrada" width="100" dataField="entradaString"/>
+					<s:GridColumn headerText="Salida" width="100" dataField="salidaString"/>
+				</s:ArrayList>
+			</s:columns>
+		</s:DataGrid>
+	</s:HGroup>
+	<views:controlBarContent>
+		<s:Button label="Guardar" styleName="btn-primary icon-guardar-sm" id="btnGuardar"/>
+		<s:Spacer width="100%"/>
+		<s:Button label="Atras" styleName="btn-danger icon-atras-sm" id="btnAtras"/>
+	</views:controlBarContent>
+</views:ViewPanel>

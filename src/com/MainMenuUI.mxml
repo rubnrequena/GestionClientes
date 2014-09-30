@@ -15,8 +15,6 @@
 			import views.finanzas.NuevoPago;
 			import views.finanzas.Productos;
 			import views.finanzas.Tareas;
-			import views.horarios.HorarioNuevo;
-			import views.horarios.Horarios;
 			import views.organizacion.Clases;
 			import views.organizacion.Grupos;
 			import views.organizacion.Instructores;
@@ -45,11 +43,6 @@
 			<s:layout><s:HorizontalLayout paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" verticalAlign="contentJustify" /></s:layout>
 			<com:MButton view="{AsistenciaRegistro}" name="asistencia_registrar" label="Registrar" styleName="btn-menu icon-nuevo_usuario-md"/>
 			<com:MButton view="{Asistencias}" name="asistencias" label="Asistencias" styleName="btn-menu icon-asistencias-md"/>
-		</s:SkinnableContainer>
-		<s:SkinnableContainer name="Horarios" styleName="navChildren">
-			<s:layout><s:HorizontalLayout paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" verticalAlign="contentJustify" /></s:layout>
-			<com:MButton view="{HorarioNuevo}" name="horario_nuevo" label="Nuevo Horario" styleName="btn-menu  icon-nuevo_usuario-md"/>
-			<com:MButton view="{Horarios}" name="horarios" label="Horarios" styleName="btn-menu icon-horarios-md"/>
 		</s:SkinnableContainer>
 		<s:SkinnableContainer name="Finanzas" styleName="navChildren">
 			<s:layout><s:HorizontalLayout paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" verticalAlign="contentJustify" /></s:layout>

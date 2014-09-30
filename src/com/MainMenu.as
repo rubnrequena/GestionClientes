@@ -3,16 +3,6 @@ package com
 	import flash.events.MouseEvent;
 	
 	import org.osflash.signals.natives.NativeSignal;
-	
-	import views.asistencias.AsistenciaRegistro;
-	import views.asistencias.Asistencias;
-	import views.clientes.BuscarCliente;
-	import views.clientes.Cumpleanos;
-	import views.clientes.Ingresos;
-	import views.finanzas.NuevoPago;
-	import views.horarios.HorarioNuevo;
-	import views.horarios.Horarios;
-	import views.organizacion.Grupos;
 
 	public class MainMenu extends MainMenuUI
 	{
