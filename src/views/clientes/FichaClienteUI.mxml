@@ -5,21 +5,21 @@
 				 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="bootstrap.controls.*" xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:com="com.*">
 	<s:HGroup width="100%" height="100%">
 		<s:Form width="100%">
-			<controls:FormInput label="Nombres:" >
+			<controls:FormItem label="Nombres:" >
 				<s:TextInput id="nombreInput"/>
-			</controls:FormInput>
-			<controls:FormInput label="Cédula:" >
+			</controls:FormItem>
+			<controls:FormItem label="Cédula:" >
 				<s:TextInput id="cedulaInput"/>
-			</controls:FormInput>
-			<controls:FormInput label="Fecha Nac.:" >
+			</controls:FormItem>
+			<controls:FormItem label="Fecha Nac.:" >
 				<ns:MaskedTextInput id="fechaInput" maskText="##/##/####"/>
-			</controls:FormInput>
-			<controls:FormInput label="Télefonos:" childHeight="40" >
+			</controls:FormItem>
+			<controls:FormItem label="Télefonos:" childHeight="40" >
 				<s:TextArea id="tlfInput" height="100"/>
-			</controls:FormInput>
-			<controls:FormInput label="Dirección:" childHeight="50" >
+			</controls:FormItem>
+			<controls:FormItem label="Dirección:" childHeight="50" >
 				<s:TextArea id="dirInput" height="100"/>
-			</controls:FormInput>
+			</controls:FormItem>
 			<controls:FormItem label="Grupo:">
 				<s:Button label="Seleccionar Grupo..." height="30" width="50%" id="grupoInput" styleName="btn-silent"/>
 			</controls:FormItem>

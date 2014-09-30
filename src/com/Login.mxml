@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com:Modal xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" 
+		   xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:com="com.*" width="330" title="Iniciar Sesión" xmlns:controls="bootstrap.controls.*">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			import vo.VOUsuario;
+			protected function validarUsuario (item:FormItem):Boolean {
+				return item.input.text.length>0;
+			}
+			
+			override protected function childrenCreated():void {
+				btnLogin.addEventListener(MouseEvent.CLICK,login_click);
+				stage.addEventListener(KeyboardEvent.KEY_DOWN,onKeyDown);
+				addEventListener(FlexEvent.CREATION_COMPLETE,modal1_creationCompleteHandler);
+				addEventListener(Event.REMOVED_FROM_STAGE,modal1_removedFromStageHandler);
+			}
+			
+			protected function login_click(event:MouseEvent):void {
+				if (form.validate) {
+					VOUsuario.USUARIO_ACTIVO = GestionClientes.usuarios.byLogin(usuarioInput.text,passInput.text);
+					if (VOUsuario.USUARIO_ACTIVO) {
+						closing(true);
+					} else {
+						passInput.text = "";
+						usuarioInput.setFocus();
+					}
+				}
+			}
+			
+			protected function modal1_creationCompleteHandler(event:FlexEvent):void {
+				usuarioInput.setFocus();
+			}
+			
+			protected function modal1_removedFromStageHandler(event:Event):void {
+				stage.removeEventListener(KeyboardEvent.KEY_DOWN,onKeyDown);
+				removeEventListener(FlexEvent.CREATION_COMPLETE,modal1_creationCompleteHandler);
+				removeEventListener(Event.REMOVED_FROM_STAGE,modal1_removedFromStageHandler);
+				btnLogin.removeEventListener(MouseEvent.CLICK,login_click);
+			}
+			
+			protected function onKeyDown(event:KeyboardEvent):void {
+				if (event.keyCode==Keyboard.ENTER)
+					login_click(null);
+			}
+			
+		]]>
+	</fx:Script>
+	<controls:Form width="100%" id="form">
+		<controls:FormItem label="Usuario" validateFunction="validarUsuario">
+			<s:TextInput id="usuarioInput"/>
+		</controls:FormItem>
+		<controls:FormItem label="Contraseña" validateFunction="validarUsuario">
+			<s:TextInput id="passInput" displayAsPassword="true"/>
+		</controls:FormItem>
+		<s:Group width="100%">
+			<s:Button label="Iniciar Sesión" width="66%" horizontalCenter="0" height="30" styleName="btn-primary" id="btnLogin"/>
+		</s:Group>
+	</controls:Form>
+</com:Modal>

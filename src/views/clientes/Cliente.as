@@ -1,6 +1,10 @@
 package views.clientes
 {
+	import bootstrap.controls.FormItem;
+	import bootstrap.controls.FormItem;
+	
 	import com.ListPicker;
+	import com.ListPickerSearch;
 	import com.Modal;
 	import com.ModalAlert;
 	
@@ -8,11 +12,16 @@ package views.clientes
 	import flash.events.MouseEvent;
 	
 	import mx.controls.DateField;
+	import mx.core.ClassFactory;
+	import mx.core.ITextInput;
 	
+	import org.apache.flex.collections.VectorCollection;
 	import org.apache.flex.collections.VectorList;
 	import org.osflash.signals.natives.NativeSignal;
 	
 	import spark.components.Alert;
+	import spark.components.TextInput;
+	import spark.components.supportClasses.SkinnableTextBase;
 	
 	import utils.DateUtil;
 	
@@ -25,14 +34,6 @@ package views.clientes
 		private var onAdded:NativeSignal;
 		
 		public var cliente:VOCliente;
-		private var _grupo:VOGrupo;
-
-		public function get grupo():VOGrupo { return _grupo; }
-		public function set grupo(value:VOGrupo):void {
-			_grupo = value;
-			grupoInput.label = value.nombre;
-		}
-
 		
 		public function Cliente() {
 			super();
@@ -41,10 +42,11 @@ package views.clientes
 		}		
 		override protected function childrenCreated():void {
 			btnCancelar.addEventListener(MouseEvent.CLICK,cancelClick);
-			btnGuardar.addEventListener(MouseEvent.CLICK,guardarClick);			
+			btnGuardar.addEventListener(MouseEvent.CLICK,guardar_click);			
 			btnReset.addEventListener(MouseEvent.CLICK,resetClick);
-			grupoInput.addEventListener(MouseEvent.CLICK,seleccionarGrupo);
 			
+			grupoInput.pickerClass = new ClassFactory(ListPickerSearch);
+			grupoInput.dataProvider = new VectorCollection(GestionClientes.grupos.data);
 			super.childrenCreated();
 			nombreInput.setFocus();
 		}
@@ -57,40 +59,58 @@ package views.clientes
 			onRemove.addOnce(removeStage);
 		}
 		
-		protected function seleccionarGrupo(event:MouseEvent):void {
-			var sg:ListPicker = new ListPicker();
-			sg.title = "Seleccionar grupo";
-			sg.onClose = function (indice:int,data:VOGrupo):void {
-				grupo = data;
-			};
-			sg.labelField = "nombre";
-			sg.dataProvider = new VectorList(GestionClientes.grupos.data);
-			sg.popUp();
-		}
 		private function removeStage(e:Event):void {
 			btnCancelar.removeEventListener(MouseEvent.CLICK,cancelClick);
-			btnGuardar.removeEventListener(MouseEvent.CLICK,guardarClick);	
+			btnGuardar.removeEventListener(MouseEvent.CLICK,guardar_click);	
 			onRemove=null;
 			
 			btnReset.removeEventListener(MouseEvent.CLICK,resetClick);
 			onAdded.addOnce(addedStage);
 		}
 		
-		protected function guardarClick(event:MouseEvent):void {
-			var c:Object = {};
-			c.nombres = nombreInput.text;
-			c.cedula = cedulaInput.text;
-			c.telefonos = tlfInput.text;
-			c.direccion = dirInput.text;
-			c.fechaNacimiento = DateUtil.toggleDate(fechaInput.fullText);
-			c.fechaRegistro = DateField.dateToString(new Date,"YYYY-MM-DD");
-			c.grupoID = grupo.grupoID;
-			c.meta = "";
-			
-			GestionClientes.sql.insertar("clientes",c);
-			ModalAlert.show("Cliente Guardado","Cliente",null,[ModalAlert.OK],function ():void {
-				resetClick();
-			});
+		protected function guardar_click(event:MouseEvent):void {
+			if (validateCampos) {
+				var c:Object = {};
+				c.nombres = nombreInput.text;
+				c.cedula = cedulaInput.text;
+				c.telefonos = tlfInput.text;
+				c.direccion = dirInput.text;
+				c.fechaNacimiento = DateUtil.toggleDate(fechaInput.fullText);
+				c.fechaRegistro = DateField.dateToString(new Date,"YYYY-MM-DD");
+				c.grupoID = grupoInput.selectedItem.grupoID;
+				c.meta = "";
+				
+				GestionClientes.sql.insertar("clientes",c);
+				ModalAlert.show("Cliente Guardado","Cliente",null,[ModalAlert.OK],function ():void {
+					resetClick();
+				});
+			}
+		}
+		
+		private function get validateCampos():Boolean {
+			var campos:Vector.<SkinnableTextBase> = new <SkinnableTextBase>[
+				nombreInput,
+				cedulaInput,
+				fechaInput,
+				dirInput,
+				tlfInput
+			];
+			var v:Boolean=true;
+			for (var i:int = 0; i < campos.length; i++) {
+				if (campos[i].text=="") {
+					(campos[i].owner as FormItem).styleName = "well-danger";
+					v=false;
+				} else {
+					(campos[i].owner as FormItem).styleName = "well-default";
+				}
+			}
+			if (grupoInput.selectedIndex<0) {
+				(grupoInput.owner as FormItem).styleName = "well-danger";
+				v = false;
+			} else {
+				(grupoInput.owner as FormItem).styleName = "well-default";
+			}
+			return v;
 		}
 		protected function resetClick(event:MouseEvent=null):void {
 			nombreInput.text="";

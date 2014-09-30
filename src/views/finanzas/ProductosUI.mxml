@@ -7,15 +7,15 @@
 		<s:VerticalLayout horizontalAlign="center" />
 	</views:layout>
 	<s:Form width="100%">
-		<controls:FormInput label="Producto:">
+		<controls:FormItem label="Producto:">
 			<s:TextInput id="descInput"/>
-		</controls:FormInput>
-		<controls:FormInput label="Monto:">
+		</controls:FormItem>
+		<controls:FormItem label="Monto:">
 			<s:TextInput id="montoInput" restrict="0-9." text="0"/>
-		</controls:FormInput>
-		<controls:FormInput label="Cantidad:">
+		</controls:FormItem>
+		<controls:FormItem label="Cantidad:">
 			<s:TextInput id="cantInput" restrict="0-9." text="0"/>
-		</controls:FormInput>
+		</controls:FormItem>
 		<controls:FormItem>
 			<s:Button label="Insertar" styleName="btn-success icon-insertar-sm" width="25%" id="btnInsertar"/>
 			<s:Button label="Remover" styleName="btn-danger icon-remover-sm" width="25%" id="btnRemover"/>

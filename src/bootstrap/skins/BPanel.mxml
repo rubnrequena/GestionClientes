@@ -92,8 +92,8 @@ in accordance with the terms of the license agreement accompanying it.
 				
 				borderStroke.color = getStyle("borderColor");
 				borderStroke.alpha = getStyle("borderAlpha");
-				backgroundFill.color = getStyle("backgroundColor");
-				backgroundFill.alpha = getStyle("backgroundAlpha");
+				tbColor.color = getStyle("backgroundColor");
+				tbColor.alpha = getStyle("backgroundAlpha");
 				
 				if (getStyle("controlBarColor"))
 					if (controlBarFill) controlBarFill.color = getStyle("controlBarColor");
@@ -177,7 +177,7 @@ in accordance with the terms of the license agreement accompanying it.
 			
 			<s:Rect id="tbFill" left="0" right="0" bottom="1" top="0">
 				<s:fill>
-					<s:SolidColor color="0xf7f7f7"/>
+					<s:SolidColor color="0xf7f7f7" id="tbColor"/>
 				</s:fill>
 			</s:Rect>
 			

@@ -4,6 +4,8 @@ package bootstrap.controls
 	
 	import spark.components.Label;
 	import spark.components.SkinnableContainer;
+	import spark.components.TextInput;
+	import spark.components.supportClasses.SkinnableTextBase;
 	import spark.layouts.HorizontalLayout;
 	
 	public class FormItem extends SkinnableContainer
@@ -22,37 +24,45 @@ package bootstrap.controls
 			_nombre = value;
 		}
 		
-		protected var _label:Label;
-		
+		protected var _label:Label;		
 		public var labelWidth:int = 25;
 
 		private var _numElementos:int;
-
-		public function get numElementos():int { return _numElementos; }
-
+		public function get numElementos():int { return _numElementos; }		
+		
 		public function FormItem() {
 			super();
 			percentWidth = 100;
 			styleName = "formItem "+styleName;
 		}
 		override public function set styleName(value:Object):void {
-			if (value is String)
-				super.styleName = "formItem "+value;
-			else
-				super.styleName = value;
+			super.styleName = value is String?"formItem "+value:value;
 		}
-		override public function set mxmlContent(value:Array):void {			
+		override public function set mxmlContent(value:Array):void {
+			var i:int; _numElementos = value?value.length:0;
+			if (_numElementos==1)
+				value[0].percentWidth = 50;
+			
+			for (i = 0; i < _numElementos; i++) 
+				(value[i] as IVisualElement).height = childHeight;
+			
 			_label = new Label;
 			_label.percentWidth = labelWidth;
 			_label.styleName = "formItem-label";
 			_label.text = _nombre;
+			
 			value.unshift(_label);
-					
-			var i:int; _numElementos = value?value.length:0;
-			for (i = 0; i < _numElementos; i++) {
-				(value[i] as IVisualElement).height = childHeight;
-			}
 			super.mxmlContent = value;			
+		}
+		
+		public var validateFunction:Function;
+		
+		public function get input ():SkinnableTextBase {
+			for (var i:int = 1, item:SkinnableTextBase; i < _numElementos+1; i++)  {
+				item = getElementAt(i) as SkinnableTextBase;
+				if (item) return item;
+			}			
+			return null;
 		}
 	}
 }

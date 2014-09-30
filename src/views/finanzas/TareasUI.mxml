@@ -12,9 +12,9 @@
 		]]>
 	</fx:Script>
 	<s:Form width="100%" id="form">
-		<controls:FormInput label="Tarea">
+		<controls:FormItem label="Tarea">
 			<s:TextInput id="descTareaInput"/>
-		</controls:FormInput>
+		</controls:FormItem>
 		<controls:FormItem label="Tarea">
 			<com:ListPickerButton label="Seleccione tarea" title="Tareas" width="50%" labelField="label" id="tareaInput">
 				<com:dataProvider>
@@ -51,6 +51,21 @@
 			</s:HGroup>
 		</controls:FormItem>
 	</s:Form>
+	<controls:FormItem>
+		<s:Button label="Ocultar formulario" id="btnView" width="50%" styleName="btn-warning"/>
+	</controls:FormItem>
+	<s:DataGrid width="100%" height="100%" id="tareasGrid">
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn headerText="Tarea" dataField="tarea"/>
+				<s:GridColumn headerText="Tipo" dataField="tipoString"/>
+				<s:GridColumn headerText="Repetir" dataField="repetir"/>
+				<s:GridColumn headerText="Día" dataField="dia"/>
+				<s:GridColumn headerText="Grupo" dataField="grupoString"/>
+				<s:GridColumn headerText="Descripcion" dataField="descripcion"/>
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
 	<views:controlBarContent>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnAtras"/>

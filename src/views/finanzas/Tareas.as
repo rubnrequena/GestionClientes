@@ -40,6 +40,13 @@ package views.finanzas
 			grupoInput.dataProvider = new VectorCollection(GestionClientes.grupos.data);
 			btnEtiquetas.addEventListener(MouseEvent.CLICK,etiquetas_click);
 			btnAtras.addEventListener(MouseEvent.CLICK,atras_click);
+			btnView.addEventListener(MouseEvent.CLICK,ocultar_click);
+			
+			tareasGrid.dataProvider = new VectorCollection(GestionClientes.tareas.data);
+		}
+		
+		protected function ocultar_click(event:MouseEvent):void {
+			form.visible = form.includeInLayout = !form.visible;
 		}
 		
 		protected function atras_click(event:MouseEvent):void {

@@ -17,10 +17,18 @@
 			import clases.Productos;
 			import clases.Salones;
 			import clases.Tareas;
+			import clases.Usuarios;
+			
+			import com.AcercaDe;
+			import com.Login;
+			import com.ModalAlert;
 			
 			import mx.events.FlexEvent;
+			import mx.managers.PopUpManager;
 			
 			import org.osflash.signals.natives.NativeSignal;
+			
+			import spark.primitives.BitmapImage;
 			
 			import sr.modulo.Modulo;
 			
@@ -41,9 +49,13 @@
 			public static var config:Config;
 			public static var tareas:Tareas;
 			public static var asistencias:Asistencias;
+			public static var usuarios:Usuarios;
 			
 			[Embed(source="assets/gestion.sql",mimeType="application/octet-stream")]
 			private var myFile:Class;
+			
+			[Embed(source="assets/logo.jpg")]
+			private var logo:Class;
 			
 			protected function onComplete(event:FlexEvent):void {
 				sql = new Modulo;
@@ -58,7 +70,12 @@
 						sql.sql(s);	
 					}
 				}
-				
+				var splash:ModalAlert = ModalAlert.showDelay("","Iniciando Sistema...",null,2000,function ():void {
+					nav.addView("inicio_view",Inicio,null,true);
+					
+					var login:Login = new Login;
+					login.popUp();
+				});
 				config = new Config;
 				grupos = new Grupos;
 				clientes = new Clientes;
@@ -70,27 +87,36 @@
 				instructores = new Instructores;
 				clasess = new Clases;
 				tareas = new Tareas;
-				asistencias = new Asistencias;
+				asistencias = new Asistencias;		
+				usuarios = new Usuarios;
 				
-				nav.addView("inicio_view",Inicio,null,true);
+				splash.removeAllElements();
+				var img:BitmapImage = new BitmapImage;
+				img.source = new logo;
+				splash.addElement(img);
+				PopUpManager.centerPopUp(splash);
 			}
 			
 			override protected function createChildren():void {
 				super.createChildren();
 				
 				nav = new ViewNavigatorHistory;
-				nav.percentWidth = nav.percentHeight = 100;
-				addElement(nav);
+				nav.top = 110;
+				nav.bottom = nav.left = nav.right = 0;
+				addElementAt(nav,1);
 				
-				
+				btnAcerca.addEventListener(MouseEvent.CLICK,acerca_click);
+			}
+			
+			protected function acerca_click(event:MouseEvent):void {
+				var m:AcercaDe = new AcercaDe;
+				m.popUp();
 			}
 			
 		]]>
 	</fx:Script>
-	<s:layout>
-		<s:VerticalLayout gap="0"/>
-	</s:layout>
 	<com:MainMenu id="mainMenu" width="100%" height="110">
 		
-	</com:MainMenu>
+	</com:MainMenu>	
+	<s:Button label="Acerca" height="30" right="0" top="0" styleName="btn-menu" id="btnAcerca"/>
 </s:WindowedApplication>

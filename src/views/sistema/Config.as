@@ -55,7 +55,7 @@ package views.sistema
 			for each (campo in selectCampos) {
 				validateSelect(campo);
 			}
-			ModalAlert.show("Configuración guardada con éxito","Guardar cambios",null,[ModalAlert.OK]);
+			ModalAlert.showDelay("Configuración guardada con éxito","Guardar cambios",null,1000,null,"well-info");
 		}
 		
 		private function validateInput(campo:String):void {

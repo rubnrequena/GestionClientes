@@ -3,24 +3,43 @@
 				 xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				 xmlns:s="library://ns.adobe.com/flex/spark" 
 				 xmlns:mx="library://ns.adobe.com/flex/mx" title="Usuarios" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
+	<fx:Script>
+		<![CDATA[
+			
+			protected function validarInput(item:FormItem):Boolean {
+				return (item.getElementAt(1) as TextInput).text==""?false:true;
+			}
+			protected function validarPass(item:FormItem):Boolean {
+				var text1:String = passInput.text;
+				var text2:String = pass2Input.text;
+				if (text1=="" || text2=="")
+					return false;
+				else
+					return text1==text2?true:false;
+			}
+			protected function validarList (item:FormItem):Boolean {
+				return (item.getElementAt(1) as ListPickerButton).selectedIndex>-1?true:false;
+			}
+		]]>
+	</fx:Script>
 	<views:layout>
 		<s:HorizontalLayout />
 	</views:layout>
-	<s:Form width="40%" backgroundColor="0xf9f9f9">
-		<controls:FormItem label="Usuario">
+	<controls:Form width="40%" backgroundColor="0xf9f9f9" id="form">
+		<controls:FormItem label="Usuario" validateFunction="validarInput">
 			<s:TextInput width="50%" id="usuarioInput"/>
 		</controls:FormItem>
-		<controls:FormItem label="Nombre">
+		<controls:FormItem label="Nombre" validateFunction="validarInput">
 			<s:TextInput width="50%" id="nombreInput"/>
 		</controls:FormItem>
-		<controls:FormItem label="Contraseña">
+		<controls:FormItem label="Contraseña" validateFunction="validarPass">
 			<s:TextInput width="50%" id="passInput" displayAsPassword="true"/>
 		</controls:FormItem>
-		<controls:FormItem label="Repetir Contraseña">
-			<s:TextInput width="50%" id="pass2Input"/>
+		<controls:FormItem label="Repetir Contraseña" validateFunction="validarPass">
+			<s:TextInput width="50%" id="pass2Input" displayAsPassword="true"/>
 		</controls:FormItem>
-		<controls:FormItem label="Acceso">
-			<com:ListPickerButton width="50%" label="Seleccione acceso" title="Usuarios" >
+		<controls:FormItem label="Acceso" validateFunction="validarList">
+			<com:ListPickerButton width="50%" label="Seleccione acceso" title="Usuarios" id="accesoInput" >
 				<com:dataProvider>
 					<s:ArrayList>
 						<fx:Object label="Administrador"/>
@@ -29,11 +48,12 @@
 				</com:dataProvider>
 			</com:ListPickerButton>
 		</controls:FormItem>
-		<s:Group width="100%">
-			<s:Button label="Registrar" styleName="btn-primary" height="30" horizontalCenter="0" width="66%"/>
-		</s:Group>
-	</s:Form>
-	<s:DataGrid width="60%" height="100%">
+		<s:HGroup width="100%" horizontalAlign="center">
+			<s:Button label="Registrar" styleName="btn-primary" height="30" width="33%" id="btnRegistrar"/>
+			<s:Button label="Limpiar" styleName="btn-warning" height="30" width="33%" id="btnLimpiar"/>
+		</s:HGroup>
+	</controls:Form>
+	<s:DataGrid width="60%" height="100%" id="usuariosGrid">
 		<s:columns>
 			<s:ArrayList>
 				<s:GridColumn headerText="Usuario" dataField="usuario"/>
@@ -43,6 +63,7 @@
 		</s:columns>
 	</s:DataGrid>
 	<views:controlBarContent>
+		<s:Button label="Remover" styleName="btn-danger icon-remover-sm" id="btnRemover"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" styleName="btn-danger icon-atras-sm" id="btnAtras"/>
 	</views:controlBarContent>

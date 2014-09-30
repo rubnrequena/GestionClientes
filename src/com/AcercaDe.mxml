@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com:Modal xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" currentState="normal"
+		   xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:com="com.*" width="305" title="Acerca De" xmlns:ns="http://flex.apache.org/experimental/ns">
+	<com:states>
+		<s:State name="normal"/>
+		<s:State name="updating"/>
+	</com:states>
+	<fx:Script>
+		<![CDATA[
+			import AutoUpdater.AUpdate;
+			
+			import flash.sampler.NewObjectSample;
+			
+			import tools.AutoClose;
+			
+			private var _updating:Boolean;
+
+			public function set updating(value:Boolean):void {
+				_updating = value;
+				currentState = "updating";
+			}
+
+			override protected function childrenCreated():void {
+				update.addEventListener(MouseEvent.CLICK,update_click);
+				btnAtras.addEventListener(MouseEvent.CLICK,atras_click);
+			}
+			
+			protected function update_click(event:MouseEvent):void {
+				var au:AUpdate = new AUpdate("https://dl.dropboxusercontent.com/u/47924956/GestionClientes");
+				au.cache=false;
+				au.verbose=true;
+				au.addEventListener(ProgressEvent.PROGRESS,updateProggress);
+				au.addEventListener(Event.COMPLETE,appupdateComplete);
+				au.iniciar();
+			}
+			
+			protected function updateProggress(event:ProgressEvent):void {
+				if (_updating==false) updating=true;
+				progress.currentProgress = event.bytesLoaded;
+				progress.totalProgress = event.bytesTotal;
+			}
+			
+			protected function appupdateComplete(event:Event):void {
+				currentState = "normal";
+				var ac:AutoClose = new AutoClose(File.applicationDirectory.resolvePath("GestionClientes.exe"));
+				ac.close();
+			}
+			
+			protected function atras_click(event:MouseEvent):void {
+				popOff();
+			}
+			
+		]]>
+	</fx:Script>
+	<com:layout>
+		<s:VerticalLayout horizontalAlign="center" />
+	</com:layout>
+	<s:Image source="@Embed('assets/logo.jpg')" height="287" verticalCenter="0"/> 
+	<s:RichText width="215">
+		<s:text>
+Contacto:
+Ruben Requena
+0414-9970167
+rubnrequena@gmail.com
+		</s:text>
+	</s:RichText>
+	<ns:ProgressBar width="100%" id="progress" includeIn="updating" height="30" styleName="well-primary"/>
+	<com:controlBarContent>
+		<s:Button label="Actualizar" height="30" width="100%" styleName="btn-info icon-update-sm" id="update" />
+		<s:Button label="Volver" height="30" styleName="btn-danger icon-atras-sm" id="btnAtras"/>
+	</com:controlBarContent>
+</com:Modal>

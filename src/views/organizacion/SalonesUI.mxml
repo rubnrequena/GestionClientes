@@ -7,9 +7,9 @@
 		<s:VerticalLayout />
 	</views:layout>
 	<s:Form width="100%">
-		<controls:FormInput label="Nombre">
+		<controls:FormItem label="Nombre">
 			<s:TextInput id="nombreInput"/>
-		</controls:FormInput>
+		</controls:FormItem>
 		<controls:FormItem>
 			<s:Button label="Insertar" styleName="btn-success icon-insertar-sm" width="25%" id="btnInsertar"/>
 			<s:Button label="Remover" styleName="btn-danger icon-remover-sm" width="25%" id="btnRemover"/>

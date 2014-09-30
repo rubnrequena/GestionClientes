@@ -41,9 +41,9 @@ package views.finanzas
 					factura:_factura
 				},true);
 			} else {
-				ModalAlert.show("Factura no encontrada","Facturas",null,[ModalAlert.OK],function ():void {
+				ModalAlert.showDelay("Factura no encontrada","Facturas",null,1000,function ():void {
 					facturaInput.setFocus();
-				});
+				},"well-danger");
 			}
 		}
 		

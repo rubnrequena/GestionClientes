@@ -82,6 +82,10 @@ s|TextArea {
 s|Panel {
 	skinClass:ClassReference("bootstrap.skins.BPanel");	
 }
+ns|ProgressBar {
+	skinClass:ClassReference("bootstrap.skins.BProgressBarSkin");	
+}
+	
 .topMenuBar {
 	skinClass:ClassReference("bootstrap.skins.BButtonBarSkin")	
 }
@@ -113,6 +117,9 @@ s|Panel {
 	alpha:.5;
 	cornerRadius:0;
 }
+.btn-info {
+	chromeColor:#d9edf7;
+}
 .well-info {
 	backgroundColor:#d9edf7;
 }
@@ -127,6 +134,9 @@ s|Panel {
 }
 .well-default {
 	backgroundColor:#f1f1f1;	
+}
+.well-primary {
+	backgroundColor:#428bca;	
 }
 .defaultItem {
 	fontSize:14;
@@ -253,6 +263,9 @@ skins|BToggleButtonBarSkin {
 }
 .icon-config-md {
 	icon:"assets/settings-32.png";	
+}
+.icon-update-sm {
+	icon:"assets/downloading_updates-26.png";	
 }
 controls|FormItem s|Label {
 	verticalAlign:middle;

@@ -7,15 +7,15 @@
 		<s:VerticalLayout />
 	</views:layout>
 	<s:Form width="100%">
-		<controls:FormInput label="Nombres">
+		<controls:FormItem label="Nombres">
 			<s:TextInput id="nombresInput" />
-		</controls:FormInput>
-		<controls:FormInput label="Cedula">
+		</controls:FormItem>
+		<controls:FormItem label="Cedula">
 			<s:TextInput id="cedulaInput" />
-		</controls:FormInput>
-		<controls:FormInput label="Telefonos">
+		</controls:FormItem>
+		<controls:FormItem label="Telefonos">
 			<s:TextInput id="tlfInput" />
-		</controls:FormInput>
+		</controls:FormItem>
 		<controls:FormItem>
 			<s:Button label="Insertar" styleName="btn-success icon-insertar-sm" width="25%" id="btnInsertar"/>
 			<s:Button label="Remover" styleName="btn-danger icon-remover-sm" width="25%" id="btnRemover"/>

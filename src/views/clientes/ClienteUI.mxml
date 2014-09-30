@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <views:ViewPanel xmlns:fx="http://ns.adobe.com/mxml/2009" 
 					  xmlns:s="library://ns.adobe.com/flex/spark" title="Nuevo Cliente"
-					  xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="bootstrap.controls.*" xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:views="views.*">
+					  xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="bootstrap.controls.*" xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:views="views.*" xmlns:com="com.*">
 	<s:Form width="100%">
-		<controls:FormInput label="Nombres:" >
+		<controls:FormItem label="Nombres:" >
 			<s:TextInput id="nombreInput"/>
-		</controls:FormInput>
-		<controls:FormInput label="Cédula:" >
-			<s:TextInput id="cedulaInput"/>
-		</controls:FormInput>
-		<controls:FormInput label="Fecha Nac.:" >
+		</controls:FormItem>
+		<controls:FormItem label="Cédula:" >
+			<s:TextInput id="cedulaInput" text=""/>
+		</controls:FormItem>
+		<controls:FormItem label="Fecha Nac.:" >
 			<ns:MaskedTextInput id="fechaInput" maskText="##/##/####"/>
-		</controls:FormInput>
-		<controls:FormInput label="Télefonos:" childHeight="40" >
+		</controls:FormItem>
+		<controls:FormItem label="Télefonos:" childHeight="40" >
 			<s:TextArea id="tlfInput" height="100"/>
-		</controls:FormInput>
-		<controls:FormInput label="Dirección:" childHeight="50" >
+		</controls:FormItem>
+		<controls:FormItem label="Dirección:" childHeight="50" >
 			<s:TextArea id="dirInput" height="100"/>
-		</controls:FormInput>
+		</controls:FormItem>
 		<controls:FormItem label="Grupo:">
-			<s:Button label="Seleccionar Grupo..." id="grupoInput" styleName="btn-silent" width="50%"/>
+			<com:ListPickerButton label="Seleccionar grupo..." id="grupoInput" styleName="btn-silent" width="50%" labelField="nombre"/>
 		</controls:FormItem>
 	</s:Form>
 	<views:controlBarContent>

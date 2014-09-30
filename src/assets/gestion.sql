@@ -2,7 +2,11 @@ CREATE TABLE "asistencias" (asistenciaID INTEGER PRIMARY KEY AUTOINCREMENT,   cl
 CREATE TABLE "clases" (claseID INTEGER PRIMARY KEY AUTOINCREMENT,  usuarioID INTEGER,  instructorID INTEGER,  fecha TEXT,  entrada INTEGER,  salida INTEGER,  grupoID INTEGER,  salonID INTEGER);
 CREATE TABLE "clientes" (clienteID INTEGER PRIMARY KEY AUTOINCREMENT,    nombres TEXT,    cedula TEXT,    telefonos TEXT,    direccion TEXT,    fechaNacimiento TEXT,   fechaRegistro TEXT,   grupoID INTEGER,   meta TEXT);
 CREATE TABLE "config" (key TEXT PRIMARY KEY, value TEXT);
-INSERT INTO config (key,value) VALUES ('correlativo','13');
+INSERT INTO config (key,value) VALUES ('correlativo','1');
+INSERT INTO config (key,value) VALUES ('impresion_anchoPapel','300');
+INSERT INTO config (key,value) VALUES ('razon_social','EMPRESA');
+INSERT INTO config (key,value) VALUES ('rif','J-0000000-0');
+INSERT INTO config (key,value) VALUES ('impresion_fuente','3');
 CREATE TABLE "facturas" (facturaID INTEGER PRIMARY KEY AUTOINCREMENT,   clienteID INTEGER,   fecha TEXT,   usuarioID INTEGER, correlativo INTEGER, monto REAL);
 CREATE TABLE "grupos" (grupoID INTEGER PRIMARY KEY AUTOINCREMENT, descripcion TEXT, nombre TEXT, renta REAL, instructorID INTEGER);
 CREATE TABLE "horarios" (horarioID INTEGER PRIMARY KEY AUTOINCREMENT,  grupoID INTEGER,  tipo INTEGER,  entrada INTEGER,  salida INTEGER,  dias TEXT,  salonID INTEGER);
@@ -12,4 +16,4 @@ CREATE TABLE "productos" (productoID INTEGER PRIMARY KEY AUTOINCREMENT, descripc
 CREATE TABLE salones (salonID INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT);
 CREATE TABLE "tareas" (tareaID INTEGER PRIMARY KEY AUTOINCREMENT,   type TEXT,   tipo INTEGER,   dia INTEGER,   meta TEXT,   tarea TEXT);
 CREATE TABLE usuarios (usuarioID INTEGER PRIMARY KEY AUTOINCREMENT, usuario TEXT, pass TEXT, acceso INTEGER, nombre TEXT);
-INSERT INTO usuarios (usuarioID,usuario,pass,acceso,nombre) VALUES (1,'admin','admin',0,null);
+INSERT INTO usuarios (usuarioID,usuario,pass,acceso,nombre) VALUES (1,'admin','admin',0,"Administrador");

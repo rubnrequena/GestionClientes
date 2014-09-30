@@ -7,15 +7,15 @@
 		<s:VerticalLayout />
 	</views:layout>
 	<s:Form width="100%">
-		<controls:FormInput label="Nombre del Grupo:" >
+		<controls:FormItem label="Nombre del Grupo:" >
 			<s:TextInput id="nombreInput"/>
-		</controls:FormInput>
-		<controls:FormInput label="Descripción:" childHeight="50" >
+		</controls:FormItem>
+		<controls:FormItem label="Descripción:" childHeight="50" >
 			<s:TextArea id="descInput" height="100"/>
-		</controls:FormInput>
-		<controls:FormInput label="Renta:" >
+		</controls:FormItem>
+		<controls:FormItem label="Renta:" >
 			<s:TextInput id="rentaInput" height="100" restrict="0-9."/>
-		</controls:FormInput>
+		</controls:FormItem>
 		<controls:FormItem label="Instructor">
 			<com:ListPickerButton pickerClass="{new ClassFactory(ListPickerSearch)}" label="Seleccione instructor" title="Instructores" width="50%" id="instructorInput" labelField="nombres"/>
 		</controls:FormItem>
