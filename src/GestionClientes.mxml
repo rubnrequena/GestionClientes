@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
-					   xmlns:s="library://ns.adobe.com/flex/spark" width="800" height="650" showStatusBar="false"
-					   xmlns:mx="library://ns.adobe.com/flex/mx" creationComplete="onComplete(event)" xmlns:controls="bootstrap.controls.*" xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:local="*" xmlns:com="com.*">
+					   xmlns:s="library://ns.adobe.com/flex/spark" 
+					   xmlns:controls="bootstrap.controls.*" xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:local="*" xmlns:com="com.*" xmlns:mx="library://ns.adobe.com/flex/mx"
+					   creationComplete="onComplete(event)" addedToStage="windowedapplication1_addedToStageHandler(event)"
+					   width="800" height="650" showStatusBar="false" currentState="normal" >
 	<fx:Style source="bootstrap/bootstrap.css"/>
+	<s:states>
+		<s:State name="normal"/>
+		<s:State name="asistencia" id="stateAsistencia" />
+	</s:states>
 	<fx:Script>
 		<![CDATA[
 			import clases.Asistencias;
@@ -33,6 +39,7 @@
 			import sr.modulo.Modulo;
 			
 			import views.Inicio;
+			import views.asistencias.AsistenciaRegistro;
 			public static var sql:Modulo;
 			public static var menuSignal:NativeSignal;
 			public static var nav:ViewNavigatorHistory;
@@ -74,6 +81,7 @@
 					nav.addView("inicio_view",Inicio,null,true);
 					
 					var login:Login = new Login;
+					login.onClose = login_close;
 					login.popUp();
 				});
 				config = new Config;
@@ -95,17 +103,9 @@
 				img.source = new logo;
 				splash.addElement(img);
 				PopUpManager.centerPopUp(splash);
-			}
-			
-			override protected function createChildren():void {
-				super.createChildren();
-				
-				nav = new ViewNavigatorHistory;
-				nav.top = 110;
-				nav.bottom = nav.left = nav.right = 0;
-				addElementAt(nav,1);
 				
 				btnAcerca.addEventListener(MouseEvent.CLICK,acerca_click);
+				stateAsistencia.addEventListener(FlexEvent.ENTER_STATE,asistencia_enter);
 			}
 			
 			protected function acerca_click(event:MouseEvent):void {
@@ -113,10 +113,30 @@
 				m.popUp();
 			}
 			
+			protected function stage_keyDown(event:KeyboardEvent):void {
+				trace(event.keyCode);
+				if (event.keyCode==Keyboard.END) {
+					currentState = "asistencia";
+				}
+			}
+			
+			protected function asistencia_enter(event:FlexEvent):void {
+				nav.addView("asistencia_cliente",AsistenciaRegistro,{back:false},true);
+			}
+			
+			protected function windowedapplication1_addedToStageHandler(event:Event):void {
+				stage.addEventListener(KeyboardEvent.KEY_DOWN,stage_keyDown);
+			}
+			
+			private function login_close():void {
+				this.setFocus();
+			}
+			
 		]]>
 	</fx:Script>
-	<com:MainMenu id="mainMenu" width="100%" height="110">
+	<com:MainMenu id="mainMenu" width="100%" height="110" includeIn="normal">
 		
 	</com:MainMenu>	
-	<s:Button label="Acerca" height="30" right="0" top="0" styleName="btn-menu" id="btnAcerca"/>
+	<local:ViewNavigatorHistory id="nav" left="0" right="0" top="110" top.asistencia="0" bottom="0"/>
+	<s:Button label="Acerca" height="30" right="0" top="0" styleName="btn-menu" id="btnAcerca" includeIn="normal"/>
 </s:WindowedApplication>

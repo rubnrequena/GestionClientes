@@ -23,6 +23,8 @@ package views.asistencias
 
 	public class AsistenciaRegistro extends AsistenciaRegistroUI
 	{
+		public var back:Boolean=true;
+		
 		public function AsistenciaRegistro()
 		{
 			addEventListener(Event.ADDED_TO_STAGE,onAdded);
@@ -39,11 +41,16 @@ package views.asistencias
 		}
 		
 		override protected function childrenCreated():void {
+			if (back)
+				btnAtras.addEventListener(MouseEvent.CLICK,cancelarClick);
+			else
+				controlBarContent.pop();
+			
 			btnRegistrar.addEventListener(MouseEvent.CLICK,registrarClick);
-			btnCancelar.addEventListener(MouseEvent.CLICK,cancelarClick);
 			cedulaInput.addEventListener(FlexEvent.ENTER,registrarClick);
 			cedulaInput.addEventListener(TextOperationEvent.CHANGE,cedulaChange);
 			cedulaInput.setFocus();
+			
 		}		
 		
 		protected function cedulaChange(event:TextOperationEvent):void {

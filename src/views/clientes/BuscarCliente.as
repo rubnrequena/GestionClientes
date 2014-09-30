@@ -30,7 +30,7 @@ package views.clientes
 		protected function abrirClick(event:MouseEvent):void {
 			if (grid.selectedIndex>-1) {
 				var c:VOCliente = grid.selectedItem as VOCliente;
-				GestionClientes.nav.addView("cliente_"+c.clienteID,FichaCliente,{cliente:c},true);
+				(owner as ViewNavigatorHistory).addView("cliente_"+c.clienteID,FichaCliente,{cliente:c},true);
 			}
 		}
 		override protected function createChildren():void {
