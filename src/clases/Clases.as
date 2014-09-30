@@ -25,9 +25,9 @@ package clases
 			updateFlag=true;
 			return clase;
 		}
-		public function remover (instructorID:int):void {
+		public function remover (claseID:int):void {
 			GestionClientes.sql.remover("clases",new <Value>[
-				Value.fromPool("claseID",instructorID)
+				Value.fromPool("claseID",claseID)
 			]);
 			updateFlag=true;
 		}

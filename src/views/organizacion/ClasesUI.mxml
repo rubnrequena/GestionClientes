@@ -44,7 +44,8 @@
 		</s:columns>
 	</s:DataGrid>
 	<views:controlBarContent>
-		<s:Button label="Nuevo" styleName="btn-primary icon-insertar-sm" id="btnNuevo"/>
+		<s:Button label="Insertar" styleName="btn-primary icon-insertar-sm" id="btnNuevo"/>
+		<s:Button label="Remover" styleName="btn-danger icon-remover-sm" id="btnRemover"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" styleName="btn-danger icon-atras-sm" id="btnAtras"/>
 	</views:controlBarContent>

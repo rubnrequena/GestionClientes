@@ -3,6 +3,7 @@ package views.organizacion
 	import bootstrap.controls.FormItem;
 	
 	import com.ListPickerSearch;
+	import com.ModalAlert;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -46,6 +47,7 @@ package views.organizacion
 		override protected function childrenCreated():void {
 			btnAtras.addEventListener(MouseEvent.CLICK,atras_click);
 			btnNuevo.addEventListener(MouseEvent.CLICK,nuevo_click);
+			btnRemover.addEventListener(MouseEvent.CLICK,remover_click);
 			clasesGrid.addEventListener(GridSelectionEvent.SELECTION_CHANGE,clases_selectionChange);
 									
 			instructorInput.dataProvider = new VectorCollection(GestionClientes.instructores.data);
@@ -53,6 +55,15 @@ package views.organizacion
 			salonInput.dataProvider = new VectorList(GestionClientes.salones.data);
 			updateData();
 		}		
+		
+		protected function remover_click(event:MouseEvent):void {
+			if (clasesGrid.selectedIndex==-1) return;
+			ModalAlert.show("¿Seguro desea remover clase?","Remover clase",null,[ModalAlert.YES,ModalAlert.NO],function (detalle:int):void {
+				if (detalle==0) {
+					GestionClientes.clasess.remover(clasesGrid.selectedItem.claseID);
+				}
+			},0,"well-danger");
+		}
 		
 		protected function clases_selectionChange(event:GridSelectionEvent):void {
 			horarioGrid.dataProvider = new VectorList((clasesGrid.selectedItem as VOClase).horarios);
