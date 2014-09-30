@@ -7,6 +7,7 @@ package com
 	public class MainMenu extends MainMenuUI
 	{
 		private var _click:NativeSignal;
+		public var nav:ViewNavigatorHistory;
 		public function MainMenu()
 		{
 			super();
@@ -16,7 +17,7 @@ package com
 		}
 		private function onClick(e:MouseEvent):void {
 			if (e.target is MButton)
-				GestionClientes.nav.addView(e.target.name,e.target.view,null,true);
+				nav.addView(e.target.name,e.target.view,null,true);
 		}
 	}
 }

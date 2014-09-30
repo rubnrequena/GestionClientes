@@ -3,7 +3,7 @@
 					   xmlns:s="library://ns.adobe.com/flex/spark" 
 					   xmlns:controls="bootstrap.controls.*" xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:local="*" xmlns:com="com.*" xmlns:mx="library://ns.adobe.com/flex/mx"
 					   creationComplete="onComplete(event)" addedToStage="windowedapplication1_addedToStageHandler(event)"
-					   width="800" height="650" showStatusBar="false" currentState="normal" >
+					   width="800" height="650" showStatusBar="false">
 	<fx:Style source="bootstrap/bootstrap.css"/>
 	<s:states>
 		<s:State name="normal"/>
@@ -42,7 +42,6 @@
 			import views.asistencias.AsistenciaRegistro;
 			public static var sql:Modulo;
 			public static var menuSignal:NativeSignal;
-			public static var nav:ViewNavigatorHistory;
 			
 			public static var grupos:Grupos;
 			public static var clientes:Clientes;
@@ -78,11 +77,7 @@
 					}
 				}
 				var splash:ModalAlert = ModalAlert.showDelay("","Iniciando Sistema...",null,2000,function ():void {
-					nav.addView("inicio_view",Inicio,null,true);
-					
-					var login:Login = new Login;
-					login.onClose = login_close;
-					login.popUp();
+					showLogin(login_close);
 				});
 				config = new Config;
 				grupos = new Grupos;
@@ -106,6 +101,7 @@
 				
 				btnAcerca.addEventListener(MouseEvent.CLICK,acerca_click);
 				stateAsistencia.addEventListener(FlexEvent.ENTER_STATE,asistencia_enter);
+				mainMenu.nav = nav;
 			}
 			
 			protected function acerca_click(event:MouseEvent):void {
@@ -114,9 +110,11 @@
 			}
 			
 			protected function stage_keyDown(event:KeyboardEvent):void {
-				trace(event.keyCode);
 				if (event.keyCode==Keyboard.END) {
 					currentState = "asistencia";
+				} else if (event.keyCode==Keyboard.HOME) {
+					currentState = "normal";
+					nav.setFocus();
 				}
 			}
 			
@@ -129,7 +127,26 @@
 			}
 			
 			private function login_close():void {
+				nav.addView("inicio_view",Inicio,null,true);
 				this.setFocus();
+			}
+			
+			override protected function stateChanged(oldState:String, newState:String, recursive:Boolean):void {
+				if (newState!=oldState) {
+					super.stateChanged(oldState,newState,recursive);
+					if (newState=="normal" && oldState=="asistencia") {
+						nav.removeView("asistencia_cliente",true);
+						showLogin(function ():void {
+							nav.showView(nav.lastView);
+						});
+					}
+				}
+			}
+			
+			private function showLogin(close:Function):void {
+				var login:Login = new Login;
+				login.onClose = close;
+				login.popUp();
 			}
 			
 		]]>
