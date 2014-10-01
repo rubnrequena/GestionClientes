@@ -31,6 +31,8 @@ TODO
 	Productos: validar campos antes de insertar
 	Productos: Remover productos (preguntar antes de eliminar)
 	Facturas: colocar iconos en los botones
+	Nueva Factura: Facturas grupales
+	Nueva Factura: Remuneraciones
 	
 - Asistencias
 	*Registrar inasistencia a clases
