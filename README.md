@@ -5,9 +5,15 @@ Sistema de gestión de clientes
 
 TODO
 
+- Generales
+	Agregar sonido al registrar y rechazar asistencia 
+	Mostrar versión de aplicación en panel Acerca De
+
 - Clientes
-	Modulo Ingresos: Visualizar monto ingresado por registros de clientes en un rango de fecha.
-	
+	Ingresos: Visualizar monto ingresado por registros de clientes en un rango de fecha
+	Nuevo cliente: colocar iconos en los botones
+	Buscar cliente: colocar iconos en los botones
+	Cumpleaños: colocar iconos en los botones
 	
 - Organización
 	Clases: Editar clase
@@ -23,3 +29,12 @@ TODO
 	Tareas: corregir los campos del datagrid
 	Productos: validar campos antes de insertar
 	Productos: Remover productos (preguntar antes de eliminar)
+	
+	Facturas: colocar iconos en los botones
+	
+- Configuración
+	Nueva propiedad: Tope de asistencias diarias
+	Nueva propiedad: Direccion del auido a sonar al registrar asistencia
+	Nueva propiedad: Direccion del auido a sonar al rechazar asistencia
+	Nueva propiedad: Sonar audio al registrar y rechazar audio
+	
