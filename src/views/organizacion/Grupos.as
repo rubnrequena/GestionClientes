@@ -20,15 +20,18 @@ package views.organizacion
 			addEventListener(Event.REMOVED_FROM_STAGE,onRemoved);
 		}
 		override protected function childrenCreated():void {
-			nombreInput.setFocus();
-			btnCancelar.addEventListener(MouseEvent.CLICK,cancelarClick);
-			btnGuardar.addEventListener(MouseEvent.CLICK,guardarClick);
-			btnReset.addEventListener(MouseEvent.CLICK,resetClick);
-			btnRemover.addEventListener(MouseEvent.CLICK,removerClick);
-			
-			instructorInput.dataProvider = new VectorCollection(GestionClientes.instructores.data);
-			
-			updateData();
+			super.childrenCreated();
+			if (accessGranted) {
+				nombreInput.setFocus();
+				btnCancelar.addEventListener(MouseEvent.CLICK,cancelarClick);
+				btnGuardar.addEventListener(MouseEvent.CLICK,guardarClick);
+				btnReset.addEventListener(MouseEvent.CLICK,resetClick);
+				btnRemover.addEventListener(MouseEvent.CLICK,removerClick);
+				
+				instructorInput.dataProvider = new VectorCollection(GestionClientes.instructores.data);
+				
+				updateData();
+			}
 		}
 		
 		private function updateData():void {

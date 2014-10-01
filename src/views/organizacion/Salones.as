@@ -20,7 +20,6 @@ package views.organizacion
 		
 		protected function onComplete(event:FlexEvent):void {
 			removeEventListener(FlexEvent.CREATION_COMPLETE,onComplete);
-			nombreInput.setFocus();
 		}
 		
 		protected function onAdded(event:Event):void {
@@ -28,10 +27,15 @@ package views.organizacion
 				childrenCreated();
 		}
 		override protected function childrenCreated():void {
-			btnInsertar.addEventListener(MouseEvent.CLICK,insertarClick);
-			btnRemover.addEventListener(MouseEvent.CLICK,removerClick);
-			btnAtras.addEventListener(MouseEvent.CLICK,atrasClick);
-			salonesGrid.dataProvider = new VectorList(GestionClientes.salones.data);
+			super.childrenCreated();
+			if (accessGranted) {
+				btnInsertar.addEventListener(MouseEvent.CLICK,insertarClick);
+				btnRemover.addEventListener(MouseEvent.CLICK,removerClick);
+				btnAtras.addEventListener(MouseEvent.CLICK,atrasClick);
+				salonesGrid.dataProvider = new VectorList(GestionClientes.salones.data);
+				
+				nombreInput.setFocus();
+			}
 		}
 		
 		protected function atrasClick(event:MouseEvent):void {

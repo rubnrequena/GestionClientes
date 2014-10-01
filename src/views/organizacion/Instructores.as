@@ -24,6 +24,7 @@ package views.organizacion
 			btnRemover.addEventListener(MouseEvent.CLICK,remover_click);
 			btnAtras.addEventListener(MouseEvent.CLICK,atras_click);
 			updateData();
+			super.childrenCreated();
 		}
 		
 		protected function atras_click(event:MouseEvent):void {

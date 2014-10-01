@@ -44,7 +44,6 @@ package views.organizacion
 			if (initialized) childrenCreated();
 		}
 		override protected function createChildren():void {
-			super.createChildren();
 			salonInput.pickerClass = new ClassFactory(ListPickerSearch);
 			instructorInput.pickerClass = new ClassFactory(ListPickerSearch);
 			grupoInput.pickerClass = new ClassFactory(ListPickerSearch);
@@ -65,6 +64,7 @@ package views.organizacion
 			instructorInput.dataProvider = new VectorCollection(GestionClientes.instructores.data);			
 			salonInput.pickerClass = new ClassFactory(ListPickerSearch);
 			salonInput.dataProvider = new VectorCollection(GestionClientes.salones.data);
+			super.childrenCreated();
 		}	
 		
 		protected function remover_click(event:MouseEvent):void {

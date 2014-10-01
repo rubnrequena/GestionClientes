@@ -54,6 +54,7 @@ package views.organizacion
 			grupoInput.dataProvider = new VectorCollection(GestionClientes.grupos.data);
 			salonInput.dataProvider = new VectorList(GestionClientes.salones.data);
 			updateData();
+			super.childrenCreated();
 		}		
 		
 		protected function remover_click(event:MouseEvent):void {
