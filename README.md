@@ -4,6 +4,7 @@ GestionClientes
 Sistema de gestión de clientes
 
 TODO
+* Importante
 
 - Generales
 	Agregar sonido al registrar y rechazar asistencia 
@@ -29,8 +30,10 @@ TODO
 	Tareas: corregir los campos del datagrid
 	Productos: validar campos antes de insertar
 	Productos: Remover productos (preguntar antes de eliminar)
-	
 	Facturas: colocar iconos en los botones
+	
+- Asistencias
+	*Registrar inasistencia a clases
 	
 - Configuración
 	Nueva propiedad: Tope de asistencias diarias
