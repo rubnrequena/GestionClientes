@@ -12,8 +12,11 @@ package vo
 		public var grupoID:int;
 		public var fechaIngreso:String;
 		public var horaIngreso:int;
-		public var usuario:int;
+		public var usuarioID:int;
 		
+		public function get usuario():VOUsuario {
+			return GestionClientes.usuarios.byID(usuarioID);
+		}		
 		public function get cliente ():VOCliente {
 			return GestionClientes.clientes.byID(clienteID);
 		}
@@ -24,17 +27,7 @@ package vo
 			return DateUtil.toggleDate(fechaIngreso);
 		}
 		public function get horaLocal():String {
-			var n:Array = String(horaIngreso).split("");
-			var m:String = n.splice(-2,2).join("");
-			var h:int = int(n.join(""));
-			var a:String;
-			if (h>12) {
-				a = " pm";
-				h -=12;
-			} else {
-				a = " am";
-			}
-			return [h,m].join(":")+a;
+			return VOHorario.timeString(horaIngreso);
 		}
 		override public function get toObject():Object {
 			var o:Object = super.toObject;

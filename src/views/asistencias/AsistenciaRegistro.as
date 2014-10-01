@@ -16,6 +16,8 @@ package views.asistencias
 	import spark.events.TextOperationEvent;
 	import spark.formatters.DateTimeFormatter;
 	
+	import utils.DateUtil;
+	
 	import vo.VOAsistencia;
 	import vo.VOCliente;
 	import vo.VOHorario;
@@ -72,17 +74,22 @@ package views.asistencias
 				
 				var horarios:Vector.<VOHorario> = cliente.horarios;
 				if (VOHorario.asistir(ahora,horarios)) {
-					resultGroup.styleName = "well-success text-size-lg";
-					resultLabel.text = "ASISTENCIA REGISTRADA";
-										
-					var a:VOAsistencia = new VOAsistencia;
-					a.clienteID = cliente.clienteID;
-					a.grupoID = cliente.grupoID;
-					a.fechaIngreso = DateField.dateToString(ahora,"YYYY-MM-DD");
-					a.horaIngreso = clases.Asistencias.format24(ahora);
-					a.usuario = VOUsuario.USUARIO_ACTIVO.usuarioID;
-					
-					//GestionClientes.sql.insertar("asistencias",a.toObject);					
+					if (GestionClientes.asistencias.asistenciaPrevia(cliente.clienteID,DateUtil.dateToString(ahora,"YYYY-MM-DD"))) {
+						resultGroup.styleName = "well-danger text-size-lg";
+						resultLabel.text = "ASISTENCIA RECHAZADA: ASISTENCIA PREVIA REGISTRADA";						
+					} else {
+						resultGroup.styleName = "well-success text-size-lg";
+						resultLabel.text = "ASISTENCIA REGISTRADA";
+						
+						var a:VOAsistencia = new VOAsistencia;
+						a.clienteID = cliente.clienteID;
+						a.grupoID = cliente.grupoID;
+						a.fechaIngreso = DateField.dateToString(ahora,"YYYY-MM-DD");
+						a.horaIngreso = clases.Asistencias.format24(ahora);
+						a.usuarioID = VOUsuario.USUARIO_ACTIVO.usuarioID;
+						
+						GestionClientes.sql.insertar("asistencias",a.toObject);
+					}
 				} else {
 					resultLabel.text = "ASISTENCIA RECHAZADA: HORARIO NO PERMITIDO";
 					resultGroup.styleName = "well-danger text-size-lg";

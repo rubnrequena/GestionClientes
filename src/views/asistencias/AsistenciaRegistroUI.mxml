@@ -25,7 +25,7 @@
 				<s:columns>
 					<s:ArrayList>
 						<s:GridColumn headerText="Fecha Ingreso" dataField="fechaIngresoLocal"/>
-						<s:GridColumn headerText="Hora Ingreso" dataField="horaIngreso"/>
+						<s:GridColumn headerText="Hora Ingreso" dataField="horaLocal"/>
 						<s:GridColumn headerText="Usuario" dataField="usuario"/>
 					</s:ArrayList>
 				</s:columns>

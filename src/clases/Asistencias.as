@@ -29,6 +29,12 @@ package clases
 			}
 			return v;
 		}
+		public function asistenciaPrevia (clienteID:int,fecha:String):Boolean {
+			if (updateFlag) update();
+			return _data.some(function (asistencia:VOAsistencia,indice:int,data:*):Boolean {
+				return asistencia.clienteID==clienteID && asistencia.fechaIngreso==fecha;
+			})
+		}
 		public static function ordenarDESC (item1:VOAsistencia,item2:VOAsistencia):Number {
 			var d1:int = int(item1.fechaIngreso.split("-").join(""));
 			var d2:int = int(item2.fechaIngreso.split("-").join(""));
@@ -50,6 +56,7 @@ package clases
 				return 0;
 			}
 		}
+		
 		public static function format24(fecha:Date):int {
 			var m:String = fecha.minutes<10?"0"+fecha.minutes:fecha.minutes.toString();
 			return int(fecha.hours+m);

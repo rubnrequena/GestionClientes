@@ -44,6 +44,8 @@ package views.organizacion
 			if (initialized) childrenCreated();
 		}
 		override protected function createChildren():void {
+			super.createChildren();
+			
 			salonInput.pickerClass = new ClassFactory(ListPickerSearch);
 			instructorInput.pickerClass = new ClassFactory(ListPickerSearch);
 			grupoInput.pickerClass = new ClassFactory(ListPickerSearch);

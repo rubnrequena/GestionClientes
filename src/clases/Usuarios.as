@@ -34,6 +34,12 @@ package clases
 			]);
 			updateFlag=true;
 		}
+		public function byID (usuarioID:int):VOUsuario {
+			if (updateFlag) update();
+			for (var i:int = 0; i < _data.length; i++)
+				if (_data[i].usuarioID==usuarioID) return _data[i];
+			return null;
+		}
 		public function byUsuario(usuario:String):VOUsuario {
 			if (updateFlag) update();
 			for (var i:int = 0; i < _data.length; i++)

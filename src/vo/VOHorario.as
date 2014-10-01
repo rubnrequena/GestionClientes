@@ -40,7 +40,6 @@ package vo
 			return o;
 		}
 		private function enRango (hora:int):Boolean {
-			trace("rango",entrada,hora,salida);
 			if (hora>=entrada && hora<=salida )
 				return true
 			else
@@ -65,7 +64,7 @@ package vo
 		public function get salidaString():String {
 			return timeString(salida);
 		}
-		private function timeString (time:int):String {
+		public static function timeString (time:int):String {
 			var h:int = time/100;
 			var m:int = time-(h*100);
 			var a:String = "am";

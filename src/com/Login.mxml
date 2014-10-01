@@ -20,7 +20,7 @@
 			
 			protected function login_click(event:MouseEvent):void {
 				if (form.validate) {
-					VOUsuario.USUARIO_ACTIVO = GestionClientes.usuarios.byLogin(usuarioInput.text,passInput.text);
+					VOUsuario.USUARIO_ACTIVO = GestionClientes.usuarios.byLogin(usuarioInput.text.toLowerCase(),passInput.text.toLowerCase());
 					if (VOUsuario.USUARIO_ACTIVO) {
 						closing(true);
 					} else {

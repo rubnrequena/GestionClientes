@@ -27,6 +27,9 @@ package vo
 		public var acceso:int;
 		public function get accesoString ():String { return ACCESOS[acceso].label; }
 		
+		public function toString():String {
+			return nombre;
+		}
 		override public function get toObject():Object {
 			var o:Object = super.toObject;
 			delete o.usuarioID;
