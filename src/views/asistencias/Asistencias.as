@@ -126,6 +126,7 @@ package views.asistencias
 			if (asist) {
 				gridAsistencias.dataProvider = new ArrayCollection(asist);
 			} else {
+				gridAsistencias.dataProvider = null;
 				ModalAlert.show("No se encontraron asistencias registradas","Asistencias",null,[ModalAlert.OK]);
 			}
 		}
