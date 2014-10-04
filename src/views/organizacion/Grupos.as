@@ -27,9 +27,7 @@ package views.organizacion
 				btnGuardar.addEventListener(MouseEvent.CLICK,guardarClick);
 				btnReset.addEventListener(MouseEvent.CLICK,resetClick);
 				btnRemover.addEventListener(MouseEvent.CLICK,removerClick);
-				
-				instructorInput.dataProvider = new VectorCollection(GestionClientes.instructores.data);
-				
+								
 				updateData();
 			}
 		}
@@ -71,7 +69,6 @@ package views.organizacion
 			grupo.nombre = nombreInput.text;
 			grupo.descripcion = descInput.text;
 			grupo.renta = Number(rentaInput.text);
-			grupo.instructorID = (instructorInput.selectedItem as VOInstructor).instructorID;
 			
 			GestionClientes.grupos.insertar(grupo);
 			ModalAlert.show("Grupo guardado exitosamente","Gestion Clientes",null,[ModalAlert.OK],function ():void {

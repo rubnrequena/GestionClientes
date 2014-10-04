@@ -16,9 +16,6 @@
 		<controls:FormItem label="Renta:" >
 			<s:TextInput id="rentaInput" height="100" restrict="0-9."/>
 		</controls:FormItem>
-		<controls:FormItem label="Instructor">
-			<com:ListPickerButton pickerClass="{new ClassFactory(ListPickerSearch)}" label="Seleccione instructor" title="Instructores" width="50%" id="instructorInput" labelField="nombres"/>
-		</controls:FormItem>
 	</s:Form>
 	<s:DataGrid width="100%" height="100%" id="gruposGrid">
 		<s:columns>

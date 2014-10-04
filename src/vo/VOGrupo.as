@@ -8,7 +8,6 @@ package vo
 		public var descripcion:String;
 		public var nombre:String;
 		public var renta:Number;
-		public var instructorID:int;
 				
 		public function VOGrupo() {
 			super();
@@ -16,9 +15,6 @@ package vo
 		
 		public function toString():String {
 			return nombre;
-		}
-		public function get instructor():VOInstructor {
-			return GestionClientes.instructores.byID(instructorID);
 		}
 		public function clientes():Vector.<VOCliente> {
 			return GestionClientes.clientes.byGroup(grupoID);
