@@ -29,6 +29,12 @@ package vo
 		public function get horarios():Vector.<VOHorario> {
 			return GestionClientes.horarios.byClase(claseID);
 		}
+		public function get clientes():Vector.<VOCliente> {
+			return GestionClientes.clientes.byGroup(grupoID);
+		}
+		public function toString():String {
+			return descripcion;
+		}
 		override public function get toObject():Object {
 			var o:Object = super.toObject;
 			delete o.claseID;

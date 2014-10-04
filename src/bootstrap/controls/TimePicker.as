@@ -92,7 +92,14 @@ package bootstrap.controls
 			invalidateProperties();
 		}
 		public function get time():int {
-			return int([hourInput.value+(dianoche_value*12),minuteInput.text].join(""));
+			if (dianoche_value==0) {
+				if (hourInput.value==12)
+					return int([hourInput.value-12,minuteInput.text].join(""));
+				else
+					return int([hourInput.value,minuteInput.text].join(""));
+			} else {
+				return int([hourInput.value+12,minuteInput.text].join(""));
+			}
 		}
 	}
 }

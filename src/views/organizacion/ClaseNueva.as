@@ -92,6 +92,7 @@ package views.organizacion
 				}
 				
 				ModalAlert.showDelay("Clase guardada exitosamente","Clases",null,2000,function ():void {
+					descInput.text="";
 					instructorInput.selectedIndex = grupoInput.selectedIndex = salonInput.selectedIndex = -1;
 					_horarios.removeAll();
 				},"well-info");

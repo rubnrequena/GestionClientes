@@ -26,9 +26,10 @@
 	<s:DataGrid width="100%" height="100%" id="gridAsistencias">
 		<s:columns>
 			<s:ArrayList>
-				<s:GridColumn headerText="Cliente" dataField="cliente"/>
+				<s:GridColumn headerText="Clase" dataField="clase"/>
 				<s:GridColumn headerText="Fecha" dataField="fechaIngresoLocal"/>
-				<s:GridColumn headerText="Hora" dataField="horaLocal"/>
+				<s:GridColumn headerText="Entrada" dataField="horaLocal"/>
+				<s:GridColumn headerText="Asistencia" dataField="asistioString"/>
 				<s:GridColumn headerText="Usuario" dataField="usuario"/>
 			</s:ArrayList>
 		</s:columns>

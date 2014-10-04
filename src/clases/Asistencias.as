@@ -1,9 +1,13 @@
 package clases
 {
+	import sr.helpers.Value;
+	
 	import utils.VectorUtil;
 	
 	import vo.VOAsistencia;
-
+	import vo.VOHorario;
+	import vo.VOUsuario;
+	
 	public class Asistencias
 	{
 		private var updateFlag:Boolean=true;
@@ -18,7 +22,10 @@ package clases
 			_data = VectorUtil.toVector(GestionClientes.sql.seleccionar("asistencias",null,VOAsistencia).data,Vector.<VOAsistencia>);
 			updateFlag=false;
 		}
-		
+		public function insertar_lote (asistencias:Array):void {
+			GestionClientes.sql.insertarUnion("asistencias",asistencias);
+			updateFlag=true;
+		}
 		public function asistenciasClienteMes (clienteID:int,mes:String):Vector.<VOAsistencia> {
 			if (updateFlag) update();
 			var v:Vector.<VOAsistencia> = new Vector.<VOAsistencia>;
@@ -29,11 +36,41 @@ package clases
 			}
 			return v;
 		}
+		public function byIndice (indice:int):VOAsistencia {
+			return _data[indice];
+		}
 		public function asistenciaPrevia (clienteID:int,fecha:String):Boolean {
 			if (updateFlag) update();
 			return _data.some(function (asistencia:VOAsistencia,indice:int,data:*):Boolean {
 				return asistencia.clienteID==clienteID && asistencia.fechaIngreso==fecha;
 			})
+		}
+		public function registrarAsistencia (clienteID:int,fecha:String,entrada:int):int {
+			if (updateFlag) update();
+			var ret:int;
+			for (var i:int = 0; i < _data.length; i++) {
+				if (_data[i].fechaIngreso==fecha && _data[i].clienteID==clienteID) {
+					if (_data[i].enRango(entrada)) {
+						if (_data[i].asistio==false) {
+							GestionClientes.sql.actualizar("asistencias",new <Value>[
+								Value.fromPool("horaIngreso",entrada),
+								Value.fromPool("asistio",true),
+								Value.fromPool("usuarioID",VOUsuario.USUARIO_ACTIVO.usuarioID)
+							],new <Value>[
+								Value.fromPool("asistenciaID",_data[i].asistenciaID)
+							]);
+							updateFlag=true;
+							return i;	
+						} else {
+							ret = -2;
+						}
+					} else {
+						trace("previa",_data[i].entrada,entrada,_data[i].salida);
+						ret = -1
+					}
+				}
+			}
+			return ret;
 		}
 		public static function ordenarDESC (item1:VOAsistencia,item2:VOAsistencia):Number {
 			var d1:int = int(item1.fechaIngreso.split("-").join(""));
@@ -56,7 +93,6 @@ package clases
 				return 0;
 			}
 		}
-		
 		public static function format24(fecha:Date):int {
 			var m:String = fecha.minutes<10?"0"+fecha.minutes:fecha.minutes.toString();
 			return int(fecha.hours+m);
