@@ -7,6 +7,7 @@ package vo
 	public class VOClase extends MapObject
 	{
 		public var claseID:int;
+		public var descripcion:String;
 		public var instructorID:int;
 		public var grupoID:int;
 		public var salonID:int;

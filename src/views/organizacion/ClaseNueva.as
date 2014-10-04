@@ -77,6 +77,7 @@ package views.organizacion
 		protected function guardar_click(event:MouseEvent):void {
 			if (formClase.validate) {
 				var clase:VOClase = new VOClase;
+				clase.descripcion = descInput.text;
 				clase.grupoID = (grupoInput.selectedItem as VOGrupo).grupoID;
 				clase.salonID = (salonInput.selectedItem as VOSalon).salonID;
 				clase.instructorID = (instructorInput.selectedItem as VOInstructor).instructorID;

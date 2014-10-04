@@ -15,12 +15,18 @@
 				var salida:int = salidaInput.time;
 				return entrada<salida?true:false;
 			}
+			protected function validarInput (item:FormItem):Boolean {
+				return item.input.text==""?false:true;
+			}
 		]]>
 	</fx:Script>
 	<views:layout>
 		<s:VerticalLayout />
 	</views:layout>
 	<controls:Form width="100%" id="formClase">
+		<controls:FormItem label="Descripcion" validateFunction="validarInput">
+			<s:TextInput id="descInput"/>
+		</controls:FormItem>
 		<controls:FormItem label="Instructor" validateFunction="validarList">
 			<com:ListPickerButton styleName="btn-silent" label="Seleccione Instructor..." title="Instructores" labelField="nombres" id="instructorInput" width="50%" />
 		</controls:FormItem>
