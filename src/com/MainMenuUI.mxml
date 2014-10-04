@@ -14,6 +14,7 @@
 			import views.clientes.Morosos;
 			import views.finanzas.Facturas;
 			import views.finanzas.NuevoPago;
+			import views.finanzas.NuevoPagoGrupo;
 			import views.finanzas.Productos;
 			import views.finanzas.Tareas;
 			import views.organizacion.Clases;
@@ -49,6 +50,7 @@
 		<s:SkinnableContainer name="Finanzas" styleName="navChildren">
 			<s:layout><s:HorizontalLayout paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" verticalAlign="contentJustify" /></s:layout>
 			<com:MButton view="{NuevoPago}" name="pago_nuevo" label="Nuevo Pago" styleName="btn-menu icon-pago_nuevo-md"/>
+			<com:MButton view="{NuevoPagoGrupo}" name="pago_nuevo_grupo" label="Nuevo Pago Grupal" styleName="btn-menu icon-pago_nuevo-md"/>
 			<com:MButton view="{Facturas}" styleName="btn-menu icon-factura-md" name="facturas" label="Facturas"/>
 			<!--<com:MButton styleName="btn-menu icon-reporte-md" name="reporte" label="Reporte"/>-->
 			<s:Spacer width="100%"/>

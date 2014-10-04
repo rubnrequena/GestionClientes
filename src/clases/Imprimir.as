@@ -24,6 +24,49 @@ package clases
 		public function Imprimir() {
 			
 		}
+		public static function imprimirFacturas (facturas:Vector.<VOFactura>,copia:Boolean=false):void {
+			if (!formatsInitialized) initializeFormats();
+			
+			var pj:PrintJob = new PrintJob;
+			var print:Print;
+			var now:Date=new Date;
+			if (pj.start()) {
+				print = new Print(pj);
+				print.defaultFormat = defaultFormat;
+				print.headerFormat = formatHeader;
+				print.printableArea = new Rectangle(0,0,GestionClientes.config.impresion_anchoPapel,pj.printableArea.height);
+				
+				for (var i:int = 0; i < facturas.length; i++) {
+					if (i>0) print.newPage();
+					print.addLine(GestionClientes.config.razon_social,formatCenter);
+					print.addLine(GestionClientes.config.rif,formatCenter);
+					print.addLine(DateUtil.dateToString(now,"DD/MM/YYYY"),formatCenter);
+					print.addLine(DateUtil.dateToString(now,"hh:nn:ss a"),formatCenter);
+					if (copia) print.addLine("--- COPIA ---",formatCenter);
+					print.addLine("Factura",formatCenter);
+					print.addLine(facturas[i].correlativoString,formatCenter);
+					print.addSpace(10);
+					print.addLine("Cliente: "+facturas[i].cliente.nombres);
+					print.addLine("Fecha: "+facturas[i].fechaLocal);
+					print.addSpace(10);
+					print.addLine("DETALLES",formatCenter);
+					print.addSpace(10);
+					
+					print.addDataGrid(facturas[i].pagos,new <PrintColumn>[
+						new PrintColumn("descripcion",percentWidth(65,GestionClientes.config.impresion_anchoPapel),"Descripcion"),
+						new PrintColumn("cantidad",percentWidth(15,GestionClientes.config.impresion_anchoPapel),"Cant",formatRight),
+						new PrintColumn("total",percentWidth(20,GestionClientes.config.impresion_anchoPapel),"Total",formatRight)
+					]);
+					print.addSpace(5);
+					formatHeader.align = TextAlign.LEFT;
+					print.addLine("TOTAL:",formatHeader,false);
+					formatHeader.align = TextAlign.RIGHT;
+					print.addLine(facturas[i].monto.toString(),formatHeader);
+					formatHeader.align = TextAlign.CENTER;
+				}
+				print.printAll();
+			}
+		}
 		public static function imprimirFactura (factura:VOFactura,copia:Boolean=false):void {
 			if (!formatsInitialized) initializeFormats();
 			
