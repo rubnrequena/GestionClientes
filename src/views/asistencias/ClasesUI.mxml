@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<views:ViewPanel xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				 xmlns:s="library://ns.adobe.com/flex/spark" title="Registrar Clase"
+				 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:views="views.*" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
+	<controls:Form width="100%">
+		<controls:FormItem label="Clases">
+			<com:ListPickerButton id="claseInput" label="Seleccione clase" labelField="descripcion"/>
+		</controls:FormItem>
+		<controls:FormItem label="Horarios" childHeight="100">
+			<s:DataGrid id="horariosGrid">
+				<s:columns>
+					<s:ArrayList>
+						<s:GridColumn headerText="Dias" dataField="diasString"/>
+						<s:GridColumn headerText="Entrada" dataField="entradaString"/>
+						<s:GridColumn headerText="Salida" dataField="salidaString"/>
+					</s:ArrayList>
+				</s:columns>
+			</s:DataGrid>
+		</controls:FormItem>
+		<controls:FormItem label="Clientes" childHeight="200">
+			<s:DataGrid width="50%" id="clientesGrid">
+				<s:columns>
+					<s:ArrayList>
+						<s:GridColumn headerText="Cliente" dataField="nombres"/>
+						<s:GridColumn headerText="Cedula" dataField="cedula" width="100"/>
+					</s:ArrayList>
+				</s:columns>
+			</s:DataGrid>
+		</controls:FormItem>
+	</controls:Form>
+	<views:controlBarContent>
+		<s:Button label="Registrar" styleName="btn-primary icon-guardar-sm" id="btnGuardar"/>
+		<s:Spacer width="100%"/>
+		<s:Button label="Atras" styleName="btn-danger icon-atras-sm" id="btnAtras"/>
+	</views:controlBarContent>
+</views:ViewPanel>

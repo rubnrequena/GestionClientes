@@ -38,8 +38,16 @@
 			
 			import sr.modulo.Modulo;
 			
+			import utils.DateUtil;
+			import utils.VectorUtil;
+			
 			import views.Inicio;
 			import views.asistencias.AsistenciaRegistro;
+			
+			import clases.ClasesAsistencia;
+			import vo.VOClaseAsistencia;
+			import vo.VOHorario;
+			import vo.VOUsuario;
 			public static var sql:Modulo;
 			public static var menuSignal:NativeSignal;
 			
@@ -127,6 +135,20 @@
 			}
 			
 			private function login_close():void {
+				var hoy:Date = new Date;
+				var hoyString:String = DateUtil.dateToString(hoy,"YYYY-MM-DD"); 
+				var horariosDia:Vector.<VOHorario> = horarios.horariosDelDia(hoy);
+				var clase:VOClaseAsistencia = new VOClaseAsistencia;
+				for (var i:int = 0; i < horariosDia.length; i++) {
+					if (ClasesAsistencia.instancia.existe(horariosDia[i].claseID,hoyString)==false) {
+						clase.fecha = hoyString;
+						clase.usuarioID = VOUsuario.USUARIO_ACTIVO.usuarioID;
+						clase.claseID = horariosDia[i].claseID;
+						
+						trace("guardando asistencia");
+						ClasesAsistencia.instancia.insertar(clase);
+					}
+				}
 				nav.addView("inicio_view",Inicio,null,true);
 				this.setFocus();
 			}

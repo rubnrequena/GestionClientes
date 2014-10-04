@@ -72,26 +72,16 @@ package views.asistencias
 				var ahora:Date = new Date;
 				clienteCard.cliente = cliente;
 				
-				var horarios:Vector.<VOHorario> = cliente.horarios;
-				if (VOHorario.asistir(ahora,horarios)) {
-					if (GestionClientes.asistencias.asistenciaPrevia(cliente.clienteID,DateUtil.dateToString(ahora,"YYYY-MM-DD"))) {
-						resultGroup.styleName = "well-danger text-size-lg";
-						resultLabel.text = "ASISTENCIA RECHAZADA: ASISTENCIA PREVIA REGISTRADA";						
-					} else {
-						resultGroup.styleName = "well-success text-size-lg";
-						resultLabel.text = "ASISTENCIA REGISTRADA";
-						
-						var a:VOAsistencia = new VOAsistencia;
-						a.clienteID = cliente.clienteID;
-						a.grupoID = cliente.grupoID;
-						a.fechaIngreso = DateField.dateToString(ahora,"YYYY-MM-DD");
-						a.horaIngreso = clases.Asistencias.format24(ahora);
-						a.usuarioID = VOUsuario.USUARIO_ACTIVO.usuarioID;
-						
-						GestionClientes.sql.insertar("asistencias",a.toObject);
-					}
-				} else {
+				var asistenciaIndice:int = GestionClientes.asistencias.registrarAsistencia(cliente.clienteID,DateUtil.dateToString(ahora,"YYYY-MM-DD"),int(DateUtil.dateToString(ahora,"HHnn")));
+				if (asistenciaIndice>-1) {
+					resultGroup.styleName = "well-success text-size-lg";
+					resultLabel.text = "ASISTENCIA REGISTRADA";
+					
+				} else if (asistenciaIndice==-1) {
 					resultLabel.text = "ASISTENCIA RECHAZADA: HORARIO NO PERMITIDO";
+					resultGroup.styleName = "well-danger text-size-lg";
+				} else if (asistenciaIndice==-2) {
+					resultLabel.text = "ASISTENCIA RECHAZADA: ASISTENCIA PREVIA REGISTRADA";
 					resultGroup.styleName = "well-danger text-size-lg";
 				}
 				clienteAsistencias.dataProvider = new VectorList(cliente.asistencias());
