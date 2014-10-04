@@ -29,7 +29,7 @@
 		<s:SkinnableContainer id="clientes" name="Clientes" styleName="navChildren">
 			<s:layout><s:HorizontalLayout paddingBottom="3" paddingLeft="3" paddingRight="3" paddingTop="3" verticalAlign="contentJustify" /></s:layout>
 			<com:MButton view="{Cliente}" name="cliente_nuevo" label="Nuevo" styleName="btn-menu icon-usuario-md" />
-			<com:MButton view="{BuscarCliente}" name="cliente_buscar" label="Buscar" styleName="btn-menu icon-buscar-cliente-med"/>
+			<com:MButton view="{BuscarCliente}" name="cliente_buscar" label="Buscar" styleName="btn-menu icon-buscar-cliente-md"/>
 			<com:MButton view="{Ingresos}" name="cliente_ingresos" label="Ingresos" styleName="btn-menu" icon="assets/statistics-32.png"/>
 			<com:MButton view="{Morosos}" name="cliente_morosos" label="Morosos" styleName="btn-menu" icon="assets/statistics-32.png"/>
 			<com:MButton view="{Cumpleanos}" name="clientes_cumple" label="Cumpleaños" styleName="btn-menu" icon="assets/birthday-32.png"/>

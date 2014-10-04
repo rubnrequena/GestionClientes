@@ -210,8 +210,11 @@ skins|BToggleButtonBarSkin {
 .icon-entrenador-md {
 	icon:"assets/collaborator-32.png";
 }
-.icon-buscar-cliente-med {
+.icon-buscar-cliente-md {
 	icon:"assets/find_user-32.png";	
+}
+.icon-buscar-cliente-sm {
+	icon:"assets/find_user-26.png";	
 }
 .icon-buscar-sm {
 	icon:"assets/search-26.png";	
@@ -251,6 +254,9 @@ skins|BToggleButtonBarSkin {
 }
 .icon-factura-md {
 	icon:"assets/bill-32.png";
+}
+.icon-factura-sm {
+	icon:"assets/bill-26.png";
 }
 .icon-lista-sm {
 	icon:"assets/add_list-26.png";	

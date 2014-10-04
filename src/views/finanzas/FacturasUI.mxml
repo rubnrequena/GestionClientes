@@ -33,7 +33,7 @@
 		</s:columns>
 	</s:DataGrid>
 	<views:controlBarContent>
-		<s:Button label="Ver Factura" height="30" styleName="btn-primary" id="btnVer"/>
+		<s:Button label="Ver Factura" height="30" styleName="btn-primary icon-factura-sm" id="btnVer"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnAtras"/>
 	</views:controlBarContent>

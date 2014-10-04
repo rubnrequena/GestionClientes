@@ -19,8 +19,8 @@
 		</s:columns>
 	</s:DataGrid>
 	<views:controlBarContent>
-		<s:Button label="Ver Cliente" height="30" styleName="btn-primary" id="btnVer"/>
-		<s:Button label="Imprimir" height="30" id="btnImprimir"/>
+		<s:Button label="Ver Cliente" height="30" styleName="btn-primary icon-buscar-cliente-sm" id="btnVer"/>
+		<s:Button label="Imprimir" height="30" styleName="btn-warning icon-imprimir-sm" id="btnImprimir"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
 	</views:controlBarContent>
