@@ -93,7 +93,7 @@
         <s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
     </s:states>
     
-	<s:Rect left="0" right="0" bottom="0" top="0" radiusX="2" radiusY="2" excludeFrom="up,selectedStates" id="bg1">
+	<s:Rect left="0" right="0" bottom="0" top="0" radiusX="2" radiusY="2" includeIn="selectedStates" id="bg1">
 		<s:fill>
 			<s:SolidColor color="0xf7f7f7" id="bgColor"/>
 		</s:fill>
@@ -101,7 +101,7 @@
 			<s:GlowFilter color="{bgColor.color}" strength="2"/>
 		</s:filters.down>
 	</s:Rect>
-	<s:Rect left="0" right="0" bottom="0" top="0" radiusX="2" radiusY="2" includeIn="up" id="bg2">
+	<s:Rect left="0" right="0" bottom="0" top="0" radiusX="2" radiusY="2" includeIn="downAndSelected" id="bg2">
 		<s:fill>
 			<s:SolidColor color="0xe4e7ea"/>
 		</s:fill>

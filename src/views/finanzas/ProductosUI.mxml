@@ -3,24 +3,35 @@
 				 xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				 xmlns:s="library://ns.adobe.com/flex/spark" 
 				 xmlns:mx="library://ns.adobe.com/flex/mx" title="Productos" xmlns:controls="bootstrap.controls.*">
+	<fx:Script>
+		<![CDATA[
+			protected function validarInput (item:FormItem):Boolean {
+				return item.input.text.length>0;
+			}
+			protected function validarNumero (item:FormItem):Boolean {
+				var n:Number = Number(item.input.text);
+				return !isNaN(n) && n>0;
+			}
+		]]>
+	</fx:Script>
 	<views:layout>
 		<s:VerticalLayout horizontalAlign="center" />
 	</views:layout>
-	<s:Form width="100%">
-		<controls:FormItem label="Producto:">
+	<controls:Form id="form" width="100%">
+		<controls:FormItem label="Producto:" validateFunction="validarInput">
 			<s:TextInput id="descInput"/>
 		</controls:FormItem>
-		<controls:FormItem label="Monto:">
+		<controls:FormItem label="Monto:" validateFunction="validarNumero">
 			<s:TextInput id="montoInput" restrict="0-9." text="0"/>
 		</controls:FormItem>
-		<controls:FormItem label="Cantidad:">
+		<controls:FormItem label="Cantidad:" validateFunction="validarNumero">
 			<s:TextInput id="cantInput" restrict="0-9." text="0"/>
 		</controls:FormItem>
 		<controls:FormItem>
 			<s:Button label="Insertar" styleName="btn-success icon-insertar-sm" width="25%" id="btnInsertar"/>
 			<s:Button label="Remover" styleName="btn-danger icon-remover-sm" width="25%" id="btnRemover"/>
 		</controls:FormItem>
-	</s:Form>
+	</controls:Form>
 	<s:DataGrid id="grid" width="80%" height="100%">
 		<s:columns>
 			<s:ArrayList>

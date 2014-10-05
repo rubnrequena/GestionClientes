@@ -1,5 +1,8 @@
 package clases
 {
+	import flash.media.Sound;
+	import flash.net.URLRequest;
+	
 	import org.osflash.signals.Signal;
 	
 	import sr.helpers.Value;
@@ -20,11 +23,17 @@ package clases
 		public static function resetPool():void {
 			sql_set.length = sql_where.length = 0;
 		}
+		
+		//AUDIO
+		public var asistencia_rechazada:Sound;
+		public var asistencia_registrada:Sound;
+		
 		public var correlativo:int;
 		public var razon_social:String;
 		public var rif:String;
 		public var impresion_anchoPapel:Number;
 		public var impresion_fuente:int;
+		public var sonidos:Boolean;
 
 		public var change:Signal = new Signal();
 		
@@ -48,7 +57,9 @@ package clases
 				if (c.key in this) {
 					this[c.key]=c.value;
 				}
-			}
+			};
+			asistencia_rechazada = new Sound(new URLRequest("assets/asistencia_rechazada.mp3"));
+			asistencia_registrada = new Sound(new URLRequest("assets/asistencia_registrada.mp3"));
 		}
 		public function update (campo:String,valor:*):void {
 			init(); 

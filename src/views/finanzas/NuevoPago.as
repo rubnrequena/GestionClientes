@@ -15,19 +15,21 @@ package views.finanzas
 	
 	import org.apache.flex.collections.VectorCollection;
 	
+	import spark.layouts.HorizontalLayout;
+	
 	import utils.DateUtil;
 	
 	import vo.VOCliente;
 	import vo.VOFactura;
 	import vo.VOPago;
 	import vo.VOProducto;
-
+	
 	public class NuevoPago extends NuevoPagoUI
 	{
 		protected var _pagos:Vector.<VOPago>;
 		protected var _pagosPendientes:VectorCollection;
 		protected var _totalPagos:Number;
-
+		
 		public var factura:VOFactura;
 		
 		private var _cliente:VOCliente;
@@ -36,7 +38,7 @@ package views.finanzas
 			_cliente = value;
 			_pagosPendientes = new VectorCollection(_cliente.pagosPendientes());
 		}
-
+		
 		private var pagosPicker:ListPickerSearch = new ListPickerSearch;		
 		
 		public function NuevoPago() {
@@ -52,6 +54,8 @@ package views.finanzas
 				descInput.setFocus();
 			else
 				clienteInput.setFocus();
+			
+			(controlBarLayout as HorizontalLayout).verticalAlign = "middle";
 		}
 		
 		protected function onAdded(event:Event):void {
@@ -74,9 +78,9 @@ package views.finanzas
 		override protected function childrenCreated():void {
 			btnCancelar.addEventListener(MouseEvent.CLICK,cancelarClick);
 			btnProductos.addEventListener(MouseEvent.CLICK,btnProductos_click);
-			btnInsertar.addEventListener(MouseEvent.CLICK,btnInsertar_click);
-			btnRemover.addEventListener(MouseEvent.CLICK,removerClick);
-			btnFacturar.addEventListener(MouseEvent.CLICK,facturarClick);
+			btnInsertar.addEventListener(MouseEvent.CLICK,insertar_click);
+			btnRemover.addEventListener(MouseEvent.CLICK,remover_click);
+			btnFacturar.addEventListener(MouseEvent.CLICK,facturar_click);
 			btnPendientes.addEventListener(MouseEvent.CLICK,pagosPendientes_click);
 			addEventListener(KeyboardEvent.KEY_DOWN,onKeyDown);
 			
@@ -100,15 +104,23 @@ package views.finanzas
 			pagosPicker.popUp();
 		}
 		
-		protected function removerClick(event:MouseEvent):void {
-			if (grid.selectedIndex>-1) {
-				_pagos.splice(grid.selectedIndex,1);
-				updatePagos();
+		protected function remover_click(event:MouseEvent):void {
+			var len:uint = grid.selectedIndices.length;
+			for (var i:int = len-1; i > -1; i--) {
+				_pagos.splice(i,1);				
 			}
+			updatePagos();
 		}
 		
-		protected function facturarClick(event:MouseEvent):void {
-			ModalAlert.show("¿Esta seguro desea realizar factura?","Facturar",this,[{label:"Sí",styleName:"btn-primary"},{label:"No"}],facturarHandler);
+		protected function facturar_click(event:MouseEvent):void {
+			if (form.validate) {
+				if (_pagos.length>0)
+					ModalAlert.show("¿Esta seguro desea realizar factura?","Facturar",this,[{label:"Sí",styleName:"btn-primary"},{label:"No"}],facturarHandler);
+				else
+					ModalAlert.show("Se necesita agregue al menos un articulo o pago a cancelar","Pagos",null,[ModalAlert.OK],function ():void {
+						descInput.setFocus();
+					});
+			}
 		}
 		protected function facturarHandler (detalle:int):void {
 			if (detalle==0) {
@@ -145,7 +157,7 @@ package views.finanzas
 					}
 				],function (detalle:int):void {
 					if (detalle==0)
-						clases.Imprimir.imprimirFactura(factura);
+						clases.Imprimir.imprimirFactura(factura,false,copia.selected);
 					cancelarClick();
 				});
 			}
@@ -178,16 +190,18 @@ package views.finanzas
 			grid.dataProvider = new VectorCollection(_pagos);
 		}
 		
-		protected function btnInsertar_click(event:MouseEvent):void {
-			var p:VOPago = new VOPago;
-			p.descripcion = descInput.text.toUpperCase();
-			p.monto = Number(montoInput.text);
-			p.cantidad = Number(cantInput.text);
-			
-			_pagos.push(p);
-			updatePagos();
-			limpiarCampos();
-			descInput.setFocus();
+		protected function insertar_click(event:MouseEvent):void {
+			if (form_item.validate) {
+				var p:VOPago = new VOPago;
+				p.descripcion = descInput.text.toUpperCase();
+				p.monto = Number(montoInput.text);
+				p.cantidad = Number(cantInput.text);
+				
+				_pagos.push(p);
+				updatePagos();
+				limpiarCampos();
+				descInput.setFocus();
+			}
 		}
 		
 		private function limpiarCampos():void {

@@ -38,9 +38,21 @@ package views.sistema
 			impresion_anchoPapel.text = GestionClientes.config.impresion_anchoPapel.toString();
 			impresion_fuente.dataProvider = new ArrayList(clases.Config.IMPRESION_FUENTES);
 			impresion_fuente.selectedIndex = GestionClientes.config.impresion_fuente;
+			toggleSonidos(GestionClientes.config.sonidos);
+			sonidos.selected = GestionClientes.config.sonidos;
+			
+			sonidos.addEventListener(MouseEvent.CLICK,sonidos_click);
 			
 			btnGuardar.addEventListener(MouseEvent.CLICK,guardar_click);
 			btnAtras.addEventListener(MouseEvent.CLICK,atras_click);
+		}
+		
+		protected function sonidos_click(event:MouseEvent):void {
+			toggleSonidos(sonidos.selected);
+		}
+		
+		private function toggleSonidos(value:Boolean):void {
+			sonidos.label = value?"Activado":"Desactivado";
 		}
 		
 		protected function atras_click(event:MouseEvent):void {
@@ -55,6 +67,9 @@ package views.sistema
 			for each (campo in selectCampos) {
 				validateSelect(campo);
 			}
+			if (GestionClientes.config.sonidos!=sonidos.selected)
+				GestionClientes.config.update("sonidos",sonidos.selected);
+			
 			ModalAlert.showDelay("Configuración guardada con éxito","Guardar cambios",null,1000,null,"well-info");
 		}
 		

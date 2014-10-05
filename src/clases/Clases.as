@@ -28,6 +28,9 @@ package clases
 			GestionClientes.sql.remover("clases",new <Value>[
 				Value.fromPool("claseID",claseID)
 			]);
+			GestionClientes.sql.remover("horarios",new <Value>[
+				Value.fromPool("claseID",claseID)
+			]);
 			updateFlag=true;
 		}
 		public function byID (claseID:int):VOClase {

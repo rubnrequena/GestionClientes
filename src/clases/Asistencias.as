@@ -47,7 +47,7 @@ package clases
 		}
 		public function registrarAsistencia (clienteID:int,fecha:String,entrada:int):int {
 			if (updateFlag) update();
-			var ret:int;
+			var ret:int=-1;
 			for (var i:int = 0; i < _data.length; i++) {
 				if (_data[i].fechaIngreso==fecha && _data[i].clienteID==clienteID) {
 					if (_data[i].enRango(entrada)) {
@@ -65,7 +65,6 @@ package clases
 							ret = -2;
 						}
 					} else {
-						trace("previa",_data[i].entrada,entrada,_data[i].salida);
 						ret = -1
 					}
 				}

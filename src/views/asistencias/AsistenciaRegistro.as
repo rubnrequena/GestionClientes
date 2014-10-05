@@ -77,18 +77,23 @@ package views.asistencias
 					resultGroup.styleName = "well-success text-size-lg";
 					resultLabel.text = "ASISTENCIA REGISTRADA";
 					
+					if (GestionClientes.config.sonidos) GestionClientes.config.asistencia_registrada.play(0,1);
+					
 				} else if (asistenciaIndice==-1) {
 					resultLabel.text = "ASISTENCIA RECHAZADA: HORARIO NO PERMITIDO";
 					resultGroup.styleName = "well-danger text-size-lg";
+					if (GestionClientes.config.sonidos) GestionClientes.config.asistencia_rechazada.play(0,1);
 				} else if (asistenciaIndice==-2) {
 					resultLabel.text = "ASISTENCIA RECHAZADA: ASISTENCIA PREVIA REGISTRADA";
 					resultGroup.styleName = "well-danger text-size-lg";
+					if (GestionClientes.config.sonidos) GestionClientes.config.asistencia_rechazada.play(0,1);
 				}
 				clienteAsistencias.dataProvider = new VectorList(cliente.asistencias());
 				clienteHorarios.dataProvider = new VectorCollection(cliente.horarios);
 			} else {
 				resultLabel.text = "ASISTENCIA RECHAZADA: CLIENTE NO EXISTE";
 				resultGroup.styleName = "well-danger text-size-lg";
+				if (GestionClientes.config.sonidos) GestionClientes.config.asistencia_rechazada.play(0,1);
 			}
 		}
 	}

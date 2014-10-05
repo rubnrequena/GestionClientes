@@ -30,7 +30,7 @@ package clases
 			var pj:PrintJob = new PrintJob;
 			var print:Print;
 			var now:Date=new Date;
-			if (pj.start()) {
+			if (pj.start2(null,false)) {
 				print = new Print(pj);
 				print.defaultFormat = defaultFormat;
 				print.headerFormat = formatHeader;
@@ -67,13 +67,13 @@ package clases
 				print.printAll();
 			}
 		}
-		public static function imprimirFactura (factura:VOFactura,copia:Boolean=false):void {
+		public static function imprimirFactura (factura:VOFactura,copia:Boolean=false,conCopia:Boolean=false):void {
 			if (!formatsInitialized) initializeFormats();
 			
 			var pj:PrintJob = new PrintJob;
 			var print:Print;
 			var now:Date=new Date;
-			if (pj.start()) {
+			if (pj.start2(null,false)) {
 				print = new Print(pj);
 				print.defaultFormat = defaultFormat;
 				print.headerFormat = formatHeader;
@@ -105,6 +105,8 @@ package clases
 				print.addLine(factura.monto.toString(),formatHeader);
 				formatHeader.align = TextAlign.CENTER;
 				print.printAll();
+				if (conCopia)
+					imprimirFactura(factura,true);
 			}
 		}
 		private static function percentWidth (percent:Number,fullWidth:Number):Number {

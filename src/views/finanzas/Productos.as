@@ -1,5 +1,7 @@
 package views.finanzas
 {
+	import com.ModalAlert;
+	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
@@ -20,8 +22,20 @@ package views.finanzas
 		override protected function childrenCreated():void {
 			btnInsertar.addEventListener(MouseEvent.CLICK,insertar_click);
 			btnCancelar.addEventListener(MouseEvent.CLICK,cancelarClick);
+			btnRemover.addEventListener(MouseEvent.CLICK,remover_click);
 			updateProductosList();
 			descInput.setFocus();
+		}
+		
+		protected function remover_click(event:MouseEvent):void {
+			if (grid.selectedIndex>-1) {
+				ModalAlert.show("¿Seguro desea remover producto?","Producto",null,[ModalAlert.YES,ModalAlert.NO],function (detalle:int):void {
+					if (detalle==0) {
+						GestionClientes.productos.remover(grid.selectedItem.productoID);
+						updateProductosList();
+					}
+				});
+			}
 		}
 		
 		protected function cancelarClick(event:MouseEvent):void {
@@ -39,14 +53,16 @@ package views.finanzas
 		}
 		
 		protected function insertar_click(event:MouseEvent):void {
-			var p:VOProducto = new VOProducto;
-			p.descripcion = descInput.text;
-			p.monto = Number(montoInput.text);
-			p.cantidad = Number(cantInput.text);
-			
-			GestionClientes.productos.insertar(p);
-			updateProductosList();
-			limpiarCampos();
+			if (form.validate) {
+				var p:VOProducto = new VOProducto;
+				p.descripcion = descInput.text;
+				p.monto = Number(montoInput.text);
+				p.cantidad = Number(cantInput.text);
+				
+				GestionClientes.productos.insertar(p);
+				updateProductosList();
+				limpiarCampos();
+			}
 		}
 	}
 }

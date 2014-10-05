@@ -1,6 +1,7 @@
 package views.finanzas
 {
 	import com.ListPicker;
+	import com.ModalAlert;
 	
 	import flash.events.MouseEvent;
 	
@@ -76,7 +77,15 @@ package views.finanzas
 			diasInput.dataProvider = new ArrayList(data); 
 		}
 		protected function removerTarea_click(event:MouseEvent):void {
-			
+			if (tareasGrid.selectedIndex>-1) {
+				ModalAlert.show("¿Seguro desea eliminar tarea?","Tareas",null,[ModalAlert.YES,ModalAlert.NO],function (detalle:int):void {
+					if (detalle==0) {
+						var tarea:VOTarea = tareasGrid.selectedItem as VOTarea;
+						GestionClientes.tareas.remover(tarea.tareaID);
+						tareasGrid.dataProvider = new VectorCollection(GestionClientes.tareas.data);
+					}
+				});
+			}
 		}
 		protected function insertarTarea_click(event:MouseEvent):void {
 			var grupo:VOGrupo = grupoInput.selectedItem as VOGrupo;
@@ -89,6 +98,7 @@ package views.finanzas
 			tarea.type = tareaInput.selectedItem.type;
 			
 			GestionClientes.tareas.insertar(tarea);
+			tareasGrid.dataProvider = new VectorCollection(GestionClientes.tareas.data);
 		}
 	}
 }

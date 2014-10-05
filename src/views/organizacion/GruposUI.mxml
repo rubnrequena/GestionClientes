@@ -3,20 +3,27 @@
 				 xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				 xmlns:s="library://ns.adobe.com/flex/spark" 
 				 xmlns:mx="library://ns.adobe.com/flex/mx" title="Nuevo Grupo" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
+	<fx:Script>
+		<![CDATA[
+			protected function validarInput (item:FormItem):Boolean {
+				return item.input.text.length>0;
+			}
+		]]>
+	</fx:Script>
 	<views:layout>
 		<s:VerticalLayout />
 	</views:layout>
-	<s:Form width="100%">
-		<controls:FormItem label="Nombre del Grupo:" >
+	<controls:Form id="form" width="100%">
+		<controls:FormItem label="Nombre del Grupo:" validateFunction="validarInput" >
 			<s:TextInput id="nombreInput"/>
 		</controls:FormItem>
-		<controls:FormItem label="Descripción:" childHeight="50" >
+		<controls:FormItem label="Descripción:" childHeight="50" validateFunction="validarInput">
 			<s:TextArea id="descInput" height="100"/>
 		</controls:FormItem>
-		<controls:FormItem label="Renta:" >
+		<controls:FormItem label="Renta:" validateFunction="validarInput">
 			<s:TextInput id="rentaInput" height="100" restrict="0-9."/>
 		</controls:FormItem>
-	</s:Form>
+	</controls:Form>
 	<s:DataGrid width="100%" height="100%" id="gruposGrid">
 		<s:columns>
 			<s:ArrayList>

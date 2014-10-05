@@ -65,16 +65,18 @@ package views.organizacion
 			btnGuardar.removeEventListener(MouseEvent.CLICK,guardarClick);
 		}		
 		protected function guardarClick(event:MouseEvent):void {
-			var grupo:VOGrupo = new VOGrupo;
-			grupo.nombre = nombreInput.text;
-			grupo.descripcion = descInput.text;
-			grupo.renta = Number(rentaInput.text);
-			
-			GestionClientes.grupos.insertar(grupo);
-			ModalAlert.show("Grupo guardado exitosamente","Gestion Clientes",null,[ModalAlert.OK],function ():void {
-				resetClick();
-				updateData();
-			});
+			if (form.validate) {
+				var grupo:VOGrupo = new VOGrupo;
+				grupo.nombre = nombreInput.text;
+				grupo.descripcion = descInput.text;
+				grupo.renta = Number(rentaInput.text);
+				
+				GestionClientes.grupos.insertar(grupo);
+				ModalAlert.show("Grupo guardado exitosamente","Gestion Clientes",null,[ModalAlert.OK],function ():void {
+					resetClick();
+					updateData();
+				});
+			}
 		}
 		
 		protected function cancelarClick(event:MouseEvent):void {

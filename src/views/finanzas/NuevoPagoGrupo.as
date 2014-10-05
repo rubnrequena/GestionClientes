@@ -80,7 +80,7 @@ package views.finanzas
 			btnProductos.addEventListener(MouseEvent.CLICK,btnProductos_click);
 			btnInsertar.addEventListener(MouseEvent.CLICK,btnInsertar_click);
 			btnRemover.addEventListener(MouseEvent.CLICK,removerClick);
-			btnFacturar.addEventListener(MouseEvent.CLICK,facturarClick);
+			btnFacturar.addEventListener(MouseEvent.CLICK,facturar_click);
 			addEventListener(KeyboardEvent.KEY_DOWN,onKeyDown);
 		}
 		
@@ -91,8 +91,15 @@ package views.finanzas
 			}
 		}
 		
-		protected function facturarClick(event:MouseEvent):void {
-			ModalAlert.show("¿Esta seguro desea realizar factura?","Facturar",this,[{label:"Sí",styleName:"btn-primary"},{label:"No"}],facturarHandler);
+		protected function facturar_click(event:MouseEvent):void {
+			if (form.validate) {
+				if (_pagos.length>0)
+					ModalAlert.show("¿Esta seguro desea realizar factura?","Facturar",this,[{label:"Sí",styleName:"btn-primary"},{label:"No"}],facturarHandler);
+				else
+					ModalAlert.show("Se necesita agregue al menos un articulo o pago a cancelar","Pagos",null,[ModalAlert.OK],function ():void {
+						descInput.setFocus();
+					});
+			}
 		}
 		protected function facturarHandler (detalle:int):void {
 			if (detalle==0) {
@@ -170,15 +177,17 @@ package views.finanzas
 		}
 		
 		protected function btnInsertar_click(event:MouseEvent):void {
-			var p:VOPago = new VOPago;
-			p.descripcion = descInput.text.toUpperCase();
-			p.monto = Number(montoInput.text);
-			p.cantidad = Number(cantInput.text);
-			
-			_pagos.push(p);
-			updatePagos();
-			limpiarCampos();
-			descInput.setFocus();
+			if (form_item.validate) {
+				var p:VOPago = new VOPago;
+				p.descripcion = descInput.text.toUpperCase();
+				p.monto = Number(montoInput.text);
+				p.cantidad = Number(cantInput.text);
+				
+				_pagos.push(p);
+				updatePagos();
+				limpiarCampos();
+				descInput.setFocus();
+			}
 		}
 		
 		private function limpiarCampos():void {

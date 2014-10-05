@@ -2,11 +2,13 @@ package clases.tareas
 {
 	import com.adobe.crypto.MD5;
 	
+	import flash.filesystem.File;
+	
 	import vo.VOCliente;
 	import vo.VOGrupo;
 	import vo.VOHorario;
 
-	public class TPago
+	public class TPago implements ITarea
 	{
 		protected var grupoID:int;
 		protected var descripcion:String;
@@ -18,12 +20,25 @@ package clases.tareas
 		private var grupo:VOGrupo;
 		private var clientes:Vector.<VOCliente>;
 		
-		public function TPago(arguments:Array) {
+		public function TPago() {
+			
+		}
+		
+		public function meta(meta:String):String {
+			var data:Array = meta.split(";");
+			return [
+				"Grupo: "+GestionClientes.grupos.byID(data[0]).nombre,
+				"Descripción: "+data[1]
+			].join("\n");
+		}
+		
+		
+		public function iniciar(arguments:Array):void {
 			grupoID = arguments[0];
 			descripcion = arguments[1];
 			fecha = arguments[2];
 			usuarioID = arguments[3];
-						
+			
 			d = new Date;
 			
 			clientes = GestionClientes.clientes.byGroup(grupoID);
@@ -52,6 +67,7 @@ package clases.tareas
 				GestionClientes.sql.insertarUnion("pagos",pagos);
 			grupo=null;	clientes=null; pagos=null; pago=null;
 		}
+		
 		
 		private function replaceTags(descripcion:String):String {
 			descripcion = descripcion.split("{MES}").join(VOHorario.MESES[d.month].label);

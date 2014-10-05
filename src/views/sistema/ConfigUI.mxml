@@ -19,6 +19,12 @@
 			<s:TextInput id="correlativo" width="50%"/>
 		</controls:FormItem>
 		<controls:FormItem styleName="well-info">
+			<s:Label text="Configuración de Sistema"/>
+		</controls:FormItem>
+		<controls:FormItem label="Sonidos">
+			<s:ToggleButton id="sonidos" width="50%" styleName="btn-primary"/>
+		</controls:FormItem>
+		<controls:FormItem styleName="well-info">
 			<s:Label text="Configuración de Impresora"/>
 		</controls:FormItem>
 		<controls:FormItem label="Ancho de papel">

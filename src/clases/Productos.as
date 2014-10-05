@@ -1,5 +1,7 @@
 package clases
 {
+	import sr.helpers.Value;
+	
 	import utils.VectorUtil;
 	
 	import vo.VOProducto;
@@ -25,6 +27,12 @@ package clases
 			producto.productoID = GestionClientes.sql.insertar("productos",producto.toObject).lastInsertRowID;
 			_productos.push(producto);
 			return producto;
+		}
+		public function remover (productoID:int):void {
+			GestionClientes.sql.remover("productos",new <Value>[
+				Value.fromPool("productoID",productoID)
+			]);
+			updateFlag=true;
 		}
 		public function Productos() {
 			

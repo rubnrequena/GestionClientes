@@ -15,8 +15,6 @@ package views.organizacion
 	
 	import spark.events.GridSelectionEvent;
 	
-	import utils.DateUtil;
-	
 	import vo.VOClase;
 	import vo.VOGrupo;
 	import vo.VOInstructor;
@@ -39,6 +37,8 @@ package views.organizacion
 		protected function onRemoved(event:Event):void {
 			btnAtras.removeEventListener(MouseEvent.CLICK,atras_click);
 			btnNuevo.removeEventListener(MouseEvent.CLICK,nuevo_click);
+			btnRemover.removeEventListener(MouseEvent.CLICK,remover_click);
+			clasesGrid.removeEventListener(GridSelectionEvent.SELECTION_CHANGE,clases_selectionChange);
 		}
 		
 		protected function onAdded(event:Event):void {

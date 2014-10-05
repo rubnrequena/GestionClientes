@@ -44,25 +44,24 @@
 		<controls:FormItem label="Día">
 			<com:ListPickerButton id="diasInput" label="..." width="50%" />
 		</controls:FormItem>
-		<controls:FormItem >
-			<s:HGroup verticalAlign="contentJustify" width="50%">
-				<s:Button id="insertarTarea" label="Insertar" styleName="btn-success icon-insertar-sm" width="50%"/>
-				<s:Button id="removerTarea" label="Remover" styleName="btn-danger icon-remover-sm" width="50%"/>
-			</s:HGroup>
-		</controls:FormItem>
+		<s:HGroup horizontalAlign="center" width="100%">
+			<s:Button id="insertarTarea" label="Insertar" styleName="btn-success icon-insertar-sm" width="33%"/>
+		</s:HGroup>
 	</s:Form>
 	<controls:FormItem>
 		<s:Button label="Ocultar formulario" id="btnView" width="50%" styleName="btn-warning"/>
 	</controls:FormItem>
-	<s:DataGrid width="100%" height="100%" id="tareasGrid">
+	<s:HGroup horizontalAlign="center" width="100%">
+		<s:Button id="removerTarea" label="Remover" styleName="btn-danger icon-remover-sm" width="33%"/>
+	</s:HGroup>
+	<s:DataGrid width="100%" height="100%" id="tareasGrid" variableRowHeight="true">
 		<s:columns>
 			<s:ArrayList>
 				<s:GridColumn headerText="Tarea" dataField="tarea"/>
 				<s:GridColumn headerText="Tipo" dataField="tipoString"/>
-				<s:GridColumn headerText="Repetir" dataField="repetir"/>
-				<s:GridColumn headerText="Día" dataField="dia"/>
-				<s:GridColumn headerText="Grupo" dataField="grupoString"/>
-				<s:GridColumn headerText="Descripcion" dataField="descripcion"/>
+				<s:GridColumn headerText="Repetir" dataField="repetirString"/>
+				<s:GridColumn headerText="Día" dataField="diaString"/>
+				<s:GridColumn headerText="Descripcion" dataField="metaString"/>
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>

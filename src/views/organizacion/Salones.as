@@ -51,12 +51,14 @@ package views.organizacion
 			salonesGrid.dataProvider = new VectorList(GestionClientes.salones.data);
 		}
 		protected function insertarClick(event:MouseEvent):void {
-			var salon:VOSalon = new VOSalon;
-			salon.nombre = nombreInput.text;			
-			GestionClientes.salones.insertar(salon);
-			updateData();
-			nombreInput.text = "";
-			nombreInput.setFocus();
+			if (form.validate) {
+				var salon:VOSalon = new VOSalon;
+				salon.nombre = nombreInput.text;			
+				GestionClientes.salones.insertar(salon);
+				updateData();
+				nombreInput.text = "";
+				nombreInput.setFocus();
+			}
 		}
 	}
 }

@@ -11,8 +11,10 @@
 	</s:states>
 	<fx:Script>
 		<![CDATA[
+			
 			import clases.Asistencias;
 			import clases.Clases;
+			import clases.ClasesAsistencia;
 			import clases.Clientes;
 			import clases.Config;
 			import clases.Facturas;
@@ -39,12 +41,10 @@
 			import sr.modulo.Modulo;
 			
 			import utils.DateUtil;
-			import utils.VectorUtil;
 			
 			import views.Inicio;
 			import views.asistencias.AsistenciaRegistro;
 			
-			import clases.ClasesAsistencia;
 			import vo.VOClaseAsistencia;
 			import vo.VOHorario;
 			import vo.VOUsuario;
@@ -110,6 +110,7 @@
 				btnAcerca.addEventListener(MouseEvent.CLICK,acerca_click);
 				stateAsistencia.addEventListener(FlexEvent.ENTER_STATE,asistencia_enter);
 				mainMenu.nav = nav;
+				
 			}
 			
 			protected function acerca_click(event:MouseEvent):void {
@@ -145,7 +146,6 @@
 						clase.usuarioID = VOUsuario.USUARIO_ACTIVO.usuarioID;
 						clase.claseID = horariosDia[i].claseID;
 						
-						trace("guardando asistencia");
 						ClasesAsistencia.instancia.insertar(clase);
 					}
 				}

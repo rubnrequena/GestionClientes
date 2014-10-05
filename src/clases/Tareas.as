@@ -1,10 +1,13 @@
 package clases
 {
+	import clases.tareas.ITarea;
 	import clases.tareas.TPago;
 	
 	import flash.utils.getDefinitionByName;
 	
 	import mx.controls.DateField;
+	
+	import sr.helpers.Value;
 	
 	import utils.VectorUtil;
 	
@@ -34,7 +37,12 @@ package clases
 			updateFlag=true;
 			return tarea;
 		}
-		
+		public function remover (tareaID:int):void {
+			GestionClientes.sql.remover("tareas",new <Value>[
+				Value.fromPool("tareaID",tareaID)
+			]);
+			updateFlag=true;
+		}
 		public function run():void {
 			var d:Date = new Date; var i:int;
 			var ds:String = DateField.dateToString(d,"YYYY-MM-DD");
@@ -54,7 +62,8 @@ package clases
 		
 		public function runTask(tarea:VOTarea,date:String):void {
 			var type:Class = getDefinitionByName(tarea.type) as Class;
-			var t:Object = new type(tarea.metaData.concat(date,1));
+			var t:ITarea = new type();
+			t.iniciar(tarea.metaData.concat(date,1));
 		}
 	}
 }

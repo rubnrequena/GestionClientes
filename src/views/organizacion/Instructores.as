@@ -39,14 +39,16 @@ package views.organizacion
 		}
 		
 		protected function insertar_click(event:MouseEvent):void {
-			var instructor:VOInstructor = new VOInstructor;
-			instructor.cedula = cedulaInput.text;
-			instructor.nombres = nombresInput.text;
-			instructor.telefonos = tlfInput.text;
-			
-			GestionClientes.instructores.insertar(instructor);
-			updateData();
-			reset();
+			if (form.validate) {
+				var instructor:VOInstructor = new VOInstructor;
+				instructor.cedula = cedulaInput.text;
+				instructor.nombres = nombresInput.text;
+				instructor.telefonos = tlfInput.text;
+				
+				GestionClientes.instructores.insertar(instructor);
+				updateData();
+				reset();
+			}
 		}
 		
 		private function reset():void {

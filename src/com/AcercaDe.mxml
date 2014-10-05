@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com:Modal xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		   xmlns:s="library://ns.adobe.com/flex/spark" currentState="normal"
-		   xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:com="com.*" width="305" title="Acerca De" xmlns:ns="http://flex.apache.org/experimental/ns">
+		   xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:com="com.*" width="305" title="Acerca De" xmlns:ns="http://flex.apache.org/experimental/ns"
+		   creationComplete="modal1_creationCompleteHandler(event)">
 	<com:states>
 		<s:State name="normal"/>
 		<s:State name="updating"/>
@@ -10,7 +11,7 @@
 		<![CDATA[
 			import AutoUpdater.AUpdate;
 			
-			import flash.sampler.NewObjectSample;
+			import mx.events.FlexEvent;
 			
 			import tools.AutoClose;
 			
@@ -28,11 +29,12 @@
 			
 			protected function update_click(event:MouseEvent):void {
 				var au:AUpdate = new AUpdate("https://dl.dropboxusercontent.com/u/47924956/GestionClientes");
-				au.cache=false;
-				au.verbose=true;
 				au.addEventListener(ProgressEvent.PROGRESS,updateProggress);
 				au.addEventListener(Event.COMPLETE,appupdateComplete);
 				au.iniciar();
+				
+				version.text = "Conectando...";
+				version.styleName = "text-align-center";
 			}
 			
 			protected function updateProggress(event:ProgressEvent):void {
@@ -51,6 +53,14 @@
 				popOff();
 			}
 			
+			protected function modal1_creationCompleteHandler(event:FlexEvent):void {
+				var appXml:XML = NativeApplication.nativeApplication.applicationDescriptor;
+				var ns:Namespace = appXml.namespace();
+				var appVersion:String = appXml.ns::versionNumber[0];
+				version.text = "Version:  "+appVersion;
+				System.disposeXML(appXml);
+			}
+			
 		]]>
 	</fx:Script>
 	<com:layout>
@@ -65,9 +75,10 @@ Ruben Requena
 rubnrequena@gmail.com
 		</s:text>
 	</s:RichText>
+	<s:Label width="100%" id="version" includeIn="normal" paddingLeft="10" />
 	<ns:ProgressBar width="100%" id="progress" includeIn="updating" height="30" styleName="well-primary"/>
 	<com:controlBarContent>
-		<s:Button label="Actualizar" height="30" width="100%" styleName="btn-info icon-update-sm" id="update" />
-		<s:Button label="Volver" height="30" styleName="btn-danger icon-atras-sm" id="btnAtras"/>
+		<s:Button enabled.updating="false" label="Actualizar" height="30" width="100%" styleName="btn-info icon-update-sm" id="update" />
+		<s:Button enabled.updating="false" label="Volver" height="30" styleName="btn-danger icon-atras-sm" id="btnAtras"/>
 	</com:controlBarContent>
 </com:Modal>
