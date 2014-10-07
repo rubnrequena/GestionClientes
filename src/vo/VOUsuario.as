@@ -11,8 +11,10 @@ package vo
 		private static var _USUARIO_ACTIVO:VOUsuario;
 		public static function get USUARIO_ACTIVO():VOUsuario { return _USUARIO_ACTIVO; }
 		public static function set USUARIO_ACTIVO(value:VOUsuario):void {
-			_USUARIO_ACTIVO = value;
-			usuarioChange.dispatch(value);	
+			if (_USUARIO_ACTIVO!=value) {
+				_USUARIO_ACTIVO = value;
+				usuarioChange.dispatch(value);
+			}
 		}		
 		public static const ACCESOS:Array = [
 			{label:"Administrador"},
