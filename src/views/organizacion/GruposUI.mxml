@@ -29,7 +29,6 @@
 			<s:ArrayList>
 				<s:GridColumn headerText="Nombre" dataField="nombre"/>
 				<s:GridColumn headerText="Renta" dataField="renta"/>
-				<s:GridColumn headerText="Instructor" dataField="instructor"/>
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
