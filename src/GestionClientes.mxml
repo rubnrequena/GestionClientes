@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
 					   xmlns:s="library://ns.adobe.com/flex/spark" 
-					   xmlns:controls="bootstrap.controls.*" xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:local="*" xmlns:com="com.*" xmlns:mx="library://ns.adobe.com/flex/mx"
+					   xmlns:controls="bootstrap.controls.*" xmlns:ns="http://flex.apache.org/experimental/ns" 
+					   xmlns:local="*" xmlns:com="com.*" xmlns:mx="library://ns.adobe.com/flex/mx"
 					   creationComplete="onComplete(event)" addedToStage="windowedapplication1_addedToStageHandler(event)"
 					   width="800" height="650" showStatusBar="false">
 	<fx:Style source="bootstrap/bootstrap.css"/>
@@ -11,7 +12,6 @@
 	</s:states>
 	<fx:Script>
 		<![CDATA[
-			
 			import clases.Asistencias;
 			import clases.Clases;
 			import clases.ClasesAsistencia;
@@ -28,9 +28,14 @@
 			import clases.Usuarios;
 			
 			import com.AcercaDe;
+			import com.ListPicker;
 			import com.Login;
+			import com.Modal;
 			import com.ModalAlert;
 			
+			import interfaces.IModal;
+			
+			import mx.collections.ArrayList;
 			import mx.events.FlexEvent;
 			import mx.managers.PopUpManager;
 			
@@ -48,6 +53,8 @@
 			import vo.VOClaseAsistencia;
 			import vo.VOHorario;
 			import vo.VOUsuario;
+			private static var KEYBOARD_STAGE:Boolean=true;
+
 			public static var sql:Modulo;
 			public static var menuSignal:NativeSignal;
 			
@@ -108,9 +115,23 @@
 				PopUpManager.centerPopUp(splash);
 				
 				btnAcerca.addEventListener(MouseEvent.CLICK,acerca_click);
+				btnSesion.addEventListener(MouseEvent.CLICK,sesion_click);
 				stateAsistencia.addEventListener(FlexEvent.ENTER_STATE,asistencia_enter);
 				mainMenu.nav = nav;
 				
+				VOUsuario.usuarioChange.add(function (usuario:VOUsuario):void {
+					if (usuario.acceso>0) {
+						nav.removeAllElements();
+						nav.addView("inicio_view",Inicio,null,true);
+					}
+				});
+				
+				Modal.globalPopUp.add(function (modal:IModal):void {
+					KEYBOARD_STAGE=false;
+				});
+				Modal.globalPopOff.add(function (modal:IModal):void {
+					KEYBOARD_STAGE=true;
+				});
 			}
 			
 			protected function acerca_click(event:MouseEvent):void {
@@ -119,11 +140,19 @@
 			}
 			
 			protected function stage_keyDown(event:KeyboardEvent):void {
-				if (event.keyCode==Keyboard.END) {
-					currentState = "asistencia";
-				} else if (event.keyCode==Keyboard.HOME) {
-					currentState = "normal";
-					nav.setFocus();
+				if (KEYBOARD_STAGE) {
+					if (event.keyCode==Keyboard.END) {
+						currentState = "asistencia";
+					} else if (event.keyCode==Keyboard.HOME) {
+						currentState = "normal";
+						nav.setFocus();
+					} else if (event.keyCode==Keyboard.F1) {
+						var picker:ListPicker = new ListPicker;
+						picker.dataProvider = new ArrayList(nav.history);
+						picker.labelField = "name";
+						picker.onClose = viewsClose;
+						picker.popUp();
+					}
 				}
 			}
 			
@@ -171,11 +200,27 @@
 				login.popUp();
 			}
 			
+			protected function sesion_click(event:MouseEvent):void {
+				nav.removeView(nav.lastView);
+				showLogin(function ():void {
+					nav.showView(nav.lastView);
+				});
+			}
+			
+			private function viewsClose(indice:int,view:String):void {
+				if (indice>-1)
+					nav.showView(view);
+				nav.setFocus();
+			}
+			
 		]]>
 	</fx:Script>
 	<s:VGroup width="100%" height="100%" gap="0">
 		<com:MainMenu id="mainMenu" width="100%" height="110" includeIn="normal"/>
 		<local:ViewNavigatorHistory id="nav" width="100%" height="100%" top.asistencia="0" bottom="0"/>		
 	</s:VGroup>
-	<s:Button label="Acerca" height="30" right="0" top="0" styleName="btn-menu" id="btnAcerca" includeIn="normal"/>
+	<s:HGroup right="0" top="0" gap="0">
+		<s:Button label="Cerrar Sesión" height="30" styleName="btn-warning" id="btnSesion" includeIn="normal"/>
+		<s:Button label="Acerca" height="30" styleName="btn-menu" id="btnAcerca" includeIn="normal"/>
+	</s:HGroup>
 </s:WindowedApplication>
