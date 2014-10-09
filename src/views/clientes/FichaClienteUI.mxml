@@ -23,6 +23,16 @@
 			<controls:FormItem label="Grupo:">
 				<s:Button label="Seleccionar Grupo..." height="30" width="50%" id="grupoInput" styleName="btn-silent"/>
 			</controls:FormItem>
+			<controls:FormItem label="Exonerado:">
+				<com:ListPickerButton id="exoneradoInput" styleName="btn-silent" width="50%" labelField="label">
+					<com:dataProvider>
+						<s:ArrayList>
+							<fx:Object label="Si"/>
+							<fx:Object label="No"/>
+						</s:ArrayList>
+					</com:dataProvider>
+				</com:ListPickerButton>
+			</controls:FormItem>
 			<s:Button label="Actualizar Datos" width="100%" styleName="btn-success" height="30" id="btnActualizar"/>
 			<controls:FormItem label="Asistencias en el des de">
 				<com:ListPickerButton labelField="label" title="Meses" id="mesInput" width="25%"/>

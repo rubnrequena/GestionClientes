@@ -18,6 +18,7 @@ package vo
 		public var fechaRegistro:String;
 		public var grupoID:int;
 		public var meta:String;
+		public var exonerado:Boolean;
 		
 		public function VOCliente() {
 			super();

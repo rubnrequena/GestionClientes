@@ -23,6 +23,7 @@ package views.clientes
 	import vo.VOCliente;
 	import vo.VOGrupo;
 	import vo.VOHorario;
+	import vo.VOUsuario;
 
 	public class FichaCliente extends FichaClienteUI
 	{
@@ -58,6 +59,9 @@ package views.clientes
 			dirInput.text = cliente.direccion;
 			fechaInput.text = cliente.fechaNacimientoLocal;
 			grupoInput.label = cliente.grupo.toString();
+			
+			exoneradoInput.selectedIndex = int(cliente.exonerado);
+			exoneradoInput.enabled = VOUsuario.USUARIO_ACTIVO.acceso==VOUsuario.USER_ADMIN;
 			
 			grupo = cliente.grupo;
 			grupoIndex = GestionClientes.grupos.grupoIndex(cliente.grupoID);

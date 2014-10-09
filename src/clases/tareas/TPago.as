@@ -47,19 +47,21 @@ package clases.tareas
 				var pagos:Array = []; var pago:Object = {};
 				var i:int; var hash:String; var descNoTags:String;
 				for (i = 0; i < clientes.length; i++) {
-					descNoTags = replaceTags(descripcion); 
-					hash = MD5.hash(descNoTags+clientes[i].clienteID);
-					if (!GestionClientes.pagos.hasHash(hash)) {
-						pago = {};
-						pago.clienteID = clientes[i].clienteID;
-						pago.descripcion = descNoTags;
-						pago.monto = grupo.renta;
-						pago.cantidad = 1;
-						pago.usuarioID = usuarioID;
-						pago.fecha = fecha;
-						pago.pendiente = true;
-						pago.hash = hash;
-						pagos.push(pago);
+					if (clientes[i].exonerado==false) {
+						descNoTags = replaceTags(descripcion); 
+						hash = MD5.hash(descNoTags+clientes[i].clienteID);
+						if (!GestionClientes.pagos.hasHash(hash)) {
+							pago = {};
+							pago.clienteID = clientes[i].clienteID;
+							pago.descripcion = descNoTags;
+							pago.monto = grupo.renta;
+							pago.cantidad = 1;
+							pago.usuarioID = usuarioID;
+							pago.fecha = fecha;
+							pago.pendiente = true;
+							pago.hash = hash;
+							pagos.push(pago);
+						}
 					}
 				}
 			}

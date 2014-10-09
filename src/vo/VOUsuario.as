@@ -6,6 +6,9 @@ package vo
 	
 	public class VOUsuario extends MapObject
 	{
+		public static const USER_ADMIN:int = 0;
+		public static const USER_EMPLEADO:int = 1;
+		
 		public static const usuarioChange:Signal = new Signal(VOUsuario);
 		
 		private static var _USUARIO_ACTIVO:VOUsuario;
