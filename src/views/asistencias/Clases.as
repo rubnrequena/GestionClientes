@@ -39,8 +39,8 @@ package views.asistencias
 			claseInput.pickerClass = new ClassFactory(ListPickerSearch);
 			claseInput.onClose = claseInput_close;
 		}
-		protected function onRemoved(event:Event):void {
-			
+		override protected function onRemoved(event:Event):void {
+			super.onRemoved(event);
 		}		
 		override protected function childrenCreated():void {
 			super.childrenCreated();
@@ -100,7 +100,8 @@ package views.asistencias
 			horariosDia.refresh();
 			horariosGrid.dataProvider = horariosDia;
 		}
-		protected function onAdded(event:Event):void {
+		override protected function onAdded(event:Event):void {
+			super.onAdded(event);
 			if (initialized) childrenCreated();
 		}
 	}

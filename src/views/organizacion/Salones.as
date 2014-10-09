@@ -15,14 +15,14 @@ package views.organizacion
 		public function Salones() {
 			super();
 			addEventListener(Event.ADDED_TO_STAGE,onAdded);
-			addEventListener(FlexEvent.CREATION_COMPLETE,onComplete);
 		}
 		
-		protected function onComplete(event:FlexEvent):void {
-			removeEventListener(FlexEvent.CREATION_COMPLETE,onComplete);
+		override protected function onComplete(event:FlexEvent):void {
+			super.onComplete(event);
 		}
 		
-		protected function onAdded(event:Event):void {
+		override protected function onAdded(event:Event):void {
+			super.onAdded(event);
 			if (initialized)
 				childrenCreated();
 		}

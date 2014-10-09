@@ -2,9 +2,7 @@ package views.clientes
 {
 	import bootstrap.controls.FormItem;
 	
-	import com.ListPicker;
 	import com.ListPickerSearch;
-	import com.Modal;
 	import com.ModalAlert;
 	
 	import flash.events.Event;
@@ -12,32 +10,22 @@ package views.clientes
 	
 	import mx.controls.DateField;
 	import mx.core.ClassFactory;
-	import mx.core.ITextInput;
 	
 	import org.apache.flex.collections.VectorCollection;
-	import org.apache.flex.collections.VectorList;
 	import org.osflash.signals.natives.NativeSignal;
 	
-	import spark.components.Alert;
-	import spark.components.TextInput;
 	import spark.components.supportClasses.SkinnableTextBase;
 	
 	import utils.DateUtil;
 	
 	import vo.VOCliente;
-	import vo.VOGrupo;
 
 	public class Cliente extends ClienteUI
-	{
-		private var onRemove:NativeSignal;
-		private var onAdded:NativeSignal;
-		
+	{		
 		public var cliente:VOCliente;
 		
 		public function Cliente() {
 			super();
-			onAdded = new NativeSignal(this,Event.ADDED_TO_STAGE,Event);
-			onAdded.addOnce(addedStage);
 		}		
 		override protected function childrenCreated():void {
 			btnCancelar.addEventListener(MouseEvent.CLICK,cancelClick);
@@ -50,21 +38,18 @@ package views.clientes
 			nombreInput.setFocus();
 		}
 		
-		private function addedStage(e:Event):void {
+		override protected function onAdded(event:Event):void {
+			super.onAdded(event);
 			if (initialized)
 				childrenCreated();
-			
-			onRemove = new NativeSignal(this,Event.REMOVED_FROM_STAGE,Event);
-			onRemove.addOnce(removeStage);
 		}
 		
-		private function removeStage(e:Event):void {
+		override protected function onRemoved(event:Event):void {
+			super.onRemoved(event);
 			btnCancelar.removeEventListener(MouseEvent.CLICK,cancelClick);
-			btnGuardar.removeEventListener(MouseEvent.CLICK,guardar_click);	
-			onRemove=null;
+			btnGuardar.removeEventListener(MouseEvent.CLICK,guardar_click);
 			
 			btnReset.removeEventListener(MouseEvent.CLICK,resetClick);
-			onAdded.addOnce(addedStage);
 		}
 		
 		protected function guardar_click(event:MouseEvent):void {

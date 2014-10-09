@@ -22,10 +22,11 @@ package views.clientes
 			addEventListener(Event.REMOVED_FROM_STAGE,onRemoved);
 		}
 		
-		protected function onRemoved(event:Event):void {
-			
+		override protected function onRemoved(event:Event):void {
+			super.onRemoved(event);
 		}		
-		protected function onAdded(event:Event):void {
+		override protected function onAdded(event:Event):void {
+			super.onAdded(event);
 			if (initialized) childrenCreated();
 		}		
 		override protected function childrenCreated():void {

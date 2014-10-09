@@ -49,7 +49,8 @@ package views.organizacion
 				}
 			});
 		}
-		protected function onAdded(event:Event):void {
+		override protected function onAdded(event:Event):void {
+			super.onAdded(event);
 			if (initialized)
 				childrenCreated();			
 		}
@@ -60,7 +61,8 @@ package views.organizacion
 			rentaInput.text="";
 			nombreInput.setFocus();
 		}
-		protected function onRemoved(event:Event):void {
+		override protected function onRemoved(event:Event):void {
+			super.onRemoved(event);
 			btnCancelar.removeEventListener(MouseEvent.CLICK,cancelarClick);
 			btnGuardar.removeEventListener(MouseEvent.CLICK,guardarClick);
 		}		

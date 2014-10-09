@@ -48,7 +48,8 @@ package views.finanzas
 			addEventListener(FlexEvent.CREATION_COMPLETE,onComplete);
 		}
 		
-		protected function onComplete(event:FlexEvent):void {
+		override protected function onComplete(event:FlexEvent):void {
+			super.onComplete(event);
 			removeEventListener(FlexEvent.CREATION_COMPLETE,onComplete);
 			if (cliente)
 				descInput.setFocus();
@@ -58,7 +59,8 @@ package views.finanzas
 			(controlBarLayout as HorizontalLayout).verticalAlign = "middle";
 		}
 		
-		protected function onAdded(event:Event):void {
+		override protected function onAdded(event:Event):void {
+			super.onAdded(event);
 			if (initialized) {
 				childrenCreated();
 				if (cliente)

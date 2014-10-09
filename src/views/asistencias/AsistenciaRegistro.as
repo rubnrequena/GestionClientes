@@ -27,18 +27,18 @@ package views.asistencias
 	{
 		public var back:Boolean=true;
 		
-		public function AsistenciaRegistro()
-		{
-			addEventListener(Event.ADDED_TO_STAGE,onAdded);
-			addEventListener(Event.REMOVED_FROM_STAGE,onRemoved);
+		public function AsistenciaRegistro() {
+			
 		}
 		
-		protected function onAdded(event:Event):void {
+		override protected function onAdded(event:Event):void {
+			super.onAdded(event);
 			if (initialized)
 				childrenCreated();
 		}
 		
-		protected function onRemoved(event:Event):void {
+		override protected function onRemoved(event:Event):void {
+			super.onRemoved(event);
 			btnRegistrar.removeEventListener(MouseEvent.CLICK,registrarClick);
 		}
 		

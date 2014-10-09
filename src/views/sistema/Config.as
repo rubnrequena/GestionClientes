@@ -23,10 +23,10 @@ package views.sistema
 		];
 		public function Config() {
 			super();
-			addEventListener(Event.ADDED_TO_STAGE,onAdded);
 		}
 		
-		private function onAdded(event:Event):void {
+		override protected function onAdded(event:Event):void {
+			super.onAdded(event);
 			if (initialized) childrenCreated();
 		}
 		

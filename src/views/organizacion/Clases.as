@@ -34,14 +34,16 @@ package views.organizacion
 			removeEventListener(Event.ADDED_TO_STAGE,onAdded);
 			removeEventListener(Event.REMOVED_FROM_STAGE,onRemoved);
 		}
-		protected function onRemoved(event:Event):void {
+		override protected function onRemoved(event:Event):void {
+			super.onRemoved(event);
 			btnAtras.removeEventListener(MouseEvent.CLICK,atras_click);
 			btnNuevo.removeEventListener(MouseEvent.CLICK,nuevo_click);
 			btnRemover.removeEventListener(MouseEvent.CLICK,remover_click);
 			clasesGrid.removeEventListener(GridSelectionEvent.SELECTION_CHANGE,clases_selectionChange);
 		}
 		
-		protected function onAdded(event:Event):void {
+		override protected function onAdded(event:Event):void {
+			super.onAdded(event);
 			if (initialized) childrenCreated();
 		}
 		override protected function childrenCreated():void {

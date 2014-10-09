@@ -25,10 +25,12 @@ package views.clientes
 			addEventListener(Event.REMOVED_FROM_STAGE,onRemoved);
 		}
 		
-		protected function onRemoved(event:Event):void {
+		override protected function onRemoved(event:Event):void {
+			super.onRemoved(event);
 			btnCancelar.addEventListener(MouseEvent.CLICK,cancelarClick);
 		}
-		protected function onAdded(event:Event):void {
+		override protected function onAdded(event:Event):void {
+			super.onAdded(event);
 			if (initialized) childrenCreated();
 		}
 		override protected function createChildren():void {

@@ -28,7 +28,8 @@ package views.asistencias
 			super();
 			addEventListener(Event.ADDED_TO_STAGE,onAdded);
 		}
-		protected function onAdded(event:Event):void {
+		override protected function onAdded(event:Event):void {
+			super.onAdded(event);
 			if (initialized) childrenCreated();
 		}
 		override protected function createChildren():void {

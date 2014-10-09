@@ -45,7 +45,8 @@ package views.finanzas
 			addEventListener(FlexEvent.CREATION_COMPLETE,onComplete);
 		}
 		
-		protected function onComplete(event:FlexEvent):void {
+		override protected function onComplete(event:FlexEvent):void {
+			super.onComplete(event);
 			removeEventListener(FlexEvent.CREATION_COMPLETE,onComplete);
 			if (grupo)
 				descInput.setFocus();
@@ -53,7 +54,8 @@ package views.finanzas
 				grupoInput.setFocus();
 		}
 		
-		protected function onAdded(event:Event):void {
+		override protected function onAdded(event:Event):void {
+			super.onAdded(event);
 			if (initialized) {
 				childrenCreated();
 				if (grupo)
