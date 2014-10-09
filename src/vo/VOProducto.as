@@ -8,6 +8,7 @@ package vo
 		public var descripcion:String;
 		public var cantidad:Number;
 		public var monto:Number;
+		public var tipo:int;
 		
 		public function VOProducto() {
 			super();

@@ -41,8 +41,6 @@ package views.finanzas
 		public function NuevoPagoGrupo() {
 			super();
 			_pagos=new Vector.<VOPago>;
-			addEventListener(Event.ADDED_TO_STAGE,onAdded);
-			addEventListener(FlexEvent.CREATION_COMPLETE,onComplete);
 		}
 		
 		override protected function onComplete(event:FlexEvent):void {
@@ -79,8 +77,8 @@ package views.finanzas
 		}
 		override protected function childrenCreated():void {
 			btnCancelar.addEventListener(MouseEvent.CLICK,cancelarClick);
-			btnProductos.addEventListener(MouseEvent.CLICK,btnProductos_click);
-			btnInsertar.addEventListener(MouseEvent.CLICK,btnInsertar_click);
+			btnProductos.addEventListener(MouseEvent.CLICK,productos_click);
+			btnInsertar.addEventListener(MouseEvent.CLICK,insertar_click);
 			btnRemover.addEventListener(MouseEvent.CLICK,removerClick);
 			btnFacturar.addEventListener(MouseEvent.CLICK,facturar_click);
 			addEventListener(KeyboardEvent.KEY_DOWN,onKeyDown);
@@ -144,23 +142,27 @@ package views.finanzas
 						styleName:"btn-danger icon-atras-sm"
 					}
 				],function (detalle:int):void {
-					if (detalle==0)
+					if (detalle==0) {
 						clases.Imprimir.imprimirFacturas(facturas);
+						if (copia.selected)
+							clases.Imprimir.imprimirFacturas(facturas,true);
+					}
 					cancelarClick();
 				});
 			}
 		}
 		protected function onKeyDown(event:KeyboardEvent):void {
 			if (event.keyCode==Keyboard.INSERT) {
-				btnProductos_click();
+				productos_click();
 			}
 		}
-		protected function btnProductos_click(event:MouseEvent=null):void {
+		protected function productos_click(event:MouseEvent=null):void {
 			var productosPicker:ListPickerSearch = new ListPickerSearch();
 			productosPicker.title = "Seleccione producto o servicio";
 			productosPicker.onClose = function (indice:int,producto:VOProducto):void {
 				descInput.text = producto.descripcion;
 				montoInput.text = producto.monto.toString();
+				tipoInput.selectedIndex = producto.tipo;
 				cantInput.setFocus();
 			};
 			productosPicker.dataProvider = new VectorCollection(GestionClientes.productos.data);
@@ -178,12 +180,13 @@ package views.finanzas
 			grid.dataProvider = new VectorCollection(_pagos);
 		}
 		
-		protected function btnInsertar_click(event:MouseEvent):void {
+		protected function insertar_click(event:MouseEvent):void {
 			if (form_item.validate) {
 				var p:VOPago = new VOPago;
 				p.descripcion = descInput.text.toUpperCase();
 				p.monto = Number(montoInput.text);
 				p.cantidad = Number(cantInput.text);
+				p.tipo = tipoInput.selectedIndex;
 				
 				_pagos.push(p);
 				updatePagos();
@@ -196,6 +199,7 @@ package views.finanzas
 			descInput.text = "";
 			montoInput.text = "0"; 
 			cantInput.text = "1"; 
+			tipoInput.selectedIndex=-1;
 		}
 		
 		protected function cancelarClick(event:MouseEvent=null):void {

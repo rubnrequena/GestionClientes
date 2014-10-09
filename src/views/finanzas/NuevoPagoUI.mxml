@@ -14,7 +14,7 @@
 			protected function validarItem (item:FormItem):Boolean {
 				var m:Number = Number(montoInput.text);
 				var c:Number = Number(cantInput.text);
-				return (!isNaN(m) && !isNaN(c)) && (m>0 && c>0)
+				return (!isNaN(m) && !isNaN(c)) && (m!=0 && c!=0);
 			}
 		]]>
 	</fx:Script>
@@ -41,6 +41,18 @@
 				<s:Label text="Cantidad:" styleName="formItem-label"/>
 				<s:TextInput restrict="0-9." id="cantInput" width="100%" text="1"/>
 			</s:HGroup>
+		</controls:FormItem>
+		<controls:FormItem label="Tipo:" validateFunction="validarList">
+			<com:ListPickerButton label="Seleccione Tipo" title="Tipo" labelField="label" id="tipoInput" >
+				<com:dataProvider>
+					<s:ArrayList>
+						<fx:Object label="MENSUALIDAD"/>
+						<fx:Object label="SERVICIO"/>
+						<fx:Object label="PRODUCTO"/>
+						<fx:Object label="MISCELANEO"/>
+					</s:ArrayList>
+				</com:dataProvider>
+			</com:ListPickerButton>
 		</controls:FormItem>
 		<controls:FormItem>
 			<s:Button label="Insertar" styleName="btn-success icon-insertar-sm" width="25%" id="btnInsertar"/>

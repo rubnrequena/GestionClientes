@@ -19,6 +19,8 @@ package views.finanzas
 	
 	import utils.DateUtil;
 	
+	import views.finanzas.modal.ArticuloModal;
+	
 	import vo.VOCliente;
 	import vo.VOFactura;
 	import vo.VOPago;
@@ -79,7 +81,7 @@ package views.finanzas
 		}
 		override protected function childrenCreated():void {
 			btnCancelar.addEventListener(MouseEvent.CLICK,cancelarClick);
-			btnProductos.addEventListener(MouseEvent.CLICK,btnProductos_click);
+			btnProductos.addEventListener(MouseEvent.CLICK,productos_click);
 			btnInsertar.addEventListener(MouseEvent.CLICK,insertar_click);
 			btnRemover.addEventListener(MouseEvent.CLICK,remover_click);
 			btnFacturar.addEventListener(MouseEvent.CLICK,facturar_click);
@@ -158,29 +160,36 @@ package views.finanzas
 						styleName:"btn-danger icon-atras-sm"
 					}
 				],function (detalle:int):void {
-					if (detalle==0)
-						clases.Imprimir.imprimirFactura(factura,false,copia.selected);
+					if (detalle==0) {
+						clases.Imprimir.imprimirFactura(factura);
+						if (copia.selected)
+							clases.Imprimir.imprimirFactura(factura,true);
+					}
 					cancelarClick();
 				});
 			}
 		}
 		protected function onKeyDown(event:KeyboardEvent):void {
 			if (event.keyCode==Keyboard.INSERT) {
-				btnProductos_click();
+				productos_click();
 			}
 		}
-		protected function btnProductos_click(event:MouseEvent=null):void {
-			var productosPicker:ListPickerSearch = new ListPickerSearch();
+		protected function productos_click(event:MouseEvent=null):void {
+			var articulo:ArticuloModal = new ArticuloModal;
+			articulo.popUp();
+			
+			/*var productosPicker:ListPickerSearch = new ListPickerSearch();
 			productosPicker.title = "Seleccione producto o servicio";
 			productosPicker.onClose = function (indice:int,producto:VOProducto):void {
 				descInput.text = producto.descripcion;
 				montoInput.text = producto.monto.toString();
+				tipoInput.selectedIndex = producto.tipo;
 				cantInput.setFocus();
 			};
 			productosPicker.dataProvider = new VectorCollection(GestionClientes.productos.data);
 			productosPicker.labelField = "descripcion";
 			productosPicker.selectedIndex=-1;
-			productosPicker.popUp();
+			productosPicker.popUp();*/
 		}
 		
 		private function updatePagos():void {
@@ -198,6 +207,7 @@ package views.finanzas
 				p.descripcion = descInput.text.toUpperCase();
 				p.monto = Number(montoInput.text);
 				p.cantidad = Number(cantInput.text);
+				p.tipo = tipoInput.selectedIndex;
 				
 				_pagos.push(p);
 				updatePagos();
@@ -210,6 +220,7 @@ package views.finanzas
 			descInput.text = "";
 			montoInput.text = "0"; 
 			cantInput.text = "1"; 
+			tipoInput.selectedIndex-1;
 		}
 		
 		protected function cancelarClick(event:MouseEvent=null):void {

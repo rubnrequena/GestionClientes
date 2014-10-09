@@ -47,6 +47,7 @@ package views.finanzas
 			montoInput.text=cantInput.text="0";
 			descInput.text="";
 			descInput.setFocus();
+			tipoInput.selectedIndex=-1;
 		}
 		
 		private function updateProductosList():void {
@@ -56,9 +57,10 @@ package views.finanzas
 		protected function insertar_click(event:MouseEvent):void {
 			if (form.validate) {
 				var p:VOProducto = new VOProducto;
-				p.descripcion = descInput.text;
+				p.descripcion = descInput.text.toUpperCase();
 				p.monto = Number(montoInput.text);
 				p.cantidad = Number(cantInput.text);
+				p.tipo = tipoInput.selectedIndex;
 				
 				GestionClientes.productos.insertar(p);
 				updateProductosList();

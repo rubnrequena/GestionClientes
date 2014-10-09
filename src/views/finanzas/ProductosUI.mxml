@@ -2,7 +2,7 @@
 <views:ViewPanel xmlns:views="views.*" 
 				 xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				 xmlns:s="library://ns.adobe.com/flex/spark" 
-				 xmlns:mx="library://ns.adobe.com/flex/mx" title="Productos" xmlns:controls="bootstrap.controls.*">
+				 xmlns:mx="library://ns.adobe.com/flex/mx" title="Productos" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
 	<fx:Script>
 		<![CDATA[
 			protected function validarInput (item:FormItem):Boolean {
@@ -11,6 +11,9 @@
 			protected function validarNumero (item:FormItem):Boolean {
 				var n:Number = Number(item.input.text);
 				return !isNaN(n) && n>0;
+			}
+			protected function validarList (item:FormItem):Boolean {
+				return item.picker.selectedIndex>-1;
 			}
 		]]>
 	</fx:Script>
@@ -24,8 +27,20 @@
 		<controls:FormItem label="Monto:" validateFunction="validarNumero">
 			<s:TextInput id="montoInput" restrict="0-9." text="0"/>
 		</controls:FormItem>
-		<controls:FormItem label="Cantidad:" validateFunction="validarNumero">
+		<controls:FormItem label="Cantidad:">
 			<s:TextInput id="cantInput" restrict="0-9." text="0"/>
+		</controls:FormItem>
+		<controls:FormItem label="Tipo:" validateFunction="validarList">
+			<com:ListPickerButton label="Seleccione Tipo" title="Tipo" labelField="label" id="tipoInput" >
+				<com:dataProvider>
+					<s:ArrayList>
+						<fx:Object label="MENSUALIDAD"/>
+						<fx:Object label="SERVICIO"/>
+						<fx:Object label="PRODUCTO"/>
+						<fx:Object label="MISCELANEO"/>
+					</s:ArrayList>
+				</com:dataProvider>
+			</com:ListPickerButton>
 		</controls:FormItem>
 		<controls:FormItem>
 			<s:Button label="Insertar" styleName="btn-success icon-insertar-sm" width="25%" id="btnInsertar"/>
