@@ -1,0 +1,120 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace controls "bootstrap.controls.*";
+@namespace local "*";
+@namespace skins "bootstrap.skins.*";
+@namespace com "com.*";
+
+com|TopMenu {
+	backgroundColor:#43a898;
+}
+local|ViewNavigator s|Panel {
+	controlBarColor:#43a898;
+}
+.topNavigator {
+	backgroundColor:#42545e;	
+}
+.navChildren {
+	backgroundColor:#42545e;	
+}
+skins|BToggleButtonBarSkin {
+	backgroundColor:#42545e;
+	color:#f7f7f7;
+}
+.btn-menu {
+	chromeColor:#42545e;
+	color:#ffffff;
+	iconTint:#f7f7f7;
+	iconPlacement:top;
+}
+.icon-atras-sm {
+	icon:"assets/previous-24.png";
+}
+.icon-remover-sm {
+	icon:"assets/delete-24.png";
+}
+.icon-insertar-sm {
+	icon:"assets/plus2_math-26.png";	
+}
+.icon-facturar-sm {
+	icon:"assets/cash_receiving-26.png";	
+}
+.icon-usuario-md {
+	icon:"assets/add_user-32.png";	
+}
+.icon-grupos-md {
+	icon:"assets/group-32.png";
+}
+.icon-salon-md {
+	icon:"assets/room-32.png";
+}
+.icon-clase-md {
+	icon:"assets/groups-32.png";
+}
+.icon-entrenador-md {
+	icon:"assets/collaborator-32.png";
+}
+.icon-buscar-cliente-md {
+	icon:"assets/find_user-32.png";	
+}
+.icon-buscar-cliente-sm {
+	icon:"assets/find_user-26.png";	
+}
+.icon-buscar-sm {
+	icon:"assets/search-26.png";	
+}
+.icon-imprimir-sm {
+	icon:"assets/print-26.png";
+}
+.icon-imprimir-md {
+	icon:"assets/print-32.png";	
+}
+.icon-tareas-md {
+	icon:"assets/overtime-32.png";	
+}
+.icon-reporte-md {
+	icon:"assets/coins-32.png";	
+}
+.icon-productos-md {
+	icon:"assets/product-32.png";	
+}
+.icon-pagos_pendientes-sm {
+	icon:"assets/filled_box-26.png";	
+}
+.icon-pagos_pendientes_vacia-sm {
+	icon:"assets/empty_box-26.png";	
+}
+.icon-asistencias-md {
+	icon:"assets/checked_user-32.png";	
+}
+.icon-nuevo_usuario-md {
+	icon:"assets/add_user-32.png";
+}
+.icon-horarios-md {
+	icon:"assets/sandglass-32.png";	
+}
+.icon-pago_nuevo-md {
+	icon:"assets/checkout-32.png";
+}
+.icon-factura-md {
+	icon:"assets/bill-32.png";
+}
+.icon-factura-sm {
+	icon:"assets/bill-26.png";
+}
+.icon-lista-sm {
+	icon:"assets/add_list-26.png";	
+}
+.icon-guardar-sm {
+	icon:"assets/save-26.png";
+}
+.icon-limpiar-sm {
+	icon:"assets/erase-26.png";	
+}
+.icon-config-md {
+	icon:"assets/settings-32.png";	
+}
+.icon-update-sm {
+	icon:"assets/downloading_updates-26.png";	
+}

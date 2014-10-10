@@ -6,7 +6,7 @@
 	<views:layout>
 		<s:VerticalLayout />
 	</views:layout>
-	<s:Form width="100%">
+	<controls:Form width="100%">
 		<controls:FormItem label="Factura:">
 			<s:Label id="facturaInput" width="50%" styleName="text-size-lg text-align-right"/>
 		</controls:FormItem>
@@ -37,7 +37,7 @@
 		<controls:FormItem label="Responsable:" styleName="well-warning">
 			<s:Label id="usuarioInput" width="50%" styleName="text-align-right text-size-lg"/>
 		</controls:FormItem>
-	</s:Form>
+	</controls:Form>
 	<views:controlBarContent>
 		<s:Button label="Devolución" height="30" styleName="btn-warning icon-facturar-sm" id="btnDevolucion"/>
 		<s:Button label="Imprimir" height="30" styleName="btn-warning icon-imprimir-sm" id="btnImprimir"/>

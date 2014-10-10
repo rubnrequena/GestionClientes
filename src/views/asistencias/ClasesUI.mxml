@@ -6,7 +6,7 @@
 		<controls:FormItem label="Clases">
 			<com:ListPickerButton id="claseInput" label="Seleccione clase" labelField="descripcion"/>
 		</controls:FormItem>
-		<controls:FormItem label="Horarios" childHeight="100">
+		<controls:FormItem label="Horarios">
 			<s:DataGrid id="horariosGrid">
 				<s:columns>
 					<s:ArrayList>
@@ -17,7 +17,7 @@
 				</s:columns>
 			</s:DataGrid>
 		</controls:FormItem>
-		<controls:FormItem label="Clientes" childHeight="200">
+		<controls:FormItem label="Clientes">
 			<s:DataGrid width="50%" id="clientesGrid">
 				<s:columns>
 					<s:ArrayList>

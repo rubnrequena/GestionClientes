@@ -4,19 +4,15 @@
 				 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:views="views.*" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
 	<fx:Script>
 		<![CDATA[
-			protected function validarList (item:FormItem):Boolean {
-				return item.picker.selectedIndex>-1;
+			
+			protected function validarDayPicker (items:Array):void {
+				diasInput.errorString = diasInput.dias==""?"Seleccione los días a repetir":"";
 			}
-			protected function validarDayPicker (item:FormItem):Boolean {
-				return (item.getElementAt(1) as DayPicker).dias==""?false:true;
-			}
-			protected function validarTimePicker (item:FormItem):Boolean {
+			protected function validarTimePicker (items:Array):void {
 				var entrada:int = entradaInput.time;
 				var salida:int = salidaInput.time;
-				return entrada<salida?true:false;
-			}
-			protected function validarInput (item:FormItem):Boolean {
-				return item.input.text==""?false:true;
+				trace(entrada,salida);
+				salidaInput.errorString = entrada>salida?"":"La hora final no puede ser menor a la hora de inicio";
 			}
 		]]>
 	</fx:Script>
@@ -24,24 +20,24 @@
 		<s:VerticalLayout />
 	</views:layout>
 	<controls:Form width="100%" id="formClase">
-		<controls:FormItem label="Descripcion" validateFunction="validarInput">
+		<controls:FormItem label="Descripcion" validateType="text">
 			<s:TextInput id="descInput"/>
 		</controls:FormItem>
-		<controls:FormItem label="Instructor" validateFunction="validarList">
-			<com:ListPickerButton styleName="btn-silent" label="Seleccione Instructor..." title="Instructores" labelField="nombres" id="instructorInput" width="50%" />
+		<controls:FormItem label="Instructor" validateType="list">
+			<com:ListPickerButton label="Seleccione Instructor..." title="Instructores" labelField="nombres" id="instructorInput" width="50%" />
 		</controls:FormItem>
-		<controls:FormItem label="Grupo" validateFunction="validarList">
-			<com:ListPickerButton styleName="btn-silent" label="Seleccione Grupo..." title="Grupos" labelField="nombre" id="grupoInput" width="50%"/>
+		<controls:FormItem label="Grupo" validateType="list">
+			<com:ListPickerButton label="Seleccione Grupo..." title="Grupos" labelField="nombre" id="grupoInput" width="50%"/>
 		</controls:FormItem>
-		<controls:FormItem label="Salón" validateFunction="validarList">
-			<com:ListPickerButton styleName="btn-silent" label="Seleccione Salón..." title="Salones" labelField="nombre" id="salonInput" width="50%"/>
+		<controls:FormItem label="Salón" validateType="list">
+			<com:ListPickerButton label="Seleccione Salón..." title="Salones" labelField="nombre" id="salonInput" width="50%"/>
 		</controls:FormItem>
 	</controls:Form>
 	<controls:Form width="100%" id="formHorario">
 		<controls:FormItem styleName="well-info">
 			<s:Label text="Horarios"/>
 		</controls:FormItem>
-		<controls:FormItem label="Tipo" validateFunction="validarList">
+		<controls:FormItem label="Tipo" validateType="list">
 			<com:ListPickerButton id="tipoInput" label="Seleccionar tipo">
 				<com:dataProvider>
 					<s:ArrayList>
@@ -52,14 +48,12 @@
 			</com:ListPickerButton>
 		</controls:FormItem>
 		<controls:FormItem label="Dias" validateFunction="validarDayPicker">
-			<com:DayPicker id="diasInput" width="50%"/>
+			<com:DayPicker id="diasInput"/>
 		</controls:FormItem>
 		<controls:FormItem label="Entrada" validateFunction="validarTimePicker">
-			<s:HGroup width="50%" height="30" verticalAlign="contentJustify">
-				<controls:TimePicker id="entradaInput" width="150"/>
-				<s:Label text="Salida" styleName="formItem-label text-align-right" width="100%"/>
-				<controls:TimePicker id="salidaInput" width="150"/>
-			</s:HGroup>
+			<controls:TimePicker id="entradaInput"/>
+			<s:Label text="Salida" styleName="text-align-right"/>
+			<controls:TimePicker id="salidaInput"/>
 		</controls:FormItem>
 	</controls:Form>
 	<s:HGroup horizontalAlign="center" width="100%">

@@ -4,7 +4,7 @@
 				 xmlns:s="library://ns.adobe.com/flex/spark" 
 				 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="bootstrap.controls.*" xmlns:ns="http://flex.apache.org/experimental/ns" xmlns:com="com.*">
 	<s:HGroup width="100%" height="100%">
-		<s:Form width="100%">
+		<controls:Form width="100%">
 			<controls:FormItem label="Nombres:" >
 				<s:TextInput id="nombreInput"/>
 			</controls:FormItem>
@@ -14,10 +14,10 @@
 			<controls:FormItem label="Fecha Nac.:" >
 				<ns:MaskedTextInput id="fechaInput" maskText="##/##/####"/>
 			</controls:FormItem>
-			<controls:FormItem label="Télefonos:" childHeight="40" >
+			<controls:FormItem label="Télefonos:" >
 				<s:TextArea id="tlfInput" height="100"/>
 			</controls:FormItem>
-			<controls:FormItem label="Dirección:" childHeight="50" >
+			<controls:FormItem label="Dirección:">
 				<s:TextArea id="dirInput" height="100"/>
 			</controls:FormItem>
 			<controls:FormItem label="Grupo:">
@@ -38,7 +38,7 @@
 				<com:ListPickerButton labelField="label" title="Meses" id="mesInput" width="25%"/>
 				<s:Label id="asistenciasMes" width="25%" styleName="text-align-center"/>
 			</controls:FormItem>
-		</s:Form>
+		</controls:Form>
 		<s:VGroup width="100%" height="100%">
 			<s:Panel title="Ultimas Asistencias" width="100%" height="100%">
 				<s:DataGrid width="100%" height="100%" id="clienteAsistencias">

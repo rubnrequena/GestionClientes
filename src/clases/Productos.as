@@ -4,6 +4,7 @@ package clases
 	
 	import utils.VectorUtil;
 	
+	import vo.VOPago;
 	import vo.VOProducto;
 
 	public class Productos
@@ -28,6 +29,16 @@ package clases
 			_data.push(producto);
 			return producto;
 		}
+		public function actualizar (producto:VOProducto):void {
+			GestionClientes.sql.actualizar("productos",new <Value>[
+				Value.fromPool("descripcion",producto.descripcion),
+				Value.fromPool("monto",producto.monto),
+				Value.fromPool("cantidad",producto.cantidad)
+			],new <Value>[
+				Value.fromPool("productoID",producto.productoID)
+			]);
+			updateFlag=true;
+		}
 		public function remover (productoID:int):void {
 			GestionClientes.sql.remover("productos",new <Value>[
 				Value.fromPool("productoID",productoID)
@@ -43,6 +54,14 @@ package clases
 			for (var i:int = 0; i < data.length; i++)
 				if (_data[i].descripcion==descripcion) return _data[i];
 			return null;
+		}
+		public function updateStock(productoID:int,newStock:Number):void {
+			GestionClientes.sql.actualizar("productos",new <Value>[
+				Value.fromPool("cantidad",newStock)
+			],new <Value>[
+				Value.fromPool("productoID",productoID)
+			]);
+			updateFlag=true;
 		}
 		public function Productos() {
 			

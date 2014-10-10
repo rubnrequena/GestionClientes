@@ -6,11 +6,11 @@
 	<views:layout>
 		<s:VerticalLayout/>
 	</views:layout>
-	<s:Form width="100%">
+	<controls:Form width="100%">
 		<controls:FormItem label="Fecha:">
 			<mx:DateField id="fechaInput" formatString="DD/MM/YYYY" width="50%"/>
 		</controls:FormItem>
-	</s:Form>
+	</controls:Form>
 	<s:DataGrid id="clientes" width="100%" height="100%">
 		<s:columns>
 			<s:ArrayList>

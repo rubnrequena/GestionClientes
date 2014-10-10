@@ -31,9 +31,9 @@
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
-	<controls:FormItem styleName="well-info">
-		<s:Label text="Horarios"/>
-	</controls:FormItem>
+	<controls:Form width="100%">
+		<controls:FormItem styleName="well-info" label="Horarios"/>
+	</controls:Form>
 	<s:DataGrid width="66%" height="100%" maxHeight="110" id="horarioGrid">
 		<s:columns>
 			<s:ArrayList>

@@ -5,22 +5,21 @@
 				 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="bootstrap.controls.*">
 	<fx:Script>
 		<![CDATA[
-			protected function validarInput (item:FormItem):Boolean {
-				return item.input.text.length>0;
-			}
+			import bootstrap.validators.Validator;
+			
 		]]>
 	</fx:Script>
 	<views:layout>
 		<s:VerticalLayout />
 	</views:layout>
 	<controls:Form id="form" width="100%">
-		<controls:FormItem label="Nombres" validateFunction="validarInput">
+		<controls:FormItem label="Nombres" validateType="text">
 			<s:TextInput id="nombresInput" />
 		</controls:FormItem>
-		<controls:FormItem label="Cedula" validateFunction="validarInput">
+		<controls:FormItem label="Cedula" validateType="text">
 			<s:TextInput id="cedulaInput" restrict="0-9" />
 		</controls:FormItem>
-		<controls:FormItem label="Telefonos" validateFunction="validarInput">
+		<controls:FormItem label="Telefonos" validateType="text">
 			<s:TextInput id="tlfInput"/>
 		</controls:FormItem>
 		<controls:FormItem>

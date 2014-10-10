@@ -5,32 +5,23 @@
 				 xmlns:mx="library://ns.adobe.com/flex/mx" title="Productos" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
 	<fx:Script>
 		<![CDATA[
-			protected function validarInput (item:FormItem):Boolean {
-				return item.input.text.length>0;
-			}
-			protected function validarNumero (item:FormItem):Boolean {
-				var n:Number = Number(item.input.text);
-				return !isNaN(n) && n>0;
-			}
-			protected function validarList (item:FormItem):Boolean {
-				return item.picker.selectedIndex>-1;
-			}
+			
 		]]>
 	</fx:Script>
 	<views:layout>
 		<s:VerticalLayout horizontalAlign="center" />
 	</views:layout>
 	<controls:Form id="form" width="100%">
-		<controls:FormItem label="Producto:" validateFunction="validarInput">
+		<controls:FormItem label="Producto:" validateType="text">
 			<s:TextInput id="descInput"/>
 		</controls:FormItem>
-		<controls:FormItem label="Monto:" validateFunction="validarNumero">
+		<controls:FormItem label="Monto:" validateType="number">
 			<s:TextInput id="montoInput" restrict="0-9." text="0"/>
 		</controls:FormItem>
-		<controls:FormItem label="Cantidad:">
+		<controls:FormItem label="Cantidad:" validateType="number">
 			<s:TextInput id="cantInput" restrict="0-9." text="0"/>
 		</controls:FormItem>
-		<controls:FormItem label="Tipo:" validateFunction="validarList">
+		<controls:FormItem label="Tipo:" validateType="list">
 			<com:ListPickerButton label="Seleccione Tipo" title="Tipo" labelField="label" id="tipoInput" >
 				<com:dataProvider>
 					<s:ArrayList>
@@ -57,6 +48,8 @@
 		</s:columns>
 	</s:DataGrid>
 	<views:controlBarContent>
+		<s:Button label="Insertar Stock" height="30" styleName="btn-warning" id="stockButton"/>
+		<s:Button label="Editar Artículo" height="30" styleName="btn-warning" id="editarButton"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
 	</views:controlBarContent>

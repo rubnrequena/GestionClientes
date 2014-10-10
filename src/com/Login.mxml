@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com:Modal xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		   xmlns:s="library://ns.adobe.com/flex/spark" 
-		   xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:com="com.*" width="330" title="Iniciar Sesión" xmlns:controls="bootstrap.controls.*">
+		   xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:com="com.*" width="400" title="Iniciar Sesión" xmlns:controls="bootstrap.controls.*">
 	<fx:Script>
 		<![CDATA[
+			import bootstrap.validators.Validator;
+			
 			import mx.events.FlexEvent;
 			
 			import vo.VOUsuario;
-			protected function validarUsuario (item:FormItem):Boolean {
-				return item.input.text.length>0;
-			}
-			
 			override protected function childrenCreated():void {
 				btnLogin.addEventListener(MouseEvent.CLICK,login_click);
 				stage.addEventListener(KeyboardEvent.KEY_DOWN,onKeyDown);
@@ -19,7 +17,7 @@
 			}
 			
 			protected function login_click(event:MouseEvent):void {
-				if (form.validate) {
+				if (form.isValid) {
 					VOUsuario.USUARIO_ACTIVO = GestionClientes.usuarios.byLogin(usuarioInput.text.toLowerCase(),passInput.text.toLowerCase());
 					if (VOUsuario.USUARIO_ACTIVO) {
 						closing(true);
@@ -49,10 +47,10 @@
 		]]>
 	</fx:Script>
 	<controls:Form width="100%" id="form">
-		<controls:FormItem label="Usuario" validateFunction="validarUsuario">
+		<controls:FormItem label="Usuario" validateFunction="Validator.validateText">
 			<s:TextInput id="usuarioInput"/>
 		</controls:FormItem>
-		<controls:FormItem label="Contraseña" validateFunction="validarUsuario">
+		<controls:FormItem label="Contraseña" validateFunction="Validator.validateText">
 			<s:TextInput id="passInput" displayAsPassword="true"/>
 		</controls:FormItem>
 		<s:Group width="100%">

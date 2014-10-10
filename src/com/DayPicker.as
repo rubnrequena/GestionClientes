@@ -4,7 +4,6 @@ package com
 	
 	import spark.components.CheckBox;
 	import spark.components.TileGroup;
-	import spark.components.gridClasses.GridSelectionMode;
 	
 	import vo.VOHorario;
 	
@@ -41,7 +40,8 @@ package com
 			}
 		}
 		
-		private function reset():void {
+		override public function reset():void {
+			super.reset();
 			_groupDays.removeAllElements();
 			height = 30;
 		}

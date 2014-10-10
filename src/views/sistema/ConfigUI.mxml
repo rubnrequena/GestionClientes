@@ -2,7 +2,7 @@
 <views:ViewPanelAdmin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				 xmlns:s="library://ns.adobe.com/flex/spark" title="Configuración"
 				 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:views="views.*" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
-	<s:Form width="100%">
+	<controls:Form width="100%">
 		<controls:FormItem styleName="well-info">
 			<s:Label text="Configuración de Empresa"/>
 		</controls:FormItem>
@@ -33,7 +33,7 @@
 		<controls:FormItem label="Fuente">
 			<com:ListPickerButton id="impresion_fuente" labelField="label" width="50%"/>
 		</controls:FormItem>
-	</s:Form>
+	</controls:Form>
 	<views:controlBarContent>
 		<s:Button label="Guardar" styleName="btn-warning icon-guardar-sm" id="btnGuardar"/>
 		<s:Spacer width="100%"/>

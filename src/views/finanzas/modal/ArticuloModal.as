@@ -2,72 +2,67 @@ package views.finanzas.modal
 {
 	import bootstrap.controls.Form;
 	import bootstrap.controls.FormItem;
+	import bootstrap.validators.ValidatorType;
 	
-	import com.ListPickerButton;
-	import com.ListPickerSearch;
 	import com.Modal;
 	
-	import flash.events.Event;
 	import flash.events.MouseEvent;
-	
-	import mx.core.ClassFactory;
-	
-	import org.apache.flex.collections.VectorCollection;
 	
 	import spark.components.Button;
 	import spark.components.Label;
 	import spark.components.TextInput;
 	
+	import vo.VOProducto;
+	
 	public class ArticuloModal extends Modal
 	{
-		private var form:Form;
-		private var articuloInput:ListPickerButton;
-		private var montoInput:TextInput;
-		private var cantInput:TextInput;
-		private var confirmarButton:Button;
-		private var atrasButton:Button;
+		protected var form:Form;		
+		protected var descInput:TextInput;
+		protected var montoInput:TextInput;
+		protected var cantInput:TextInput;
+		protected var confirmarButton:Button;
+		protected var atrasButton:Button;
+		
+		public var producto:VOProducto;
+		
 		public function ArticuloModal()
 		{
 			super();
 			width = 400;
 		}
+		
 		override protected function childrenCreated():void {
 			super.childrenCreated();
 			
 			form = new Form;
 			form.percentWidth = 100;
 			addElement(form);
+			
 			var formItem:FormItem;
-						
+			
 			formItem = new FormItem;
-			formItem.label = "Articulo";
-			articuloInput = new ListPickerButton;
-			with (articuloInput) {
-				label = "Seleccione producto o servicio";
-				dataProvider = new VectorCollection(GestionClientes.productos.data);
-				pickerClass = new ClassFactory(ListPickerSearch);
-				labelField = "descripcion";
-				title = "Productos/Servicios";
-			}
-			formItem.addElement(articuloInput);
+			formItem.validateType = ValidatorType.TEXT;
+			formItem.label = "Descripción";
+			descInput = new TextInput;
+			formItem.addElement(descInput);
 			form.addElement(formItem);
 			
 			formItem = new FormItem;
 			formItem.label = "Monto";
+			formItem.validateType = ValidatorType.NUMBER;
 			montoInput = new TextInput;
-			montoInput.restrict = "0-9.\-";
-			
-			var lbl:Label = new Label;
-			lbl.text = "Cantidad";
-			
-			cantInput = new TextInput;
-			cantInput.restrict = "0-9.";
-			
+			montoInput.restrict = "0-9.";
 			formItem.addElement(montoInput);
-			formItem.addElement(lbl);
-			formItem.addElement(cantInput);
 			form.addElement(formItem);
 			
+			formItem = new FormItem;
+			formItem.label = "Nuevo Stock";
+			formItem.validateType = ValidatorType.NUMBER;
+			cantInput = new TextInput;
+			cantInput.restrict = "0-9.";
+			formItem.addElement(cantInput);
+			form.addElement(formItem);
+		
 			confirmarButton = new Button;
 			confirmarButton.label = "Confirmar";
 			confirmarButton.styleName = "btn-success icon-insertar-sm";
@@ -80,6 +75,8 @@ package views.finanzas.modal
 			atrasButton.addEventListener(MouseEvent.CLICK,atras_click);
 			
 			controlBarContent = [confirmarButton,atrasButton];
+			
+			montoInput.setFocus();
 		}
 		
 		protected function atras_click(event:MouseEvent):void {
@@ -87,20 +84,7 @@ package views.finanzas.modal
 		}
 		
 		protected function confirmar_click(event:MouseEvent):void {
-			closing();
-		}		
-		
-		
-		protected function validarInput (item:FormItem):Boolean {
-			return item.input.text.length>0;
-		}
-		protected function validarList (item:FormItem):Boolean {
-			return item.picker.selectedIndex>-1;
-		}
-		protected function validarItem (item:FormItem):Boolean {
-			var m:Number = Number(montoInput.text);
-			var c:Number = Number(cantInput.text);
-			return (!isNaN(m) && !isNaN(c)) && (m!=0 && c!=0);
+			
 		}
 	}
 }

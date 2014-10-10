@@ -41,7 +41,7 @@ package views.sistema
 		}
 		
 		protected function registrar_click(event:MouseEvent):void {
-			if (form.validate) {
+			if (form.isValid) {
 				var usuario:VOUsuario = new VOUsuario;
 				usuario.usuario = usuarioInput.text;
 				usuario.pass = passInput.text;

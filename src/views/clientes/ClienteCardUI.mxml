@@ -2,18 +2,18 @@
 <s:SkinnableContainer xmlns:fx="http://ns.adobe.com/mxml/2009" 
 					  xmlns:s="library://ns.adobe.com/flex/spark" 
 					  xmlns:mx="library://ns.adobe.com/flex/mx" width="100%" height="100%" xmlns:controls="bootstrap.controls.*">
-	<s:Form width="100%">
+	<controls:Form width="100%">
 		<controls:FormItem label="Nombres:" >
 			<s:Label id="nombreInput"/>
 		</controls:FormItem>
 		<controls:FormItem label="Cédula:" >
 			<s:Label id="cedulaInput"/>
 		</controls:FormItem>
-		<controls:FormItem label="Télefonos:" childHeight="35" >
+		<controls:FormItem label="Télefonos:">
 			<s:Label id="tlfInput" height="100" maxDisplayedLines="3"/>
 		</controls:FormItem>
 		<controls:FormItem label="Grupo:">
 			<s:Label id="grupoInput"/>
 		</controls:FormItem>
-	</s:Form>
+	</controls:Form>
 </s:SkinnableContainer>

@@ -77,7 +77,7 @@ package views.organizacion
 		}
 		
 		protected function guardar_click(event:MouseEvent):void {
-			if (formClase.validate) {
+			if (formClase.isValid) {
 				var clase:VOClase = new VOClase;
 				clase.descripcion = descInput.text;
 				clase.grupoID = (grupoInput.selectedItem as VOGrupo).grupoID;
@@ -101,7 +101,7 @@ package views.organizacion
 			}
 		}
 		protected function insertar_click(event:MouseEvent):void {
-			if (formHorario.validate) {
+			if (formHorario.isValid) {
 				var h:VOHorario = new VOHorario;
 				h.entrada = entradaInput.time;
 				h.salida = salidaInput.time;

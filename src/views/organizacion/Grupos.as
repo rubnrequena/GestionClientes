@@ -67,7 +67,7 @@ package views.organizacion
 			btnGuardar.removeEventListener(MouseEvent.CLICK,guardarClick);
 		}		
 		protected function guardarClick(event:MouseEvent):void {
-			if (form.validate) {
+			if (form.isValid) {
 				var grupo:VOGrupo = new VOGrupo;
 				grupo.nombre = nombreInput.text;
 				grupo.descripcion = descInput.text;

@@ -40,7 +40,7 @@ package views.organizacion
 		}
 		
 		protected function insertar_click(event:MouseEvent):void {
-			if (form.validate) {
+			if (form.isValid) {
 				var instructor:VOInstructor = new VOInstructor;
 				instructor.cedula = cedulaInput.text;
 				instructor.nombres = nombresInput.text;

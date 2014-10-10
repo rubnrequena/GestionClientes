@@ -11,7 +11,7 @@
 			import com.ListPickerSearch;
 		]]>
 	</fx:Script>
-	<s:Form width="100%" id="form">
+	<controls:Form width="100%" id="form">
 		<controls:FormItem label="Tarea">
 			<s:TextInput id="descTareaInput"/>
 		</controls:FormItem>
@@ -47,7 +47,7 @@
 		<s:HGroup horizontalAlign="center" width="100%">
 			<s:Button id="insertarTarea" label="Insertar" styleName="btn-success icon-insertar-sm" width="33%"/>
 		</s:HGroup>
-	</s:Form>
+	</controls:Form>
 	<controls:FormItem>
 		<s:Button label="Ocultar formulario" id="btnView" width="50%" styleName="btn-warning"/>
 	</controls:FormItem>

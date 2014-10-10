@@ -9,10 +9,6 @@ package vo
 	
 	public class VOPago extends MapObject
 	{
-		public static const PAGO_RENTA:int = 0;
-		public static const PAGO_SERVICIO:int = 1;
-		public static const PAGO_PRODUCTO:int = 2;
-		public static const PAGO_MISCELANEO:int = 3;
 		
 		public var pagoID:int;
 		public var facturaID:int;

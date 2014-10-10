@@ -5,7 +5,7 @@
 					   xmlns:local="*" xmlns:com="com.*" xmlns:mx="library://ns.adobe.com/flex/mx"
 					   creationComplete="onComplete(event)" addedToStage="windowedapplication1_addedToStageHandler(event)"
 					   width="800" height="650" showStatusBar="false">
-	<fx:Style source="bootstrap/bootstrap.css"/>
+	<fx:Style source="custom.css"/>
 	<s:states>
 		<s:State name="normal"/>
 		<s:State name="asistencia" id="stateAsistencia" />
@@ -91,7 +91,7 @@
 						sql.sql(s);	
 					}
 				}
-				var splash:ModalAlert = ModalAlert.showDelay("","Iniciando Sistema...",null,2000,function ():void {
+				var splash:ModalAlert = ModalAlert.showDelay("","Iniciando Sistema...",null,500,function ():void {
 					showLogin(login_close);
 				});
 				config = new Config;

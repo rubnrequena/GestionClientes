@@ -4,6 +4,11 @@ package vo
 	
 	public class VOProducto extends MapObject
 	{
+		public static const RENTA:int = 0;
+		public static const SERVICIO:int = 1;
+		public static const PRODUCTO:int = 2;
+		public static const MISCELANEO:int = 3;
+		
 		public var productoID:int;
 		public var descripcion:String;
 		public var cantidad:Number;

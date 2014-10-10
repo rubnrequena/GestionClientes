@@ -11,7 +11,7 @@
 			import com.ListPickerSearch;
 		]]>
 	</fx:Script>
-	<s:Form width="100%" id="form">
+	<controls:Form width="100%" id="form">
 		<controls:FormItem label="Cliente" id="clienteItem">
 			<com:ListPickerButton pickerClass="{new ClassFactory(ListPickerSearch)}" labelField="nombres" title="Clientes" label="Seleccionar cliente" id="clienteInput" width="50%" styleName="btn-silent"/>
 		</controls:FormItem>
@@ -22,7 +22,7 @@
 			<mx:DateField width="25%" id="inicioInput" formatString="DD/MM/YYYY"/>
 			<mx:DateField width="25%" id="finInput" formatString="DD/MM/YYYY"/>
 		</controls:FormItem>
-	</s:Form>
+	</controls:Form>
 	<s:DataGrid width="100%" height="100%" id="gridAsistencias">
 		<s:columns>
 			<s:ArrayList>

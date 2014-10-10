@@ -9,12 +9,12 @@
 	<views:layout>
 		<s:VerticalLayout />
 	</views:layout>
-	<s:Form width="100%">
-		<controls:FormItem label="Cedula del Cliente:" childHeight="40">
-			<s:TextInput id="cedulaInput" width="50%" restrict="0-9"/>
+	<controls:Form width="100%">
+		<controls:FormItem label="Cedula del Cliente:">
+			<s:TextInput id="cedulaInput" width="100%" restrict="0-9"/>
 			<s:Button label="Registrar" styleName="btn-primary" id="btnRegistrar"/>
 		</controls:FormItem>
-	</s:Form>
+	</controls:Form>
 	<s:SkinnableContainer height="40" width="100%" id="resultGroup" visible="false">
 		<s:Label verticalCenter="0" horizontalCenter="0" id="resultLabel"/>
 	</s:SkinnableContainer>

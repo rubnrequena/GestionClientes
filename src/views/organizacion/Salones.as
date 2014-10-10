@@ -51,7 +51,7 @@ package views.organizacion
 			salonesGrid.dataProvider = new VectorList(GestionClientes.salones.data);
 		}
 		protected function insertarClick(event:MouseEvent):void {
-			if (form.validate) {
+			if (form.isValid) {
 				var salon:VOSalon = new VOSalon;
 				salon.nombre = nombreInput.text;			
 				GestionClientes.salones.insertar(salon);

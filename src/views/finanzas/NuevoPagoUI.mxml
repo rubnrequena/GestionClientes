@@ -3,26 +3,11 @@
 				 xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				 xmlns:s="library://ns.adobe.com/flex/spark"
 				 xmlns:mx="library://ns.adobe.com/flex/mx" title="Nuevo Pago" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
-	<fx:Script>
-		<![CDATA[
-			protected function validarInput (item:FormItem):Boolean {
-				return item.input.text.length>0;
-			}
-			protected function validarList (item:FormItem):Boolean {
-				return item.picker.selectedIndex>-1;
-			}
-			protected function validarItem (item:FormItem):Boolean {
-				var m:Number = Number(montoInput.text);
-				var c:Number = Number(cantInput.text);
-				return (!isNaN(m) && !isNaN(c)) && (m!=0 && c!=0);
-			}
-		]]>
-	</fx:Script>
 	<views:layout>
 		<s:VerticalLayout horizontalAlign="center"/>
 	</views:layout>
 	<controls:Form id="form" width="100%">
-		<controls:FormItem label="Cliente:" validateFunction="validarList">
+		<controls:FormItem label="Cliente:" validateType="list">
 			<com:ListPickerButton label="Cliente" id="clienteInput" width="50%" title="Clientes" pickerClass="{new ClassFactory(ListPickerSearch)}" labelField="nombres"/> 
 		</controls:FormItem>
 		<controls:FormItem label="Fecha:">
@@ -30,26 +15,23 @@
 		</controls:FormItem>
 	</controls:Form>
 	<controls:Form id="form_item" width="100%">
-		<controls:FormItem label="Descripción:" childHeight="32" validateFunction="validarInput">
-			<s:TextInput id="descInput" width="50%" />
+		<controls:FormItem label="Descripción:" validateType="text" autoSize="false">
+			<s:TextInput id="descInput" width="100%" />
 			<s:Button styleName="icon-lista-sm btn-silent" id="btnProductos"/>
 			<s:Button styleName="icon-pagos_pendientes_vacia-sm btn-silent" id="btnPendientes" enabled="false"/>
 		</controls:FormItem>
-		<controls:FormItem label="Monto:" childHeight="30" validateFunction="validarItem">
-			<s:HGroup width="50%" verticalAlign="contentJustify">
-				<s:TextInput restrict="0-9.\-" id="montoInput" width="100%" text="0"/>
-				<s:Label text="Cantidad:" styleName="formItem-label"/>
-				<s:TextInput restrict="0-9." id="cantInput" width="100%" text="1"/>
-			</s:HGroup>
+		<controls:FormItem label="Monto:" validateType="number">
+			<s:TextInput restrict="0-9.\-" id="montoInput" text="0"/>
+			<s:Label text="Cantidad:" textAlign="right"/>
+			<s:TextInput restrict="0-9." id="cantInput" text="1"/>
 		</controls:FormItem>
-		<controls:FormItem label="Tipo:" validateFunction="validarList">
+		<controls:FormItem label="Tipo:" validateType="list">
 			<com:ListPickerButton label="Seleccione Tipo" title="Tipo" labelField="label" id="tipoInput" >
 				<com:dataProvider>
 					<s:ArrayList>
-						<fx:Object label="MENSUALIDAD"/>
-						<fx:Object label="SERVICIO"/>
-						<fx:Object label="PRODUCTO"/>
-						<fx:Object label="MISCELANEO"/>
+						<fx:Object label="MENSUALIDAD" data="0"/>
+						<fx:Object label="SERVICIO" data="1"/>
+						<fx:Object label="MISCELANEO" data="3"/>
 					</s:ArrayList>
 				</com:dataProvider>
 			</com:ListPickerButton>

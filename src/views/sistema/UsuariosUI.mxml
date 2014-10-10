@@ -26,10 +26,10 @@
 		<s:HorizontalLayout />
 	</views:layout>
 	<controls:Form width="40%" backgroundColor="0xf9f9f9" id="form">
-		<controls:FormItem label="Usuario" validateFunction="validarInput">
+		<controls:FormItem label="Usuario" validateType="text">
 			<s:TextInput width="50%" id="usuarioInput"/>
 		</controls:FormItem>
-		<controls:FormItem label="Nombre" validateFunction="validarInput">
+		<controls:FormItem label="Nombre" validateType="text">
 			<s:TextInput width="50%" id="nombreInput"/>
 		</controls:FormItem>
 		<controls:FormItem label="Contraseña" validateFunction="validarPass">
@@ -38,7 +38,7 @@
 		<controls:FormItem label="Repetir Contraseña" validateFunction="validarPass">
 			<s:TextInput width="50%" id="pass2Input" displayAsPassword="true"/>
 		</controls:FormItem>
-		<controls:FormItem label="Acceso" validateFunction="validarList">
+		<controls:FormItem label="Acceso" validateType="list">
 			<com:ListPickerButton width="50%" label="Seleccione acceso" title="Usuarios" id="accesoInput" >
 				<com:dataProvider>
 					<s:ArrayList>

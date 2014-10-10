@@ -19,7 +19,7 @@ package views.finanzas
 	
 	import utils.DateUtil;
 	
-	import views.finanzas.modal.ArticuloModal;
+	import views.finanzas.modal.ArticuloPicker;
 	
 	import vo.VOCliente;
 	import vo.VOFactura;
@@ -111,13 +111,13 @@ package views.finanzas
 		protected function remover_click(event:MouseEvent):void {
 			var len:uint = grid.selectedIndices.length;
 			for (var i:int = len-1; i > -1; i--) {
-				_pagos.splice(i,1);				
+				_pagos.splice(grid.selectedIndices[i],1);				
 			}
 			updatePagos();
 		}
 		
 		protected function facturar_click(event:MouseEvent):void {
-			if (form.validate) {
+			if (form.isValid) {
 				if (_pagos.length>0)
 					ModalAlert.show("¿Esta seguro desea realizar factura?","Facturar",this,[{label:"Sí",styleName:"btn-primary"},{label:"No"}],facturarHandler);
 				else
@@ -149,6 +149,14 @@ package views.finanzas
 				}
 				factura.cancelarPagos();
 				
+				var producto:VOProducto;
+				for each (pago in _pagos) {
+					if (pago.tipo==VOProducto.PRODUCTO) {
+						producto = GestionClientes.productos.byDescripcion(pago.descripcion);						 
+						GestionClientes.productos.updateStock(producto.productoID,producto.cantidad-pago.cantidad);						
+					}
+				}
+				
 				GestionClientes.config.update("correlativo",GestionClientes.config.correlativo+1);
 				ModalAlert.show("","Factura Generada",this,[
 					{
@@ -175,21 +183,13 @@ package views.finanzas
 			}
 		}
 		protected function productos_click(event:MouseEvent=null):void {
-			var articulo:ArticuloModal = new ArticuloModal;
-			articulo.popUp();
-			
-			/*var productosPicker:ListPickerSearch = new ListPickerSearch();
-			productosPicker.title = "Seleccione producto o servicio";
-			productosPicker.onClose = function (indice:int,producto:VOProducto):void {
-				descInput.text = producto.descripcion;
-				montoInput.text = producto.monto.toString();
-				tipoInput.selectedIndex = producto.tipo;
-				cantInput.setFocus();
+			var articulo:ArticuloPicker = new ArticuloPicker;
+			articulo.onClose = function (pago:VOPago):void {
+				_pagos.push(pago);
+				updatePagos();
+				descInput.setFocus();
 			};
-			productosPicker.dataProvider = new VectorCollection(GestionClientes.productos.data);
-			productosPicker.labelField = "descripcion";
-			productosPicker.selectedIndex=-1;
-			productosPicker.popUp();*/
+			articulo.popUp();
 		}
 		
 		private function updatePagos():void {
@@ -202,12 +202,12 @@ package views.finanzas
 		}
 		
 		protected function insertar_click(event:MouseEvent):void {
-			if (form_item.validate) {
+			if (form_item.isValid) {
 				var p:VOPago = new VOPago;
 				p.descripcion = descInput.text.toUpperCase();
 				p.monto = Number(montoInput.text);
 				p.cantidad = Number(cantInput.text);
-				p.tipo = tipoInput.selectedIndex;
+				p.tipo = tipoInput.selectedItem.data;
 				
 				_pagos.push(p);
 				updatePagos();

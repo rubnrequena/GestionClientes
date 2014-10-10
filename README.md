@@ -7,19 +7,14 @@ TODO
 
 - Generales
 	Estadisticas
-
-- Clientes
 	Ingresos: Visualizar monto ingresado por registros de clientes en un rango de fecha
-	
-- Organización
-	Clases: Editar clase
-	
-- Finanzas
-	
-- Asistencias
-	
-- Configuración
+	Clases: Editar clase	
 	Nueva propiedad: Tope de asistencias diarias
+	Clientes: campo observación
+	Clientes: mostrar cedula del cliente en los pickerList, usar ItemRenderer
+	Asistencias: Tarea que cree las clases para asistencia automaticamente
+	Finanzas: Reporte por categoria, MENSUALIDAD, SERVICIOS, PRODUCTOS, MISC
+	Tarea: Clientes suspendidos por x dias de ausencia
 	
 [03-10-14]
 	Registrar inasistencia a clases 
@@ -47,4 +42,10 @@ TODO
 	Nueva propiedad: Sonar audio al registrar y rechazar audio
 	Agregar facturar con copia
 	Mostrar versión de aplicación en panel Acerca De
-	
+[10-10-14]
+	Nuevo sistema de formularios y validación
+	Clientes: Exoneración de pago
+	Finanzas: Selección de productos registrados
+	Finanzas: Activación del proceso de inventario
+	Productos: Editar información del producto
+	Productos: Agregar stock al producto

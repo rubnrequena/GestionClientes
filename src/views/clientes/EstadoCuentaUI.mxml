@@ -39,14 +39,14 @@
 		</s:Panel>
 	</s:VGroup>
 	<s:Panel title="Estadisticas" width="30%" height="100%">
-		<s:Form width="100%">
-			<controls:FormItem labelWidth="50" label="Total Ingresos" styleName="well-success">
+		<controls:Form width="100%">
+			<controls:FormItem label="Total Ingresos" styleName="well-success">
 				<s:Label id="ingresoInput"/>
 			</controls:FormItem>
-			<controls:FormItem labelWidth="50" label="Total Pendiente" styleName="well-danger">
+			<controls:FormItem label="Total Pendiente" styleName="well-danger">
 				<s:Label id="pendienteInput"/>
 			</controls:FormItem>
-		</s:Form>
+		</controls:Form>
 	</s:Panel>
 	
 	<views:controlBarContent>
