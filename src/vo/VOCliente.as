@@ -38,17 +38,10 @@ package vo
 		public function asistencias(num:int=-1):Vector.<VOAsistencia> {
 			var a:Array = GestionClientes.sql.seleccionar("asistencias",new <Value>[
 				Value.fromPool("clienteID",clienteID)
-			],VOAsistencia,"*",'ORDER BY fechaIngreso, horaIngreso DESC',num.toString()).data;
+			],VOAsistencia,"*",'ORDER BY fechaIngreso DESC, horaIngreso DESC',num.toString()).data;
 			return VectorUtil.toVector(a,Vector.<VOAsistencia>);
 		}
 		public function asistenciasDelMes(mes:int,anio:int):Vector.<VOAsistencia> {
-			/*mes++;
-			var m:String = mes<10?"0"+mes:mes.toString();
-			var a:Array = GestionClientes.sql.seleccionar("asistencias",new <Value>[
-				Value.fromPool("clienteID",clienteID),
-				Value.fromPool("fechaIngreso",'%'+anio+'-'+m+'%',"AND","LIKE")
-			],VOAsistencia,"*").data;
-			return VectorUtil.toVector(a,Vector.<VOAsistencia>);*/
 			var m:String = mes<10?"0"+mes:mes.toString();
 			return GestionClientes.asistencias.asistenciasClienteMes(clienteID,[anio,m].join("-"));
 		}

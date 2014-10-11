@@ -68,8 +68,10 @@ package views.organizacion
 			instructorInput.dataProvider = new VectorCollection(GestionClientes.instructores.data);			
 			salonInput.pickerClass = new ClassFactory(ListPickerSearch);
 			salonInput.dataProvider = new VectorCollection(GestionClientes.salones.data);
+			
+			autoInput.selectedIndex=0;
 			super.childrenCreated();
-		}	
+		}
 		
 		protected function remover_click(event:MouseEvent):void {
 			if (diasGrid.selectedIndex>-1)
@@ -83,6 +85,7 @@ package views.organizacion
 				clase.grupoID = (grupoInput.selectedItem as VOGrupo).grupoID;
 				clase.salonID = (salonInput.selectedItem as VOSalon).salonID;
 				clase.instructorID = (instructorInput.selectedItem as VOInstructor).instructorID;
+				clase.auto_registro = Boolean(autoInput.selectedIndex);
 				
 				GestionClientes.clasess.insertar(clase);
 				
@@ -98,6 +101,8 @@ package views.organizacion
 					instructorInput.selectedIndex = grupoInput.selectedIndex = salonInput.selectedIndex = -1;
 					_horarios.removeAll();
 				},"well-info");
+			} else {
+				ModalAlert.showDelay(formClase.elementErrorStrings.join("\n"),"Campos inválidos",null,2000);
 			}
 		}
 		protected function insertar_click(event:MouseEvent):void {
@@ -112,6 +117,8 @@ package views.organizacion
 				
 				tipoInput.selectedIndex = -1;
 				diasInput.tipo = -1;
+			} else {
+				ModalAlert.showDelay(formHorario.elementErrorStrings.join("\n"),"Campos inválidos",null,2000);
 			}
 		}
 		protected function atras_click(event:MouseEvent):void {

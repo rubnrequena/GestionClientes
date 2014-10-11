@@ -35,6 +35,9 @@ package clases
 		public var impresion_fuente:int;
 		public var sonidos:Boolean;
 
+		public var inasistencias_alerta:int=2;
+		public var inasisencias_maximas:int=10;
+
 		public var change:Signal = new Signal();
 		
 		public function Config() {

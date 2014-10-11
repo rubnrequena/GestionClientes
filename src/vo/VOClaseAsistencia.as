@@ -12,5 +12,9 @@ package vo
 		public function VOClaseAsistencia() {
 			super();
 		}
+		
+		public function get clase():VOClase {
+			return GestionClientes.clasess.byID(claseID);
+		}
 	}
 }

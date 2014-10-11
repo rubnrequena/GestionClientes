@@ -8,7 +8,7 @@
 	</views:layout>
 	<controls:Form id="form" width="100%">
 		<controls:FormItem label="Cliente:" validateType="list">
-			<com:ListPickerButton label="Cliente" id="clienteInput" width="50%" title="Clientes" pickerClass="{new ClassFactory(ListPickerSearch)}" labelField="nombres"/> 
+			<com:ListPickerButton label="Cliente" itemRender="{new ClassFactory(ClienteRender)}" id="clienteInput" width="50%" title="Clientes" pickerClass="{new ClassFactory(ListPickerSearch)}" labelField="nombres"/> 
 		</controls:FormItem>
 		<controls:FormItem label="Fecha:">
 			<mx:DateField width="50%" selectedDate="{new Date}" formatString="DD/MM/YYYY" id="fechaInput"/>
@@ -67,6 +67,7 @@
 	</views:controlBarContent>
 	<fx:Script>
 		<![CDATA[
+			import com.ClienteRender;
 			import com.ListPickerSearch;
 		]]>
 	</fx:Script>

@@ -10,6 +10,9 @@ package vo
 
 	public class VOHorario extends MapObject
 	{
+		public static const TIPO_SEMANAL:int=0;
+		public static const TIPO_MENSUAL:int=1;
+		
 		public var horarioID:int;
 		public var claseID:int;
 		public var grupoID:int;
@@ -17,6 +20,7 @@ package vo
 		public var entrada:int;
 		public var salida:int;
 		public var dias:String;
+		
 		
 		public static const TIPO:Array = ["Semanal","Mensual"];
 		public static const MESES:Array = [
@@ -38,6 +42,9 @@ package vo
 		
 		public function VOHorario() {
 				
+		}
+		public function get clase():VOClase {
+			return GestionClientes.clasess.byID(claseID);
 		}
 		override public function get toObject():Object {
 			var o:Object = super.toObject;

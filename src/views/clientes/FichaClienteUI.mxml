@@ -15,10 +15,10 @@
 				<ns:MaskedTextInput id="fechaInput" maskText="##/##/####"/>
 			</controls:FormItem>
 			<controls:FormItem label="Télefonos:" >
-				<s:TextArea id="tlfInput" height="100"/>
+				<s:TextArea id="tlfInput"/>
 			</controls:FormItem>
-			<controls:FormItem label="Dirección:">
-				<s:TextArea id="dirInput" height="100"/>
+			<controls:FormItem label="Dirección:" height="60">
+				<s:TextArea id="dirInput"/>
 			</controls:FormItem>
 			<controls:FormItem label="Grupo:">
 				<s:Button label="Seleccionar Grupo..." height="30" width="50%" id="grupoInput" styleName="btn-silent"/>

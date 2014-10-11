@@ -7,6 +7,9 @@ package vo
 
 	public class VOAsistencia extends MapObject
 	{
+		public static const RECHAZADA_HORARIO_INVALIDO:int=-1;
+		public static const RECHAZADA_ASISTENCIA_PREVIA:int=-2;
+		
 		public var asistenciaID:int;
 		public var clienteID:int;
 		public var grupoID:int;
@@ -41,6 +44,7 @@ package vo
 			return VOHorario.timeString(horaIngreso);
 		}
 		public function enRango (hora:int):Boolean {
+			trace(entrada,hora,salida);
 			return hora>=entrada&&hora<=salida?true:false;
 		}
 		

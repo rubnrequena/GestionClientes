@@ -10,7 +10,7 @@
 			<s:Label id="cedulaInput"/>
 		</controls:FormItem>
 		<controls:FormItem label="Télefonos:">
-			<s:Label id="tlfInput" height="100" maxDisplayedLines="3"/>
+			<s:Label id="tlfInput"/>
 		</controls:FormItem>
 		<controls:FormItem label="Grupo:">
 			<s:Label id="grupoInput"/>

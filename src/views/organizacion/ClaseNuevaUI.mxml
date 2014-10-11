@@ -11,8 +11,7 @@
 			protected function validarTimePicker (items:Array):void {
 				var entrada:int = entradaInput.time;
 				var salida:int = salidaInput.time;
-				trace(entrada,salida);
-				salidaInput.errorString = entrada>salida?"":"La hora final no puede ser menor a la hora de inicio";
+				salidaInput.errorString = entrada>=salida?"La hora final no puede ser menor o igual a la hora de inicio":"";
 			}
 		]]>
 	</fx:Script>
@@ -32,13 +31,23 @@
 		<controls:FormItem label="Salón" validateType="list">
 			<com:ListPickerButton label="Seleccione Salón..." title="Salones" labelField="nombre" id="salonInput" width="50%"/>
 		</controls:FormItem>
+		<controls:FormItem label="Auto Registrar" validateType="list">
+			<com:ListPickerButton title="Salones" labelField="label" id="autoInput">
+				<com:dataProvider>
+					<s:ArrayList>
+						<fx:Object label="No"/>
+						<fx:Object label="Si"/>
+					</s:ArrayList>
+				</com:dataProvider>
+			</com:ListPickerButton>
+		</controls:FormItem>
 	</controls:Form>
 	<controls:Form width="100%" id="formHorario">
 		<controls:FormItem styleName="well-info">
 			<s:Label text="Horarios"/>
 		</controls:FormItem>
 		<controls:FormItem label="Tipo" validateType="list">
-			<com:ListPickerButton id="tipoInput" label="Seleccionar tipo">
+			<com:ListPickerButton id="tipoInput" label="Seleccionar tipo" name="Tipo">
 				<com:dataProvider>
 					<s:ArrayList>
 						<fx:Object label="Semanal"/>
@@ -47,9 +56,7 @@
 				</com:dataProvider>
 			</com:ListPickerButton>
 		</controls:FormItem>
-		<controls:FormItem label="Dias" validateFunction="validarDayPicker">
-			<com:DayPicker id="diasInput"/>
-		</controls:FormItem>
+		<com:DayPicker id="diasInput" label="Dias" validateFunction="validarDayPicker"/>
 		<controls:FormItem label="Entrada" validateFunction="validarTimePicker">
 			<controls:TimePicker id="entradaInput"/>
 			<s:Label text="Salida" styleName="text-align-right"/>

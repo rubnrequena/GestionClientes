@@ -3,11 +3,15 @@ package views.asistencias
 	import clases.Asistencias;
 	import clases.Clases;
 	
+	import com.ModalAdmin;
+	import com.ModalAlert;
+	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.globalization.DateTimeStyle;
 	
 	import mx.controls.DateField;
+	import mx.core.IFactory;
 	import mx.events.FlexEvent;
 	
 	import org.apache.flex.collections.VectorCollection;
@@ -15,6 +19,8 @@ package views.asistencias
 	
 	import spark.events.TextOperationEvent;
 	import spark.formatters.DateTimeFormatter;
+	
+	import sr.helpers.Value;
 	
 	import utils.DateUtil;
 	
@@ -65,36 +71,64 @@ package views.asistencias
 		}
 		protected function registrarClick(event:Event):void {
 			resultGroup.visible=true;
-			
 			var cliente:VOCliente = GestionClientes.clientes.byCedula(cedulaInput.text);
 			if (cliente) {
+				var asistenciasPrevias:Vector.<VOAsistencia> = cliente.asistencias(10);
 				currentState="resultado";
 				var ahora:Date = new Date;
+				var entrada:int = int(DateUtil.dateToString(ahora,"HHnn"));
 				clienteCard.cliente = cliente;
 				
-				var asistenciaIndice:int = GestionClientes.asistencias.registrarAsistencia(cliente.clienteID,DateUtil.dateToString(ahora,"YYYY-MM-DD"),int(DateUtil.dateToString(ahora,"HHnn")));
-				if (asistenciaIndice>-1) {
-					resultGroup.styleName = "well-success text-size-lg";
-					resultLabel.text = "ASISTENCIA REGISTRADA";
-					
-					if (GestionClientes.config.sonidos) GestionClientes.config.asistencia_registrada.play(0,1);
-					
-				} else if (asistenciaIndice==-1) {
-					resultLabel.text = "ASISTENCIA RECHAZADA: HORARIO NO PERMITIDO";
-					resultGroup.styleName = "well-danger text-size-lg";
-					if (GestionClientes.config.sonidos) GestionClientes.config.asistencia_rechazada.play(0,1);
-				} else if (asistenciaIndice==-2) {
-					resultLabel.text = "ASISTENCIA RECHAZADA: ASISTENCIA PREVIA REGISTRADA";
-					resultGroup.styleName = "well-danger text-size-lg";
-					if (GestionClientes.config.sonidos) GestionClientes.config.asistencia_rechazada.play(0,1);
+				var asistenciaID:int = GestionClientes.asistencias.registrarAsistencia(cliente.clienteID,DateUtil.dateToString(ahora,"YYYY-MM-DD"),entrada);
+				if (asistenciaID>0) {
+					if (validarInasistenciasPrevias(asistenciasPrevias)) {
+						registrarAsistencia(asistenciaID,entrada);
+					} else {
+						rechazarAsistencia("DEMASIADAS INASISTENCIAS CONSECUTIVAS");
+						var modal:ModalAdmin = new ModalAdmin("Este usuario ha exedido el máximo de inasistencias consecutivas, se requiere permiso del administrador","Inasistencias Exedidas");
+						modal.onClose = function (detalle:int):void {
+							registrarAsistencia(asistenciaID,entrada);	
+							cedulaInput.selectAll();
+						};
+						modal.popUp();
+					}
+				} else if (asistenciaID==-1) {
+					rechazarAsistencia("HORARIO NO PERMITIDO");
+				} else if (asistenciaID==-2) {
+					rechazarAsistencia("ASISTENCIA PREVIA REGISTRADA");
 				}
-				clienteAsistencias.dataProvider = new VectorList(cliente.asistencias());
+				clienteAsistencias.dataProvider = new VectorList(asistenciasPrevias);
 				clienteHorarios.dataProvider = new VectorCollection(cliente.horarios);
 			} else {
-				resultLabel.text = "ASISTENCIA RECHAZADA: CLIENTE NO EXISTE";
-				resultGroup.styleName = "well-danger text-size-lg";
-				if (GestionClientes.config.sonidos) GestionClientes.config.asistencia_rechazada.play(0,1);
+				rechazarAsistencia("CLIENTE NO EXISTE");
 			}
+			cedulaInput.selectAll();
+		}
+		
+		private function rechazarAsistencia(label:String):void {
+			resultLabel.text = "ASISTENCIA RECHAZADA: "+label;
+			resultGroup.styleName = "well-danger text-size-lg";
+			if (GestionClientes.config.sonidos) GestionClientes.config.asistencia_rechazada.play(0,1);
+		}
+		
+		private function validarInasistenciasPrevias(asistenciasPrevias:Vector.<VOAsistencia>):Boolean {
+			var maxInasistencias:int = GestionClientes.config.inasistencias_alerta;
+			if (maxInasistencias>asistenciasPrevias.length) {
+				return false;
+			} else {
+				var inasistencias:int=0;
+				for (var i:int = 0; i < maxInasistencias; i++) {
+					if (!asistenciasPrevias[i].asistio) inasistencias++;
+				}
+				return inasistencias<maxInasistencias;
+			}
+		}
+		
+		private function registrarAsistencia(asistenciaID:int, entrada:int):void {
+			resultGroup.styleName = "well-success text-size-lg";
+			resultLabel.text = "ASISTENCIA REGISTRADA";
+			GestionClientes.asistencias.actualizar(asistenciaID,entrada);					
+			if (GestionClientes.config.sonidos) GestionClientes.config.asistencia_registrada.play(0,1);
 		}
 	}
 }

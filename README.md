@@ -4,17 +4,22 @@ GestionClientes
 Sistema de gestión de clientes
 
 TODO
-
-- Generales
 	Estadisticas
 	Ingresos: Visualizar monto ingresado por registros de clientes en un rango de fecha
-	Clases: Editar clase	
-	Nueva propiedad: Tope de asistencias diarias
+	Clases: Editar clase
 	Clientes: campo observación
-	Clientes: mostrar cedula del cliente en los pickerList, usar ItemRenderer
-	Asistencias: Tarea que cree las clases para asistencia automaticamente
 	Finanzas: Reporte por categoria, MENSUALIDAD, SERVICIOS, PRODUCTOS, MISC
 	Tarea: Clientes suspendidos por x dias de ausencia
+	Clientes: asignar a multiples grupos
+	
+TODO BASE DATOS
+- config
+	inasistencias_alerta
+	inasisencias_maximas
+- clases
+	auto_registro		boolean
+- clientes
+	exonerado			boolean
 	
 [03-10-14]
 	Registrar inasistencia a clases 
@@ -42,10 +47,15 @@ TODO
 	Nueva propiedad: Sonar audio al registrar y rechazar audio
 	Agregar facturar con copia
 	Mostrar versión de aplicación en panel Acerca De
-[10-10-14]
+[09-10-14]
 	Nuevo sistema de formularios y validación
 	Clientes: Exoneración de pago
 	Finanzas: Selección de productos registrados
 	Finanzas: Activación del proceso de inventario
 	Productos: Editar información del producto
 	Productos: Agregar stock al producto
+[10-10-14]
+	Asistencias: Tarea que cree las clases para asistencia automaticamente
+	Clientes: mostrar cedula del cliente en los pickerList, usar ItemRenderer
+	Config: nuevos campos inasistencias_alerta,inasistencias_maximas
+	Asistencias: Solicitar permiso del administrador si exede el maximo de inasistencias consecutivas

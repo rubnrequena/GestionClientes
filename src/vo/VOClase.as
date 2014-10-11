@@ -11,6 +11,7 @@ package vo
 		public var instructorID:int;
 		public var grupoID:int;
 		public var salonID:int;
+		public var auto_registro:Boolean;
 		
 		public function VOClase()
 		{

@@ -10,7 +10,7 @@
 		<s:VerticalLayout />
 	</views:layout>
 	<controls:Form width="100%">
-		<controls:FormItem label="Cedula del Cliente:">
+		<controls:FormItem label="Cedula del Cliente:" autoSize="false">
 			<s:TextInput id="cedulaInput" width="100%" restrict="0-9"/>
 			<s:Button label="Registrar" styleName="btn-primary" id="btnRegistrar"/>
 		</controls:FormItem>

@@ -2,6 +2,7 @@
 package clases
 {
 	import utils.VectorUtil;
+	
 	import vo.VOClaseAsistencia;
 
 	public class ClasesAsistencia
@@ -44,6 +45,9 @@ package clases
 				}
 			}
 			return false;
+		}
+		public function registrarClases ():void {
+//			var clases:Array = GestionClientes.sql.
 		}
 	}
 }

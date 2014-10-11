@@ -34,12 +34,14 @@ package clases
 			updateFlag=true;
 		}
 		public function byID (claseID:int):VOClase {
+			if (updateFlag) update();
 			for (var i:int = 0; i < _data.length; i++) {
 				if (_data[i].claseID==claseID) return _data[i];
 			}
 			return null;
 		}
 		public function byFecha (fecha:String):Vector.<VOClase> {
+			if (updateFlag) update();
 			return VectorUtil.toVector(GestionClientes.sql.seleccionar("clases",new <Value>[
 				Value.fromPool("fecha",fecha)
 			],VOClase).data,Vector.<VOClase>);

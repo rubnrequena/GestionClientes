@@ -26,6 +26,16 @@ package clases
 			GestionClientes.sql.insertarUnion("asistencias",asistencias);
 			updateFlag=true;
 		}
+		public function actualizar (asistenciaID:int,entrada:int):void {
+			GestionClientes.sql.actualizar("asistencias",new <Value>[
+				Value.fromPool("horaIngreso",entrada),
+				Value.fromPool("asistio",true),
+				Value.fromPool("usuarioID",VOUsuario.USUARIO_ACTIVO.usuarioID)
+			],new <Value>[
+				Value.fromPool("asistenciaID",asistenciaID)
+			]);
+			updateFlag=true;
+		}
 		public function asistenciasClienteMes (clienteID:int,mes:String):Vector.<VOAsistencia> {
 			if (updateFlag) update();
 			var v:Vector.<VOAsistencia> = new Vector.<VOAsistencia>;
@@ -47,25 +57,17 @@ package clases
 		}
 		public function registrarAsistencia (clienteID:int,fecha:String,entrada:int):int {
 			if (updateFlag) update();
-			var ret:int=-1;
+			var ret:int = VOAsistencia.RECHAZADA_HORARIO_INVALIDO;
 			for (var i:int = 0; i < _data.length; i++) {
 				if (_data[i].fechaIngreso==fecha && _data[i].clienteID==clienteID) {
 					if (_data[i].enRango(entrada)) {
 						if (_data[i].asistio==false) {
-							GestionClientes.sql.actualizar("asistencias",new <Value>[
-								Value.fromPool("horaIngreso",entrada),
-								Value.fromPool("asistio",true),
-								Value.fromPool("usuarioID",VOUsuario.USUARIO_ACTIVO.usuarioID)
-							],new <Value>[
-								Value.fromPool("asistenciaID",_data[i].asistenciaID)
-							]);
-							updateFlag=true;
-							return i;	
+							return _data[i].asistenciaID;	
 						} else {
-							ret = -2;
+							ret = VOAsistencia.RECHAZADA_ASISTENCIA_PREVIA;
 						}
 					} else {
-						ret = -1
+						ret = VOAsistencia.RECHAZADA_HORARIO_INVALIDO;
 					}
 				}
 			}
