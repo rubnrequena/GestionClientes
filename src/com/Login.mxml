@@ -47,10 +47,10 @@
 		]]>
 	</fx:Script>
 	<controls:Form width="100%" id="form">
-		<controls:FormItem label="Usuario" validateFunction="Validator.validateText">
+		<controls:FormItem label="Usuario" validateType="text">
 			<s:TextInput id="usuarioInput"/>
 		</controls:FormItem>
-		<controls:FormItem label="Contraseña" validateFunction="Validator.validateText">
+		<controls:FormItem label="Contraseña" validateType="text">
 			<s:TextInput id="passInput" displayAsPassword="true"/>
 		</controls:FormItem>
 		<s:Group width="100%">
