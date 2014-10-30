@@ -60,6 +60,7 @@ package clases.tareas
 							pago.fecha = fecha;
 							pago.pendiente = true;
 							pago.hash = hash;
+							pago.tipo = 0;
 							pagos.push(pago);
 						}
 					}
@@ -75,6 +76,7 @@ package clases.tareas
 			descripcion = descripcion.split("{MES}").join(VOHorario.MESES[d.month].label);
 			descripcion = descripcion.split("{AÑO}").join(d.fullYear);
 			descripcion = descripcion.split("{GRUPO}").join(grupo.nombre);
+			descripcion = descripcion.split("{DIA}").join(d.date);
 			return descripcion.toUpperCase();
 		}
 	}

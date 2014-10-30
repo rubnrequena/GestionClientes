@@ -44,7 +44,7 @@ package com
 		}
 		
 		private function validateUser(items:Array):void {
-			pass.errorString = pass.text==VOUsuario.USUARIO_ACTIVO.pass?"":"Contraseña inválida";
+			pass.errorString = pass.text==VOUsuario.USUARIO.pass?"":"Contraseña inválida";
 		}
 		override protected function clickHandler(event:Event):void {
 			if (event.target is Button) {

@@ -15,10 +15,14 @@
 				<ns:MaskedTextInput id="fechaInput" maskText="##/##/####"/>
 			</controls:FormItem>
 			<controls:FormItem label="Télefonos:" >
-				<s:TextArea id="tlfInput"/>
+				<s:TextArea id="tlfInput" height="30"/>
 			</controls:FormItem>
-			<controls:FormItem label="Dirección:" height="60">
-				<s:TextArea id="dirInput"/>
+			<controls:FormItem label="Dirección:">
+				<s:TextArea id="dirInput" height="60"/>
+			</controls:FormItem>
+			<controls:FormItem label="Observación" autoSize="false">
+				<s:TextArea id="obsInput" height="60" width="100%"/>
+				<s:Button styleName="btn-silent icon-lista-sm" width="32" height="32" id="obsXL"/>
 			</controls:FormItem>
 			<controls:FormItem label="Grupo:">
 				<s:Button label="Seleccionar Grupo..." height="30" width="50%" id="grupoInput" styleName="btn-silent"/>
@@ -27,8 +31,8 @@
 				<com:ListPickerButton id="exoneradoInput" styleName="btn-silent" width="50%" labelField="label">
 					<com:dataProvider>
 						<s:ArrayList>
-							<fx:Object label="Si"/>
 							<fx:Object label="No"/>
+							<fx:Object label="Si"/>
 						</s:ArrayList>
 					</com:dataProvider>
 				</com:ListPickerButton>
@@ -44,8 +48,8 @@
 				<s:DataGrid width="100%" height="100%" id="clienteAsistencias">
 					<s:columns>
 						<s:ArrayList>
-							<s:GridColumn headerText="Fecha Ingreso" dataField="fechaIngreso"/>
-							<s:GridColumn headerText="Hora Ingreso" dataField="horaIngreso"/>
+							<s:GridColumn headerText="Fecha Ingreso" dataField="fechaIngresoLocal"/>
+							<s:GridColumn headerText="Hora Ingreso" dataField="horaLocal"/>
 							<s:GridColumn headerText="Usuario" dataField="usuario"/>
 						</s:ArrayList>
 					</s:columns>
@@ -56,9 +60,9 @@
 					<s:columns>
 						<s:ArrayList>
 							<s:GridColumn headerText="Fecha" dataField="fechaLocal"/>
-							<s:GridColumn headerText="Factura" dataField="correlativo"/>
+							<s:GridColumn headerText="Factura" dataField="correlativoString"/>
 							<s:GridColumn headerText="Monto" dataField="monto"/>
-							<s:GridColumn headerText="Usuario" dataField="usuarioID"/>
+							<s:GridColumn headerText="Usuario" dataField="usuario"/>
 						</s:ArrayList>
 					</s:columns>
 				</s:DataGrid>
@@ -68,9 +72,9 @@
 	<views:controlBarContent>
 		<s:Button label="Eliminar" height="30" styleName="btn-danger icon-remover-sm" id="btnEliminar"/>
 		<s:Spacer width="100%"/>
-		<s:Button label="Nuevo Pago" height="30" styleName="btn-waring" id="btnNuevoPago"/>
-		<s:Button label="Estado de Cuenta" height="30" styleName="btn-warning" id="btnEstadoCuenta"/>
-		<s:Button label="Asistencias" height="30" styleName="btn-warning" id="btnAsistencias"/>
+		<s:Button label="Nuevo Pago" height="30" styleName="btn-primary icon-facturar-sm" id="btnNuevoPago"/>
+		<s:Button label="Estado de Cuenta" height="30" styleName="btn-warning icon-factura-sm" id="btnEstadoCuenta"/>
+		<s:Button label="Asistencias" height="30" styleName="btn-warning icon-asistencias-sm" id="btnAsistencias"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
 	</views:controlBarContent>

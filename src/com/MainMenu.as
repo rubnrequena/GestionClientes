@@ -22,8 +22,8 @@ package com
 			VOUsuario.usuarioChange.add(usuarioUpdated);
 		}
 		private var temp:Vector.<IVisualElement>;
-		private function usuarioUpdated(usuario:VOUsuario):void {
-			if (usuario.acceso>0) {
+		private function usuarioUpdated(usuario:int):void {
+			if (VOUsuario.USUARIO.acceso>0) {
 				temp = new <IVisualElement> [
 					removeItemAt(4),
 					removeItemAt(1)

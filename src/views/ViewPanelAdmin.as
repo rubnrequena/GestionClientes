@@ -16,11 +16,11 @@ package views
 			super();
 		}
 		override protected function childrenCreated():void {
-			accessGranted = VOUsuario.USUARIO_ACTIVO.acceso>0?false:true; 
-			if (VOUsuario.USUARIO_ACTIVO.acceso>0) {
+			accessGranted = VOUsuario.USUARIO.acceso>0?false:true; 
+			if (VOUsuario.USUARIO.acceso>0) {
 				stage.focus = null;
 				ModalAlert.show("Acceso restringido","",null,[ModalAlert.OK],function ():void {
-					if (VOUsuario.USUARIO_ACTIVO.acceso>0) (owner as ViewNavigatorHistory).popBack(true);
+					if (VOUsuario.USUARIO.acceso>0) (owner as ViewNavigatorHistory).popBack(true);
 				},0,"well-danger");
 			}
 		}

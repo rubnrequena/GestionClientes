@@ -2,12 +2,15 @@ package views.clientes
 {
 	import bootstrap.controls.FormItem;
 	
+	import com.ListPicker;
 	import com.ListPickerSearch;
 	import com.ModalAlert;
+	import com.adobe.crypto.MD5;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
+	import mx.collections.ArrayList;
 	import mx.controls.DateField;
 	import mx.core.ClassFactory;
 	
@@ -18,11 +21,18 @@ package views.clientes
 	
 	import utils.DateUtil;
 	
+	import views.finanzas.NuevoPago;
+	
 	import vo.VOCliente;
+	import vo.VOGrupo;
+	import vo.VOPago;
+	import vo.VOProducto;
+	import vo.VOTarea;
+	import vo.VOUsuario;
 
 	public class Cliente extends ClienteUI
 	{		
-		public var cliente:VOCliente;
+		public var _cliente:VOCliente;
 		
 		public function Cliente() {
 			super();
@@ -54,23 +64,72 @@ package views.clientes
 		
 		protected function guardar_click(event:MouseEvent):void {
 			if (validateCampos) {
-				var cliente:VOCliente = new VOCliente;
-				cliente.nombres = nombreInput.text;
-				cliente.cedula = cedulaInput.text;
-				cliente.telefonos = tlfInput.text;
-				cliente.direccion = dirInput.text;
-				cliente.fechaNacimiento = DateUtil.toggleDate(fechaInput.fullText);
-				cliente.fechaRegistro = DateField.dateToString(new Date,"YYYY-MM-DD");
-				cliente.grupoID = grupoInput.selectedItem.grupoID;
-				cliente.meta = "";
+				_cliente = new VOCliente;
+				_cliente.nombres = nombreInput.text;
+				_cliente.cedula = cedulaInput.text;
+				_cliente.telefonos = tlfInput.text;
+				_cliente.direccion = dirInput.text;
+				_cliente.fechaNacimiento = DateUtil.toggleDate(fechaInput.fullText);
+				_cliente.fechaRegistro = DateField.dateToString(new Date,"YYYY-MM-DD");
+				_cliente.grupoID = grupoInput.selectedItem.grupoID;
+				_cliente.meta = obsInput.text;
 				
-				GestionClientes.clientes.insertar(cliente);
-				ModalAlert.showDelay("Cliente Guardado","Cliente",null,2000,function ():void {
-					resetClick();
-				},"well-info");
+				GestionClientes.clientes.insertar(_cliente);
+				
+				var _grupo:VOGrupo = GestionClientes.grupos.byID(grupoInput.selectedItem.grupoID);
+				if (_grupo.inscripcion>0) {
+					var _pago:VOPago = new VOPago;
+					_pago.clienteID = _cliente.clienteID;
+					_pago.descripcion = "[SISTEMA] INSCRIPCION "+_grupo.nombre;
+					_pago.monto = _grupo.inscripcion;
+					_pago.cantidad = 1;
+					_pago.fecha = _cliente.fechaRegistro;
+					_pago.pendiente = true;
+					_pago.tipo = VOProducto.INSCRIPCION;
+					_pago.usuarioID = VOUsuario.USUARIO_ACTIVO;
+					GestionClientes.pagos.insertar(_pago);
+				}
+				
+				if (tarea.selected) {
+					var pick:ListPicker = new ListPicker;
+					pick.cancelable = false;
+					pick.dataProvider = new ArrayList([
+						{label:"SEMANAL",tipo:0},
+						{label:"MENSUAL",tipo:1}
+					]);
+					pick.labelField = "label";
+					pick.title = "Seleccione...";
+					pick.onClose = function (index:int,data:Object):void {
+						var hoy:Date = new Date;
+						var _tarea:VOTarea = new VOTarea;
+						_tarea.meta = [_cliente.clienteID,"MENSUALIDAD DE {MES}, {AÑO}"].join(";");
+						_tarea.tipo = data.tipo;
+						_tarea.dia = data.tipo==VOTarea.TIPO_SEMANAL?hoy.day:hoy.date;
+						_tarea.type = "clases.tareas::TPagoCliente";
+						_tarea.tarea = "[SISTEMA] Mensualidad, "+_cliente.nombres;
+						
+						GestionClientes.tareas.insertar(_tarea);
+						alertSave();
+					};
+					pick.popUp(true,this);
+				} else {
+					alertSave();
+				}
 			}
 		}
 		
+		private function alertSave():void {
+			ModalAlert.show("Cliente Guardado","Cliente",null,[{label:"Nuevo"},{label:"Facturar"}],function (button:int):void {
+				if (button==0)
+					resetClick();
+				else if (button==1)
+					facturarCliente();	
+			},0,"well-info");
+		}
+		private function facturarCliente():void {
+			(owner as ViewNavigator).addView("factura_"+_cliente.clienteID,NuevoPago,{cliente:_cliente},true);
+			resetClick();
+		}
 		private function get validateCampos():Boolean {
 			var campos:Vector.<SkinnableTextBase> = new <SkinnableTextBase>[
 				nombreInput,
@@ -103,7 +162,7 @@ package views.clientes
 			dirInput.text="";
 			fechaInput.text="";
 			grupoInput.label="Seleccionar Grupo...";
-			cliente=null;
+			_cliente=null;
 		}
 		protected function cancelClick(event:MouseEvent):void {
 			(owner as ViewNavigatorHistory).popBack();

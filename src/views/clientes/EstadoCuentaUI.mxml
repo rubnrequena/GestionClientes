@@ -15,7 +15,7 @@
 				<s:columns>
 					<s:ArrayList>
 						<s:GridColumn headerText="Fecha" dataField="fechaLocal"/>
-						<s:GridColumn headerText="Factura" dataField="correlativo"/>
+						<s:GridColumn headerText="Factura" dataField="correlativoString"/>
 						<s:GridColumn headerText="Total" dataField="monto"/>
 					</s:ArrayList>
 				</s:columns>
@@ -40,7 +40,7 @@
 	</s:VGroup>
 	<s:Panel title="Estadisticas" width="30%" height="100%">
 		<controls:Form width="100%">
-			<controls:FormItem label="Total Ingresos" styleName="well-success">
+			<controls:FormItem label="Total Ingresos" styleName="well-success" skinClass="views.clientes.FormItemCenter">
 				<s:Label id="ingresoInput"/>
 			</controls:FormItem>
 			<controls:FormItem label="Total Pendiente" styleName="well-danger">

@@ -9,16 +9,19 @@ package vo
 		public static const USER_ADMIN:int = 0;
 		public static const USER_EMPLEADO:int = 1;
 		
-		public static const usuarioChange:Signal = new Signal(VOUsuario);
+		public static const usuarioChange:Signal = new Signal(int);
 		
-		private static var _USUARIO_ACTIVO:VOUsuario;
-		public static function get USUARIO_ACTIVO():VOUsuario { return _USUARIO_ACTIVO; }
-		public static function set USUARIO_ACTIVO(value:VOUsuario):void {
+		private static var _USUARIO_ACTIVO:int;
+		public static function get USUARIO_ACTIVO():int { return _USUARIO_ACTIVO; }
+		public static function set USUARIO_ACTIVO(value:int):void {
 			if (_USUARIO_ACTIVO!=value) {
 				_USUARIO_ACTIVO = value;
 				usuarioChange.dispatch(value);
 			}
-		}		
+		}
+		public static function get USUARIO ():VOUsuario {
+			return GestionClientes.usuarios.byID(USUARIO_ACTIVO);
+		}
 		public static const ACCESOS:Array = [
 			{label:"Administrador"},
 			{label:"Empleado"}

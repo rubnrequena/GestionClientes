@@ -63,7 +63,7 @@ package clases
 			Config.resetPool();
 		}
 		public function get morosos():Vector.<VOMoroso> {
-			var data:Array = GestionClientes.sql.sql('SELECT clientes.clienteID, clientes.nombres, pagos.fecha, SUM(pagos.monto) monto ' +
+			var data:Array = GestionClientes.sql.sql('SELECT clientes.clienteID, clientes.nombres, pagos.fecha, SUM(pagos.monto*pagos.cantidad) monto ' +
 				'FROM pagos JOIN clientes ON clientes.clienteID = pagos.clienteID WHERE pendiente = true ' +
 				'GROUP BY clientes.clienteID ORDER BY monto DESC, fecha ASC',VOMoroso).data;
 			return VectorUtil.toVector(data,Vector.<VOMoroso>);

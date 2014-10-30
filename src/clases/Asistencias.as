@@ -30,7 +30,7 @@ package clases
 			GestionClientes.sql.actualizar("asistencias",new <Value>[
 				Value.fromPool("horaIngreso",entrada),
 				Value.fromPool("asistio",true),
-				Value.fromPool("usuarioID",VOUsuario.USUARIO_ACTIVO.usuarioID)
+				Value.fromPool("usuarioID",VOUsuario.USUARIO_ACTIVO)
 			],new <Value>[
 				Value.fromPool("asistenciaID",asistenciaID)
 			]);

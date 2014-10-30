@@ -44,7 +44,6 @@ package vo
 			return VOHorario.timeString(horaIngreso);
 		}
 		public function enRango (hora:int):Boolean {
-			trace(entrada,hora,salida);
 			return hora>=entrada&&hora<=salida?true:false;
 		}
 		

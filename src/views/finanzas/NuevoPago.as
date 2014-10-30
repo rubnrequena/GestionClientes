@@ -25,6 +25,7 @@ package views.finanzas
 	import vo.VOFactura;
 	import vo.VOPago;
 	import vo.VOProducto;
+	import vo.VOUsuario;
 	
 	public class NuevoPago extends NuevoPagoUI
 	{
@@ -89,6 +90,8 @@ package views.finanzas
 			addEventListener(KeyboardEvent.KEY_DOWN,onKeyDown);
 			
 			clienteInput.onClose = seleccionarCliente_close;
+			clienteInput.properties.width = 400;
+			credito.enabled = credito.visible = GestionClientes.config.empleado_credito;
 			
 			pagosPicker.labelField = "descripcion";
 			pagosPicker.title = "Pagos";
@@ -118,13 +121,39 @@ package views.finanzas
 		
 		protected function facturar_click(event:MouseEvent):void {
 			if (form.isValid) {
-				if (_pagos.length>0)
-					ModalAlert.show("¿Esta seguro desea realizar factura?","Facturar",this,[{label:"Sí",styleName:"btn-primary"},{label:"No"}],facturarHandler);
-				else
+				if (_pagos.length>0) {
+					if (credito.selected)
+						ModalAlert.show("¿Esta seguro desea aumentar crédito?","Crédito",this,[{label:"Sí",styleName:"btn-primary"},{label:"No"}],creditoHandler);
+					else
+						ModalAlert.show("¿Esta seguro desea realizar factura?","Facturar",this,[{label:"Sí",styleName:"btn-primary"},{label:"No"}],facturarHandler);
+				} else {
 					ModalAlert.show("Se necesita agregue al menos un articulo o pago a cancelar","Pagos",null,[ModalAlert.OK],function ():void {
 						descInput.setFocus();
 					});
+				}
 			}
+		}
+		
+		private function creditoHandler(detalle:int):void {
+			if (detalle>0) return;
+			var now:String = DateField.dateToString(new Date,"YYYY-MM-DD");
+			for each (var pago:VOPago in _pagos) {
+				if (pago.pagoID==0) {
+					pago.facturaID = 0;
+					pago.clienteID = cliente.clienteID;
+					pago.fecha = now;
+					pago.pendiente = credito.selected;
+					GestionClientes.pagos.insertar(pago);
+				}
+			}
+			var producto:VOProducto;
+			for each (pago in _pagos) {
+				if (pago.tipo==VOProducto.PRODUCTO) {
+					producto = GestionClientes.productos.byDescripcion(pago.descripcion);
+					GestionClientes.productos.updateStock(producto.productoID,producto.cantidad-pago.cantidad);						
+				}
+			}			
+			cancelarClick();
 		}
 		protected function facturarHandler (detalle:int):void {
 			if (detalle==0) {
@@ -132,7 +161,7 @@ package views.finanzas
 				factura = new VOFactura;
 				factura.clienteID = cliente.clienteID;
 				factura.fecha = DateUtil.toggleDate(fechaInput.text);
-				factura.usuarioID = 0;
+				factura.usuarioID = VOUsuario.USUARIO_ACTIVO;
 				factura.monto = _totalPagos;
 				factura.correlativo = GestionClientes.config.correlativo;
 				
@@ -144,6 +173,7 @@ package views.finanzas
 						pago.facturaID = factura.facturaID;
 						pago.clienteID = cliente.clienteID;
 						pago.fecha = now;
+						pago.pendiente = credito.selected;
 						GestionClientes.pagos.insertar(pago);
 					}
 				}
@@ -152,7 +182,7 @@ package views.finanzas
 				var producto:VOProducto;
 				for each (pago in _pagos) {
 					if (pago.tipo==VOProducto.PRODUCTO) {
-						producto = GestionClientes.productos.byDescripcion(pago.descripcion);						 
+						producto = GestionClientes.productos.byDescripcion(pago.descripcion);
 						GestionClientes.productos.updateStock(producto.productoID,producto.cantidad-pago.cantidad);						
 					}
 				}

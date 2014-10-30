@@ -8,6 +8,7 @@ package vo
 		public var descripcion:String;
 		public var nombre:String;
 		public var renta:Number;
+		public var inscripcion:Number;
 				
 		public function VOGrupo() {
 			super();

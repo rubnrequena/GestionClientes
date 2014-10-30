@@ -8,6 +8,9 @@ package views.sistema
 	import flash.events.MouseEvent;
 	
 	import mx.collections.ArrayList;
+	
+	import spark.components.Button;
+	import spark.components.ToggleButton;
 
 	public class Config extends ConfigUI
 	{
@@ -38,21 +41,35 @@ package views.sistema
 			impresion_anchoPapel.text = GestionClientes.config.impresion_anchoPapel.toString();
 			impresion_fuente.dataProvider = new ArrayList(clases.Config.IMPRESION_FUENTES);
 			impresion_fuente.selectedIndex = GestionClientes.config.impresion_fuente;
-			toggleSonidos(GestionClientes.config.sonidos);
-			sonidos.selected = GestionClientes.config.sonidos;
 			
+			toggleButton(GestionClientes.config.sonidos,sonidos);
 			sonidos.addEventListener(MouseEvent.CLICK,sonidos_click);
+			
+			toggleButton(GestionClientes.config.morosos_en_pantalla,morosos);
+			morosos.addEventListener(MouseEvent.CLICK,morosos_click);
+			
+			toggleButton(GestionClientes.config.empleado_credito,credito);
+			credito.addEventListener(MouseEvent.CLICK,credito_click);
 			
 			btnGuardar.addEventListener(MouseEvent.CLICK,guardar_click);
 			btnAtras.addEventListener(MouseEvent.CLICK,atras_click);
 		}
 		
-		protected function sonidos_click(event:MouseEvent):void {
-			toggleSonidos(sonidos.selected);
+		protected function credito_click(event:MouseEvent):void {
+			toggleButton(event.target.selected,event.target as ToggleButton);
 		}
 		
-		private function toggleSonidos(value:Boolean):void {
-			sonidos.label = value?"Activado":"Desactivado";
+		protected function morosos_click(event:MouseEvent):void {
+			toggleButton(morosos.selected,morosos);
+		}
+		
+		protected function sonidos_click(event:MouseEvent):void {
+			toggleButton(sonidos.selected,sonidos);
+		}
+		
+		private function toggleButton(value:Boolean,button:ToggleButton):void {
+			button.label = value?"Activado":"Desactivado";
+			button.selected = value;
 		}
 		
 		protected function atras_click(event:MouseEvent):void {
@@ -67,8 +84,14 @@ package views.sistema
 			for each (campo in selectCampos) {
 				validateSelect(campo);
 			}
-			if (GestionClientes.config.sonidos!=sonidos.selected)
-				GestionClientes.config.update("sonidos",sonidos.selected);
+			var toggles:Vector.<ToggleButton> = new <ToggleButton>[
+				sonidos,
+				morosos,
+				credito
+			];
+			for (var i:int = 0; i < toggles.length; i++) {
+				GestionClientes.config.update(toggles[i].name,toggles[i].selected);
+			}
 			
 			ModalAlert.showDelay("Configuración guardada con éxito","Guardar cambios",null,1000,null,"well-info");
 		}

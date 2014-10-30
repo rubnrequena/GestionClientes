@@ -13,18 +13,22 @@
 			<ns:MaskedTextInput id="fechaInput" maskText="##/##/####"/>
 		</controls:FormItem>
 		<controls:FormItem label="Télefonos:">
-			<s:TextArea id="tlfInput" height="100"/>
+			<s:TextArea id="tlfInput" height="50"/>
 		</controls:FormItem>
 		<controls:FormItem label="Dirección:" >
 			<s:TextArea id="dirInput" height="100"/>
 		</controls:FormItem>
 		<controls:FormItem label="Grupo:">
-			<com:ListPickerButton label="Seleccionar grupo..." id="grupoInput" styleName="btn-silent" width="50%" labelField="nombre"/>
+			<com:ListPickerButton label="Seleccionar grupo..." id="grupoInput" width="50%" labelField="nombre"/>
+		</controls:FormItem>
+		<controls:FormItem label="Observación">
+			<s:TextArea id="obsInput" height="100"/>
 		</controls:FormItem>
 	</controls:Form>
 	<views:controlBarContent>
 		<s:Button label="Guardar" height="30" styleName="btn-primary icon-guardar-sm" id="btnGuardar"/>
 		<s:Button label="Limpiar" height="30" styleName="btn-warning icon-limpiar-sm" id="btnReset"/>
+		<s:CheckBox id="tarea" label="Mensualidad en inscripción"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>
 	</views:controlBarContent>

@@ -34,6 +34,8 @@ package clases
 		public var impresion_anchoPapel:Number;
 		public var impresion_fuente:int;
 		public var sonidos:Boolean;
+		public var morosos_en_pantalla:Boolean;
+		public var empleado_credito:Boolean;
 
 		public var inasistencias_alerta:int=2;
 		public var inasisencias_maximas:int=10;

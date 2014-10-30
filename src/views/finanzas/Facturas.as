@@ -7,6 +7,7 @@ package views.finanzas
 	import flash.events.MouseEvent;
 	
 	import mx.core.ClassFactory;
+	import mx.events.CalendarLayoutChangeEvent;
 	import mx.events.FlexEvent;
 	
 	import org.apache.flex.collections.VectorCollection;
@@ -32,6 +33,19 @@ package views.finanzas
 			btnBuscarFactura.addEventListener(MouseEvent.CLICK,buscarFactura_handler);
 			btnVer.addEventListener(MouseEvent.CLICK,btnVer_click);
 			btnAtras.addEventListener(MouseEvent.CLICK,atras_click);
+			
+			inicioInput.addEventListener(CalendarLayoutChangeEvent.CHANGE,inicioInput_change);
+			finInput.addEventListener(CalendarLayoutChangeEvent.CHANGE,finInput_change);
+		}
+		
+		protected function finInput_change(event:CalendarLayoutChangeEvent):void {
+			if (finInput.selectedDate<inicioInput.selectedDate)
+				inicioInput.selectedDate = finInput.selectedDate;
+		}
+		
+		protected function inicioInput_change(event:CalendarLayoutChangeEvent):void {
+			if (inicioInput.selectedDate>finInput.selectedDate)
+				finInput.selectedDate = inicioInput.selectedDate;
 		}
 		
 		protected function buscarFactura_handler(event:Event):void {
@@ -59,17 +73,16 @@ package views.finanzas
 		}
 		
 		protected function buscarFecha_click(event:MouseEvent):void {
-			formFechas.styleName = "formItem well-success";
-			formCliente.styleName = "formItem well-default";
-			
+			formFechas.styleName = "well-success";
+			formCliente.styleName = "well-default";
 			var inicio:String = DateUtil.toggleDate(inicioInput.text);
 			var fin:String = DateUtil.toggleDate(finInput.text);
 			facturasGrid.dataProvider = new VectorCollection(GestionClientes.facturas.byFechas(inicio,fin));
 		}
 		
 		protected function buscarCliente_click():void {
-			formCliente.styleName = "formItem well-success";
-			formFechas.styleName = "formItem well-default";
+			formCliente.styleName = "well-success";
+			formFechas.styleName = "well-default";
 			
 			facturasGrid.dataProvider = new VectorCollection(GestionClientes.facturas.byCliente((clienteInput.selectedItem as VOCliente).clienteID));
 		}

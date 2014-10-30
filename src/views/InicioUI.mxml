@@ -2,42 +2,56 @@
 <views:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
 					  xmlns:s="library://ns.adobe.com/flex/spark" 
 					  xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:controls="bootstrap.controls.*" xmlns:views="views.*">
-	<fx:Declarations>
-		
+	<fx:Declarations>		
 	</fx:Declarations>
-	<s:TileGroup left="20" right="20" top="40" bottom="20">
-		<s:Panel styleName="well-info" width="200" title="Clientes">
-			<s:Form width="100%" styleName="text-size-md">
-				<s:FormItem label="Registrados:" height="20">
-					<s:Label id="numClientes" text="0" width="100%" styleName="text-align-right"/>
-				</s:FormItem>
-				<s:FormItem label="Cumpleaños:" height="20">
-					<s:Label id="numCumpleanos" text="0" width="100%" styleName="text-align-right"/>
-				</s:FormItem>
-			</s:Form>
-		</s:Panel>
-		<s:Panel styleName="well-warning" width="200" title="Organización">
-			<s:Form width="100%" styleName="text-size-md">
-				<s:FormItem label="Grupos:" height="20">
-					<s:Label id="numGrupos" text="0" width="100%" styleName="text-align-right"/>
-				</s:FormItem>
-				<s:FormItem label="Instructores:" height="20">
-					<s:Label id="numInstructores" text="0" width="100%" styleName="text-align-right"/>
-				</s:FormItem>
-				<s:FormItem label="Salones:" height="20">
-					<s:Label id="numSalones" text="0" width="100%" styleName="text-align-right"/>
-				</s:FormItem>
-				<s:FormItem label="Clases:" height="20">
-					<s:Label id="numClases" text="0" width="100%" styleName="text-align-right"/>
-				</s:FormItem>
-			</s:Form>
-		</s:Panel>
-		<s:Panel styleName="well-warning" width="200" title="Asistencias">
-			<s:Form width="100%" styleName="text-size-md" id="asistencias">
-				<s:FormItem label="Total:" height="20">
-					<s:Label id="numAsistencias" text="0" width="100%" styleName="text-align-right"/>
-				</s:FormItem>
-			</s:Form>
-		</s:Panel>
-	</s:TileGroup>
+	<views:layout>
+		<s:HorizontalLayout verticalAlign="contentJustify" />
+	</views:layout>
+	<s:VGroup width="100%">
+		<s:TileGroup width="100%" paddingBottom="10" paddingLeft="10" paddingRight="10" paddingTop="10">
+			<s:Panel styleName="well-info" width="200" title="Clientes">
+				<s:Form width="100%" styleName="text-size-md">
+					<s:FormItem label="Registrados:" height="20">
+						<s:Label id="numClientes" text="0" width="100%" styleName="text-align-right"/>
+					</s:FormItem>
+					<s:FormItem label="Cumpleaños:" height="20">
+						<s:Label id="numCumpleanos" text="0" width="100%" styleName="text-align-right"/>
+					</s:FormItem>
+				</s:Form>
+			</s:Panel>
+			<s:Panel styleName="well-warning" width="200" title="Organización">
+				<s:Form width="100%" styleName="text-size-md">
+					<s:FormItem label="Grupos:" height="20">
+						<s:Label id="numGrupos" text="0" width="100%" styleName="text-align-right"/>
+					</s:FormItem>
+					<s:FormItem label="Instructores:" height="20">
+						<s:Label id="numInstructores" text="0" width="100%" styleName="text-align-right"/>
+					</s:FormItem>
+					<s:FormItem label="Salones:" height="20">
+						<s:Label id="numSalones" text="0" width="100%" styleName="text-align-right"/>
+					</s:FormItem>
+					<s:FormItem label="Clases:" height="20">
+						<s:Label id="numClases" text="0" width="100%" styleName="text-align-right"/>
+					</s:FormItem>
+				</s:Form>
+			</s:Panel>
+			<s:Panel styleName="well-warning" title="Asistencias de día">
+				<s:Form width="100%" styleName="text-size-md" id="asistencias">
+					<s:FormItem label="Clases:" height="20">
+						<s:Label id="clases_num" text="0" width="100%" styleName="text-align-right"/>
+					</s:FormItem>
+					<s:FormItem label="Esperada:" height="20">
+						<s:Label id="esperada_num" text="0" width="100%" styleName="text-align-right"/>
+					</s:FormItem>
+					<s:FormItem label="Asistencias:" height="20">
+						<s:Label id="asistencias_num" text="0" width="100%" styleName="text-align-right"/>
+					</s:FormItem>
+					<s:FormItem label="Inasistencias:" height="20">
+						<s:Label id="inasistencias_num" text="0" width="100%" styleName="text-align-right"/>
+					</s:FormItem>
+				</s:Form>
+			</s:Panel>
+		</s:TileGroup>
+	</s:VGroup>
+	
 </views:View>

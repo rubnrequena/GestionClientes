@@ -18,8 +18,8 @@
 			
 			protected function login_click(event:MouseEvent):void {
 				if (form.isValid) {
-					VOUsuario.USUARIO_ACTIVO = GestionClientes.usuarios.byLogin(usuarioInput.text.toLowerCase(),passInput.text.toLowerCase());
-					if (VOUsuario.USUARIO_ACTIVO) {
+					VOUsuario.USUARIO_ACTIVO = GestionClientes.usuarios.byLogin(usuarioInput.text.toLowerCase(),passInput.text.toLowerCase()).usuarioID;
+					if (VOUsuario.USUARIO_ACTIVO>0) {
 						closing(true);
 					} else {
 						passInput.text = "";

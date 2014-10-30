@@ -8,6 +8,7 @@ package vo
 		public static const SERVICIO:int = 1;
 		public static const PRODUCTO:int = 2;
 		public static const MISCELANEO:int = 3;
+		public static const INSCRIPCION:int = 4;
 		
 		public var productoID:int;
 		public var descripcion:String;

@@ -4,7 +4,7 @@
 				 xmlns:s="library://ns.adobe.com/flex/spark" 
 				 xmlns:mx="library://ns.adobe.com/flex/mx" title="Tareas" xmlns:controls="bootstrap.controls.*" xmlns:com="com.*">
 	<views:layout>
-		<s:VerticalLayout />
+		<s:VerticalLayout horizontalAlign="contentJustify" />
 	</views:layout>
 	<fx:Script>
 		<![CDATA[
@@ -27,9 +27,9 @@
 		<controls:FormItem label="Grupo">
 			<com:ListPickerButton label="Seleccione grupo" width="50%" title="Grupos" labelField="nombre" pickerClass="{new ClassFactory(ListPickerSearch)}" id="grupoInput"/>
 		</controls:FormItem>
-		<controls:FormItem label="Descripcion">
-			<s:TextInput id="descInput" width="50%"/>
-			<s:Button styleName="btn-silent icon-lista-sm" id="btnEtiquetas"/>
+		<controls:FormItem label="Descripcion" autoSize="false">
+			<s:TextInput id="descInput" width="100%"/>
+			<s:Button styleName="btn-silent icon-lista-sm" id="btnEtiquetas" width="32"/>
 		</controls:FormItem>
 		<controls:FormItem label="Tipo">
 			<com:ListPickerButton label="..." id="tipoInput" width="50%" selectedIndex="0">
@@ -37,6 +37,8 @@
 					<s:ArrayList>
 						<fx:Object label="Semanal"/>
 						<fx:Object label="Mensual"/>
+						<fx:Object label="Diario"/>
+						<fx:Object label="Inscripción"/>
 					</s:ArrayList>
 				</com:dataProvider>
 			</com:ListPickerButton>
@@ -48,9 +50,9 @@
 			<s:Button id="insertarTarea" label="Insertar" styleName="btn-success icon-insertar-sm" width="33%"/>
 		</s:HGroup>
 	</controls:Form>
-	<controls:FormItem>
-		<s:Button label="Ocultar formulario" id="btnView" width="50%" styleName="btn-warning"/>
-	</controls:FormItem>
+	<s:HGroup horizontalAlign="center">
+		<s:Button label="Ocultar formulario" id="btnView" width="60%" styleName="btn-warning"/>
+	</s:HGroup>
 	<s:HGroup horizontalAlign="center" width="100%">
 		<s:Button id="removerTarea" label="Remover" styleName="btn-danger icon-remover-sm" width="33%"/>
 	</s:HGroup>

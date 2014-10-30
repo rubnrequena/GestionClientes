@@ -30,6 +30,7 @@ package views.clientes
 			if (initialized) childrenCreated();
 		}		
 		override protected function childrenCreated():void {
+			title = "Estado de cuenta - "+cliente.nombres;
 			_facturas = new VectorCollection(cliente.facturas());
 			_pendientes = new VectorCollection(cliente.pagosPendientes());
 			facturasGrid.dataProvider = _facturas;
@@ -44,7 +45,7 @@ package views.clientes
 			
 			total=0;
 			for (i = 0; i < _pendientes.length; i++)
-				total += _pendientes.getItemAt(i).monto;
+				total += (_pendientes.getItemAt(i).monto*_pendientes.getItemAt(i).cantidad);
 			pendienteInput.text = total.toString();
 			
 			

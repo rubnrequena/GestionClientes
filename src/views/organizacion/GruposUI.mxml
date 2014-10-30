@@ -16,12 +16,16 @@
 		<controls:FormItem label="Renta:" validateType="text">
 			<s:TextInput id="rentaInput" restrict="0-9."/>
 		</controls:FormItem>
+		<controls:FormItem label="Inscripción:" validateType="text">
+			<s:TextInput id="inscripcionInput" restrict="0-9."/>
+		</controls:FormItem>
 	</controls:Form>
 	<s:DataGrid width="100%" height="100%" id="gruposGrid">
 		<s:columns>
 			<s:ArrayList>
 				<s:GridColumn headerText="Nombre" dataField="nombre"/>
 				<s:GridColumn headerText="Renta" dataField="renta"/>
+				<s:GridColumn headerText="Inscripción" dataField="inscripcion"/>
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>

@@ -53,33 +53,37 @@ package views.asistencias
 		
 		protected function registrar_click(event:MouseEvent):void {
 			var clientes:Vector.<VOCliente> = (claseInput.selectedItem as VOClase).clientes;
-			var asistencias:Array = new Array(clientes.length);
-			var asistencia:VOAsistencia;
-			var ahora:Date = new Date;
-			for (var i:int = 0; i < clientes.length; i++) {
-				asistencia = new VOAsistencia;
-				asistencia.clienteID = clientes[i].clienteID;
-				asistencia.grupoID = clientes[i].grupoID;
-				asistencia.claseID = (claseInput.selectedItem as VOClase).claseID;
-				asistencia.salonID = (claseInput.selectedItem as VOClase).salonID;
-				asistencia.usuarioID = VOUsuario.USUARIO_ACTIVO.usuarioID;
-				if (horariosGrid.dataProviderLength==1) {
-					asistencia.entrada = (horariosGrid.dataProvider.getItemAt(0) as VOHorario).entrada;  
-					asistencia.salida = (horariosGrid.dataProvider.getItemAt(0) as VOHorario).salida;
-				} else {
-					asistencia.entrada = (horariosGrid.selectedItem as VOHorario).entrada;  
-					asistencia.salida = (horariosGrid.selectedItem as VOHorario).salida;
+			if (clientes.length>0) {
+				var asistencias:Array = new Array(clientes.length);
+				var asistencia:VOAsistencia;
+				var ahora:Date = new Date;
+				for (var i:int = 0; i < clientes.length; i++) {
+					asistencia = new VOAsistencia;
+					asistencia.clienteID = clientes[i].clienteID;
+					asistencia.grupoID = clientes[i].grupoID;
+					asistencia.claseID = (claseInput.selectedItem as VOClase).claseID;
+					asistencia.salonID = (claseInput.selectedItem as VOClase).salonID;
+					asistencia.usuarioID = VOUsuario.USUARIO_ACTIVO;
+					if (horariosGrid.dataProviderLength==1) {
+						asistencia.entrada = (horariosGrid.dataProvider.getItemAt(0) as VOHorario).entrada;  
+						asistencia.salida = (horariosGrid.dataProvider.getItemAt(0) as VOHorario).salida;
+					} else {
+						asistencia.entrada = (horariosGrid.selectedItem as VOHorario).entrada;  
+						asistencia.salida = (horariosGrid.selectedItem as VOHorario).salida;
+					}
+					asistencia.asistio = false;
+					asistencia.horaIngreso = int(DateUtil.dateToString(ahora,"HHnn"));
+					asistencia.fechaIngreso = DateUtil.dateToString(ahora,"YYYY-MM-DD");
+					asistencias[i] = asistencia.toObject;
 				}
-				asistencia.asistio = false;
-				asistencia.horaIngreso = int(DateUtil.dateToString(ahora,"HHnn"));
-				asistencia.fechaIngreso = DateUtil.dateToString(ahora,"YYYY-MM-DD");
-				asistencias[i] = asistencia.toObject;
+				GestionClientes.asistencias.insertar_lote(asistencias);
+				ModalAlert.showDelay("Clase registrada exitosamente","Registrar clase",null,1000,function ():void {
+					claseInput.selectedIndex=-1;
+					clientesGrid.dataProvider = horariosGrid.dataProvider = null;
+				});
+			} else {
+				ModalAlert.show('No se puede registrar clase sin clientes asignados',"Advertencia",null,[ModalAlert.OK],null,0,"well-warning");
 			}
-			GestionClientes.asistencias.insertar_lote(asistencias);
-			ModalAlert.showDelay("Clase registrada exitosamente","Registrar clase",null,1000,function ():void {
-				claseInput.selectedIndex=-1;
-				clientesGrid.dataProvider = horariosGrid.dataProvider = null;
-			});
 		}
 		
 		protected function atras_click(event:MouseEvent):void {

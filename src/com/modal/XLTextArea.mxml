@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com:Modal xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		   xmlns:s="library://ns.adobe.com/flex/spark" 
+		   xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:com="com.*" width="600" height="500">
+	<s:TextArea width="100%" height="100%" id="areaInput"/>
+	<com:controlBarContent>
+		<s:Button styleName="btn-success" label="Confirmar" id="confirmar"/>
+		<s:Spacer width="100%"/>
+		<s:Button styleName="btn-danger icon-cancel-md" label="Cancelar" id="cancelar"/>
+	</com:controlBarContent>
+	<fx:Script>
+		<![CDATA[
+			override protected function createChildren():void {
+				super.createChildren();				
+				confirmar.addEventListener(MouseEvent.CLICK,confirmar_click);
+				cancelar.addEventListener(MouseEvent.CLICK,cancelar_click);
+			}			
+			protected function confirmar_click(event:MouseEvent):void {
+				closing(areaInput.text);
+			}			
+			protected function cancelar_click(event:MouseEvent):void {
+				popOff();
+			}
+			override public function popOff():void {
+				confirmar.removeEventListener(MouseEvent.CLICK,confirmar_click);
+				cancelar.removeEventListener(MouseEvent.CLICK,cancelar_click);
+				super.popOff();
+			}
+		]]>
+	</fx:Script>
+</com:Modal>

@@ -4,6 +4,7 @@ package views.clientes
 	
 	import com.ListPicker;
 	import com.ModalAlert;
+	import com.modal.XLTextArea;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -59,9 +60,10 @@ package views.clientes
 			dirInput.text = cliente.direccion;
 			fechaInput.text = cliente.fechaNacimientoLocal;
 			grupoInput.label = cliente.grupo.toString();
+			obsInput.text = cliente.meta;
 			
 			exoneradoInput.selectedIndex = int(cliente.exonerado);
-			exoneradoInput.enabled = VOUsuario.USUARIO_ACTIVO.acceso==VOUsuario.USER_ADMIN;
+			exoneradoInput.enabled = GestionClientes.usuarios.byID(VOUsuario.USUARIO_ACTIVO).acceso==VOUsuario.USER_ADMIN;
 			
 			grupo = cliente.grupo;
 			grupoIndex = GestionClientes.grupos.grupoIndex(cliente.grupoID);
@@ -77,6 +79,18 @@ package views.clientes
 			asistenciasMes.text = cliente.asistenciasDelMes(hoy.month+1,hoy.fullYear).length.toString();			
 						
 			grupoInput.addEventListener(MouseEvent.CLICK,btnGrupo_click);
+			obsXL.addEventListener(MouseEvent.CLICK,obsXL_click);
+		}
+		
+		protected function obsXL_click(event:MouseEvent):void
+		{
+			var obs:XLTextArea = new XLTextArea;
+			obs.title = "Observación";
+			obs.popUp();
+			obs.areaInput.text = obsInput.text;
+			obs.onClose = function (data:String):void {
+				obsInput.text = data;
+			}
 		}
 		
 		private function mesInput_close(mes:int):void {
@@ -93,13 +107,13 @@ package views.clientes
 		}
 		
 		protected function asistencias_click(event:MouseEvent):void {
-			(owner as ViewNavigator).addView("buscar_asistencias",views.asistencias.Asistencias,{
+			(owner as ViewNavigator).addView("buscar_asistencias_",views.asistencias.Asistencias,{
 				busq_pre:cliente
 			},true);
 		}
 		
 		protected function estadoCuenta_click(event:MouseEvent):void {
-			(owner as ViewNavigator).addView("estado_cliente",EstadoCuenta,{
+			(owner as ViewNavigator).addView("estado_cliente_"+cliente.clienteID,EstadoCuenta,{
 				cliente:this.cliente
 			},true);
 		}
@@ -124,13 +138,13 @@ package views.clientes
 		}
 		
 		protected function actualizarClick(event:MouseEvent):void {
-			var changes:Vector.<Value> = new Vector.<Value>;
 			cliente.update("nombres",nombreInput.text);
 			cliente.update("cedula",cedulaInput.text);
 			cliente.update("fechaNacimiento",DateUtil.toggleDate(fechaInput.fullText));
 			cliente.update("telefonos",tlfInput.text);
 			cliente.update("direccion",dirInput.text);
 			cliente.update("grupoID",grupo.grupoID);
+			cliente.update("meta",obsInput.text);
 			cliente.commitUpdate();
 			ModalAlert.show("Datos de cliente actualizados","Cliente",null,[{label:"OK"}]);
 		}

@@ -11,6 +11,7 @@ package views.clientes
 	
 	import org.apache.flex.collections.VectorCollection;
 	
+	import vo.VOCliente;
 	import vo.VOHorario;
 
 	public class Cumpleanos extends CumpleanosUI
@@ -43,6 +44,15 @@ package views.clientes
 			btnMes.selectedIndex = now.month;
 			btnCancelar.addEventListener(MouseEvent.CLICK,cancelarClick);
 			btnMes.setFocus();
+			
+			btnVer.addEventListener(MouseEvent.CLICK,ver_click);
+		}
+		
+		protected function ver_click(event:MouseEvent):void {
+			var _cliente:VOCliente = clientes.selectedItem as VOCliente;
+			(owner as ViewNavigatorHistory).addView("cliente_"+_cliente.clienteID,FichaCliente,{
+				cliente:_cliente
+			},true);
 		}
 		
 		protected function cancelarClick(event:MouseEvent):void {

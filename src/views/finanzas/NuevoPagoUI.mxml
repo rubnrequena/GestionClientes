@@ -8,7 +8,7 @@
 	</views:layout>
 	<controls:Form id="form" width="100%">
 		<controls:FormItem label="Cliente:" validateType="list">
-			<com:ListPickerButton label="Cliente" itemRender="{new ClassFactory(ClienteRender)}" id="clienteInput" width="50%" title="Clientes" pickerClass="{new ClassFactory(ListPickerSearch)}" labelField="nombres"/> 
+			<com:ListPickerButton label="Cliente" itemRender="{ClienteRender}" id="clienteInput" width="50%" title="Clientes" pickerClass="{new ClassFactory(ListPickerSearch)}" labelField="nombres"/> 
 		</controls:FormItem>
 		<controls:FormItem label="Fecha:">
 			<mx:DateField width="50%" selectedDate="{new Date}" formatString="DD/MM/YYYY" id="fechaInput"/>
@@ -61,6 +61,7 @@
 	</s:SkinnableContainer>
 	<views:controlBarContent>
 		<s:Button label="Facturar" height="30" styleName="btn-primary icon-facturar-sm" id="btnFacturar"/>
+		<s:CheckBox label="Crédito" id="credito"/>
 		<s:CheckBox label="Con Copia" id="copia"/>
 		<s:Spacer width="100%"/>
 		<s:Button label="Atras" height="30" styleName="btn-danger icon-atras-sm" id="btnCancelar"/>

@@ -70,59 +70,21 @@
 			private var logo:Class;
 			
 			protected function onComplete(event:FlexEvent):void {
-				sql = new Modulo;
-				var dbfile:File = File.applicationStorageDirectory.resolvePath("gestion.db");
-				var exist:Boolean = dbfile.exists;
-				sql.iniciar(dbfile);
+				var alert:ModalAlert = new ModalAlert("Validando licencia","Conectando");
+				alert.popUp();
 				
-				if (!exist) {
-					var sqlText:ByteArray = new myFile;
-					var lineas:Array = sqlText.readMultiByte(sqlText.bytesAvailable,File.systemCharset).split(File.lineEnding);
-					for each (var s:String in lineas) {
-						sql.sql(s);	
-					}
-				}
-				var splash:ModalAlert = ModalAlert.showDelay("","Iniciando Sistema...",null,500,function ():void {
-					showLogin(login_close);
-				});
-				config = new Config;
-				grupos = new Grupos;
-				clientes = new Clientes;
-				horarios = new Horarios;
-				productos = new Productos;
-				pagos = new Pagos;
-				facturas = new Facturas;
-				salones = new Salones;
-				instructores = new Instructores;
-				clasess = new Clases;
-				tareas = new Tareas;
-				asistencias = new Asistencias;		
-				usuarios = new Usuarios;
-				
-				splash.removeAllElements();
-				var img:BitmapImage = new BitmapImage;
-				img.source = new logo;
-				splash.addElement(img);
-				PopUpManager.centerPopUp(splash);
-				
-				btnAcerca.addEventListener(MouseEvent.CLICK,acerca_click);
-				btnSesion.addEventListener(MouseEvent.CLICK,sesion_click);
-				stateAsistencia.addEventListener(FlexEvent.ENTER_STATE,asistencia_enter);
-				mainMenu.nav = nav;
-				
-				VOUsuario.usuarioChange.add(function (usuario:VOUsuario):void {
-					if (usuario.acceso>0) {
-						nav.removeAllElements();
-						nav.addView("inicio_view",Inicio,null,true);
+				var req:URLRequest = new URLRequest("http://sistemasrequena.com/apps/gestion_clientes/validar.php");
+				var url:URLLoader = new URLLoader();
+				url.dataFormat = URLLoaderDataFormat.TEXT;
+				url.addEventListener(Event.COMPLETE,function (e:Event):void {
+					if (url.data=="1") {
+						alert.popOff();
+						licenciaValida();
+					} else {
+						alert.message = "Licencia vencida";
 					}
 				});
-				
-				Modal.globalPopUp.add(function (modal:IModal):void {
-					KEYBOARD_STAGE=false;
-				});
-				Modal.globalPopOff.add(function (modal:IModal):void {
-					KEYBOARD_STAGE=true;
-				});
+				url.load(req);
 			}
 			
 			protected function acerca_click(event:MouseEvent):void {
@@ -193,6 +155,63 @@
 				nav.setFocus();
 			}
 			
+			private function licenciaValida():void {
+				sql = new Modulo;
+				var dbfile:File = File.applicationStorageDirectory.resolvePath("gestion.db");
+				var exist:Boolean = dbfile.exists;
+				sql.iniciar(dbfile);
+				
+				if (!exist) {
+					var sqlText:ByteArray = new myFile;
+					var lineas:Array = sqlText.readMultiByte(sqlText.bytesAvailable,File.systemCharset).split(File.lineEnding);
+					for each (var s:String in lineas) {
+						sql.sql(s);	
+					}
+				}
+				var splash:ModalAlert = ModalAlert.showDelay("","Iniciando Sistema...",null,500,function ():void {
+					showLogin(login_close);
+				});
+				config = new Config;
+				grupos = new Grupos;
+				clientes = new Clientes;
+				horarios = new Horarios;
+				productos = new Productos;
+				pagos = new Pagos;
+				facturas = new Facturas;
+				salones = new Salones;
+				instructores = new Instructores;
+				clasess = new Clases;
+				tareas = new Tareas;
+				asistencias = new Asistencias;		
+				usuarios = new Usuarios;
+				
+				splash.removeAllElements();
+				var img:BitmapImage = new BitmapImage;
+				img.source = new logo;
+				splash.addElement(img);
+				PopUpManager.centerPopUp(splash);
+				
+				btnAcerca.addEventListener(MouseEvent.CLICK,acerca_click);
+				btnSesion.addEventListener(MouseEvent.CLICK,sesion_click);
+				stateAsistencia.addEventListener(FlexEvent.ENTER_STATE,asistencia_enter);
+				mainMenu.nav = nav;
+				
+				VOUsuario.usuarioChange.add(function (usuario:int):void {
+					tareas.run();
+					if (VOUsuario.USUARIO.acceso>0) {
+						nav.removeAllElements();
+						nav.addView("inicio_view",Inicio,null,true);
+					}
+				});
+				
+				Modal.globalPopUp.add(function (modal:IModal):void {
+					KEYBOARD_STAGE=false;
+				});
+				Modal.globalPopOff.add(function (modal:IModal):void {
+					KEYBOARD_STAGE=true;
+				});
+			}
+						
 		]]>
 	</fx:Script>
 	<s:VGroup width="100%" height="100%" gap="0">

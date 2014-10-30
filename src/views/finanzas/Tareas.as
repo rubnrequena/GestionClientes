@@ -48,6 +48,7 @@ package views.finanzas
 		
 		protected function ocultar_click(event:MouseEvent):void {
 			form.visible = form.includeInLayout = !form.visible;
+			btnView.label = form.visible?"Ocultar formulario":"Mostrar formulario";
 		}
 		
 		protected function atras_click(event:MouseEvent):void {
@@ -69,12 +70,19 @@ package views.finanzas
 		}
 		
 		private function tipoClose(tipo:int):void {
-			var i:int;
-			var data:Array = tipo?VOHorario.DIAS_MES.slice():VOHorario.DIAS_SEMANA.slice();
-			for (i = 0; i < data.length; i++) {
-				data[i] = {label:data[i]};
+			if (tipo==VOTarea.TIPO_DIARIO || tipo==VOTarea.TIPO_INSCRIPCION) {
+				diasInput.enabled=false;
+				diasInput.dataProvider = null;
+			} else {
+				diasInput.enabled=true;
+				var i:int;
+				var data:Array = tipo?VOHorario.DIAS_MES.slice():VOHorario.DIAS_SEMANA.slice();
+				for (i = 0; i < data.length; i++) {
+					data[i] = {label:data[i]};
+				}
+				diasInput.dataProvider = new ArrayList(data);
 			}
-			diasInput.dataProvider = new ArrayList(data); 
+			diasInput.selectedIndex=-1;
 		}
 		protected function removerTarea_click(event:MouseEvent):void {
 			if (tareasGrid.selectedIndex>-1) {

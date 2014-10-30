@@ -99,7 +99,7 @@ package clases
 			for (i = 0; i < _horarios.length; i++) {
 				if (ClasesAsistencia.instancia.existe(_horarios[i].claseID,hoyString)==false) {
 					clase.fecha = hoyString;
-					clase.usuarioID = VOUsuario.USUARIO_ACTIVO.usuarioID;
+					clase.usuarioID = VOUsuario.USUARIO_ACTIVO;
 					clase.claseID = _horarios[i].claseID;
 					asistencias_clientes(_horarios[i].clase);
 					ClasesAsistencia.instancia.insertar(clase);
@@ -120,7 +120,7 @@ package clases
 				asistencia.grupoID = clientes[i].grupoID;
 				asistencia.claseID = clase.claseID;
 				asistencia.salonID = clase.salonID;
-				asistencia.usuarioID = VOUsuario.USUARIO_ACTIVO.usuarioID;
+				asistencia.usuarioID = VOUsuario.USUARIO_ACTIVO;
 				
 				var horarios:Vector.<VOHorario> = clase.horarios;
 				

@@ -2,6 +2,7 @@ package clases
 {
 	import clases.tareas.ITarea;
 	import clases.tareas.TPago;
+	import clases.tareas.TPagoCliente;
 	
 	import flash.utils.getDefinitionByName;
 	
@@ -11,11 +12,14 @@ package clases
 	
 	import utils.VectorUtil;
 	
+	import vo.VOProducto;
 	import vo.VOTarea;
+	import vo.VOUsuario;
 
 	public class Tareas
 	{
 		private var tpago:TPago;
+		private var tpagoCliente:TPagoCliente;
 		
 		protected var updateFlag:Boolean=true;
 
@@ -26,7 +30,7 @@ package clases
 		}		
 		
 		public function Tareas() {
-			run();
+			
 		}
 		private function update():void {
 			_data = VectorUtil.toVector(GestionClientes.sql.seleccionar("tareas",null,VOTarea).data,Vector.<VOTarea>);
@@ -48,14 +52,12 @@ package clases
 			var ds:String = DateField.dateToString(d,"YYYY-MM-DD");
 			if (updateFlag) update(); 
 			for (i = 0; i < _data.length; i++) {
-				if (_data[i].tipo==0) {
-					if (d.day==_data[i].dia) {
-						runTask(_data[i],ds);
-					}
-				} else {
-					if (d.date>=_data[i].dia) {
-						runTask(_data[i],ds);
-					}
+				if (_data[i].tipo==VOTarea.TIPO_SEMANAL) {
+					if (d.day==_data[i].dia) runTask(_data[i],ds);
+				} else if (_data[i].tipo==VOTarea.TIPO_MENSUAL) {
+					if (d.date>=_data[i].dia) runTask(_data[i],ds);
+				} else if (_data[i].tipo==VOTarea.TIPO_DIARIO) {
+					runTask(_data[i],ds);
 				}
 			}			
 		}
@@ -63,7 +65,7 @@ package clases
 		public function runTask(tarea:VOTarea,date:String):void {
 			var type:Class = getDefinitionByName(tarea.type) as Class;
 			var t:ITarea = new type();
-			t.iniciar(tarea.metaData.concat(date,1));
+			t.iniciar(tarea.metaData.concat(date,VOUsuario.USUARIO_ACTIVO));
 		}
 	}
 }

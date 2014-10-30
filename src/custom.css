@@ -5,6 +5,7 @@
 @namespace local "*";
 @namespace skins "bootstrap.skins.*";
 @namespace com "com.*";
+@namespace morosos "com.morosos.*";
 
 com|TopMenu {
 	backgroundColor:#43a898;
@@ -88,6 +89,9 @@ skins|BToggleButtonBarSkin {
 .icon-asistencias-md {
 	icon:"assets/checked_user-32.png";	
 }
+.icon-asistencias-sm {
+	icon:"assets/checked_user-26.png";
+}
 .icon-nuevo_usuario-md {
 	icon:"assets/add_user-32.png";
 }
@@ -117,4 +121,9 @@ skins|BToggleButtonBarSkin {
 }
 .icon-update-sm {
 	icon:"assets/downloading_updates-26.png";	
+}
+#morosos {
+	contentBackgroundColor:#0000ff;
+	selectionColor:#c48080;	
+	rollOverColor:#e66e6e;
 }

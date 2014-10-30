@@ -72,6 +72,7 @@ package views.organizacion
 				grupo.nombre = nombreInput.text;
 				grupo.descripcion = descInput.text;
 				grupo.renta = Number(rentaInput.text);
+				grupo.inscripcion = Number(inscripcionInput.text);
 				
 				GestionClientes.grupos.insertar(grupo);
 				ModalAlert.show("Grupo guardado exitosamente","Gestion Clientes",null,[ModalAlert.OK],function ():void {

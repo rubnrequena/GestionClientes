@@ -22,7 +22,13 @@
 			<s:Label text="Configuración de Sistema"/>
 		</controls:FormItem>
 		<controls:FormItem label="Sonidos">
-			<s:ToggleButton id="sonidos" width="50%" styleName="btn-primary"/>
+			<s:ToggleButton id="sonidos" name="sonidos" width="50%" styleName="btn-primary"/>
+		</controls:FormItem>
+		<controls:FormItem label="Morosos en Inicio">
+			<s:ToggleButton id="morosos" name="morosos_en_pantalla" width="50%" styleName="btn-primary"/>
+		</controls:FormItem>
+		<controls:FormItem label="Empleado Crédito">
+			<s:ToggleButton id="credito" name="empleado_credito" width="50%" styleName="btn-primary"/>
 		</controls:FormItem>
 		<controls:FormItem styleName="well-info">
 			<s:Label text="Configuración de Impresora"/>

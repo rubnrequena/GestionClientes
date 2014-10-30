@@ -8,6 +8,11 @@ package vo
 	
 	public class VOTarea extends MapObject
 	{
+		static public const TIPO_SEMANAL:int=0;
+		static public const TIPO_MENSUAL:int=1;
+		static public const TIPO_DIARIO:int=2;
+		static public const TIPO_INSCRIPCION:int=3;
+		
 		public var tareaID:int;
 		public var type:String;
 		public var tipo:int;
